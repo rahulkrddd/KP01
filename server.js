@@ -7,7 +7,6 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static('public'));
 
-// Ensure data file exists
 const dataFile = path.join(__dirname, 'data.txt');
 if (!fs.existsSync(dataFile)) {
     fs.writeFileSync(dataFile, '');
@@ -32,39 +31,7 @@ app.get('/search', (req, res) => {
     let html = '<ul>';
     results.forEach(record => {
         const fields = record.split('|');
-        if (fields.length > 1) { // Avoid empty lines
-            html += `<li>ID: ${fields[0]}, Name: ${fields[1]}, Class: ${fields[2]}, School: ${fields[3]}, Enroll Date: ${fields[4]}, Fee Amount: ${fields[5]}, Month: ${fields[6]}, Payment Received: ${fields[7]}</li>`;
-        }
-    });
-    html += '</ul>';
-    res.json({ html });
-});
-
-app.get('/search-payment', (req, res) => {
-    const query = req.query.query.toLowerCase();
-    const records = fs.readFileSync(dataFile, 'utf8').split('\n');
-    const results = records.filter(record => record.toLowerCase().includes(query));
-    let html = '<ul>';
-    results.forEach(record => {
-        const fields = record.split('|');
-        if (fields.length > 1) { // Avoid empty lines
-            html += `<li>ID: ${fields[0]}, Name: ${fields[1]}, Class: ${fields[2]}, School: ${fields[3]}, Enroll Date: ${fields[4]}, Fee Amount: ${fields[5]}, Month: ${fields[6]}, Payment Received: ${fields[7]}</li>`;
-        }
-    });
-    html += '</ul>';
-    res.json({ html });
-});
-
-app.get('/search-exit', (req, res) => {
-    const query = req.query.query.toLowerCase();
-    const records = fs.readFileSync(dataFile, 'utf8').split('\n');
-    const results = records.filter(record => record.toLowerCase().includes(query));
-    let html = '<ul>';
-    results.forEach(record => {
-        const fields = record.split('|');
-        if (fields.length > 1) { // Avoid empty lines
-            html += `<li>ID: ${fields[0]}, Name: ${fields[1]}, Class: ${fields[2]}, School: ${fields[3]}, Enroll Date: ${fields[4]}, Fee Amount: ${fields[5]}, Month: ${fields[6]}, Payment Received: ${fields[7]}</li>`;
-        }
+        html += `<li>ID: ${fields[0]}, Name: ${fields[1]}, Class: ${fields[2]}, School: ${fields[3]}, Enroll Date: ${fields[4]}, Fee Amount: ${fields[5]}, Month: ${fields[6]}, Payment Received: ${fields[7]}</li>`;
     });
     html += '</ul>';
     res.json({ html });
