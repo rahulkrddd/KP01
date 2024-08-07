@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knowledge Point - Enroll</title>
+    <title>Knowledge Point</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -67,41 +67,6 @@
             }
         }
     </style>
-	<style>
-		    <!-- CSS for error  -->        
-		.alert {
-		    position: relative;
-		    padding: 0.75rem 1.25rem;
-		    margin-bottom: 1rem;
-		    border: 1px solid transparent;
-		    border-radius: 0.25rem;
-		}
-		
-		.alert-success {
-		    background-color: #d4edda;
-		    color: #155724;
-		    border-color: #c3e6cb;
-		}
-		
-		.alert-danger {
-		    background-color: #f8d7da;
-		    color: #721c24;
-		    border-color: #f5c6cb;
-		}
-		
-		.alert-dismissible {
-		    padding-right: 3rem;
-		}
-		
-		.alert .close {
-		    position: absolute;
-		    top: 0;
-		    right: 0;
-		    padding: 0.75rem 1.25rem;
-		    color: inherit;
-		}
-	
-	</style>
 </head>
 <body>
     <div class="container">
@@ -113,7 +78,7 @@
             <a class="nav-item nav-link" href="#" onclick="showExit()">Delete</a>
         </nav>
 
-        <div id="enroll" class="table-container" style="display: block;">
+        <div id="enroll" class="table-container" style="display: none;">
             <form id="enrollForm">
                 <div class="form-group">
                     <label for="enrollName">Name</label>
@@ -260,8 +225,11 @@
         }
 
         function setActiveTab(tabId) {
-            $(".nav-link").removeClass("active");
-            $("#" + tabId).prev().addClass("active");
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`[onclick="show${capitalize(tabId)}()"]`).classList.add('active');
         }
 
         function capitalize(str) {
@@ -437,12 +405,15 @@ function displaySearchResults(containerId, results) {
 
 
 
+
+
+
 function editRecord(containerId, record) {
     const container = document.getElementById(containerId);
-
+    
     let buttonLabel = "Save";
     let buttonClass = "btn btn-primary";
-
+    
     if (containerId === 'exitResult') {
         buttonLabel = "Confirm Delete";
         buttonClass = "btn btn-danger";
@@ -456,18 +427,18 @@ function editRecord(containerId, record) {
             <input type="hidden" id="${containerId}Id" value="${record.id}">
             <div class="form-group">
                 <label for="${containerId}Name">Name</label>
-                <input type="text" class="form-control" id="${containerId}Name" value="${record.name}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
+                <input type="text" class="form-control" id="${containerId}Name" value="${record.name}" ${containerId === 'paymentResult' || containerId === 'exitResult'  ? 'readonly' : 'required'}>
             </div>
             <div class="form-group">
                 <label for="${containerId}Class">Class</label>
-                <select class="form-control" id="${containerId}Class" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'disabled' : 'required'}>
+                <select class="form-control" id="${containerId}Class" ${containerId === 'paymentResult' || containerId === 'exitResult'  ? 'disabled' : 'required'}>
                     ${Array.from({ length: 12 }, (_, i) => i + 1).map(value =>
                         `<option value="${value}" ${record.studentClass === value.toString() ? 'selected' : ''}>${value}</option>`).join('')}
                 </select>
             </div>
             <div class="form-group">
                 <label for="${containerId}School">School</label>
-                <select class="form-control" id="${containerId}School" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'disabled' : 'required'}>
+                <select class="form-control" id="${containerId}School" ${containerId === 'paymentResult' || containerId === 'exitResult'  ? 'disabled' : 'required'}>
                     <option value="KCPS" ${record.school === 'KCPS' ? 'selected' : ''}>KCPS</option>
                     <option value="DPS" ${record.school === 'DPS' ? 'selected' : ''}>DPS</option>
                     <option value="Inventure" ${record.school === 'Inventure' ? 'selected' : ''}>Inventure</option>
@@ -477,7 +448,7 @@ function editRecord(containerId, record) {
             </div>
             <div class="form-group">
                 <label for="${containerId}Date">Enroll Date</label>
-                <input type="date" class="form-control" id="${containerId}Date" value="${record.date}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
+                <input type="date" class="form-control" id="${containerId}Date" value="${record.date}" ${containerId === 'paymentResult' || containerId === 'exitResult'  ? 'readonly' : 'required'}>
             </div>
             <div class="form-group">
                 <label for="${containerId}Fee">Fee Amount</label>
@@ -511,24 +482,22 @@ function editRecord(containerId, record) {
 
     container.innerHTML = fields;
 
+    // Function to update the background color based on the payment value
     function updatePaymentFieldColor() {
         const paymentField = document.getElementById(`${containerId}Payment`);
         const paymentValue = paymentField.value;
         paymentField.style.backgroundColor = paymentValue === 'Yes' ? 'lightgreen' : paymentValue === 'No' ? 'lightcoral' : '';
     }
 
+    // Initial color update
     updatePaymentFieldColor();
+
+    // Add event listener to update color when the field value changes
     document.getElementById(`${containerId}Payment`).addEventListener('change', updatePaymentFieldColor);
 
-    document.getElementById(`${containerId}Form`).addEventListener('submit', async function(event) {
+    // Event listener for form submission
+    document.getElementById(`${containerId}Form`).addEventListener('submit', (event) => {
         event.preventDefault();
-        const paymentField = document.getElementById(`${containerId}Payment`);
-        const paymentValue = paymentField.value;
-
-        if (containerId === 'paymentResult' && record.payment === 'Yes') {
-            showAlert('Payment already received', 'warning');
-            return; // Exit the function to avoid making unnecessary API calls
-        }
 
         const updatedRecord = {
             id: document.getElementById(`${containerId}Id`).value,
@@ -538,76 +507,25 @@ function editRecord(containerId, record) {
             date: document.getElementById(`${containerId}Date`).value,
             fee: document.getElementById(`${containerId}Fee`).value,
             month: document.getElementById(`${containerId}Month`).value,
-            payment: containerId === 'paymentResult' && paymentValue === 'No' ? 'Yes' : paymentValue,
+            payment: document.getElementById(`${containerId}Payment`).value
         };
 
-        let endpoint = '';
-        if (containerId === 'updateResult') {
-            endpoint = '/update';
-        } else if (containerId === 'paymentResult') {
-            endpoint = '/payment';
-        } else if (containerId === 'exitResult') {
-            endpoint = '/exit';
-        }
-
-        try {
-            const response = await fetch(endpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(updatedRecord),
-            });
-
-            const result = await response.json();
-            
-            // Check for specific error messages and handle them
-            if (result.message === 'This student is already inactive.') {
-                showAlert(result.message, 'error');
-            } else {
-                showAlert(result.message, 'success');
-            }
-        } catch (error) {
+        fetch('/update', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedRecord)
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+        })
+        .catch(error => {
             console.error('Error:', error);
-            showAlert(`An error occurred: ${error.message}`, 'error');
-        }
+        });
     });
-
-function showAlert(message, type) {
-    const alertDiv = document.createElement('div');
-
-    // Define alert class based on the type
-    const alertClass = type === 'error' ? 'alert-danger' : 'alert-success';
-
-    alertDiv.className = `alert ${alertClass} alert-dismissible fade show`;
-    alertDiv.role = 'alert';
-    alertDiv.innerHTML = `
-        <strong>${type === 'error' ? 'Error!' : 'Success!'}</strong> ${message}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    `;
-
-    container.innerHTML = '';
-    container.appendChild(alertDiv);
-
-    setTimeout(() => {
-        alertDiv.classList.add('show');
-        alertDiv.classList.remove('fade');
-    }, 100);
-    setTimeout(() => {
-        alertDiv.classList.add('fade');
-        alertDiv.classList.remove('show');
-    }, 10000);
 }
-
-}
-
-
-
-
-
-
 
 
 

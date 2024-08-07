@@ -267,46 +267,22 @@ app.post('/exit', (req, res) => {
     // Get all months from the selected month to March
     const months = getMonthsUntilMarch(month);
 
-    // Flag to track if any student was updated
+    // Update all records with the same student ID and month greater than the selected month
     let updated = false;
-    let studentName = '';
-    let studentAlreadyInactive = false;
-
     students.forEach(student => {
-        if (student.id === id && months.includes(student.month)) {
-            if (student.archiveInd === 'Yes') {
-                studentAlreadyInactive = true;
-            } else {
-                student.archiveInd = 'Yes';
-                updated = true;
-                studentName = student.name; // Save the student's name for the message
-            }
+        if (student.id === id && months.includes(student.month) ) {
+            student.archiveInd = 'Yes';
+            updated = true;
         }
     });
 
-    if (studentAlreadyInactive) {
-        res.status(400).json({ message: 'This student is already inactive.' });
-    } else if (updated) {
+    if (updated) {
         writeDataFile(students);
-
-        // Capitalize the first letter of the name and surname
-        const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-        const formatName = name => {
-            const parts = name.split(' ');
-            if (parts.length === 2) {
-                return `${capitalize(parts[0])} ${capitalize(parts[1])}`;
-            }
-            return capitalize(name);
-        };
-
-        const formattedName = formatName(studentName);
-
-        res.json({ message: `Student ${formattedName} is deleted from Knowledge Point.` });
+        res.json({ message: 'Student archived successfully for all relevant records.' });
     } else {
         res.status(404).json({ message: 'Student record not found or no records to update.' });
     }
 });
-
 
 // Start the server
 app.listen(PORT, () => {

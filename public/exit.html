@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exit Student</title>
+    <link rel="stylesheet" href="styles/exit.css">
+</head>
+<body>
+    <header>
+        <h1>Exit Student</h1>
+    </header>
+    <main>
+        <form id="exit-form">
+            <label for="search-name">Search by Name:</label>
+            <input type="text" id="search-name" name="search-name" placeholder="Enter student name">
+            
+            <label for="search-class">Search by Class:</label>
+            <input type="text" id="search-class" name="search-class" placeholder="Enter class">
+
+            <label for="search-school">Search by School:</label>
+            <input type="text" id="search-school" name="search-school" placeholder="Enter school name">
+
+            <button type="button" id="search-button">Search</button>
+
+            <div id="student-details">
+                <!-- Student details will be populated here -->
+            </div>
+
+            <p id="archive-status"></p>
+            <button type="button" id="exit-student-button">Confirm Exit</button>
+        </form>
+    </main>
+    <script src="scripts/common.js"></script>
+    <script src="scripts/exit.js"></script>
+</body>
+</html>

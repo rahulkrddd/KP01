@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knowledge Point</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      margin: 0;
+    }
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .tabs {
+      display: flex;
+      border-bottom: 2px solid #4CAF50;
+      margin-bottom: 20px;
+    }
+    .tab {
+      flex: 1;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      background-color: #f1f1f1;
+      border: 1px solid #ddd;
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+      transition: background-color 0.3s;
+    }
+    .tab.active {
+      background-color: #4CAF50;
+      color: white;
+      border-color: #4CAF50;
+    }
+    .tab:hover {
+      background-color: #ddd;
+    }
+    form {
+      margin: 20px 0;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .message {
+      color: red;
+      margin: 20px 0;
+    }
+    .results-table {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .results-table th, .results-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    .results-table th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .results-table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .results-table tr:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Knowledge Point</h1>
+  <div class="container">
+    <div class="tabs">
+      <div class="tab" id="enrollTab">Enroll a New Student</div>
+      <div class="tab" id="updateTab">Update Student Details</div>
+      <div class="tab" id="addPaymentTab">Add Payment Option</div>
+      <div class="tab" id="exitTab">Exit Student</div>
+    </div>
+
+    <!-- Enroll a New Student -->
+    <div id="enrollSection">
+      <form action="/enroll" method="post">
+        <label>Name: <input type="text" name="name" required></label>
+        <label>Class: 
+          <select name="class" required>
+            <option value="">Select Class</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+        </label>
+        <label>School: 
+          <select name="school" required>
+            <option value="KCPS">KCPS</option>
+            <option value="DPS">DPS</option>
+            <option value="Inventure">Inventure</option>
+            <option value="Atmanand">Atmanand</option>
+            <option value="Others">Others</option>
+          </select>
+        </label>
+        <label>Enroll Date: <input type="date" name="enrollDate" id="enrollDate" required></label>
+        <label>Fee Amount: <input type="number" name="feeAmount" value="1000" required></label>
+        <label>Month: <input type="text" name="month" id="month" required></label>
+        <label>Payment Received: 
+          <select name="paymentReceived">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </label>
+        <button type="submit">Enroll</button>
+      </form>
+    </div>
+
+    <!-- Update Student Details -->
+    <div id="updateSection" style="display:none;">
+      <form action="/update" method="post">
+        <label>Search by Name: <input type="text" name="name"></label>
+        <label>Search by Class: <input type="number" name="class" min="1" max="12"></label>
+        <label>Search by School: <input type="text" name="school"></label>
+        <button type="submit">Search</button>
+      </form>
+      <div id="updateResults"></div>
+    </div>
+
+    <!-- Add Payment Option -->
+    <div id="addPaymentSection" style="display:none;">
+      <form action="/add_payment" method="post">
+        <label>Search by Name: <input type="text" name="name"></label>
+        <label>Search by Class: <input type="number" name="class" min="1" max="12"></label>
+        <label>Search by School: <input type="text" name="school"></label>
+        <button type="submit">Search</button>
+      </form>
+      <div id="addPaymentResults"></div>
+    </div>
+
+    <!-- Exit Student -->
+    <div id="exitSection" style="display:none;">
+      <form action="/exit_student" method="post">
+        <label>Search by Name: <input type="text" name="name"></label>
+        <label>Search by Class: <input type="number" name="class" min="1" max="12"></label>
+        <label>Search by School: <input type="text" name="school"></label>
+        <button type="submit">Search</button>
+      </form>
+      <div id="exitResults"></div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('div[id$="Section"]').forEach(section => section.style.display = 'none');
+        
+        this.classList.add('active');
+        document.getElementById(this.id.replace('Tab', 'Section')).style.display = 'block';
+      });
+    });
+
+    function setDefaults() {
+      const today = new Date();
+      const enrollDateInput = document.getElementById('enrollDate');
+      const monthInput = document.getElementById('month');
+      
+      enrollDateInput.value = today.toISOString().split('T')[0];
+      monthInput.value = today.toLocaleString('default', { month: 'long' });
+    }
+
+    setDefaults(); // Set default values when page loads
+
+    function updateResults(containerId, data) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      if (data.length === 0) {
+        container.innerHTML = '<p class="message">No record found</p>';
+        return;
+      }
+      if (data.length === 1) {
+        const record = data[0];
+        container.innerHTML = `
+          <form action="/update" method="post">
+            <input type="hidden" name="id" value="${record.id}">
+            <label>Name: <input type="text" name="name" value="${record.name}" required></label>
+            <label>Class: 
+              <select name="class" required>
+                <option value="${record.class}" selected>${record.class}</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </label>
+            <label>School: <input type="text" name="school" value="${record.school}" required></label>
+            <label>Enroll Date: <input type="date" name="enrollDate" value="${record.enrollDate}" required></label>
+            <label>Fee Amount: <input type="number" name="feeAmount" value="${record.feeAmount}" required></label>
+            <label>Month: <input type="text" name="month" value="${record.month}" required></label>
+            <label>Payment Received: <select name="paymentReceived" required>
+              <option value="Yes" ${record.paymentReceived === 'Yes' ? 'selected' : ''}>Yes</option>
+              <option value="No" ${record.paymentReceived === 'No' ? 'selected' : ''}>No</option>
+            </select></label>
+            <button type="submit">Update</button>
+          </form>
+        `;
+      } else {
+        const table = document.createElement('table');
+        table.className = 'results-table';
+        const thead = document.createElement('thead');
+        thead.innerHTML = '<tr><th>Name</th><th>Class</th><th>School</th><th>Enroll Date</th><th>Fee Amount</th><th>Month</th><th>Payment Received</th></tr>';
+        table.appendChild(thead);
+        const tbody = document.createElement('tbody');
+        data.forEach(record => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${record.name}</td>
+            <td>${record.class}</td>
+            <td>${record.school}</td>
+            <td>${record.enrollDate}</td>
+            <td>${record.feeAmount}</td>
+            <td>${record.month}</td>
+            <td>${record.paymentReceived}</td>
+            <td><button onclick="editRecord('${record.id}', '${containerId}')">Edit</button></td>
+          `;
+          tbody.appendChild(row);
+        });
+        table.appendChild(tbody);
+        container.appendChild(table);
+      }
+    }
+
+    function editRecord(id, containerId) {
+      // Implement edit record functionality
+    }
+
+
+  </script>
+</body>
+</html>

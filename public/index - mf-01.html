@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knowledge Point - Enroll</title>
+    <title>Knowledge Point</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -16,22 +16,13 @@
             max-width: 900px;
             margin: 0 auto;
         }
-        .nav-pills {
-            border-bottom: 1px solid #dee2e6;
-        }
         .nav-pills .nav-link {
-            border-radius: 50px; /* More rounded corners */
+            border-radius: 0;
             font-weight: 500;
-            padding: 10px 20px;
-            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s; /* Smooth transition for shadow */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
         }
-        .nav-pills .nav-link.active,
-        .nav-pills .nav-link:hover {
+        .nav-pills .nav-link.active {
             background-color: #007bff;
             color: #fff;
-            border-color: #007bff;
-            box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover and active */
         }
         .form-group label {
             font-weight: 500;
@@ -67,58 +58,25 @@
             }
         }
     </style>
-	<style>
-		    <!-- CSS for error  -->        
-		.alert {
-		    position: relative;
-		    padding: 0.75rem 1.25rem;
-		    margin-bottom: 1rem;
-		    border: 1px solid transparent;
-		    border-radius: 0.25rem;
-		}
-		
-		.alert-success {
-		    background-color: #d4edda;
-		    color: #155724;
-		    border-color: #c3e6cb;
-		}
-		
-		.alert-danger {
-		    background-color: #f8d7da;
-		    color: #721c24;
-		    border-color: #f5c6cb;
-		}
-		
-		.alert-dismissible {
-		    padding-right: 3rem;
-		}
-		
-		.alert .close {
-		    position: absolute;
-		    top: 0;
-		    right: 0;
-		    padding: 0.75rem 1.25rem;
-		    color: inherit;
-		}
-	
-	</style>
 </head>
 <body>
     <div class="container">
         <h1 class="text-center">Knowledge Point</h1>
         <nav class="nav nav-pills nav-fill">
-            <a class="nav-item nav-link" href="#" onclick="showEnroll()">Registration</a>
+            <a class="nav-item nav-link active" href="#" onclick="showEnroll()">Registration</a>
             <a class="nav-item nav-link" href="#" onclick="showUpdate()">Update</a>
             <a class="nav-item nav-link" href="#" onclick="showAddPayment()">Payment</a>
             <a class="nav-item nav-link" href="#" onclick="showExit()">Delete</a>
         </nav>
 
-        <div id="enroll" class="table-container" style="display: block;">
+        <div id="enroll" class="table-container">
+            <h2>Enroll a New Student</h2>
             <form id="enrollForm">
                 <div class="form-group">
                     <label for="enrollName">Name</label>
                     <input type="text" class="form-control" id="enrollName" placeholder="Enter the name of Student" required>
                 </div>
+
                 <div class="form-group">
                     <label for="enrollClass">Class</label>
                     <select class="form-control" id="enrollClass" required>
@@ -131,6 +89,7 @@
                         </script>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label for="enrollSchool">School</label>
                     <select class="form-control" id="enrollSchool" required>
@@ -141,20 +100,24 @@
                         <option value="Others">Others</option>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label for="enrollDate">Enroll Date</label>
                     <input type="date" class="form-control" id="enrollDate" required>
                 </div>
+
                 <div class="form-group">
                     <label for="enrollFee">Fee Amount</label>
                     <input type="number" class="form-control" id="enrollFee" value="1000" required>
                 </div>
+
                 <div class="form-group">
                     <label for="enrollMonth">Month</label>
                     <select class="form-control" id="enrollMonth" required>
                         <!-- Options will be added by JavaScript -->
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label for="enrollPayment">Payment Received</label>
                     <select class="form-control" id="enrollPayment" required>
@@ -168,6 +131,7 @@
         </div>
 
         <div id="update" class="table-container" style="display: none;">
+            <h2>Update Student Details</h2>
             <form id="updateSearchForm">
                 <div class="form-group">
                     <label for="updateSearch">Search by Name, Class, or School</label>
@@ -179,6 +143,7 @@
         </div>
 
         <div id="payment" class="table-container" style="display: none;">
+            <h2>Add Payment Option</h2>
             <form id="paymentSearchForm">
                 <div class="form-group">
                     <label for="paymentSearch">Search by Name, Class, or School</label>
@@ -190,6 +155,7 @@
         </div>
 
         <div id="exit" class="table-container" style="display: none;">
+            <h2>Exit Student</h2>
             <form id="exitSearchForm">
                 <div class="form-group">
                     <label for="exitSearch">Search by Name, Class, or School</label>
@@ -259,17 +225,43 @@
             setActiveTab('exit');
         }
 
-        function setActiveTab(tabId) {
-            $(".nav-link").removeClass("active");
-            $("#" + tabId).prev().addClass("active");
+        function setActiveTab(id) {
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`.nav-link[onclick="show${id.charAt(0).toUpperCase() + id.slice(1)}()"]`).classList.add('active');
+        }
+    </script>
+
+    <script>
+        function showEnroll() {
+            document.getElementById('enroll').style.display = 'block';
+            document.getElementById('update').style.display = 'none';
+            document.getElementById('payment').style.display = 'none';
+            document.getElementById('exit').style.display = 'none';
         }
 
-        function capitalize(str) {
-            return str.charAt(0).toUpperCase() + str.slice(1);
+        function showUpdate() {
+            document.getElementById('enroll').style.display = 'none';
+            document.getElementById('update').style.display = 'block';
+            document.getElementById('payment').style.display = 'none';
+            document.getElementById('exit').style.display = 'none';
         }
 
-        // Set the default active tab to "Enroll"
-        showEnroll();
+        function showAddPayment() {
+            document.getElementById('enroll').style.display = 'none';
+            document.getElementById('update').style.display = 'none';
+            document.getElementById('payment').style.display = 'block';
+            document.getElementById('exit').style.display = 'none';
+        }
+
+        function showExit() {
+            document.getElementById('enroll').style.display = 'none';
+            document.getElementById('update').style.display = 'none';
+            document.getElementById('payment').style.display = 'none';
+            document.getElementById('exit').style.display = 'block';
+        }
 
         document.getElementById('enrollForm').addEventListener('submit', async function(event) {
             event.preventDefault();
@@ -437,12 +429,15 @@ function displaySearchResults(containerId, results) {
 
 
 
+
+
+
 function editRecord(containerId, record) {
     const container = document.getElementById(containerId);
-
+    
     let buttonLabel = "Save";
     let buttonClass = "btn btn-primary";
-
+    
     if (containerId === 'exitResult') {
         buttonLabel = "Confirm Delete";
         buttonClass = "btn btn-danger";
@@ -453,21 +448,20 @@ function editRecord(containerId, record) {
 
     let fields = `
         <form id="${containerId}Form">
-            <input type="hidden" id="${containerId}Id" value="${record.id}">
             <div class="form-group">
                 <label for="${containerId}Name">Name</label>
-                <input type="text" class="form-control" id="${containerId}Name" value="${record.name}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
+                <input type="text" class="form-control" id="${containerId}Name" value="${record.name}" ${containerId === 'paymentResult' || containerId === 'exitResult'  ? 'readonly' : 'required'}>
             </div>
             <div class="form-group">
                 <label for="${containerId}Class">Class</label>
-                <select class="form-control" id="${containerId}Class" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'disabled' : 'required'}>
+                <select class="form-control" id="${containerId}Class" ${containerId === 'paymentResult' || containerId === 'exitResult'  ? 'disabled' : 'required'}>
                     ${Array.from({ length: 12 }, (_, i) => i + 1).map(value =>
                         `<option value="${value}" ${record.studentClass === value.toString() ? 'selected' : ''}>${value}</option>`).join('')}
                 </select>
             </div>
             <div class="form-group">
                 <label for="${containerId}School">School</label>
-                <select class="form-control" id="${containerId}School" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'disabled' : 'required'}>
+                <select class="form-control" id="${containerId}School" ${containerId === 'paymentResult' || containerId === 'exitResult'  ? 'disabled' : 'required'}>
                     <option value="KCPS" ${record.school === 'KCPS' ? 'selected' : ''}>KCPS</option>
                     <option value="DPS" ${record.school === 'DPS' ? 'selected' : ''}>DPS</option>
                     <option value="Inventure" ${record.school === 'Inventure' ? 'selected' : ''}>Inventure</option>
@@ -477,7 +471,7 @@ function editRecord(containerId, record) {
             </div>
             <div class="form-group">
                 <label for="${containerId}Date">Enroll Date</label>
-                <input type="date" class="form-control" id="${containerId}Date" value="${record.date}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
+                <input type="date" class="form-control" id="${containerId}Date" value="${record.date}" ${containerId === 'paymentResult' || containerId === 'exitResult'  ? 'readonly' : 'required'}>
             </div>
             <div class="form-group">
                 <label for="${containerId}Fee">Fee Amount</label>
@@ -488,37 +482,33 @@ function editRecord(containerId, record) {
                 <input type="text" class="form-control" id="${containerId}Month" value="${record.month}" 
                        ${containerId === 'paymentResult' || containerId === 'exitResult' || containerId === 'updateResult' ? 'readonly' : 'required'}>
             </div>
+
             <div class="form-group">
                 <label for="${containerId}Payment">Payment Received</label>
                 <select class="form-control" id="${containerId}Payment" 
-                    ${containerId === 'exitResult' || containerId === 'paymentResult' ? 'disabled' : ''} 
-                    ${containerId !== 'exitResult' && containerId !== 'paymentResult' ? 'required' : ''}>
+                    ${containerId === 'paymentResult' ? 'readonly' : ''} 
+                    ${containerId === 'exitResult' || containerId === 'updateResult' || containerId === 'paymentResult'? 'disabled' : ''} 
+                    ${containerId !== 'paymentResult' && containerId !== 'exitResult' && containerId !== 'updateResult' ? 'required' : ''}>
                     <option value="No" ${record.payment === 'No' ? 'selected' : ''}>No</option>
                     <option value="Yes" ${record.payment === 'Yes' ? 'selected' : ''}>Yes</option>
                 </select>
             </div>
+
             <div class="form-group">
                 <label for="${containerId}Archive">Student Status</label>
-                <input type="text" class="form-control" id="${containerId}Archive" 
-                    value="${record.archiveInd === 'Yes' ? 'Inactive' : 'Active'}" 
-                    readonly 
-                    style="background-color: ${record.archiveInd === 'Yes' ? 'darkred' : record.archiveInd === 'No' ? 'lightgreen' : 'transparent'}; 
-                           color: ${record.archiveInd === 'Yes' ? 'white' : 'black'};">
+                <input type="text" class="form-control" id="${containerId}Archive" value="${record.archiveInd === 'Yes' ? 'Inctive' : 'Active'}" readonly style="background-color: ${record.archiveInd === 'Yes' ? 'darkred' : 'transparent'}; color: ${record.archiveInd === 'Yes' ? 'white' : 'black'};">
             </div>
+
             <button type="submit" class="${buttonClass}">${buttonLabel}</button>
         </form>
     `;
 
     container.innerHTML = fields;
 
-    function updatePaymentFieldColor() {
-        const paymentField = document.getElementById(`${containerId}Payment`);
-        const paymentValue = paymentField.value;
-        paymentField.style.backgroundColor = paymentValue === 'Yes' ? 'lightgreen' : paymentValue === 'No' ? 'lightcoral' : '';
-    }
-
-    updatePaymentFieldColor();
-    document.getElementById(`${containerId}Payment`).addEventListener('change', updatePaymentFieldColor);
+    // Apply styles to "Payment Received" field based on its value
+    const paymentField = document.getElementById(`${containerId}Payment`);
+    const paymentValue = paymentField.value;
+    paymentField.style.backgroundColor = paymentValue === 'Yes' ? 'lightgreen' : paymentValue === 'No' ? 'lightcoral' : '';
 
     document.getElementById(`${containerId}Form`).addEventListener('submit', async function(event) {
         event.preventDefault();
@@ -526,12 +516,12 @@ function editRecord(containerId, record) {
         const paymentValue = paymentField.value;
 
         if (containerId === 'paymentResult' && record.payment === 'Yes') {
-            showAlert('Payment already received', 'warning');
+            alert("Payment already received");
             return; // Exit the function to avoid making unnecessary API calls
         }
 
         const updatedRecord = {
-            id: document.getElementById(`${containerId}Id`).value,
+            id: record.id,
             name: document.getElementById(`${containerId}Name`).value,
             studentClass: document.getElementById(`${containerId}Class`).value,
             school: document.getElementById(`${containerId}School`).value,
@@ -550,66 +540,18 @@ function editRecord(containerId, record) {
             endpoint = '/exit';
         }
 
-        try {
-            const response = await fetch(endpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(updatedRecord),
-            });
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedRecord),
+        });
 
-            const result = await response.json();
-            
-            // Check for specific error messages and handle them
-            if (result.message === 'This student is already inactive.') {
-                showAlert(result.message, 'error');
-            } else {
-                showAlert(result.message, 'success');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            showAlert(`An error occurred: ${error.message}`, 'error');
-        }
+        const result = await response.json();
+        container.innerHTML = `<div class="alert alert-success">${result.message}</div>`;
     });
-
-function showAlert(message, type) {
-    const alertDiv = document.createElement('div');
-
-    // Define alert class based on the type
-    const alertClass = type === 'error' ? 'alert-danger' : 'alert-success';
-
-    alertDiv.className = `alert ${alertClass} alert-dismissible fade show`;
-    alertDiv.role = 'alert';
-    alertDiv.innerHTML = `
-        <strong>${type === 'error' ? 'Error!' : 'Success!'}</strong> ${message}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    `;
-
-    container.innerHTML = '';
-    container.appendChild(alertDiv);
-
-    setTimeout(() => {
-        alertDiv.classList.add('show');
-        alertDiv.classList.remove('fade');
-    }, 100);
-    setTimeout(() => {
-        alertDiv.classList.add('fade');
-        alertDiv.classList.remove('show');
-    }, 10000);
 }
-
-}
-
-
-
-
-
-
-
-
 
 
 document.addEventListener('DOMContentLoaded', function() {
