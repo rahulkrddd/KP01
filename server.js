@@ -1,8 +1,12 @@
+require('dotenv').config();
 const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
+const { exec } = require('child_process');
+// Directly specify the file path
+const DATA_FILE_PATH = './data.txt';
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -35,18 +39,31 @@ function getMonthsUntilMarch(startMonth) {
 function getSchoolAbbreviation(school) {
     const schoolAbbreviations = {
         'KCPS': 'KC',
+        'Banjari': 'BJ',
+        'Atmanand': 'AT',
+        'KV': 'KV',
         'DPS': 'DP',
         'Inventure': 'IV',
-        'Atmanand': 'AT',
         'Others': 'OT'
     };
     return schoolAbbreviations[school] || 'XX'; // Default to 'XX' if school is not in the list
+}
+
+// Function to capitalize the first letter and letters after spaces
+function formatName(name) {
+    return name
+        .toLowerCase() // Convert the whole name to lowercase
+        .split(' ') // Split the name by spaces
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize the first letter of each word
+        .join(' '); // Join the words back into a single string
 }
 
 // Enroll a new student
 app.post('/enroll', (req, res) => {
     const students = readDataFile();
     const enrollmentData = req.body;
+    enrollmentData.name = formatName(enrollmentData.name); // Format the name
+
     const startMonth = enrollmentData.month; // Assuming month is passed as string (e.g., "April")
 
     // Check if a student with the same name, class, and school already exists
@@ -58,7 +75,7 @@ app.post('/enroll', (req, res) => {
 
     if (existingStudent) {
         return res.status(409).json({
-            message: `Record already exists with name ${enrollmentData.name}. Student ID: ${existingStudent.id}`
+            message: `Error : Oops....   Student already exists. Name : ${enrollmentData.name}. Student ID: ${existingStudent.id}`
         });
     }
 
@@ -84,8 +101,9 @@ app.post('/enroll', (req, res) => {
     });
 
     writeDataFile(students);
-    res.json({ message: 'Student enrolled and multiple entries created successfully.' });
+    res.json({ message: 'Success : Student Registered Successfully.' });
 });
+
 
 
 const nodemailer = require('nodemailer');
@@ -120,6 +138,7 @@ app.get('/search', async (req, res) => {
     let results = [];
 
     if (query === '@all') {
+        // Filter unique students for the current month
         const uniqueStudents = [];
         const uniqueIds = new Set();
         
@@ -137,6 +156,9 @@ app.get('/search', async (req, res) => {
             const emailBody = results.map(student => `ID: ${student.id}, Name: ${student.name}, Class: ${student.studentClass}, School: ${student.school}, Month: ${student.month}`).join('\n');
             await sendEmail(email, 'All Students for the Current Month', emailBody);
         }
+    } else if (query === 'all') {
+        // Return all student records including duplicates
+        results = students;
     } else {
         if (query.startsWith('@')) {
             const actualQuery = query.slice(1);  // Remove the '@' prefix
@@ -180,6 +202,7 @@ app.get('/search', async (req, res) => {
 
 
 
+// Update Student Record
 app.post('/update', (req, res) => {
     console.log('Received update request:', req.body);
 
@@ -255,7 +278,7 @@ app.post('/payment', (req, res) => {
         writeDataFile(students);
         res.json({ message: 'Payment status updated successfully.' });
     } else {
-        res.status(404).json({ message: 'Student record not found.' });
+        res.status(404).json({ message: 'Error : Oops....  Student record not found.' });
     }
 });
 
@@ -303,7 +326,7 @@ app.post('/exit', (req, res) => {
 
         res.json({ message: `Student ${formattedName} is deleted from Knowledge Point.` });
     } else {
-        res.status(404).json({ message: 'Student record not found or no records to update.' });
+        res.status(404).json({ message: 'Oops, Student record not found or no records to update.' });
     }
 });
 
