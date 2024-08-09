@@ -1,7 +1,6 @@
 const express = require('express');
 const axios = require('axios');
 const bodyParser = require('body-parser');
-const nodemailer = require('nodemailer');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -10,8 +9,8 @@ app.use(express.static('public'));
 
 const GITHUB_REPO = 'rahulkrddd/KP01';
 const FILE_PATH = 'data.txt';
-//const GITHUB_TOKEN = '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';
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_TOKEN = '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';
+
 const GITHUB_API_BASE = 'https://api.github.com';
 
 // Utility function to read and parse the data file from GitHub
@@ -82,25 +81,6 @@ function formatName(name) {
         .join(' ');
 }
 
-async function sendEmail(email, subject, body) {
-    let transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'your-email@gmail.com',
-            pass: 'your-email-password'
-        }
-    });
-
-    let mailOptions = {
-        from: 'your-email@gmail.com',
-        to: email,
-        subject: subject,
-        text: body
-    };
-
-    await transporter.sendMail(mailOptions);
-}
-
 // Enroll a new student
 app.post('/enroll', async (req, res) => {
     try {
@@ -146,6 +126,27 @@ app.post('/enroll', async (req, res) => {
         res.status(500).json({ message: 'Error occurred during enrollment.' });
     }
 });
+
+const nodemailer = require('nodemailer');
+
+const sendEmail = async (email, subject, body) => {
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'your-email@gmail.com',
+            pass: 'your-email-password'
+        }
+    });
+
+    let mailOptions = {
+        from: 'your-email@gmail.com',
+        to: email,
+        subject: subject,
+        text: body
+    };
+
+    await transporter.sendMail(mailOptions);
+};
 
 // Search for students
 app.get('/search', async (req, res) => {
@@ -219,8 +220,6 @@ app.get('/search', async (req, res) => {
     }
 });
 
-// Update student details
-// Update Student Record
 app.post('/update', async (req, res) => {
     try {
         console.log('Received update request:', req.body);
@@ -230,140 +229,43 @@ app.post('/update', async (req, res) => {
 
         let updatedStudent = null;
 
-        // Loop through each student record
         students.forEach(student => {
-            // Check if the student record matches the provided student ID
             if (student.id === id) {
-                // Update fields
                 if (name !== undefined) {
-                    console.log(`Updating name to ${name} for student:`, student);
                     student.name = name;
                 }
                 if (studentClass !== undefined) {
-                    console.log(`Updating class to ${studentClass} for student:`, student);
                     student.studentClass = studentClass;
                 }
                 if (school !== undefined) {
-                    console.log(`Updating school to ${school} for student:`, student);
                     student.school = school;
                 }
                 if (date !== undefined) {
-                    console.log(`Updating enroll date to ${date} for student:`, student);
                     student.date = date;
                 }
+                if (month !== undefined) {
+                    student.month = month;
+                }
                 if (fee !== undefined) {
-                    console.log(`Updating fee to ${fee} for student:`, student);
                     student.fee = fee;
                 }
-                if (month !== undefined && payment !== undefined && student.month === month) {
-                    console.log(`Updating payment to ${payment} for student:`, student);
+                if (payment !== undefined) {
                     student.payment = payment;
                 }
                 updatedStudent = student;
             }
         });
 
-        if (updatedStudent) {
-            await writeDataFile(students);
-
-            // Format the student's name
-            const nameParts = updatedStudent.name.split(' ');
-            const formattedName = nameParts.map((part, index) => 
-                index === nameParts.length - 1 ? part.charAt(0).toUpperCase() + part.slice(1).toLowerCase() : part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
-            ).join(' ');
-
-            res.json({ message: `Student details updated successfully for - ${formattedName}.` });
-        } else {
-            console.log('Student record not found or no changes made.');
-            res.status(404).json({ message: 'Student record not found or no changes made.' });
+        if (updatedStudent === null) {
+            return res.status(404).json({ message: 'Student not found' });
         }
+
+        await writeDataFile(students);
+        res.json({ message: 'Student updated successfully.' });
     } catch (error) {
-        console.error('Error occurred during update:', error);
         res.status(500).json({ message: 'Error occurred during update.' });
     }
 });
-
-
-// Add payment option
-// Add payment option
-app.post('/payment', async (req, res) => {
-    try {
-        const { id, month, payment } = req.body;
-
-        // Read data file asynchronously
-        const students = await readDataFile();
-        
-        // Find the index of the student record that matches both id and month
-        const index = students.findIndex(student => student.id === id && student.month === month);
-        
-        if (index !== -1) {
-            // Update the payment status
-            students[index].payment = payment;
-
-            // Write updated data back to the file asynchronously
-            await writeDataFile(students);
-            res.json({ message: 'Payment status updated successfully.' });
-        } else {
-            res.status(404).json({ message: 'Error: Student record not found.' });
-        }
-    } catch (error) {
-        res.status(500).json({ message: 'Error occurred while updating payment status.' });
-    }
-});
-
-
-// Exit (archive) a student
-app.post('/exit', async (req, res) => {
-    const { id, month } = req.body;
-
-    try {
-        // Read data file asynchronously
-        const students = await readDataFile();
-
-        // Get all months from the selected month to March
-        const months = getMonthsUntilMarch(month);
-
-        // Flag to track if any student was updated
-        let updated = false;
-        let studentName = '';
-        let studentAlreadyInactive = false;
-
-        students.forEach(student => {
-            if (student.id === id && months.includes(student.month)) {
-                if (student.archiveInd === 'Yes') {
-                    studentAlreadyInactive = true;
-                } else {
-                    student.archiveInd = 'Yes';
-                    updated = true;
-                    studentName = student.name; // Save the student's name for the message
-                }
-            }
-        });
-
-        if (studentAlreadyInactive) {
-            res.status(400).json({ message: 'This student is already inactive.' });
-        } else if (updated) {
-            // Write updated data back to the file
-            await writeDataFile(students);
-
-            // Capitalize the first letter of the name and surname
-            const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-            const formatName = name => {
-                const parts = name.split(' ');
-                return parts.map(part => capitalize(part)).join(' ');
-            };
-
-            const formattedName = formatName(studentName);
-
-            res.json({ message: `Student ${formattedName} has been marked as inactive.` });
-        } else {
-            res.status(404).json({ message: 'Oops, student record not found or no records to update.' });
-        }
-    } catch (error) {
-        res.status(500).json({ message: 'Error occurred while processing the request.' });
-    }
-});
-
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
