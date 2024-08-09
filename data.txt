@@ -174,5 +174,38 @@
     "month": "March",
     "payment": "No",
     "archiveInd": "Yes"
+  },
+  {
+    "id": "05BJ6712",
+    "name": "Manan",
+    "studentClass": "5",
+    "school": "Banjari",
+    "date": "2025-01-09",
+    "fee": "1000",
+    "month": "January",
+    "payment": "Yes",
+    "archiveInd": "No"
+  },
+  {
+    "id": "05BJ6712",
+    "name": "Manan",
+    "studentClass": "5",
+    "school": "Banjari",
+    "date": "2025-01-09",
+    "fee": "1000",
+    "month": "February",
+    "payment": "No",
+    "archiveInd": "No"
+  },
+  {
+    "id": "05BJ6712",
+    "name": "Manan",
+    "studentClass": "5",
+    "school": "Banjari",
+    "date": "2025-01-09",
+    "fee": "1000",
+    "month": "March",
+    "payment": "No",
+    "archiveInd": "No"
   }
 ]
