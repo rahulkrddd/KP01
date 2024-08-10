@@ -10,16 +10,40 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Password Modal -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="passwordModalLabel">Password Required</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="passwordForm">
+                        <div class="form-group">
+                            <label for="passwordInput">Enter Password</label>
+                            <input type="password" class="form-control" id="passwordInput" placeholder="Password" required>
+                        </div>
+                        <div id="errorMessage" class="text-danger"></div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <h1 class="text-center">Knowledge Point</h1>
         <nav class="nav nav-pills nav-fill">
-            <a class="nav-item nav-link" href="#" onclick="showEnroll()">Registration</a>
+            <a class="nav-item nav-link active" href="#" onclick="showEnroll()">Registration</a>
             <a class="nav-item nav-link" href="#" onclick="showUpdate()">Update</a>
             <a class="nav-item nav-link" href="#" onclick="showAddPayment()">Payment</a>
             <a class="nav-item nav-link" href="#" onclick="showExit()">Delete</a>
         </nav>
 
-        <div id="enroll" class="table-container" style="display: block;">
+        <div id="enroll" class="table-container">
             <div class="tab-placeholder"></div>
             <form id="enrollForm">
                 <div class="form-group">
@@ -121,14 +145,78 @@
     <script src="Monthdropdown.js" defer></script>
 
     <!-- JavaScript for Navigation -->
-	<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.2/dist/confetti.browser.min.js"></script>
-	<div id="notification" class="notification"></div>
-
     <script src="main.js"></script>				
-	<script src="formHandlers.js"></script> 	 
-	<script src="searchHandlers.js"></script>	   
-    <script src="recordHandlers.js"></script>	<!--	<script src="utils.js"></script>  -->
+    <script src="formHandlers.js"></script> 	 
+    <script src="searchHandlers.js"></script>	   
+    <script src="recordHandlers.js"></script>
 
+    <script>
+        // Show the password modal when the page loads
+        $(document).ready(function() {
+            $('#passwordModal').modal('show');
+        });
 
+        // Handle the password form submission
+        $('#passwordForm').submit(function(event) {
+            event.preventDefault();
+            const password = $('#passwordInput').val();
+            $.ajax({
+                url: '/validate-password',
+                method: 'POST',
+                data: { password },
+                success: function(response) {
+                    if (response.valid) {
+                        $('#passwordModal').modal('hide');
+                    } else {
+                        $('#errorMessage').text('Invalid password. Please try again.');
+                    }
+                },
+                error: function() {
+                    $('#errorMessage').text('An error occurred. Please try again.');
+                }
+            });
+        });
+
+        function showEnroll() {
+            $('.table-container').hide();
+            $('#enroll').show();
+            highlightNav('Registration');
+        }
+
+        function showUpdate() {
+            $('.table-container').hide();
+            $('#update').show();
+            highlightNav('Update');
+        }
+
+        function showAddPayment() {
+            $('.table-container').hide();
+            $('#payment').show();
+            highlightNav('Payment');
+        }
+
+        function showExit() {
+            $('.table-container').hide();
+            $('#exit').show();
+            highlightNav('Delete');
+        }
+
+        function highlightNav(navItem) {
+            $('.nav-item').removeClass('active');
+            $(`.nav-item:contains(${navItem})`).addClass('active');
+        }
+
+        // Populate month dropdown
+        $(document).ready(function() {
+            const monthDropdown = $('#enrollMonth');
+            const months = [
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+            ];
+            months.forEach(month => {
+                monthDropdown.append(new Option(month, month));
+            });
+        });
+    </script>
 </body>
 </html>
