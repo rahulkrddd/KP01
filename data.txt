@@ -216,7 +216,7 @@
     "date": "2024-08-10",
     "fee": "1000",
     "month": "August",
-    "payment": "Yes",
+    "payment": "No",
     "archiveInd": "No"
   },
   {
