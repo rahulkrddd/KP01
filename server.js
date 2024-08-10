@@ -19,6 +19,9 @@ const GITHUB_API_BASE = 'https://api.github.com';
 
 const path = require('path');
 
+require('dotenv').config(); // Load environment variables from .env file
+
+
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -27,19 +30,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Password validation endpoint
 app.post('/validate-password', (req, res) => {
     const { password } = req.body;
-    // Replace 'your_password' with the actual password you want to use
-    const validPassword = '7248';
+    // Get the password from environment variables
+    const validPassword = process.env.PASSWORD;
 
     if (password === validPassword) {
         res.json({ valid: true });
     } else {
         res.json({ valid: false });
     }
-});
-
-// Serve the main HTML file
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 
