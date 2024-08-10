@@ -10,9 +10,43 @@ app.use(express.static('public'));
 
 const GITHUB_REPO = 'rahulkrddd/KP01';
 const FILE_PATH = 'data.txt';
-//const GITHUB_TOKEN = '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';
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_API_BASE = 'https://api.github.com';
+
+
+
+
+
+const path = require('path');
+
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Password validation endpoint
+app.post('/validate-password', (req, res) => {
+    const { password } = req.body;
+    // Replace 'your_password' with the actual password you want to use
+    const validPassword = '7248';
+
+    if (password === validPassword) {
+        res.json({ valid: true });
+    } else {
+        res.json({ valid: false });
+    }
+});
+
+// Serve the main HTML file
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+
+
+
+
+
 
 // Utility function to read and parse the data file from GitHub
 async function readDataFile() {
