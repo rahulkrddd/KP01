@@ -2,50 +2,8 @@ function displaySearchResults(containerId, results) {
     const container = document.getElementById(containerId);
     container.innerHTML = '';
 
-    // Create a container for buttons
-    const buttonContainer = document.createElement('div');
-    buttonContainer.classList.add('button-container');
-
-    // Create a button to toggle the visibility of the summary table
-    const toggleButton = document.createElement('button');
-    toggleButton.textContent = 'Toggle Summary';
-    toggleButton.classList.add('btn', 'btn-secondary');
-    toggleButton.addEventListener('click', () => {
-        const summaryTable = container.querySelector('.summary-table');
-        if (summaryTable) {
-            summaryTable.classList.toggle('hidden');
-        }
-    });
-    buttonContainer.appendChild(toggleButton);
-
-    // Create a button to download the summary table as CSV
-    const downloadCsvButton = document.createElement('button');
-    downloadCsvButton.textContent = 'Download CSV';
-    downloadCsvButton.classList.add('btn', 'btn-success');
-    downloadCsvButton.addEventListener('click', () => {
-        downloadSummaryAsCSV(results);
-    });
-    buttonContainer.appendChild(downloadCsvButton);
-
-    // Create a button to print the summary table
-    const printButton = document.createElement('button');
-    printButton.textContent = 'Print Summary';
-    printButton.classList.add('btn', 'btn-info');
-    printButton.addEventListener('click', () => {
-        printSummaryTable(containerId);
-    });
-    buttonContainer.appendChild(printButton);
-
-    // Create a button to send the report via email
-    const sendEmailButton = document.createElement('button');
-    sendEmailButton.textContent = 'Send Report via Email';
-    sendEmailButton.classList.add('btn', 'btn-primary');
-    sendEmailButton.addEventListener('click', () => {
-        sendReportViaEmail(results);
-    });
-    buttonContainer.appendChild(sendEmailButton);
-
-    // Append the button container to the main container
+    // Create and append the button container
+    const buttonContainer = createButtonContainer(results, containerId);
     container.appendChild(buttonContainer);
 
     let summaryTable;
@@ -200,6 +158,55 @@ function displaySearchResults(containerId, results) {
     `;
     document.head.appendChild(style);
 }
+
+
+function createButtonContainer(results, containerId) {
+    // Create a container for buttons
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('button-container');
+
+    // Create a button to toggle the visibility of the summary table
+    const toggleButton = document.createElement('button');
+    toggleButton.textContent = 'Toggle Summary';
+    toggleButton.classList.add('btn', 'btn-secondary');
+    toggleButton.addEventListener('click', () => {
+        const summaryTable = document.getElementById(containerId).querySelector('.summary-table');
+        if (summaryTable) {
+            summaryTable.classList.toggle('hidden');
+        }
+    });
+    buttonContainer.appendChild(toggleButton);
+
+    // Create a button to download the summary table as CSV
+    const downloadCsvButton = document.createElement('button');
+    downloadCsvButton.textContent = 'Download CSV';
+    downloadCsvButton.classList.add('btn', 'btn-success');
+    downloadCsvButton.addEventListener('click', () => {
+        downloadSummaryAsCSV(results);
+    });
+    buttonContainer.appendChild(downloadCsvButton);
+
+    // Create a button to print the summary table
+    const printButton = document.createElement('button');
+    printButton.textContent = 'Print Summary';
+    printButton.classList.add('btn', 'btn-info');
+    printButton.addEventListener('click', () => {
+        printSummaryTable(containerId);
+    });
+    buttonContainer.appendChild(printButton);
+
+    // Create a button to send the report via email
+    const sendEmailButton = document.createElement('button');
+    sendEmailButton.textContent = 'Send Report via Email';
+    sendEmailButton.classList.add('btn', 'btn-primary');
+    sendEmailButton.addEventListener('click', () => {
+        sendReportViaEmail(results);
+    });
+    buttonContainer.appendChild(sendEmailButton);
+
+    return buttonContainer;
+}
+
 
 // Function to handle sending the report via email
 function sendReportViaEmail(results) {
