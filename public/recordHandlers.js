@@ -36,13 +36,20 @@ function displaySearchResults(containerId, results) {
                 td.style.textAlign = 'center'; // Center justify text
 
                 if (key === 'payment') {
-                    td.textContent = value;
+                    td.textContent = value; // Default content for desktop
                     td.style.backgroundColor = value === 'Yes' ? 'lightgreen' : 'lightcoral';
+                    td.classList.add('mobile-payment');
+                    td.dataset.paymentValue = value; // Add a custom data attribute
                 } else if (key === 'archiveInd') {
                     td.textContent = value === 'Yes' ? 'Inactive' : 'Active';
                     td.style.backgroundColor = value === 'Yes' ? 'lightcoral' : 'lightgreen';
                 } else {
                     td.textContent = value;
+                }
+
+                // Add a class to the "month" and "payment" fields for mobile-specific styling
+                if (key === 'month') {
+                    td.classList.add('mobile-month');
                 }
 
                 row.appendChild(td);
@@ -107,11 +114,28 @@ function displaySearchResults(containerId, results) {
                 text-align: left;
                 font-weight: bold;
             }
+            .mobile-month {
+                font-weight: bold;
+            }
+            .mobile-payment {
+                font-weight: bold;
+                display: block;
+                text-align: left; /* Align text to the left for better visibility */
+            }
+            .mobile-payment::before {
+                content: '';
+                display: none; /* Hide the original content */
+            }
+            .mobile-payment[data-payment-value="Yes"]::after {
+                content: ' (Fee Paid)';
+            }
+            .mobile-payment[data-payment-value="No"]::after {
+                content: ' (Fee Pending)';
+            }
         }
     `;
     document.head.appendChild(style);
 }
-
 
 
 
