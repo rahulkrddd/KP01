@@ -166,73 +166,79 @@
     <script src="searchHandlers.js"></script>	   
     <script src="recordHandlers.js"></script>
 
-    <script>
-        // Show the password modal when the page loads
-        $(document).ready(function() {
-            $('#passwordModal').modal('show');
-        });
+<script>
+    // Show the password modal when the page loads
+    $(document).ready(function() {
+        $('#passwordModal').modal('show');
 
-        // Handle the password form submission
-        $('#passwordForm').submit(function(event) {
-            event.preventDefault();
-            const password = $('#passwordInput').val();
-            $.ajax({
-                url: '/validate-password',
-                method: 'POST',
-                data: { password },
-                success: function(response) {
-                    if (response.valid) {
-                        $('#passwordModal').modal('hide');
-                    } else {
-                        $('#errorMessage').text('Invalid password. Please try again.');
-                    }
-                },
-                error: function() {
-                    $('#errorMessage').text('An error occurred. Please try again.');
+        // Ensure only numeric input in the password field
+        $('#passwordInput').on('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    });
+
+    // Handle the password form submission
+    $('#passwordForm').submit(function(event) {
+        event.preventDefault();
+        const password = $('#passwordInput').val();
+        $.ajax({
+            url: '/validate-password',
+            method: 'POST',
+            data: { password },
+            success: function(response) {
+                if (response.valid) {
+                    $('#passwordModal').modal('hide');
+                } else {
+                    $('#errorMessage').text('Invalid password. Please try again.');
                 }
-            });
+            },
+            error: function() {
+                $('#errorMessage').text('An error occurred. Please try again.');
+            }
         });
+    });
 
-        function showEnroll() {
-            $('.table-container').hide();
-            $('#enroll').show();
-            highlightNav('Registration');
-        }
+    function showEnroll() {
+        $('.table-container').hide();
+        $('#enroll').show();
+        highlightNav('Registration');
+    }
 
-        function showUpdate() {
-            $('.table-container').hide();
-            $('#update').show();
-            highlightNav('Update');
-        }
+    function showUpdate() {
+        $('.table-container').hide();
+        $('#update').show();
+        highlightNav('Update');
+    }
 
-        function showAddPayment() {
-            $('.table-container').hide();
-            $('#payment').show();
-            highlightNav('Payment');
-        }
+    function showAddPayment() {
+        $('.table-container').hide();
+        $('#payment').show();
+        highlightNav('Payment');
+    }
 
-        function showExit() {
-            $('.table-container').hide();
-            $('#exit').show();
-            highlightNav('Delete');
-        }
+    function showExit() {
+        $('.table-container').hide();
+        $('#exit').show();
+        highlightNav('Delete');
+    }
 
-        function highlightNav(navItem) {
-            $('.nav-item').removeClass('active');
-            $(`.nav-item:contains(${navItem})`).addClass('active');
-        }
+    function highlightNav(navItem) {
+        $('.nav-item').removeClass('active');
+        $(`.nav-item:contains(${navItem})`).addClass('active');
+    }
 
-        // Populate month dropdown
-        $(document).ready(function() {
-            const monthDropdown = $('#enrollMonth');
-            const months = [
-                "January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"
-            ];
-            months.forEach(month => {
-                monthDropdown.append(new Option(month, month));
-            });
+    // Populate month dropdown
+    $(document).ready(function() {
+        const monthDropdown = $('#enrollMonth');
+        const months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        months.forEach(month => {
+            monthDropdown.append(new Option(month, month));
         });
-    </script>
+    });
+</script>
+
 </body>
 </html>
