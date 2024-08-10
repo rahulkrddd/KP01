@@ -11,44 +11,27 @@
 </head>
 <body>
     <!-- Password Modal -->
-<!-- Bootstrap CSS -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Password Modal -->
-<div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="passwordModalLabel">Password Required</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="passwordForm">
-                    <div class="form-group">
-                        <label for="passwordInput">Enter Password</label>
-                        <input type="password" class="form-control" id="passwordInput" placeholder="Password" required>
-                    </div>
-                    <div id="errorMessage" class="text-danger"></div>
-                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                </form>
+    <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="passwordModalLabel">Password Required</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="passwordForm">
+                        <div class="form-group">
+                            <label for="passwordInput">Enter Password</label>
+                            <input type="number" class="form-control" id="passwordInput" placeholder="Password" required>
+                        </div>
+                        <div id="errorMessage" class="text-danger"></div>
+                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<!-- Bootstrap JS, Popper.js, and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-<!-- Bootstrap JS, Popper.js, and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 
     <div class="container">
         <h1 class="text-center">Knowledge Point</h1>
@@ -70,7 +53,6 @@
                     <label for="enrollClass">Class</label>
                     <select class="form-control" id="enrollClass" required>
                         <option value="">Select Class</option>
-                        <!-- Dynamically generate options -->
                         <script>
                             for (let i = 1; i <= 12; i++) {
                                 document.write('<option value="' + i + '">' + i + '</option>');
@@ -100,9 +82,7 @@
                 </div>
                 <div class="form-group">
                     <label for="enrollMonth">Month</label>
-                    <select class="form-control" id="enrollMonth" required>
-                        <!-- Options will be added by JavaScript -->
-                    </select>
+                    <select class="form-control" id="enrollMonth" required></select>
                 </div>
                 <div class="form-group">
                     <label for="enrollPayment">Payment Received</label>
@@ -156,89 +136,85 @@
     <!-- Bootstrap and jQuery JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- JavaScript for Month Dropdown -->
     <script src="Monthdropdown.js" defer></script>
 
     <!-- JavaScript for Navigation -->
-    <script src="main.js"></script>				
-    <script src="formHandlers.js"></script> 	 
-    <script src="searchHandlers.js"></script>	   
+    <script src="main.js"></script>
+    <script src="formHandlers.js"></script>
+    <script src="searchHandlers.js"></script>
     <script src="recordHandlers.js"></script>
 
-<script>
-    // Show the password modal when the page loads
-    $(document).ready(function() {
-        $('#passwordModal').modal('show');
+    <script>
+        $(document).ready(function() {
+            $('#passwordModal').modal('show');
 
-        // Ensure only numeric input in the password field
-        $('#passwordInput').on('input', function() {
-            this.value = this.value.replace(/[^0-9]/g, '');
+            $('#passwordInput').on('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
         });
-    });
 
-    // Handle the password form submission
-    $('#passwordForm').submit(function(event) {
-        event.preventDefault();
-        const password = $('#passwordInput').val();
-        $.ajax({
-            url: '/validate-password',
-            method: 'POST',
-            data: { password },
-            success: function(response) {
-                if (response.valid) {
-                    $('#passwordModal').modal('hide');
-                } else {
-                    $('#errorMessage').text('Invalid password. Please try again.');
+        $('#passwordForm').submit(function(event) {
+            event.preventDefault();
+            const password = $('#passwordInput').val();
+            $.ajax({
+                url: '/validate-password',
+                method: 'POST',
+                data: { password },
+                success: function(response) {
+                    if (response.valid) {
+                        $('#passwordModal').modal('hide');
+                    } else {
+                        $('#errorMessage').text('Invalid password. Please try again.');
+                    }
+                },
+                error: function() {
+                    $('#errorMessage').text('An error occurred. Please try again.');
                 }
-            },
-            error: function() {
-                $('#errorMessage').text('An error occurred. Please try again.');
-            }
+            });
         });
-    });
 
-    function showEnroll() {
-        $('.table-container').hide();
-        $('#enroll').show();
-        highlightNav('Registration');
-    }
+        function showEnroll() {
+            $('.table-container').hide();
+            $('#enroll').show();
+            highlightNav('Registration');
+        }
 
-    function showUpdate() {
-        $('.table-container').hide();
-        $('#update').show();
-        highlightNav('Update');
-    }
+        function showUpdate() {
+            $('.table-container').hide();
+            $('#update').show();
+            highlightNav('Update');
+        }
 
-    function showAddPayment() {
-        $('.table-container').hide();
-        $('#payment').show();
-        highlightNav('Payment');
-    }
+        function showAddPayment() {
+            $('.table-container').hide();
+            $('#payment').show();
+            highlightNav('Payment');
+        }
 
-    function showExit() {
-        $('.table-container').hide();
-        $('#exit').show();
-        highlightNav('Delete');
-    }
+        function showExit() {
+            $('.table-container').hide();
+            $('#exit').show();
+            highlightNav('Delete');
+        }
 
-    function highlightNav(navItem) {
-        $('.nav-item').removeClass('active');
-        $(`.nav-item:contains(${navItem})`).addClass('active');
-    }
+        function highlightNav(navItem) {
+            $('.nav-item').removeClass('active');
+            $(`.nav-item:contains(${navItem})`).addClass('active');
+        }
 
-    // Populate month dropdown
-    $(document).ready(function() {
-        const monthDropdown = $('#enrollMonth');
-        const months = [
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ];
-        months.forEach(month => {
-            monthDropdown.append(new Option(month, month));
+        $(document).ready(function() {
+            const monthDropdown = $('#enrollMonth');
+            const months = [
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+            ];
+            months.forEach((month, index) => {
+                const option = new Option(month, month);
+                monthDropdown.append(option);
+            });
         });
-    });
-</script>
-
+    </script>
 </body>
 </html>
