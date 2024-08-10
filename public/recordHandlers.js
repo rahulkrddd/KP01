@@ -2,12 +2,66 @@ function displaySearchResults(containerId, results) {
     const container = document.getElementById(containerId);
     container.innerHTML = '';
 
+    // Create a container for buttons
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('button-container');
+
+    // Create a button to toggle the visibility of the summary table
+    const toggleButton = document.createElement('button');
+    toggleButton.textContent = 'Toggle Summary';
+    toggleButton.classList.add('btn', 'btn-secondary');
+    toggleButton.addEventListener('click', () => {
+        const summaryTable = container.querySelector('.summary-table');
+        if (summaryTable) {
+            summaryTable.classList.toggle('hidden');
+        }
+    });
+    buttonContainer.appendChild(toggleButton);
+
+    // Create a button to download the summary table as CSV
+    const downloadCsvButton = document.createElement('button');
+    downloadCsvButton.textContent = 'Download CSV';
+    downloadCsvButton.classList.add('btn', 'btn-success');
+    downloadCsvButton.addEventListener('click', () => {
+        downloadSummaryAsCSV(results);
+    });
+    buttonContainer.appendChild(downloadCsvButton);
+
+    // Create a button to print the summary table
+    const printButton = document.createElement('button');
+    printButton.textContent = 'Print Summary';
+    printButton.classList.add('btn', 'btn-info');
+    printButton.addEventListener('click', () => {
+        printSummaryTable(containerId);
+    });
+    buttonContainer.appendChild(printButton);
+
+    // Create a button to send the report via email
+    const sendEmailButton = document.createElement('button');
+    sendEmailButton.textContent = 'Send Report via Email';
+    sendEmailButton.classList.add('btn', 'btn-primary');
+    sendEmailButton.addEventListener('click', () => {
+        sendReportViaEmail(results);
+    });
+    buttonContainer.appendChild(sendEmailButton);
+
+    // Append the button container to the main container
+    container.appendChild(buttonContainer);
+
+    let summaryTable;
+    if (results.length > 1) {
+        // Create summary table and append it at the top
+        summaryTable = createSummaryTable(results);
+        summaryTable.classList.add('summary-table'); // Add class for styling
+        container.appendChild(summaryTable);
+    }
+
     // Create a wrapper for the table to handle responsiveness
     const tableWrapper = document.createElement('div');
     tableWrapper.style.overflowX = 'auto'; // Allow horizontal scroll if necessary
 
     if (results.length > 0) {
-        // Create a table element
+        // Create a table element for search results
         const table = document.createElement('table');
         table.classList.add('table', 'table-striped');
         table.style.width = '100%'; // Ensure the table takes full width
@@ -73,7 +127,7 @@ function displaySearchResults(containerId, results) {
         container.textContent = 'No records found.';
     }
 
-    // Add CSS styles for responsive table
+    // Add CSS styles for responsive table and hidden class
     const style = document.createElement('style');
     style.textContent = `
         @media (max-width: 768px) {
@@ -133,178 +187,326 @@ function displaySearchResults(containerId, results) {
                 content: ' (Fee Pending)';
             }
         }
+        .summary-table.hidden {
+            display: none;
+        }
+        .summary-table td {
+            padding: 8px;
+            background-color: transparent; // Remove background color
+        }
+        .summary-table {
+            border: 2px solid black; // Add dark border to the table
+        }
     `;
     document.head.appendChild(style);
 }
 
-
-
-function editRecord(containerId, record) {
-    const container = document.getElementById(containerId);
-
-    let buttonLabel = "Save";
-    let buttonClass = "btn btn-primary";
-
-    if (containerId === 'exitResult') {
-        buttonLabel = "Confirm Delete";
-        buttonClass = "btn btn-danger";
-    } else if (containerId === 'paymentResult') {
-        buttonLabel = "Confirm Payment";
-        buttonClass = "btn btn-success";
-    }
-
-    let fields = `
-        <form id="${containerId}Form">
-            <input type="hidden" id="${containerId}Id" value="${record.id}">
-            <div class="form-group">
-                <label for="${containerId}Name">Name</label>
-                <input type="text" class="form-control" id="${containerId}Name" value="${record.name}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
-            </div>
-            <div class="form-group">
-                <label for="${containerId}Class">Class</label>
-                <select class="form-control" id="${containerId}Class" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'disabled' : 'required'}>
-                    ${Array.from({ length: 12 }, (_, i) => i + 1).map(value =>
-                        `<option value="${value}" ${record.studentClass === value.toString() ? 'selected' : ''}>${value}</option>`).join('')}
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="${containerId}School">School</label>
-                <select class="form-control" id="${containerId}School" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'disabled' : 'required'}>
-                    <option value="KCPS" ${record.school === 'KCPS' ? 'selected' : ''}>KCPS</option>
-					<option value="Banjari" ${record.school === 'Banjari' ? 'selected' : ''}>Banjari</option>
-                    <option value="Atmanand" ${record.school === 'Atmanand' ? 'selected' : ''}>Atmanand</option>
-                    <option value="KV" ${record.school === 'KV' ? 'selected' : ''}>KV</option>
-                    <option value="DPS" ${record.school === 'DPS' ? 'selected' : ''}>DPS</option>
-                    <option value="Inventure" ${record.school === 'Inventure' ? 'selected' : ''}>Inventure</option>
-                    <option value="Others" ${record.school === 'Others' ? 'selected' : ''}>Others</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="${containerId}Date">Enroll Date</label>
-                <input type="date" class="form-control" id="${containerId}Date" value="${record.date}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
-            </div>
-            <div class="form-group">
-                <label for="${containerId}Fee">Fee Amount</label>
-                <input type="number" class="form-control" id="${containerId}Fee" value="${record.fee}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
-            </div>
-            <div class="form-group">
-                <label for="${containerId}Month">Month</label>
-                <input type="text" class="form-control" id="${containerId}Month" value="${record.month}" 
-                       ${containerId === 'paymentResult' || containerId === 'exitResult' || containerId === 'updateResult' ? 'readonly' : 'required'}>
-            </div>
-            <div class="form-group">
-                <label for="${containerId}Payment">Payment Received</label>
-                <select class="form-control" id="${containerId}Payment" 
-                    ${containerId === 'exitResult' || containerId === 'paymentResult' ? 'disabled' : ''} 
-                    ${containerId !== 'exitResult' && containerId !== 'paymentResult' ? 'required' : ''}>
-                    <option value="No" ${record.payment === 'No' ? 'selected' : ''}>No</option>
-                    <option value="Yes" ${record.payment === 'Yes' ? 'selected' : ''}>Yes</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="${containerId}Archive">Student Status</label>
-                <input type="text" class="form-control" id="${containerId}Archive" 
-                    value="${record.archiveInd === 'Yes' ? 'Inactive' : 'Active'}" 
-                    readonly 
-                    style="background-color: ${record.archiveInd === 'Yes' ? 'darkred' : record.archiveInd === 'No' ? 'lightgreen' : 'transparent'}; 
-                           color: ${record.archiveInd === 'Yes' ? 'white' : 'black'};">
-            </div>
-            <button type="submit" class="${buttonClass}">${buttonLabel}</button>
-        </form>
-    `;
-
-    container.innerHTML = fields;
-
-    function updatePaymentFieldColor() {
-        const paymentField = document.getElementById(`${containerId}Payment`);
-        const paymentValue = paymentField.value;
-        paymentField.style.backgroundColor = paymentValue === 'Yes' ? 'lightgreen' : paymentValue === 'No' ? 'lightcoral' : '';
-    }
-
-    updatePaymentFieldColor();
-    document.getElementById(`${containerId}Payment`).addEventListener('change', updatePaymentFieldColor);
-
-document.getElementById(`${containerId}Form`).addEventListener('submit', async function(event) {
-    event.preventDefault();
-    const paymentField = document.getElementById(`${containerId}Payment`);
-    const paymentValue = paymentField.value;
-
-    if (containerId === 'paymentResult' && record.payment === 'Yes') {
-        showAlert('Payment already received', 'error'); // Changed 'warning' to 'error'
-        return; // Exit the function to avoid making unnecessary API calls
-    }
-
-    const updatedRecord = {
-        id: document.getElementById(`${containerId}Id`).value,
-        name: document.getElementById(`${containerId}Name`).value,
-        studentClass: document.getElementById(`${containerId}Class`).value,
-        school: document.getElementById(`${containerId}School`).value,
-        date: document.getElementById(`${containerId}Date`).value,
-        fee: document.getElementById(`${containerId}Fee`).value,
-        month: document.getElementById(`${containerId}Month`).value,
-        payment: containerId === 'paymentResult' && paymentValue === 'No' ? 'Yes' : paymentValue,
-    };
-
-    let endpoint = '';
-    if (containerId === 'updateResult') {
-        endpoint = '/update';
-    } else if (containerId === 'paymentResult') {
-        endpoint = '/payment';
-    } else if (containerId === 'exitResult') {
-        endpoint = '/exit';
-    }
-
-    try {
-        const response = await fetch(endpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(updatedRecord),
-        });
-
-        const result = await response.json();
-        
-        // Check for specific error messages and handle them
-        if (result.message === 'This student is already inactive.' || result.message.includes('Oops')) {
-            showAlert(result.message, 'error');
+// Function to handle sending the report via email
+function sendReportViaEmail(results) {
+    // Convert results to CSV format
+    const csvContent = convertResultsToCSV(results);
+    
+    // Create a FormData object to send the CSV file to the server
+    const formData = new FormData();
+    formData.append('file', new Blob([csvContent], { type: 'text/csv' }), 'report.csv');
+    
+    // Send the CSV file to the server for emailing
+    fetch('/send-email', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Report sent successfully!');
         } else {
-            showAlert(result.message, 'success');
+            alert('Failed to send the report.');
         }
-
-    } catch (error) {
-        console.error('Error:', error);
-        showAlert(`An error occurred: ${error.message}`, 'error');
-    }
-});
-
-
-function showAlert(message, type) {
-    const alertDiv = document.createElement('div');
-
-    // Define alert class based on the type
-    const alertClass = type === 'error' ? 'alert-danger' : 'alert-success';
-
-    alertDiv.className = `alert ${alertClass} alert-dismissible fade show`;
-    alertDiv.role = 'alert';
-    alertDiv.innerHTML = `
-        <strong>${type === 'error' ? 'Error!' : 'Success!'}</strong> ${message}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    `;
-
-    container.innerHTML = '';
-    container.appendChild(alertDiv);
-
-    setTimeout(() => {
-        alertDiv.classList.add('show');
-        alertDiv.classList.remove('fade');
-    }, 100);
-    setTimeout(() => {
-        alertDiv.classList.add('fade');
-        alertDiv.classList.remove('show');
-    }, 10000);
+    })
+    .catch(error => {
+        console.error('Error sending email:', error);
+        alert('An error occurred while sending the report.');
+    });
 }
 
+// Function to convert results to CSV format
+function convertResultsToCSV(results) {
+    // Convert results to CSV format
+    const headers = ['Student ID', 'Name', 'Class', 'School', 'Enroll Date', 'Fee', 'Month', 'Payment', 'Status'];
+    const rows = results.map(result => 
+        headers.map(header => result[header.toLowerCase().replace(' ', '')] || '').join(',')
+    );
+    return [headers.join(','), ...rows].join('\n');
 }
+
+
+function createSummaryTable(results) {
+    // Calculate summary data
+    const totalStudents = results.length;
+    const uniqueStudents = new Set(results.map(r => r.id)).size;
+    const totalFeePaidStudents = results.filter(r => r.payment === 'Yes').length;
+    const totalFeePendingStudents = results.filter(r => r.payment === 'No' && r.archiveInd === 'No').length;
+    const feeReceived = results.filter(r => r.payment === 'Yes').reduce((sum, r) => sum + parseFloat(r.fee), 0);
+    const feePending = results.filter(r => r.payment === 'No' && r.archiveInd === 'No').reduce((sum, r) => sum + parseFloat(r.fee), 0);
+    const activeStudents = results.filter(r => r.archiveInd === 'No').length;
+    const inactiveStudents = results.filter(r => r.archiveInd === 'Yes').length;
+
+    // Create summary table element
+    const table = document.createElement('table');
+    table.classList.add('table', 'table-bordered', 'summary-table');
+    table.style.marginTop = '20px';
+    table.style.width = '100%';
+    table.style.border = '2px solid black'; // Add dark border to the table
+
+    // Create table body
+    const tbody = document.createElement('tbody');
+    [
+        ['Total Result Count', totalStudents, 'Total Unique Students', uniqueStudents],
+        ['Total Fee Paid Students', totalFeePaidStudents, 'Total Fee Pending Students', totalFeePendingStudents],
+        ['Fee Received', feeReceived, 'Pending Fee', feePending],
+        ['Active Students', activeStudents, 'Inactive Students', inactiveStudents]
+    ].forEach(([label1, value1, label2, value2]) => {
+        const row = document.createElement('tr');
+
+        const labelCell1 = document.createElement('td');
+        labelCell1.textContent = label1;
+        row.appendChild(labelCell1);
+
+        const valueCell1 = document.createElement('td');
+        valueCell1.textContent = value1;
+        row.appendChild(valueCell1);
+
+        const labelCell2 = document.createElement('td');
+        labelCell2.textContent = label2;
+        row.appendChild(labelCell2);
+
+        const valueCell2 = document.createElement('td');
+        valueCell2.textContent = value2;
+        row.appendChild(valueCell2);
+
+        tbody.appendChild(row);
+    });
+
+    table.appendChild(tbody);
+    return table;
+}
+
+function downloadSummaryAsCSV(results) {
+    let csvContent = 'data:text/csv;charset=utf-8,';
+    const header = ['Student ID', 'Name', 'Class', 'School', 'Enroll Date', 'Fee', 'Month', 'Payment', 'Status'];
+    csvContent += header.join(',') + '\n';
+
+    results.forEach(result => {
+        const row = [
+            result.id,
+            result.name,
+            result.class,
+            result.school,
+            result.enrollDate,
+            result.fee,
+            result.month,
+            result.payment,
+            result.archiveInd
+        ].join(',');
+        csvContent += row + '\n';
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', 'summary.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+function printSummaryTable(containerId) {
+    const container = document.getElementById(containerId);
+    const printWindow = window.open('', '', 'height=600,width=800');
+    printWindow.document.write('<html><head><title>Print Summary</title>');
+    printWindow.document.write('<style>table { width: 100%; border-collapse: collapse; } th, td { padding: 8px; border: 1px solid black; text-align: left; } th { background-color: #f2f2f2; }</style>');
+    printWindow.document.write('</head><body >');
+    printWindow.document.write(container.innerHTML);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+}
+
+function resetFilters() {
+    // Logic to reset filters goes here
+    console.log('Filters reset');
+}
+
+
+
+
+	function editRecord(containerId, record) {
+		const container = document.getElementById(containerId);
+
+		let buttonLabel = "Save";
+		let buttonClass = "btn btn-primary";
+
+		if (containerId === 'exitResult') {
+			buttonLabel = "Confirm Delete";
+			buttonClass = "btn btn-danger";
+		} else if (containerId === 'paymentResult') {
+			buttonLabel = "Confirm Payment";
+			buttonClass = "btn btn-success";
+		}
+
+		let fields = `
+			<form id="${containerId}Form">
+				<input type="hidden" id="${containerId}Id" value="${record.id}">
+				<div class="form-group">
+					<label for="${containerId}Name">Name</label>
+					<input type="text" class="form-control" id="${containerId}Name" value="${record.name}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
+				</div>
+				<div class="form-group">
+					<label for="${containerId}Class">Class</label>
+					<select class="form-control" id="${containerId}Class" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'disabled' : 'required'}>
+						${Array.from({ length: 12 }, (_, i) => i + 1).map(value =>
+							`<option value="${value}" ${record.studentClass === value.toString() ? 'selected' : ''}>${value}</option>`).join('')}
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="${containerId}School">School</label>
+					<select class="form-control" id="${containerId}School" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'disabled' : 'required'}>
+						<option value="KCPS" ${record.school === 'KCPS' ? 'selected' : ''}>KCPS</option>
+						<option value="Banjari" ${record.school === 'Banjari' ? 'selected' : ''}>Banjari</option>
+						<option value="Atmanand" ${record.school === 'Atmanand' ? 'selected' : ''}>Atmanand</option>
+						<option value="KV" ${record.school === 'KV' ? 'selected' : ''}>KV</option>
+						<option value="DPS" ${record.school === 'DPS' ? 'selected' : ''}>DPS</option>
+						<option value="Inventure" ${record.school === 'Inventure' ? 'selected' : ''}>Inventure</option>
+						<option value="Others" ${record.school === 'Others' ? 'selected' : ''}>Others</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="${containerId}Date">Enroll Date</label>
+					<input type="date" class="form-control" id="${containerId}Date" value="${record.date}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
+				</div>
+				<div class="form-group">
+					<label for="${containerId}Fee">Fee Amount</label>
+					<input type="number" class="form-control" id="${containerId}Fee" value="${record.fee}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
+				</div>
+				<div class="form-group">
+					<label for="${containerId}Month">Month</label>
+					<input type="text" class="form-control" id="${containerId}Month" value="${record.month}" 
+						   ${containerId === 'paymentResult' || containerId === 'exitResult' || containerId === 'updateResult' ? 'readonly' : 'required'}>
+				</div>
+				<div class="form-group">
+					<label for="${containerId}Payment">Payment Received</label>
+					<select class="form-control" id="${containerId}Payment" 
+						${containerId === 'exitResult' || containerId === 'paymentResult' ? 'disabled' : ''} 
+						${containerId !== 'exitResult' && containerId !== 'paymentResult' ? 'required' : ''}>
+						<option value="No" ${record.payment === 'No' ? 'selected' : ''}>No</option>
+						<option value="Yes" ${record.payment === 'Yes' ? 'selected' : ''}>Yes</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="${containerId}Archive">Student Status</label>
+					<input type="text" class="form-control" id="${containerId}Archive" 
+						value="${record.archiveInd === 'Yes' ? 'Inactive' : 'Active'}" 
+						readonly 
+						style="background-color: ${record.archiveInd === 'Yes' ? 'darkred' : record.archiveInd === 'No' ? 'lightgreen' : 'transparent'}; 
+							   color: ${record.archiveInd === 'Yes' ? 'white' : 'black'};">
+				</div>
+				<button type="submit" class="${buttonClass}">${buttonLabel}</button>
+			</form>
+		`;
+
+		container.innerHTML = fields;
+
+		function updatePaymentFieldColor() {
+			const paymentField = document.getElementById(`${containerId}Payment`);
+			const paymentValue = paymentField.value;
+			paymentField.style.backgroundColor = paymentValue === 'Yes' ? 'lightgreen' : paymentValue === 'No' ? 'lightcoral' : '';
+		}
+
+		updatePaymentFieldColor();
+		document.getElementById(`${containerId}Payment`).addEventListener('change', updatePaymentFieldColor);
+
+	document.getElementById(`${containerId}Form`).addEventListener('submit', async function(event) {
+		event.preventDefault();
+		const paymentField = document.getElementById(`${containerId}Payment`);
+		const paymentValue = paymentField.value;
+
+		if (containerId === 'paymentResult' && record.payment === 'Yes') {
+			showAlert('Payment already received', 'error'); // Changed 'warning' to 'error'
+			return; // Exit the function to avoid making unnecessary API calls
+		}
+
+		const updatedRecord = {
+			id: document.getElementById(`${containerId}Id`).value,
+			name: document.getElementById(`${containerId}Name`).value,
+			studentClass: document.getElementById(`${containerId}Class`).value,
+			school: document.getElementById(`${containerId}School`).value,
+			date: document.getElementById(`${containerId}Date`).value,
+			fee: document.getElementById(`${containerId}Fee`).value,
+			month: document.getElementById(`${containerId}Month`).value,
+			payment: containerId === 'paymentResult' && paymentValue === 'No' ? 'Yes' : paymentValue,
+		};
+
+		let endpoint = '';
+		if (containerId === 'updateResult') {
+			endpoint = '/update';
+		} else if (containerId === 'paymentResult') {
+			endpoint = '/payment';
+		} else if (containerId === 'exitResult') {
+			endpoint = '/exit';
+		}
+
+		try {
+			const response = await fetch(endpoint, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(updatedRecord),
+			});
+
+			const result = await response.json();
+			
+			// Check for specific error messages and handle them
+			if (result.message === 'This student is already inactive.' || result.message.includes('Oops')) {
+				showAlert(result.message, 'error');
+			} else {
+				showAlert(result.message, 'success');
+			}
+
+		} catch (error) {
+			console.error('Error:', error);
+			showAlert(`An error occurred: ${error.message}`, 'error');
+		}
+	});
+
+
+	function showAlert(message, type) {
+		const alertDiv = document.createElement('div');
+
+		// Define alert class based on the type
+		const alertClass = type === 'error' ? 'alert-danger' : 'alert-success';
+
+		alertDiv.className = `alert ${alertClass} alert-dismissible fade show`;
+		alertDiv.role = 'alert';
+		alertDiv.innerHTML = `
+			<strong>${type === 'error' ? 'Error!' : 'Success!'}</strong> ${message}
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		`;
+
+		container.innerHTML = '';
+		container.appendChild(alertDiv);
+
+		setTimeout(() => {
+			alertDiv.classList.add('show');
+			alertDiv.classList.remove('fade');
+		}, 100);
+		setTimeout(() => {
+			alertDiv.classList.add('fade');
+			alertDiv.classList.remove('show');
+		}, 10000);
+	}
+
+	}
