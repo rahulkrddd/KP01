@@ -274,3 +274,67 @@ body {
         background-color: #0056b3;
         border-color: #0056b3;
     }
+	
+	
+	
+
+
+
+
+
+/* styles.css heading "summary table in mobile*/
+
+@media (max-width: 768px) {
+    .summary-table {
+        display: flex;
+        flex-direction: column;
+        border: none;
+    }
+    .summary-table tr {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 0;
+        padding: 0;
+        border-bottom: 1px solid black;
+        background: #fff;
+    }
+    .summary-table td {
+        display: flex;
+        box-sizing: border-box;
+        padding: 0px; /* Add some padding for better readability */
+    }
+    .summary-table td:nth-child(1),
+    .summary-table td:nth-child(3) {
+        width: 75%; /* Increase the width of the first two columns */
+    }
+    .summary-table td:nth-child(2),
+    .summary-table td:nth-child(4) {
+        width: 25%; /* Decrease the width of the last two columns */
+		text-align: center;
+		justify-content: center;
+    }
+    .summary-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        margin-right: 0px;
+    }
+}
+
+/* styles.css heading "new summary buttons*/
+.button-container {
+    display: flex;
+    gap: 10px; /* Adjust spacing between buttons */
+    margin-bottom: 20px; /* Add space below the buttons */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.button-container .btn {
+    margin: 0; /* Remove default margin */
+    flex: 1; /* Allow buttons to stretch evenly */
+}
+
+@media (max-width: 768px) {
+    .button-container {
+        flex-direction: column; /* Stack buttons vertically on small screens */
+    }
+}
