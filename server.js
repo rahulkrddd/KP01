@@ -4,6 +4,11 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const app = express();
 const PORT = process.env.PORT || 3000;
+const multer = require('multer');
+const fs = require('fs');
+const upload = multer({ dest: 'uploads/' });
+const { google } = require('googleapis');
+
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -29,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Password validation endpoint
 app.post('/validate-password', (req, res) => {
-    const { password } = req.body;
+    const {password} = req.body;
     // Get the password from environment variables
     const validPassword = process.env.PASSWORD;
 
@@ -114,24 +119,132 @@ function formatName(name) {
         .join(' ');
 }
 
-async function sendEmail(email, subject, body) {
-    let transporter = nodemailer.createTransport({
+
+
+// Setup email transport V0.2
+// OAuth2 setup
+const oAuth2Client = new google.auth.OAuth2(
+    process.env.CLIENT_ID,
+    process.env.CLIENT_SECRET,
+    process.env.REDIRECT_URL
+);
+
+oAuth2Client.setCredentials({
+    refresh_token: process.env.REFRESH_TOKEN
+});
+
+// Function to get a new access token
+async function getAccessToken() {
+    try {
+        const { token } = await oAuth2Client.getAccessToken();
+        return token;
+    } catch (error) {
+        console.error('Error fetching access token:', error);
+        throw error;
+    }
+}
+
+// Create a transporter using OAuth2
+// Create a transporter using OAuth2
+const createTransporter = async () => {
+    const accessToken = await getAccessToken();
+
+    return nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'your-email@gmail.com',
-            pass: 'your-email-password'
+            type: 'OAuth2',
+            user: process.env.EMAIL_USER,
+            clientId: process.env.CLIENT_ID,
+            clientSecret: process.env.CLIENT_SECRET,
+            refreshToken: process.env.REFRESH_TOKEN,
+            accessToken: accessToken // Retrieve access token dynamically
+        },
+        tls: {
+            rejectUnauthorized: false
         }
     });
+};
 
-    let mailOptions = {
-        from: 'your-email@gmail.com',
-        to: email,
-        subject: subject,
-        text: body
-    };
+// Initialize the transporter
+let transporter;
+createTransporter().then(transport => transporter = transport).catch(console.error);
 
-    await transporter.sendMail(mailOptions);
-}
+
+// Handle email sending
+app.post('/send-email', upload.single('file'), async (req, res) => {
+    const file = req.file;
+    const filePath = path.join(__dirname, 'uploads', file.filename);
+
+    // Check if file exists
+    fs.access(filePath, fs.constants.F_OK, async (err) => {
+        if (err) {
+            return res.status(500).json({ success: false, message: 'File does not exist' });
+        }
+
+        // Read the file content
+        fs.readFile(filePath, async (err, data) => {
+            if (err) {
+                return res.status(500).json({ success: false, message: 'Error reading file', error: err.message });
+            }
+
+            const mailOptions = {
+                from: process.env.EMAIL_USER,
+                to: 'rahul.gupta.730@gmail.com',
+                subject: 'Report',
+                text: 'Please find the attached report.',
+                attachments: [{
+                    filename: 'report.csv',
+                    content: data
+                }]
+            };
+
+            try {
+                // Ensure we have a valid access token
+                const accessToken = await getAccessToken();
+
+                // Create a transporter using OAuth2 with the latest access token
+                const transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        type: 'OAuth2',
+                        user: process.env.EMAIL_USER,
+                        clientId: process.env.CLIENT_ID,
+                        clientSecret: process.env.CLIENT_SECRET,
+                        refreshToken: process.env.REFRESH_TOKEN,
+                        accessToken: accessToken // Retrieve access token dynamically
+                    },
+                    tls: {
+                        rejectUnauthorized: false
+                    }
+                });
+
+                // Send the email
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        console.error('Error sending email:', error);
+                        return res.status(500).json({ success: false, message: 'Error sending email', error: error.message });
+                    }
+
+                    // Clean up uploaded file
+                    fs.unlink(filePath, (err) => {
+                        if (err) {
+                            console.error('Error deleting file:', err);
+                            return res.status(500).json({ success: false, message: 'Error deleting file', error: err.message });
+                        }
+                        res.json({ success: true, message: 'Email sent successfully!' });
+                    });
+                });
+            } catch (error) {
+                console.error('Error retrieving access token:', error);
+                res.status(500).json({ success: false, message: 'Error retrieving access token', error: error.message });
+            }
+        });
+    });
+});
+
+
+//Setup email transport V0.2
+
 
 // Enroll a new student
 app.post('/enroll', async (req, res) => {
@@ -175,7 +288,7 @@ app.post('/enroll', async (req, res) => {
         await writeDataFile(students);
         res.json({ message: 'Success : Student Registered Successfully.' });
     } catch (error) {
-        res.status(500).json({ message: 'Error occurred during enrollment.' });
+        res.status(500).json({ message: 'Oops.. Error occurred during enrollment.' });
     }
 });
 
