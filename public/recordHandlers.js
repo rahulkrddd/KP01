@@ -214,16 +214,20 @@ function createButtonContainer(results, containerId) {
     });
     buttonContainer.appendChild(printButton);
 
-    // Create a button to send the report via email
-    const sendEmailButton = document.createElement('button');
-    sendEmailButton.textContent = 'Send Report via Email';
-    sendEmailButton.classList.add('btn', 'btn-primary');
-    sendEmailButton.addEventListener('click', () => {
-        sendReportViaEmail(results);
-    });
-    buttonContainer.appendChild(sendEmailButton);
+// Create a button to send the report via email
+const sendEmailButton = document.createElement('button');
+sendEmailButton.textContent = 'Send Report via Email';
+sendEmailButton.classList.add('btn', 'btn-primary');
+sendEmailButton.addEventListener('click', () => {
+    // Show an alert or message instead of processing
+    alert('This option will be enabled soon');
+    // Optionally, you can also disable the button if needed
+    // sendEmailButton.disabled = true;
+});
+buttonContainer.appendChild(sendEmailButton);
 
-    return buttonContainer;
+return buttonContainer;
+
 }
 
 
