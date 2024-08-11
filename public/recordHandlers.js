@@ -2,14 +2,32 @@ function displaySearchResults(containerId, results) {
     const container = document.getElementById(containerId);
     container.innerHTML = '';
 
+    // Get the current month from the DOM element or use JavaScript to determine it
+    const currentMonth = document.getElementById('enrollMonth').value || new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date());
+
+    // Define the financial year start month (April) and get the current month index
+    const financialYearStartMonth = 'April';
+    const monthNames = ['April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', 'January', 'February', 'March'];
+    const startMonthIndex = monthNames.indexOf(financialYearStartMonth);
+    const currentMonthIndex = monthNames.indexOf(currentMonth);
+
+    // Function to check if a month is within the financial year range
+    function isMonthInRange(month) {
+        const monthIndex = monthNames.indexOf(month);
+        return monthIndex >= startMonthIndex && monthIndex <= currentMonthIndex;
+    }
+
+    // Filter the results to include only those within the financial year range
+    const filteredResults = results.filter(result => isMonthInRange(result.month));
+
     // Create and append the button container
-    const buttonContainer = createButtonContainer(results, containerId);
+    const buttonContainer = createButtonContainer(filteredResults, containerId);
     container.appendChild(buttonContainer);
 
     let summaryTable;
-    if (results.length > 1) {
+    if (filteredResults.length > 1) {
         // Create summary table and append it at the top
-        summaryTable = createSummaryTable(results);
+        summaryTable = createSummaryTable(filteredResults);
         summaryTable.classList.add('summary-table'); // Add class for styling
         container.appendChild(summaryTable);
     }
@@ -18,7 +36,7 @@ function displaySearchResults(containerId, results) {
     const tableWrapper = document.createElement('div');
     tableWrapper.style.overflowX = 'auto'; // Allow horizontal scroll if necessary
 
-    if (results.length > 0) {
+    if (filteredResults.length > 0) {
         // Create a table element for search results
         const table = document.createElement('table');
         table.classList.add('table', 'table-striped');
@@ -39,7 +57,7 @@ function displaySearchResults(containerId, results) {
 
         // Create the table body
         const tbody = document.createElement('tbody');
-        results.forEach(result => {
+        filteredResults.forEach(result => {
             const row = document.createElement('tr');
 
             Object.entries(result).forEach(([key, value]) => {
@@ -160,6 +178,7 @@ function displaySearchResults(containerId, results) {
 }
 
 
+
 function createButtonContainer(results, containerId) {
     // Create a container for buttons
     const buttonContainer = document.createElement('div');
@@ -269,9 +288,9 @@ function createSummaryTable(results) {
     const tbody = document.createElement('tbody');
     [
         ['Total Result Count', totalStudents, 'Total Unique Students', uniqueStudents],
-        ['Total Fee Paid Students', totalFeePaidStudents, 'Total Fee Pending Students', totalFeePendingStudents],
+        ['Total Fee Paid Months', totalFeePaidStudents, 'Total Fee Pending Months', totalFeePendingStudents],
         ['Fee Received', feeReceived, 'Pending Fee', feePending],
-        ['Active Students', activeStudents, 'Inactive Students', inactiveStudents]
+        ['Active Months', activeStudents, 'Inactive Months', inactiveStudents]
     ].forEach(([label1, value1, label2, value2]) => {
         const row = document.createElement('tr');
 
