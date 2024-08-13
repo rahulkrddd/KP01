@@ -214,21 +214,19 @@ function createButtonContainer(results, containerId) {
     });
     buttonContainer.appendChild(printButton);
 
-// Create a button to send the report via email
-const sendEmailButton = document.createElement('button');
-sendEmailButton.textContent = 'Send Report via Email';
-sendEmailButton.classList.add('btn', 'btn-primary');
-sendEmailButton.addEventListener('click', () => {
-    // Show an alert or message instead of processing
-    alert('This option will be enabled soon');
-    // Optionally, you can also disable the button if needed
-    // sendEmailButton.disabled = true;
-});
-buttonContainer.appendChild(sendEmailButton);
+    // Create a button to send the report via email
 
-return buttonContainer;
+    const sendEmailButton = document.createElement('button');
+    sendEmailButton.textContent = 'Send Report via Email';
+    sendEmailButton.classList.add('btn', 'btn-primary');
+    sendEmailButton.addEventListener('click', () => {
+        sendReportViaEmail(results);
+    });
+    buttonContainer.appendChild(sendEmailButton);
 
+    return buttonContainer;
 }
+
 
 
 // Function to handle sending the report via email
@@ -261,11 +259,39 @@ function sendReportViaEmail(results) {
 
 // Function to convert results to CSV format
 function convertResultsToCSV(results) {
-    // Convert results to CSV format
+    // Define the headers for the CSV
     const headers = ['Student ID', 'Name', 'Class', 'School', 'Enroll Date', 'Fee', 'Month', 'Payment', 'Status'];
+    
+    // Create the rows for the CSV
     const rows = results.map(result => 
-        headers.map(header => result[header.toLowerCase().replace(' ', '')] || '').join(',')
+        headers.map(header => {
+            // Map headers to corresponding data keys
+            switch (header) {
+                case 'Student ID':
+                    return result.id || '';
+                case 'Class':
+                    return result.studentClass || '';
+                case 'Enroll Date':
+                    return result.date || '';
+                case 'Name':
+                    return result.name || '';
+                case 'School':
+                    return result.school || '';
+                case 'Fee':
+                    return result.fee || '';
+                case 'Month':
+                    return result.month || '';
+                case 'Payment':
+                    return result.payment || '';
+                case 'Status':
+                    return result.archiveInd || '';
+                default:
+                    return '';
+            }
+        }).join(',')
     );
+
+    // Combine headers and rows into CSV format
     return [headers.join(','), ...rows].join('\n');
 }
 
@@ -330,9 +356,9 @@ function downloadSummaryAsCSV(results) {
         const row = [
             result.id,
             result.name,
-            result.class,
+            result.studentClass,
             result.school,
-            result.enrollDate,
+            result.date,
             result.fee,
             result.month,
             result.payment,
