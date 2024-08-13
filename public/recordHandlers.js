@@ -490,70 +490,74 @@ function editRecord(containerId, record) {
     updatePaymentFieldColor();
     document.getElementById(`${containerId}Payment`).addEventListener('change', updatePaymentFieldColor);
 
-    document.getElementById(`${containerId}Form`).addEventListener('submit', async function(event) {
-        event.preventDefault();
-        
-        const paymentField = document.getElementById(`${containerId}Payment`);
-        const paymentValue = paymentField.value;
-        const deletePermanentlyCheckbox = document.getElementById(`${containerId}deletepermanently`);
-        const deletepermanently = deletePermanentlyCheckbox ? deletePermanentlyCheckbox.checked : false;
+document.getElementById(`${containerId}Form`).addEventListener('submit', async function(event) {
+    event.preventDefault();
+    
+    const paymentField = document.getElementById(`${containerId}Payment`);
+    const paymentValue = paymentField.value;
+    const deletePermanentlyCheckbox = document.getElementById(`${containerId}deletepermanently`);
+    const deletepermanently = deletePermanentlyCheckbox ? deletePermanentlyCheckbox.checked : false;
 
-        // Show confirmation popup for irreversible action
-        if (deletepermanently && !window.confirm("Irreversible Action: Are you sure you want to delete this record permanently?")) {
-            return; // Exit the function if the user cancels the action
+    // Show confirmation popup for irreversible action
+    if (deletepermanently && !window.confirm("Irreversible Action: Are you sure you want to delete this record permanently?")) {
+        return; // Exit the function if the user cancels the action
+    }
+
+    if (containerId === 'paymentResult' && record.payment === 'Yes') {
+        showAlert('Payment already received', 'error'); // Changed 'warning' to 'error'
+        return; // Exit the function to avoid making unnecessary API calls
+    }
+
+    const updatedRecord = {
+        id: document.getElementById(`${containerId}Id`).value,
+        name: document.getElementById(`${containerId}Name`).value,
+        studentClass: document.getElementById(`${containerId}Class`).value,
+        school: document.getElementById(`${containerId}School`).value,
+        date: document.getElementById(`${containerId}Date`).value,
+        fee: document.getElementById(`${containerId}Fee`).value,
+        month: document.getElementById(`${containerId}Month`).value,
+        payment: containerId === 'paymentResult' && paymentValue === 'No' ? 'Yes' : paymentValue,
+        deletepermanently: deletepermanently // Correctly include checkbox value
+    };
+
+    let endpoint = '';
+    if (containerId === 'updateResult') {
+        endpoint = '/update';
+    } else if (containerId === 'paymentResult') {
+        endpoint = '/payment';
+    } else if (containerId === 'exitResult') {
+        endpoint = '/exit';
+    }
+
+    try {
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedRecord),
+        });
+
+        const result = await response.json();
+
+        // Close the form
+        container.innerHTML = ''; // Close the form
+
+        // Display success or error message
+        if (result.message === 'This student is already inactive.') {
+            showAlert(result.message, 'error'); // Show the message
+        } else {
+            showAlert(result.message, 'success'); // Display success message for other cases
         }
 
-        if (containerId === 'paymentResult' && record.payment === 'Yes') {
-            showAlert('Payment already received', 'error'); // Changed 'warning' to 'error'
-            return; // Exit the function to avoid making unnecessary API calls
-        }
+    } catch (error) {
+        console.error('Error:', error);
+        showAlert(`An error occurred: ${error.message}`, 'error');
+        // Close the form in case of an error
+        container.innerHTML = ''; // Close the form
+    }
+});
 
-        const updatedRecord = {
-            id: document.getElementById(`${containerId}Id`).value,
-            name: document.getElementById(`${containerId}Name`).value,
-            studentClass: document.getElementById(`${containerId}Class`).value,
-            school: document.getElementById(`${containerId}School`).value,
-            date: document.getElementById(`${containerId}Date`).value,
-            fee: document.getElementById(`${containerId}Fee`).value,
-            month: document.getElementById(`${containerId}Month`).value,
-            payment: containerId === 'paymentResult' && paymentValue === 'No' ? 'Yes' : paymentValue,
-            deletepermanently: deletepermanently // Correctly include checkbox value
-        };
-
-        let endpoint = '';
-        if (containerId === 'updateResult') {
-            endpoint = '/update';
-        } else if (containerId === 'paymentResult') {
-            endpoint = '/payment';
-        } else if (containerId === 'exitResult') {
-            endpoint = '/exit';
-        }
-
-        try {
-            const response = await fetch(endpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(updatedRecord),
-            });
-
-            const result = await response.json();
-
-		// Close the form and only display the message if the student is already inactive
-		if (result.message === 'This student is already inactive.') {
-		    container.innerHTML = ''; // Close the form
-		    showAlert(result.message, 'error'); // Show the message
-		} else {
-		    showAlert(result.message, 'success'); // Display success message for other cases
-		}
-
-
-        } catch (error) {
-            console.error('Error:', error);
-            showAlert(`An error occurred: ${error.message}`, 'error');
-        }
-    });
 
     function showAlert(message, type) {
         const alertDiv = document.createElement('div');
