@@ -997,7 +997,7 @@
     "date": "2024-08-13",
     "fee": "1000",
     "month": "August",
-    "payment": "No",
+    "payment": "Yes",
     "archiveInd": "Yes"
   },
   {
