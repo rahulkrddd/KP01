@@ -232,6 +232,7 @@ app.post('/enroll', async (req, res) => {
 });
 
 // Search for students
+// Search for students
 app.get('/search', async (req, res) => {
     try {
         const query = req.query.query ? req.query.query.toLowerCase() : '';
@@ -273,10 +274,18 @@ app.get('/search', async (req, res) => {
                     return idMatch || nameMatch || classMatch || schoolMatch || monthMatch;
                 });
 
+                // Separate current month results from other results
+                const currentMonthResults = filteredStudents.filter(student => student.month.toLowerCase() === currentMonth);
+                const otherMonthResults = filteredStudents.filter(student => student.month.toLowerCase() !== currentMonth);
+
+                // Combine current month results with other month results
+                results = [...currentMonthResults, ...otherMonthResults];
+
+                // Remove duplicate entries based on ID
                 const uniqueStudents = [];
                 const uniqueIds = new Set();
                 
-                filteredStudents.forEach(student => {
+                results.forEach(student => {
                     if (!uniqueIds.has(student.id)) {
                         uniqueIds.add(student.id);
                         uniqueStudents.push(student);
