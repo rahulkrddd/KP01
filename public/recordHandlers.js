@@ -397,172 +397,185 @@ function resetFilters() {
 
 
 
-	function editRecord(containerId, record) {
-		const container = document.getElementById(containerId);
+function editRecord(containerId, record) {
+    const container = document.getElementById(containerId);
 
-		let buttonLabel = "Save";
-		let buttonClass = "btn btn-primary";
+    let buttonLabel = "Save";
+    let buttonClass = "btn btn-primary";
 
-		if (containerId === 'exitResult') {
-			buttonLabel = "Confirm Delete";
-			buttonClass = "btn btn-danger";
-		} else if (containerId === 'paymentResult') {
-			buttonLabel = "Confirm Payment";
-			buttonClass = "btn btn-success";
-		}
+    if (containerId === 'exitResult') {
+        buttonLabel = "Confirm Delete";
+        buttonClass = "btn btn-danger";
+    } else if (containerId === 'paymentResult') {
+        buttonLabel = "Confirm Payment";
+        buttonClass = "btn btn-success";
+    }
 
-		let fields = `
-			<form id="${containerId}Form">
-				<input type="hidden" id="${containerId}Id" value="${record.id}">
-				<div class="form-group">
-					<label for="${containerId}Name">Name</label>
-					<input type="text" class="form-control" id="${containerId}Name" value="${record.name}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
-				</div>
-				<div class="form-group">
-					<label for="${containerId}Class">Class</label>
-					<select class="form-control" id="${containerId}Class" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'disabled' : 'required'}>
-						${Array.from({ length: 12 }, (_, i) => i + 1).map(value =>
-							`<option value="${value}" ${record.studentClass === value.toString() ? 'selected' : ''}>${value}</option>`).join('')}
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="${containerId}School">School</label>
-					<select class="form-control" id="${containerId}School" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'disabled' : 'required'}>
-						<option value="KCPS" ${record.school === 'KCPS' ? 'selected' : ''}>KCPS</option>
-						<option value="Banjari" ${record.school === 'Banjari' ? 'selected' : ''}>Banjari</option>
-						<option value="Atmanand" ${record.school === 'Atmanand' ? 'selected' : ''}>Atmanand</option>
-						<option value="KV" ${record.school === 'KV' ? 'selected' : ''}>KV</option>
-						<option value="DPS" ${record.school === 'DPS' ? 'selected' : ''}>DPS</option>
-						<option value="Inventure" ${record.school === 'Inventure' ? 'selected' : ''}>Inventure</option>
-						<option value="Others" ${record.school === 'Others' ? 'selected' : ''}>Others</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="${containerId}Date">Enroll Date</label>
-					<input type="date" class="form-control" id="${containerId}Date" value="${record.date}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
-				</div>
-				<div class="form-group">
-					<label for="${containerId}Fee">Fee Amount</label>
-					<input type="number" class="form-control" id="${containerId}Fee" value="${record.fee}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
-				</div>
-				<div class="form-group">
-					<label for="${containerId}Month">Month</label>
-					<input type="text" class="form-control" id="${containerId}Month" value="${record.month}" 
-						   ${containerId === 'paymentResult' || containerId === 'exitResult' || containerId === 'updateResult' ? 'readonly' : 'required'}>
-				</div>
-				<div class="form-group">
-					<label for="${containerId}Payment">Payment Received</label>
-					<select class="form-control" id="${containerId}Payment" 
-						${containerId === 'exitResult' || containerId === 'paymentResult' ? 'disabled' : ''} 
-						${containerId !== 'exitResult' && containerId !== 'paymentResult' ? 'required' : ''}>
-						<option value="No" ${record.payment === 'No' ? 'selected' : ''}>No</option>
-						<option value="Yes" ${record.payment === 'Yes' ? 'selected' : ''}>Yes</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="${containerId}Archive">Student Status</label>
-					<input type="text" class="form-control" id="${containerId}Archive" 
-						value="${record.archiveInd === 'Yes' ? 'Inactive' : 'Active'}" 
-						readonly 
-						style="background-color: ${record.archiveInd === 'Yes' ? 'darkred' : record.archiveInd === 'No' ? 'lightgreen' : 'transparent'}; 
-							   color: ${record.archiveInd === 'Yes' ? 'white' : 'black'};">
-				</div>
-				<button type="submit" class="${buttonClass}">${buttonLabel}</button>
-			</form>
-		`;
+    let fields = `
+        <form id="${containerId}Form">
+            <input type="hidden" id="${containerId}Id" value="${record.id}">
+            <div class="form-group">
+                <label for="${containerId}Name">Name</label>
+                <input type="text" class="form-control" id="${containerId}Name" value="${record.name}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
+            </div>
+            <div class="form-group">
+                <label for="${containerId}Class">Class</label>
+                <select class="form-control" id="${containerId}Class" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'disabled' : 'required'}>
+                    ${Array.from({ length: 12 }, (_, i) => i + 1).map(value =>
+                        `<option value="${value}" ${record.studentClass === value.toString() ? 'selected' : ''}>${value}</option>`).join('')}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="${containerId}School">School</label>
+                <select class="form-control" id="${containerId}School" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'disabled' : 'required'}>
+                    <option value="KCPS" ${record.school === 'KCPS' ? 'selected' : ''}>KCPS</option>
+                    <option value="Banjari" ${record.school === 'Banjari' ? 'selected' : ''}>Banjari</option>
+                    <option value="Atmanand" ${record.school === 'Atmanand' ? 'selected' : ''}>Atmanand</option>
+                    <option value="KV" ${record.school === 'KV' ? 'selected' : ''}>KV</option>
+                    <option value="DPS" ${record.school === 'DPS' ? 'selected' : ''}>DPS</option>
+                    <option value="Inventure" ${record.school === 'Inventure' ? 'selected' : ''}>Inventure</option>
+                    <option value="Others" ${record.school === 'Others' ? 'selected' : ''}>Others</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="${containerId}Date">Enroll Date</label>
+                <input type="date" class="form-control" id="${containerId}Date" value="${record.date}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
+            </div>
+            <div class="form-group">
+                <label for="${containerId}Fee">Fee Amount</label>
+                <input type="number" class="form-control" id="${containerId}Fee" value="${record.fee}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
+            </div>
+            <div class="form-group">
+                <label for="${containerId}Month">Month</label>
+                <input type="text" class="form-control" id="${containerId}Month" value="${record.month}" 
+                       ${containerId === 'paymentResult' || containerId === 'exitResult' || containerId === 'updateResult' ? 'readonly' : 'required'}>
+            </div>
+            <div class="form-group">
+                <label for="${containerId}Payment">Payment Received</label>
+                <select class="form-control" id="${containerId}Payment" 
+                    ${containerId === 'exitResult' || containerId === 'paymentResult' ? 'disabled' : ''} 
+                    ${containerId !== 'exitResult' && containerId !== 'paymentResult' ? 'required' : ''}>
+                    <option value="No" ${record.payment === 'No' ? 'selected' : ''}>No</option>
+                    <option value="Yes" ${record.payment === 'Yes' ? 'selected' : ''}>Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="${containerId}Archive">Student Status</label>
+                <input type="text" class="form-control" id="${containerId}Archive" 
+                    value="${record.archiveInd === 'Yes' ? 'Inactive' : 'Active'}" 
+                    readonly 
+                    style="background-color: ${record.archiveInd === 'Yes' ? 'darkred' : record.archiveInd === 'No' ? 'lightgreen' : 'transparent'}; 
+                           color: ${record.archiveInd === 'Yes' ? 'white' : 'black'};">
+            </div>
+            ${containerId === 'exitResult' ? `
+            <div class="form-group">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="${containerId}deletepermanently" ${record.deletepermanently ? 'checked' : ''}>
+                    <label class="form-check-label" for="${containerId}deletepermanently">Delete Permanently</label>
+                </div>
+            </div>
+            ` : ''}
+            <button type="submit" class="${buttonClass}">${buttonLabel}</button>
+        </form>
+    `;
 
-		container.innerHTML = fields;
+    container.innerHTML = fields;
 
-		function updatePaymentFieldColor() {
-			const paymentField = document.getElementById(`${containerId}Payment`);
-			const paymentValue = paymentField.value;
-			paymentField.style.backgroundColor = paymentValue === 'Yes' ? 'lightgreen' : paymentValue === 'No' ? 'lightcoral' : '';
-		}
+    function updatePaymentFieldColor() {
+        const paymentField = document.getElementById(`${containerId}Payment`);
+        const paymentValue = paymentField.value;
+        paymentField.style.backgroundColor = paymentValue === 'Yes' ? 'lightgreen' : paymentValue === 'No' ? 'lightcoral' : '';
+    }
 
-		updatePaymentFieldColor();
-		document.getElementById(`${containerId}Payment`).addEventListener('change', updatePaymentFieldColor);
+    updatePaymentFieldColor();
+    document.getElementById(`${containerId}Payment`).addEventListener('change', updatePaymentFieldColor);
 
-	document.getElementById(`${containerId}Form`).addEventListener('submit', async function(event) {
-		event.preventDefault();
-		const paymentField = document.getElementById(`${containerId}Payment`);
-		const paymentValue = paymentField.value;
+    document.getElementById(`${containerId}Form`).addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        const paymentField = document.getElementById(`${containerId}Payment`);
+        const paymentValue = paymentField.value;
+        const deletePermanentlyCheckbox = document.getElementById(`${containerId}deletepermanently`);
+        const deletepermanently = deletePermanentlyCheckbox ? deletePermanentlyCheckbox.checked : false;
 
-		if (containerId === 'paymentResult' && record.payment === 'Yes') {
-			showAlert('Payment already received', 'error'); // Changed 'warning' to 'error'
-			return; // Exit the function to avoid making unnecessary API calls
-		}
+        // Show confirmation popup for irreversible action
+        if (deletepermanently && !window.confirm("Irreversible Action: Are you sure you want to delete this record permanently?")) {
+            return; // Exit the function if the user cancels the action
+        }
 
-		const updatedRecord = {
-			id: document.getElementById(`${containerId}Id`).value,
-			name: document.getElementById(`${containerId}Name`).value,
-			studentClass: document.getElementById(`${containerId}Class`).value,
-			school: document.getElementById(`${containerId}School`).value,
-			date: document.getElementById(`${containerId}Date`).value,
-			fee: document.getElementById(`${containerId}Fee`).value,
-			month: document.getElementById(`${containerId}Month`).value,
-			payment: containerId === 'paymentResult' && paymentValue === 'No' ? 'Yes' : paymentValue,
-		};
+        if (containerId === 'paymentResult' && record.payment === 'Yes') {
+            showAlert('Payment already received', 'error'); // Changed 'warning' to 'error'
+            return; // Exit the function to avoid making unnecessary API calls
+        }
 
-		let endpoint = '';
-		if (containerId === 'updateResult') {
-			endpoint = '/update';
-		} else if (containerId === 'paymentResult') {
-			endpoint = '/payment';
-		} else if (containerId === 'exitResult') {
-			endpoint = '/exit';
-		}
+        const updatedRecord = {
+            id: document.getElementById(`${containerId}Id`).value,
+            name: document.getElementById(`${containerId}Name`).value,
+            studentClass: document.getElementById(`${containerId}Class`).value,
+            school: document.getElementById(`${containerId}School`).value,
+            date: document.getElementById(`${containerId}Date`).value,
+            fee: document.getElementById(`${containerId}Fee`).value,
+            month: document.getElementById(`${containerId}Month`).value,
+            payment: containerId === 'paymentResult' && paymentValue === 'No' ? 'Yes' : paymentValue,
+            deletepermanently: deletepermanently // Correctly include checkbox value
+        };
 
-		try {
-			const response = await fetch(endpoint, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(updatedRecord),
-			});
+        let endpoint = '';
+        if (containerId === 'updateResult') {
+            endpoint = '/update';
+        } else if (containerId === 'paymentResult') {
+            endpoint = '/payment';
+        } else if (containerId === 'exitResult') {
+            endpoint = '/exit';
+        }
 
-			const result = await response.json();
-			
-			// Check for specific error messages and handle them
-			if (result.message === 'This student is already inactive.' || result.message.includes('Oops')) {
-				showAlert(result.message, 'error');
-			} else {
-				showAlert(result.message, 'success');
-			}
+        try {
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedRecord),
+            });
 
-		} catch (error) {
-			console.error('Error:', error);
-			showAlert(`An error occurred: ${error.message}`, 'error');
-		}
-	});
+            const result = await response.json();
 
+            // Check for specific error messages and handle them
+            if (result.message === 'This student is already inactive.' || result.message.includes('Oops')) {
+                showAlert(result.message, 'error');
+            } else {
+                // Close the form and display the message
+                container.innerHTML = '';
+                showAlert(result.message, 'success');
+            }
 
-	function showAlert(message, type) {
-		const alertDiv = document.createElement('div');
+        } catch (error) {
+            console.error('Error:', error);
+            showAlert(`An error occurred: ${error.message}`, 'error');
+        }
+    });
 
-		// Define alert class based on the type
-		const alertClass = type === 'error' ? 'alert-danger' : 'alert-success';
+    function showAlert(message, type) {
+        const alertDiv = document.createElement('div');
 
-		alertDiv.className = `alert ${alertClass} alert-dismissible fade show`;
-		alertDiv.role = 'alert';
-		alertDiv.innerHTML = `
-			<strong>${type === 'error' ? 'Error!' : 'Success!'}</strong> ${message}
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		`;
+        // Define alert class based on the type
+        const alertClass = type === 'error' ? 'alert-danger' : 'alert-success';
 
-		container.innerHTML = '';
-		container.appendChild(alertDiv);
+        alertDiv.className = `alert ${alertClass} alert-dismissible fade show`;
+        alertDiv.role = 'alert';
+        alertDiv.innerHTML = `
+            <strong>${type === 'error' ? 'Error!' : 'Success!'}</strong> ${message}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        `;
 
-		setTimeout(() => {
-			alertDiv.classList.add('show');
-			alertDiv.classList.remove('fade');
-		}, 100);
-		setTimeout(() => {
-			alertDiv.classList.add('fade');
-			alertDiv.classList.remove('show');
-		}, 10000);
-	}
+        // Append the alert to the container
+        container.prepend(alertDiv);
 
-	}
+        // Automatically remove the alert after 5 seconds
+        setTimeout(() => {
+            alertDiv.remove();
+        }, 5000);
+    }
+}
