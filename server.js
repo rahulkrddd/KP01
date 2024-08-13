@@ -121,54 +121,17 @@ function formatName(name) {
 
 
 
-// Setup email transport V0.2
-// OAuth2 setup
-const oAuth2Client = new google.auth.OAuth2(
-    process.env.CLIENT_ID,
-    process.env.CLIENT_SECRET,
-    process.env.REDIRECT_URL
-);
-
-oAuth2Client.setCredentials({
-    refresh_token: process.env.REFRESH_TOKEN
-});
-
-// Function to get a new access token
-async function getAccessToken() {
-    try {
-        const { token } = await oAuth2Client.getAccessToken();
-        return token;
-    } catch (error) {
-        console.error('Error fetching access token:', error);
-        throw error;
+// Setup email transport using App Password
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD // App Password
+    },
+    tls: {
+        rejectUnauthorized: false
     }
-}
-
-// Create a transporter using OAuth2
-// Create a transporter using OAuth2
-const createTransporter = async () => {
-    const accessToken = await getAccessToken();
-
-    return nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            type: 'OAuth2',
-            user: process.env.EMAIL_USER,
-            clientId: process.env.CLIENT_ID,
-            clientSecret: process.env.CLIENT_SECRET,
-            refreshToken: process.env.REFRESH_TOKEN,
-            accessToken: accessToken // Retrieve access token dynamically
-        },
-        tls: {
-            rejectUnauthorized: false
-        }
-    });
-};
-
-// Initialize the transporter
-let transporter;
-createTransporter().then(transport => transporter = transport).catch(console.error);
-
+});
 
 // Handle email sending
 app.post('/send-email', upload.single('file'), async (req, res) => {
@@ -198,46 +161,22 @@ app.post('/send-email', upload.single('file'), async (req, res) => {
                 }]
             };
 
-            try {
-                // Ensure we have a valid access token
-                const accessToken = await getAccessToken();
+            // Send the email
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error('Error sending email:', error);
+                    return res.status(500).json({ success: false, message: 'Error sending email', error: error.message });
+                }
 
-                // Create a transporter using OAuth2 with the latest access token
-                const transporter = nodemailer.createTransport({
-                    service: 'gmail',
-                    auth: {
-                        type: 'OAuth2',
-                        user: process.env.EMAIL_USER,
-                        clientId: process.env.CLIENT_ID,
-                        clientSecret: process.env.CLIENT_SECRET,
-                        refreshToken: process.env.REFRESH_TOKEN,
-                        accessToken: accessToken // Retrieve access token dynamically
-                    },
-                    tls: {
-                        rejectUnauthorized: false
+                // Clean up uploaded file
+                fs.unlink(filePath, (err) => {
+                    if (err) {
+                        console.error('Error deleting file:', err);
+                        return res.status(500).json({ success: false, message: 'Error deleting file', error: err.message });
                     }
+                    res.json({ success: true, message: 'Email sent successfully!' });
                 });
-
-                // Send the email
-                transporter.sendMail(mailOptions, (error, info) => {
-                    if (error) {
-                        console.error('Error sending email:', error);
-                        return res.status(500).json({ success: false, message: 'Error sending email', error: error.message });
-                    }
-
-                    // Clean up uploaded file
-                    fs.unlink(filePath, (err) => {
-                        if (err) {
-                            console.error('Error deleting file:', err);
-                            return res.status(500).json({ success: false, message: 'Error deleting file', error: err.message });
-                        }
-                        res.json({ success: true, message: 'Email sent successfully!' });
-                    });
-                });
-            } catch (error) {
-                console.error('Error retrieving access token:', error);
-                res.status(500).json({ success: false, message: 'Error retrieving access token', error: error.message });
-            }
+            });
         });
     });
 });
