@@ -1,6 +1,29 @@
+document.getElementById('enrollName').addEventListener('input', function() {
+    const name = this.value;
+    const nameError = document.getElementById('nameError');
+    const nameValidation = document.getElementById('nameValidation');
+    
+    // Regular expression to check if name contains numbers
+    const hasNumbers = /\d/.test(name);
+    
+    // Check name length and number presence
+    if (name.length < 3) {
+        nameError.textContent = 'Name should be at least 3 characters long.';
+        nameError.style.display = 'block';
+        nameValidation.innerHTML = '<span style="color: red;">&#10060;</span>'; // Red cross for invalid
+    } else if (name.length > 12 || hasNumbers) {
+        nameError.textContent = 'Name should not exceed 12 characters and should not contain numbers.';
+        nameError.style.display = 'block';
+        nameValidation.innerHTML = '<span style="color: red;">&#10060;</span>'; // Red cross for invalid
+    } else {
+        nameError.style.display = 'none';
+        nameValidation.innerHTML = '<span style="color: green;">&#10004;</span>'; // Green checkmark for valid
+    }
+});
+
 document.getElementById('enrollForm').addEventListener('submit', async function(event) {
     event.preventDefault();
-    
+
     // Get form values
     const name = document.getElementById('enrollName').value;
     const studentClass = document.getElementById('enrollClass').value;
@@ -9,6 +32,18 @@ document.getElementById('enrollForm').addEventListener('submit', async function(
     const fee = document.getElementById('enrollFee').value;
     const month = document.getElementById('enrollMonth').value;
     const payment = document.getElementById('enrollPayment').value;
+
+    // Validate name one more time before sending
+    const nameError = document.getElementById('nameError');
+    const hasNumbers = /\d/.test(name);
+
+    if (name.length < 3) {
+        showMessage('Name should be at least 3 characters long.', 'error');
+        return;
+    } else if (name.length > 12 || hasNumbers) {
+        showMessage('Name should not exceed 12 characters and should not contain numbers.', 'error');
+        return;
+    }
 
     // Send data to the server
     const response = await fetch('/enroll', {
@@ -22,7 +57,15 @@ document.getElementById('enrollForm').addEventListener('submit', async function(
     // Parse the response
     const result = await response.json();
     
-    // Get the message element
+    // Show message
+    if (result.message.includes('Oops')) {
+        showMessage(result.message, 'error');
+    } else {
+        showMessage(result.message, 'success');
+    }
+});
+
+function showMessage(message, type) {
     const messageElement = document.getElementById('enrollMessage');
     
     // Clear previous styles and classes
@@ -82,12 +125,12 @@ document.getElementById('enrollForm').addEventListener('submit', async function(
     }
 
     // Determine message type
-    if (result.message.includes('Oops')) {
+    if (type === 'error') {
         messageElement.style.backgroundColor = '#dc3545'; // Red
-        messageElement.textContent = result.message;
+        messageElement.textContent = message;
     } else {
         messageElement.style.backgroundColor = '#28a745'; // Green
-        messageElement.textContent = result.message;
+        messageElement.textContent = message;
 
         // Add success animation (confetti effect)
         const confetti = document.createElement('div');
@@ -110,14 +153,6 @@ document.getElementById('enrollForm').addEventListener('submit', async function(
         }
     }
 
+    // Adjust font size
     adjustFontSize();
-
-    // Add fade-out animation after 5 seconds
-    setTimeout(() => {
-        messageElement.style.opacity = '0';
-        messageElement.style.transform = 'translateY(2rem)'; // Move up slightly before fading
-        setTimeout(() => {
-            messageElement.style.visibility = 'hidden'; // Hide the message element after fade-out
-        }, 500);
-    }, 10000);
-});
+}
