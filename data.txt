@@ -693,21 +693,21 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC7064",
+    "id": "10KV7064",
     "name": "Rahul",
     "studentClass": "10",
-    "school": "KCPS",
+    "school": "KV",
     "date": "2024-08-13",
     "fee": "1001",
     "month": "June",
-    "payment": "No",
+    "payment": "Yes",
     "archiveInd": "No"
   },
   {
-    "id": "10KC7064",
+    "id": "10KV7064",
     "name": "Rahul",
     "studentClass": "10",
-    "school": "KCPS",
+    "school": "KV",
     "date": "2024-08-13",
     "fee": "1001",
     "month": "July",
@@ -715,10 +715,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC7064",
+    "id": "10KV7064",
     "name": "Rahul",
     "studentClass": "10",
-    "school": "KCPS",
+    "school": "KV",
     "date": "2024-08-13",
     "fee": "1001",
     "month": "August",
@@ -726,10 +726,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC7064",
+    "id": "10KV7064",
     "name": "Rahul",
     "studentClass": "10",
-    "school": "KCPS",
+    "school": "KV",
     "date": "2024-08-13",
     "fee": "1001",
     "month": "September",
@@ -737,10 +737,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC7064",
+    "id": "10KV7064",
     "name": "Rahul",
     "studentClass": "10",
-    "school": "KCPS",
+    "school": "KV",
     "date": "2024-08-13",
     "fee": "1001",
     "month": "October",
@@ -748,10 +748,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC7064",
+    "id": "10KV7064",
     "name": "Rahul",
     "studentClass": "10",
-    "school": "KCPS",
+    "school": "KV",
     "date": "2024-08-13",
     "fee": "1001",
     "month": "November",
@@ -759,10 +759,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC7064",
+    "id": "10KV7064",
     "name": "Rahul",
     "studentClass": "10",
-    "school": "KCPS",
+    "school": "KV",
     "date": "2024-08-13",
     "fee": "1001",
     "month": "December",
@@ -770,10 +770,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC7064",
+    "id": "10KV7064",
     "name": "Rahul",
     "studentClass": "10",
-    "school": "KCPS",
+    "school": "KV",
     "date": "2024-08-13",
     "fee": "1001",
     "month": "January",
@@ -781,10 +781,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC7064",
+    "id": "10KV7064",
     "name": "Rahul",
     "studentClass": "10",
-    "school": "KCPS",
+    "school": "KV",
     "date": "2024-08-13",
     "fee": "1001",
     "month": "February",
@@ -792,10 +792,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC7064",
+    "id": "10KV7064",
     "name": "Rahul",
     "studentClass": "10",
-    "school": "KCPS",
+    "school": "KV",
     "date": "2024-08-13",
     "fee": "1001",
     "month": "March",
