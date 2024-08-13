@@ -869,10 +869,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10AT2602",
+    "id": "02DP2602",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "Atmanand",
+    "studentClass": "2",
+    "school": "DPS",
     "date": "2024-08-13",
     "fee": "1000",
     "month": "May",
@@ -880,10 +880,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10AT2602",
+    "id": "02DP2602",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "Atmanand",
+    "studentClass": "2",
+    "school": "DPS",
     "date": "2024-08-13",
     "fee": "1000",
     "month": "June",
@@ -891,10 +891,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10AT2602",
+    "id": "02DP2602",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "Atmanand",
+    "studentClass": "2",
+    "school": "DPS",
     "date": "2024-08-13",
     "fee": "1000",
     "month": "July",
@@ -902,10 +902,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10AT2602",
+    "id": "02DP2602",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "Atmanand",
+    "studentClass": "2",
+    "school": "DPS",
     "date": "2024-08-13",
     "fee": "1000",
     "month": "August",
@@ -913,10 +913,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10AT2602",
+    "id": "02DP2602",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "Atmanand",
+    "studentClass": "2",
+    "school": "DPS",
     "date": "2024-08-13",
     "fee": "1000",
     "month": "September",
@@ -924,10 +924,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10AT2602",
+    "id": "02DP2602",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "Atmanand",
+    "studentClass": "2",
+    "school": "DPS",
     "date": "2024-08-13",
     "fee": "1000",
     "month": "October",
@@ -935,10 +935,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10AT2602",
+    "id": "02DP2602",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "Atmanand",
+    "studentClass": "2",
+    "school": "DPS",
     "date": "2024-08-13",
     "fee": "1000",
     "month": "November",
@@ -946,10 +946,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10AT2602",
+    "id": "02DP2602",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "Atmanand",
+    "studentClass": "2",
+    "school": "DPS",
     "date": "2024-08-13",
     "fee": "1000",
     "month": "December",
@@ -957,10 +957,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10AT2602",
+    "id": "02DP2602",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "Atmanand",
+    "studentClass": "2",
+    "school": "DPS",
     "date": "2024-08-13",
     "fee": "1000",
     "month": "January",
@@ -968,10 +968,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10AT2602",
+    "id": "02DP2602",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "Atmanand",
+    "studentClass": "2",
+    "school": "DPS",
     "date": "2024-08-13",
     "fee": "1000",
     "month": "February",
@@ -979,10 +979,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10AT2602",
+    "id": "02DP2602",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "Atmanand",
+    "studentClass": "2",
+    "school": "DPS",
     "date": "2024-08-13",
     "fee": "1000",
     "month": "March",
