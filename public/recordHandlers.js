@@ -573,7 +573,8 @@ document.getElementById(`${containerId}Form`).addEventListener('submit', async f
                 <span aria-hidden="true">&times;</span>
             </button>
         `;
-
+        // Close the form in case of an error
+        container.innerHTML = ''; // Close the form
         // Append the alert to the container
         container.prepend(alertDiv);
 
