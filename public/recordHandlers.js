@@ -540,14 +540,14 @@ function editRecord(containerId, record) {
 
             const result = await response.json();
 
-            // Check for specific error messages and handle them
-            if (result.message === 'This student is already inactive.' || result.message.includes('Oops')) {
-                showAlert(result.message, 'error');
-            } else {
-                // Close the form and display the message
-                container.innerHTML = '';
-                showAlert(result.message, 'success');
-            }
+		// Close the form and only display the message if the student is already inactive
+		if (result.message === 'This student is already inactive.') {
+		    container.innerHTML = ''; // Close the form
+		    showAlert(result.message, 'error'); // Show the message
+		} else {
+		    showAlert(result.message, 'success'); // Display success message for other cases
+		}
+
 
         } catch (error) {
             console.error('Error:', error);
