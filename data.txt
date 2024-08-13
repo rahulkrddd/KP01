@@ -698,7 +698,7 @@
     "studentClass": "10",
     "school": "KCPS",
     "date": "2024-08-13",
-    "fee": "1000",
+    "fee": "1001",
     "month": "June",
     "payment": "No",
     "archiveInd": "No"
@@ -709,7 +709,7 @@
     "studentClass": "10",
     "school": "KCPS",
     "date": "2024-08-13",
-    "fee": "1000",
+    "fee": "1001",
     "month": "July",
     "payment": "No",
     "archiveInd": "No"
@@ -720,7 +720,7 @@
     "studentClass": "10",
     "school": "KCPS",
     "date": "2024-08-13",
-    "fee": "1000",
+    "fee": "1001",
     "month": "August",
     "payment": "No",
     "archiveInd": "No"
@@ -731,7 +731,7 @@
     "studentClass": "10",
     "school": "KCPS",
     "date": "2024-08-13",
-    "fee": "1000",
+    "fee": "1001",
     "month": "September",
     "payment": "No",
     "archiveInd": "No"
@@ -742,7 +742,7 @@
     "studentClass": "10",
     "school": "KCPS",
     "date": "2024-08-13",
-    "fee": "1000",
+    "fee": "1001",
     "month": "October",
     "payment": "No",
     "archiveInd": "No"
@@ -753,7 +753,7 @@
     "studentClass": "10",
     "school": "KCPS",
     "date": "2024-08-13",
-    "fee": "1000",
+    "fee": "1001",
     "month": "November",
     "payment": "No",
     "archiveInd": "No"
@@ -764,7 +764,7 @@
     "studentClass": "10",
     "school": "KCPS",
     "date": "2024-08-13",
-    "fee": "1000",
+    "fee": "1001",
     "month": "December",
     "payment": "No",
     "archiveInd": "No"
@@ -775,7 +775,7 @@
     "studentClass": "10",
     "school": "KCPS",
     "date": "2024-08-13",
-    "fee": "1000",
+    "fee": "1001",
     "month": "January",
     "payment": "No",
     "archiveInd": "No"
@@ -786,7 +786,7 @@
     "studentClass": "10",
     "school": "KCPS",
     "date": "2024-08-13",
-    "fee": "1000",
+    "fee": "1001",
     "month": "February",
     "payment": "No",
     "archiveInd": "No"
@@ -797,7 +797,7 @@
     "studentClass": "10",
     "school": "KCPS",
     "date": "2024-08-13",
-    "fee": "1000",
+    "fee": "1001",
     "month": "March",
     "payment": "No",
     "archiveInd": "No"
