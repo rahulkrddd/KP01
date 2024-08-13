@@ -1045,9 +1045,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "10DP3259",
+    "id": "8DP3259",
     "name": "Papa",
-    "studentClass": "12",
+    "studentClass": "8",
     "school": "DPS",
     "date": "2024-08-10",
     "fee": "1000",
@@ -1056,9 +1056,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "10DP3259",
+    "id": "8DP3259",
     "name": "Papa",
-    "studentClass": "12",
+    "studentClass": "8",
     "school": "DPS",
     "date": "2024-08-10",
     "fee": "1000",
@@ -1067,9 +1067,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "10DP3259",
+    "id": "8DP3259",
     "name": "Papa",
-    "studentClass": "12",
+    "studentClass": "8",
     "school": "DPS",
     "date": "2024-08-10",
     "fee": "1000",
@@ -1078,9 +1078,9 @@
     "archiveInd": "Yes"
   },
   {
-    "id": "10DP3259",
+    "id": "8DP3259",
     "name": "Papa",
-    "studentClass": "12",
+    "studentClass": "8",
     "school": "DPS",
     "date": "2024-08-10",
     "fee": "1000",
@@ -1089,9 +1089,9 @@
     "archiveInd": "Yes"
   },
   {
-    "id": "10DP3259",
+    "id": "8DP3259",
     "name": "Papa",
-    "studentClass": "12",
+    "studentClass": "8",
     "school": "DPS",
     "date": "2024-08-10",
     "fee": "1000",
@@ -1100,9 +1100,9 @@
     "archiveInd": "Yes"
   },
   {
-    "id": "10DP3259",
+    "id": "8DP3259",
     "name": "Papa",
-    "studentClass": "12",
+    "studentClass": "8",
     "school": "DPS",
     "date": "2024-08-10",
     "fee": "1000",
@@ -1111,9 +1111,9 @@
     "archiveInd": "Yes"
   },
   {
-    "id": "10DP3259",
+    "id": "8DP3259",
     "name": "Papa",
-    "studentClass": "12",
+    "studentClass": "8",
     "school": "DPS",
     "date": "2024-08-10",
     "fee": "1000",
@@ -1122,9 +1122,9 @@
     "archiveInd": "Yes"
   },
   {
-    "id": "10DP3259",
+    "id": "8DP3259",
     "name": "Papa",
-    "studentClass": "12",
+    "studentClass": "8",
     "school": "DPS",
     "date": "2024-08-10",
     "fee": "1000",
@@ -1133,9 +1133,9 @@
     "archiveInd": "Yes"
   },
   {
-    "id": "10DP3259",
+    "id": "8DP3259",
     "name": "Papa",
-    "studentClass": "12",
+    "studentClass": "8",
     "school": "DPS",
     "date": "2024-08-10",
     "fee": "1000",
@@ -1144,9 +1144,9 @@
     "archiveInd": "Yes"
   },
   {
-    "id": "10DP3259",
+    "id": "8DP3259",
     "name": "Papa",
-    "studentClass": "12",
+    "studentClass": "8",
     "school": "DPS",
     "date": "2024-08-10",
     "fee": "1000",
@@ -1155,9 +1155,9 @@
     "archiveInd": "Yes"
   },
   {
-    "id": "10DP3259",
+    "id": "8DP3259",
     "name": "Papa",
-    "studentClass": "12",
+    "studentClass": "8",
     "school": "DPS",
     "date": "2024-08-10",
     "fee": "1000",
@@ -1166,9 +1166,9 @@
     "archiveInd": "Yes"
   },
   {
-    "id": "10DP3259",
+    "id": "8DP3259",
     "name": "Papa",
-    "studentClass": "12",
+    "studentClass": "8",
     "school": "DPS",
     "date": "2024-08-10",
     "fee": "1000",
