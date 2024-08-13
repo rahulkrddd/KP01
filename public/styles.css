@@ -338,3 +338,63 @@ body {
         flex-direction: column; /* Stack buttons vertically on small screens */
     }
 }
+
+
+
+/* delete student check box */
+/* delete student check box */
+/* Styling for the form-group to give some padding and spacing */
+.form-group {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+}
+
+/* Styling for the form-check container */
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Space between the checkbox and label */
+}
+
+/* Styling for the checkbox input */
+.form-check-input {
+    width: 1.25rem; /* Size of the checkbox */
+    height: 1.25rem;
+    accent-color: #007bff; /* Bootstrap primary color or your desired color */
+    cursor: pointer;
+}
+
+/* Styling for the checkbox when checked */
+.form-check-input:checked {
+    background-color: #007bff; /* Color when checked */
+    border-color: #007bff;
+}
+
+/* Styling for the label */
+.form-check-label {
+    font-size: 1rem; /* Adjust font size */
+    color: #333; /* Dark grey color for the label text */
+    cursor: pointer;
+    transition: color 0.2s ease, background-color 0.2s ease, padding 0.2s ease; /* Smooth transition for color, background, and padding */
+    padding: 0.25rem 0.5rem; /* Padding for better spacing */
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 0.25rem; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background color */
+}
+
+/* Hover effect for the label */
+.form-check-label:hover {
+    color: #0056b3; /* Change color on hover */
+    background-color: #e9ecef; /* Slightly darker background on hover */
+    border-color: #007bff; /* Change border color on hover */
+}
+
+/* Additional focus style for accessibility */
+.form-check-input:focus {
+    outline: 3px solid rgba(38, 143, 255, 0.5); /* Outline color for focused input */
+    outline-offset: 2px;
+}
+
+/* delete student check box */
+
+/* delete student check box */
