@@ -395,6 +395,18 @@ body {
     outline-offset: 2px;
 }
 
-/* delete student check box */
 
-/* delete student check box */
+
+
+
+/* Enroll Name error formating  */
+.input-group-append {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.input-group-append span {
+    font-size: 1.5rem;
+}
+/* Enroll Name error formating  */
