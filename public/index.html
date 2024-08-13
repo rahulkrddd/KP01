@@ -203,17 +203,6 @@
             $(`.nav-item:contains(${navItem})`).addClass('active');
         }
 
-        $(document).ready(function() {
-            const monthDropdown = $('#enrollMonth');
-            const months = [
-                "January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"
-            ];
-            months.forEach((month, index) => {
-                const option = new Option(month, month);
-                monthDropdown.append(option);
-            });
-        });
     </script>
 </body>
 </html>
