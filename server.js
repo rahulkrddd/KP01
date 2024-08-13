@@ -303,8 +303,6 @@ app.get('/search', async (req, res) => {
     }
 });
 
-// Update student details
-// Update Student Record
 app.post('/update', async (req, res) => {
     try {
         console.log('Received update request:', req.body);
@@ -326,10 +324,18 @@ app.post('/update', async (req, res) => {
                 if (studentClass !== undefined) {
                     console.log(`Updating class to ${studentClass} for student:`, student);
                     student.studentClass = studentClass;
+
+                    // Update the student ID's first two characters with the class
+                    const classCode = studentClass.length === 1 ? `0${studentClass}` : studentClass.substring(0, 2);
+                    student.id = `${classCode}${student.id.slice(2)}`;
                 }
                 if (school !== undefined) {
                     console.log(`Updating school to ${school} for student:`, student);
                     student.school = school;
+
+                    // Update the student ID's 3rd and 4th characters with the school abbreviation
+                    const schoolAbbr = getSchoolAbbreviation(school);
+                    student.id = `${student.id.slice(0, 2)}${schoolAbbr}${student.id.slice(4)}`;
                 }
                 if (date !== undefined) {
                     console.log(`Updating enroll date to ${date} for student:`, student);
@@ -397,17 +403,35 @@ app.post('/payment', async (req, res) => {
 
 
 // Exit (archive) a student
+// Exit (archive) a student
 app.post('/exit', async (req, res) => {
-    const { id, month } = req.body;
+    const { id, month, deletepermanently } = req.body;
 
     try {
         // Read data file asynchronously
         const students = await readDataFile();
 
-        // Get all months from the selected month to March
+        // Log the received deletepermanently value for debugging
+        console.log('Received deletepermanently:', deletepermanently);
+
+        if (deletepermanently === true) {
+            // Delete records with the given ID
+            const remainingStudents = students.filter(student => student.id !== id);
+
+            if (students.length === remainingStudents.length) {
+                // No student with the given ID was found
+                return res.status(404).json({ message: 'Student record not found.' });
+            }
+
+            // Write the updated data back to the file
+            await writeDataFile(remainingStudents);
+
+            return res.json({ message: 'Student record(s) deleted permanently.' });
+        }
+
+        // If deletepermanently is not 'on', perform existing logic to archive
         const months = getMonthsUntilMarch(month);
 
-        // Flag to track if any student was updated
         let updated = false;
         let studentName = '';
         let studentAlreadyInactive = false;
@@ -447,6 +471,7 @@ app.post('/exit', async (req, res) => {
         res.status(500).json({ message: 'Error occurred while processing the request.' });
     }
 });
+
 
 
 app.listen(PORT, () => {
