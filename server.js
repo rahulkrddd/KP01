@@ -262,10 +262,15 @@ app.get('/search', async (req, res) => {
         } else if (query === 'all') {
             results = students;
         } else {
+            const queryLength = query.length;
+
             if (query.startsWith('@')) {
                 const actualQuery = query.slice(1);
                 const filteredStudents = students.filter(student => {
-                    const idMatch = student.id && student.id.toLowerCase().includes(actualQuery);
+                    const idMatch = student.id && (
+                        (queryLength === 8 && student.id.toLowerCase() === actualQuery) || 
+                        (queryLength < 8 && student.id.toLowerCase().startsWith(actualQuery))
+                    );
                     const nameMatch = student.name && student.name.toLowerCase().includes(actualQuery);
                     const classMatch = student.studentClass && student.studentClass.toString().toLowerCase().includes(actualQuery);
                     const schoolMatch = student.school && student.school.toLowerCase().includes(actualQuery);
@@ -295,7 +300,10 @@ app.get('/search', async (req, res) => {
                 results = uniqueStudents;
             } else {
                 results = students.filter(student => {
-                    const idMatch = student.id && student.id.toLowerCase().includes(query);
+                    const idMatch = student.id && (
+                        (queryLength === 8 && student.id.toLowerCase() === query) || 
+                        (queryLength < 8 && student.id.toLowerCase().startsWith(query))
+                    );
                     const nameMatch = student.name && student.name.toLowerCase().includes(query);
                     const classMatch = student.studentClass && student.studentClass.toString().toLowerCase().includes(query);
                     const schoolMatch = student.school && student.school.toLowerCase().includes(query);
@@ -311,6 +319,7 @@ app.get('/search', async (req, res) => {
         res.status(500).json({ message: 'Error occurred during search.' });
     }
 });
+
 
 app.post('/update', async (req, res) => {
     try {
