@@ -549,6 +549,11 @@ document.getElementById(`${containerId}Form`).addEventListener('submit', async f
     const reactivatestudent = reactivatestudentCheckbox ? reactivatestudentCheckbox.checked : false;
 
     // Show confirmation popup for irreversible action
+    if (reactivatestudent && !window.confirm("Note : This will not change previous months fee and Enroll date, Do you want to contine?")) {
+        return; // Exit the function if the user cancels the action
+    }
+
+    // Show confirmation popup for irreversible action
     if (deletepermanently && !window.confirm("Irreversible Action: Are you sure you want to delete this record permanently?")) {
         return; // Exit the function if the user cancels the action
     }
