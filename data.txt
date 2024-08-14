@@ -594,10 +594,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC5681",
+    "id": "03OT5681",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "KCPS",
+    "studentClass": "3",
+    "school": "Others",
     "date": "2024-08-14",
     "fee": "1000",
     "month": "April",
@@ -605,10 +605,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC5681",
+    "id": "03OT5681",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "KCPS",
+    "studentClass": "3",
+    "school": "Others",
     "date": "2024-08-14",
     "fee": "1000",
     "month": "May",
@@ -616,21 +616,21 @@
     "archiveInd": "Yes"
   },
   {
-    "id": "10KC5681",
+    "id": "03OT5681",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "KCPS",
+    "studentClass": "3",
+    "school": "Others",
     "date": "2024-08-14",
     "fee": "1000",
     "month": "June",
-    "payment": "No",
-    "archiveInd": "Yes"
+    "payment": "Yes",
+    "archiveInd": "No"
   },
   {
-    "id": "10KC5681",
+    "id": "03OT5681",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "KCPS",
+    "studentClass": "3",
+    "school": "Others",
     "date": "2024-08-14",
     "fee": "1000",
     "month": "July",
@@ -638,10 +638,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC5681",
+    "id": "03OT5681",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "KCPS",
+    "studentClass": "3",
+    "school": "Others",
     "date": "2024-08-14",
     "fee": "1000",
     "month": "August",
@@ -649,10 +649,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC5681",
+    "id": "03OT5681",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "KCPS",
+    "studentClass": "3",
+    "school": "Others",
     "date": "2024-08-14",
     "fee": "1000",
     "month": "September",
@@ -660,10 +660,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC5681",
+    "id": "03OT5681",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "KCPS",
+    "studentClass": "3",
+    "school": "Others",
     "date": "2024-08-14",
     "fee": "1000",
     "month": "October",
@@ -671,10 +671,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC5681",
+    "id": "03OT5681",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "KCPS",
+    "studentClass": "3",
+    "school": "Others",
     "date": "2024-08-14",
     "fee": "1000",
     "month": "November",
@@ -682,10 +682,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC5681",
+    "id": "03OT5681",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "KCPS",
+    "studentClass": "3",
+    "school": "Others",
     "date": "2024-08-14",
     "fee": "1000",
     "month": "December",
@@ -693,10 +693,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC5681",
+    "id": "03OT5681",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "KCPS",
+    "studentClass": "3",
+    "school": "Others",
     "date": "2024-08-14",
     "fee": "1000",
     "month": "January",
@@ -704,10 +704,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC5681",
+    "id": "03OT5681",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "KCPS",
+    "studentClass": "3",
+    "school": "Others",
     "date": "2024-08-14",
     "fee": "1000",
     "month": "February",
@@ -715,10 +715,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "10KC5681",
+    "id": "03OT5681",
     "name": "Rahul",
-    "studentClass": "10",
-    "school": "KCPS",
+    "studentClass": "3",
+    "school": "Others",
     "date": "2024-08-14",
     "fee": "1000",
     "month": "March",
