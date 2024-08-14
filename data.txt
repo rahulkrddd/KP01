@@ -799,7 +799,7 @@
     "date": "2024-07-31",
     "fee": "1000",
     "month": "August",
-    "payment": "NA",
+    "payment": "No",
     "archiveInd": "No"
   },
   {
