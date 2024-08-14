@@ -602,7 +602,7 @@
     "fee": "1000",
     "month": "June",
     "payment": "No",
-    "archiveInd": "No"
+    "archiveInd": "Yes"
   },
   {
     "id": "09KC1726",
