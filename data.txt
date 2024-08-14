@@ -590,7 +590,7 @@
     "date": "2024-06-30",
     "fee": "1000",
     "month": "June",
-    "payment": "Yes",
+    "payment": "NA",
     "archiveInd": "No"
   },
   {
