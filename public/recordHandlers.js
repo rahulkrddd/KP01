@@ -1,6 +1,9 @@
 function editRecord(containerId, record) {
     const container = document.getElementById(containerId);
 
+
+
+
     let buttonLabel = "Save";
     let buttonClass = "btn btn-primary";
 
@@ -13,6 +16,7 @@ function editRecord(containerId, record) {
     }
 
     let fields = `
+
         <form id="${containerId}Form">
             <input type="hidden" id="${containerId}Id" value="${record.id}">
             <div class="form-group">
@@ -37,11 +41,12 @@ function editRecord(containerId, record) {
                     <option value="Inventure" ${record.school === 'Inventure' ? 'selected' : ''}>Inventure</option>
                     <option value="Others" ${record.school === 'Others' ? 'selected' : ''}>Others</option>
                 </select>
-            </div>
-            <div class="form-group">
-                <label for="${containerId}Date">Enroll Date</label>
-                <input type="date" class="form-control" id="${containerId}Date" value="${record.date}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
-            </div>
+		
+			<div class="form-group">
+			    <label for="${containerId}Date">Enroll Date</label>
+			    <input type="date" class="form-control" id="${containerId}Date" value="${record.date}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'} ${containerId === 'updateResult' ? 'title="For other than available dates, Delete the student and Enroll again"' : ''}>
+			</div>
+
             <div class="form-group">
                 <label for="${containerId}Fee">Fee Amount</label>
                 <input type="number" class="form-control" id="${containerId}Fee" value="${record.fee}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
@@ -66,14 +71,14 @@ function editRecord(containerId, record) {
 			
 			
 			
-<div class="form-group" id="${containerId}ArchiveGroup" style="${containerId === 'updateResult' ? 'display: none;' : ''}">
-    <label for="${containerId}Archive">Student Status</label>
-    <input type="text" class="form-control" id="${containerId}Archive" 
-        value="${record.archiveInd === 'Yes' ? 'Inactive' : 'Active'}" 
-        readonly 
-        style="background-color: ${record.archiveInd === 'Yes' ? 'darkred' : record.archiveInd === 'No' ? 'lightgreen' : 'transparent'}; 
-               color: ${record.archiveInd === 'Yes' ? 'white' : 'black'};">
-</div>
+			<div class="form-group" id="${containerId}ArchiveGroup" style="${containerId === 'updateResult' ? 'display: none;' : ''}">
+			    <label for="${containerId}Archive">Student Status</label>
+			    <input type="text" class="form-control" id="${containerId}Archive" 
+			        value="${record.archiveInd === 'Yes' ? 'Inactive' : 'Active'}" 
+			        readonly 
+			        style="background-color: ${record.archiveInd === 'Yes' ? 'darkred' : record.archiveInd === 'No' ? 'lightgreen' : 'transparent'}; 
+			               color: ${record.archiveInd === 'Yes' ? 'white' : 'black'};">
+			</div>
 
 
 
@@ -117,11 +122,50 @@ function editRecord(containerId, record) {
     `;
 
     container.innerHTML = fields;
+
+// STYLE ON ENROLL DATE FIELD PART-01/02, START //
+// Initialize tooltips	
+$(document).ready(function(){
+    $('[title]').tooltip();
+});
+// STYLE ON ENROLL DATE FIELD PART-01/02, END   //
+
 	
-	
-	
-	
-	
+// Function to set the date input range starts
+function setDateRange() {
+    const dateInput = document.getElementById(`${containerId}Date`);
+    if (!dateInput) return;
+
+    const recordDate = new Date(record.date);
+    const year = recordDate.getFullYear();
+    const month = (recordDate.getMonth() + 1).toString().padStart(2, '0'); // Format month to two digits
+
+    const firstDayOfMonth = `${year}-${month}-01`;
+    const lastDayOfMonth = new Date(year, recordDate.getMonth() + 1, 0).getDate();
+    const lastDayOfMonthFormatted = `${year}-${month}-${lastDayOfMonth.toString().padStart(2, '0')}`;
+
+    // Get today's date
+    const today = new Date();
+    const todayYear = today.getFullYear();
+    const todayMonth = (today.getMonth() + 1).toString().padStart(2, '0');
+    const todayDay = today.getDate().toString().padStart(2, '0');
+    const todayFormatted = `${todayYear}-${todayMonth}-${todayDay}`;
+
+    // Set the min and max date for the date input
+    dateInput.min = firstDayOfMonth;
+    dateInput.max = todayFormatted; // Restrict to today's date or earlier
+
+    // Optionally, set the default value to today's date if it's within the specified month
+    if (dateInput.value < firstDayOfMonth || dateInput.value > todayFormatted) {
+        dateInput.value = todayFormatted >= firstDayOfMonth ? todayFormatted : firstDayOfMonth;
+    }
+}
+
+// Call the function to set the date range
+setDateRange();
+
+// Function to set the date input range ends
+
 	
 	
 
@@ -225,6 +269,47 @@ document.getElementById(`${containerId}Form`).addEventListener('submit', async f
 });
 
 
+
+
+// STYLE ON ENROLL DATE FIELD PART-02/02, STARTS  //
+    // Add CSS styles dynamically
+    const style = document.createElement('style');
+    style.textContent = `
+        /* Tooltip container */
+        input[title] {
+            position: relative;
+        }
+
+        /* Tooltip styling on hover */
+        input[title]::after {
+            content: attr(title);
+            position: absolute;
+            background: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            white-space: nowrap;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 1000;
+        }
+
+        /* Make the tooltip visible on hover */
+        input[title]:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+    `;
+    document.head.appendChild(style);
+// STYLE ON ENROLL DATE FIELD PART-02/02, END  //
+
+
+
     function showAlert(message, type) {
         const alertDiv = document.createElement('div');
 
@@ -249,4 +334,7 @@ document.getElementById(`${containerId}Form`).addEventListener('submit', async f
             alertDiv.remove();
         }, 5000);
     }
+
 }
+
+
