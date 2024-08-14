@@ -331,6 +331,15 @@ app.post('/update', async (req, res) => {
 
         const students = await readDataFile();
 
+        // Convert month names to numeric values for comparison
+        const monthToNumber = monthName => {
+            const months = ["April", "May", "June", "July", "August", "September", "October", "November", "December", "January", "February", "March"];
+            return months.indexOf(monthName);
+        };
+
+        // Convert input month to a numeric value
+        const selectedMonthNumber = monthToNumber(month);
+
         let updatedStudent = null;
 
         // Loop through each student record
@@ -365,13 +374,17 @@ app.post('/update', async (req, res) => {
                     student.payment = payment;
                 }
 
-                // If reactivatestudent is true, set archiveInd to "No" for this student and all matching records
-                if (reactivatestudent) {
+                // Convert student month to numeric value
+                const studentMonthNumber = monthToNumber(student.month);
+
+                // If reactivatestudent is true and student's month is greater than the input month, set archiveInd to "No"
+                if (reactivatestudent && studentMonthNumber >= selectedMonthNumber) {
                     student.archiveInd = "No";
                 }
 
                 updatedStudent = student;
             } else if (reactivatestudent && student.id === id) {
+                // If reactivatestudent is true and student ID matches, set archiveInd to "No"
                 student.archiveInd = "No";
             }
         });
@@ -393,6 +406,7 @@ app.post('/update', async (req, res) => {
         res.status(500).json({ message: 'Error occurred during update.' });
     }
 });
+
 
 
 // Add payment option
