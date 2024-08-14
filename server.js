@@ -321,11 +321,14 @@ app.get('/search', async (req, res) => {
 });
 
 
+		
 app.post('/update', async (req, res) => {
     try {
-        console.log('Received update request:', req.body);
+        const { id, name, studentClass, school, date, month, fee, payment, reactivatestudent } = req.body;
 
-        const { id, name, studentClass, school, date, month, fee, payment } = req.body;
+        // Log the received reactivatestudent value for debugging
+        console.log('Received reactivatestudent:', reactivatestudent);
+
         const students = await readDataFile();
 
         let updatedStudent = null;
@@ -336,11 +339,9 @@ app.post('/update', async (req, res) => {
             if (student.id === id) {
                 // Update fields
                 if (name !== undefined) {
-                    console.log(`Updating name to ${name} for student:`, student);
                     student.name = name;
                 }
                 if (studentClass !== undefined) {
-                    console.log(`Updating class to ${studentClass} for student:`, student);
                     student.studentClass = studentClass;
 
                     // Update the student ID's first two characters with the class
@@ -348,7 +349,6 @@ app.post('/update', async (req, res) => {
                     student.id = `${classCode}${student.id.slice(2)}`;
                 }
                 if (school !== undefined) {
-                    console.log(`Updating school to ${school} for student:`, student);
                     student.school = school;
 
                     // Update the student ID's 3rd and 4th characters with the school abbreviation
@@ -356,18 +356,23 @@ app.post('/update', async (req, res) => {
                     student.id = `${student.id.slice(0, 2)}${schoolAbbr}${student.id.slice(4)}`;
                 }
                 if (date !== undefined) {
-                    console.log(`Updating enroll date to ${date} for student:`, student);
                     student.date = date;
                 }
                 if (fee !== undefined) {
-                    console.log(`Updating fee to ${fee} for student:`, student);
                     student.fee = fee;
                 }
                 if (month !== undefined && payment !== undefined && student.month === month) {
-                    console.log(`Updating payment to ${payment} for student:`, student);
                     student.payment = payment;
                 }
+
+                // If reactivatestudent is true, set archiveInd to "No" for this student and all matching records
+                if (reactivatestudent) {
+                    student.archiveInd = "No";
+                }
+
                 updatedStudent = student;
+            } else if (reactivatestudent && student.id === id) {
+                student.archiveInd = "No";
             }
         });
 
@@ -382,11 +387,9 @@ app.post('/update', async (req, res) => {
 
             res.json({ message: `Student details updated successfully for - ${formattedName}.` });
         } else {
-            console.log('Student record not found or no changes made.');
             res.status(404).json({ message: 'Student record not found or no changes made.' });
         }
     } catch (error) {
-        console.error('Error occurred during update:', error);
         res.status(500).json({ message: 'Error occurred during update.' });
     }
 });
@@ -429,8 +432,6 @@ app.post('/exit', async (req, res) => {
         // Read data file asynchronously
         const students = await readDataFile();
 
-        // Log the received deletepermanently value for debugging
-        console.log('Received deletepermanently:', deletepermanently);
 
         if (deletepermanently === true) {
             // Delete records with the given ID
