@@ -6,6 +6,11 @@
     <title>Knowledge Point - Enroll</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -204,6 +209,43 @@
             $(`.nav-item:contains(${navItem})`).addClass('active');
         }
 
+
+
+// month selection resetriction .............. starts //                            
+document.addEventListener('DOMContentLoaded', function() {
+    const today = new Date();
+    const currentYear = today.getFullYear();
+    const currentMonth = today.getMonth() + 1; // Months are zero-based
+
+    // Determine the start and end of the financial year
+    let financialYearStart;
+    let financialYearEnd;
+
+    if (currentMonth >= 4) { // If it's April or later, the current financial year is the current year
+        financialYearStart = new Date(currentYear, 3, 1); // April 1st of the current year
+        financialYearEnd = new Date(currentYear + 1, 2, 31); // March 31st of the next year
+    } else { // If it's before April, the financial year is the previous year
+        financialYearStart = new Date(currentYear - 1, 3, 1); // April 1st of the previous year
+        financialYearEnd = new Date(currentYear, 2, 31); // March 31st of the current year
+    }
+
+    // Format dates to YYYY-MM-DD
+    const formatDate = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
+
+    const minDate = formatDate(financialYearStart);
+    const maxDate = formatDate(today); // Use today's date as the maximum date
+
+    const enrollDateInput = document.getElementById('enrollDate');
+    enrollDateInput.setAttribute('min', minDate);
+    enrollDateInput.setAttribute('max', maxDate);
+});
+
+// month selection resetriction .............. ends  //   
 
 
 
