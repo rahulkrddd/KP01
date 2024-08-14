@@ -413,7 +413,7 @@ app.post('/update', async (req, res) => {
 // Add payment option
 app.post('/payment', async (req, res) => {
     try {
-        const { id, month, payment } = req.body;
+        const { id, month, payment, feenotrequired } = req.body;
 
         // Read data file asynchronously
         const students = await readDataFile();
@@ -422,8 +422,8 @@ app.post('/payment', async (req, res) => {
         const index = students.findIndex(student => student.id === id && student.month === month);
         
         if (index !== -1) {
-            // Update the payment status
-            students[index].payment = payment;
+            // Update the payment status based on feenotrequired
+            students[index].payment = feenotrequired ? 'NA' : payment;
 
             // Write updated data back to the file asynchronously
             await writeDataFile(students);
@@ -435,6 +435,7 @@ app.post('/payment', async (req, res) => {
         res.status(500).json({ message: 'Error occurred while updating payment status.' });
     }
 });
+
 
 
 // Exit (archive) a student
