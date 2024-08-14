@@ -151,18 +151,20 @@ function setDateRange() {
     const todayDay = today.getDate().toString().padStart(2, '0');
     const todayFormatted = `${todayYear}-${todayMonth}-${todayDay}`;
 
-    // Set the min and max date for the date input
+    // Set the date input range
     dateInput.min = firstDayOfMonth;
-    dateInput.max = todayFormatted; // Restrict to today's date or earlier
+    dateInput.max = todayFormatted > lastDayOfMonthFormatted ? lastDayOfMonthFormatted : todayFormatted; // Restrict to today's date or last day of month
 
-    // Optionally, set the default value to today's date if it's within the specified month
-    if (dateInput.value < firstDayOfMonth || dateInput.value > todayFormatted) {
-        dateInput.value = todayFormatted >= firstDayOfMonth ? todayFormatted : firstDayOfMonth;
+    // Optionally, set the default value to the current date if it's within the specified month
+    if (dateInput.value < firstDayOfMonth || dateInput.value > dateInput.max) {
+        dateInput.value = todayFormatted >= firstDayOfMonth && todayFormatted <= dateInput.max ? todayFormatted : firstDayOfMonth;
     }
 }
 
 // Call the function to set the date range
 setDateRange();
+
+
 
 // Function to set the date input range ends
 
