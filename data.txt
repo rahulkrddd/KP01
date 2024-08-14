@@ -594,9 +594,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "10DP8465",
+    "id": "06DP8465",
     "name": "Rahul Gupta",
-    "studentClass": "10",
+    "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
     "fee": "1001",
@@ -605,9 +605,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "10DP8465",
+    "id": "06DP8465",
     "name": "Rahul Gupta",
-    "studentClass": "10",
+    "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
     "fee": "1001",
@@ -616,9 +616,9 @@
     "archiveInd": "Yes"
   },
   {
-    "id": "10DP8465",
+    "id": "06DP8465",
     "name": "Rahul Gupta",
-    "studentClass": "10",
+    "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
     "fee": "1001",
@@ -627,9 +627,9 @@
     "archiveInd": "Yes"
   },
   {
-    "id": "10DP8465",
+    "id": "06DP8465",
     "name": "Rahul Gupta",
-    "studentClass": "10",
+    "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
     "fee": "1001",
@@ -638,9 +638,9 @@
     "archiveInd": "Yes"
   },
   {
-    "id": "10DP8465",
+    "id": "06DP8465",
     "name": "Rahul Gupta",
-    "studentClass": "10",
+    "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
     "fee": "1001",
@@ -649,9 +649,9 @@
     "archiveInd": "Yes"
   },
   {
-    "id": "10DP8465",
+    "id": "06DP8465",
     "name": "Rahul Gupta",
-    "studentClass": "10",
+    "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
     "fee": "1001",
@@ -660,9 +660,9 @@
     "archiveInd": "Yes"
   },
   {
-    "id": "10DP8465",
+    "id": "06DP8465",
     "name": "Rahul Gupta",
-    "studentClass": "10",
+    "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
     "fee": "1001",
@@ -671,9 +671,9 @@
     "archiveInd": "Yes"
   },
   {
-    "id": "10DP8465",
+    "id": "06DP8465",
     "name": "Rahul Gupta",
-    "studentClass": "10",
+    "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
     "fee": "1001",
@@ -682,9 +682,9 @@
     "archiveInd": "Yes"
   },
   {
-    "id": "10DP8465",
+    "id": "06DP8465",
     "name": "Rahul Gupta",
-    "studentClass": "10",
+    "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
     "fee": "1001",
@@ -693,9 +693,9 @@
     "archiveInd": "Yes"
   },
   {
-    "id": "10DP8465",
+    "id": "06DP8465",
     "name": "Rahul Gupta",
-    "studentClass": "10",
+    "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
     "fee": "1001",
