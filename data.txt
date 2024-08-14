@@ -635,7 +635,7 @@
     "fee": "1000",
     "month": "July",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
     "id": "10KC5681",
