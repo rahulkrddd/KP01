@@ -171,6 +171,9 @@ function displaySearchResults(containerId, results) {
             .mobile-payment[data-payment-value="No"]::after {
                 content: ' (Fee Pending)';
             }
+            .mobile-payment[data-payment-value="NA"]::after {
+                content: ' (Fee not Required)';
+            }
         }
         .summary-table.hidden {
             display: none;
