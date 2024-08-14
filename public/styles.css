@@ -490,7 +490,6 @@ body {
 
 
 /* logo animation  */
-/* Center the logo container and add spacing */
 .logo-container {
     text-align: center; /* Center the logo horizontally */
     margin-top: 20px; /* Space above the logo */
@@ -505,6 +504,7 @@ body {
     border-radius: 50%; /* Circular effect if the logo is square */
     animation: slowPulse 3s infinite; /* Slower, smooth animation */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for a gentle effect */
+    margin-bottom: 20px; /* Margin below the logo */
 }
 
 /* Keyframes for slow, smooth animation */
@@ -521,13 +521,13 @@ body {
 @media (max-width: 600px) {
     #logo {
         width: 60px; /* Adjust size for smaller screens */
+        margin-bottom: 15px; /* Adjust bottom margin for smaller screens */
     }
     
     .logo-container {
         margin-top: 15px; /* Adjust top margin for smaller screens */
     }
 }
-
 
 /* logo animation  */
 
@@ -579,6 +579,8 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
     animation: fadeIn 0.3s ease-out;
+	color: #007bff;
+	text-align: center; /* Center-align text inside the popup */
 }
 
 /* Close button styling */
