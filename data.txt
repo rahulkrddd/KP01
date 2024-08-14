@@ -689,7 +689,7 @@
     "date": "2024-05-24",
     "fee": "1000",
     "month": "June",
-    "payment": "No",
+    "payment": "Yes",
     "archiveInd": "No"
   },
   {
