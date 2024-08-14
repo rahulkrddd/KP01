@@ -364,22 +364,38 @@ app.post('/update', async (req, res) => {
                     const schoolAbbr = getSchoolAbbreviation(school);
                     student.id = `${student.id.slice(0, 2)}${schoolAbbr}${student.id.slice(4)}`;
                 }
-                if (date !== undefined) {
-                    student.date = date;
-                }
-                if (fee !== undefined) {
-                    student.fee = fee;
-                }
-                if (month !== undefined && payment !== undefined && student.month === month) {
-                    student.payment = payment;
-                }
 
-                // Convert student month to numeric value
-                const studentMonthNumber = monthToNumber(student.month);
+                if (month !== undefined) {
+                    // Update payment if the month matches
+                    if (student.month === month) {
+                        if (payment !== undefined) {
+                            student.payment = payment;
+                        }
+                    }
 
-                // If reactivatestudent is true and student's month is greater than the input month, set archiveInd to "No"
-                if (reactivatestudent && studentMonthNumber >= selectedMonthNumber) {
-                    student.archiveInd = "No";
+                    // Update the student's archiveInd and fee/date if reactivatestudent is true
+                    if (reactivatestudent) {
+                        if (monthToNumber(student.month) >= selectedMonthNumber) {
+                            student.archiveInd = "No";
+                        }
+                        // Update fee and date for current and future months
+                        if (monthToNumber(student.month) >= selectedMonthNumber) {
+                            if (fee !== undefined) {
+                                student.fee = fee;
+                            }
+                            if (date !== undefined) {
+                                student.date = date; // Ensure the date is updated if provided
+                            }
+                        }
+                    } else {
+                        // If not reactivating, update the fee and date unconditionally
+                        if (fee !== undefined) {
+                            student.fee = fee;
+                        }
+                        if (date !== undefined) {
+                            student.date = date; // Ensure the date is updated if provided
+                        }
+					}
                 }
 
                 updatedStudent = student;
@@ -406,6 +422,8 @@ app.post('/update', async (req, res) => {
         res.status(500).json({ message: 'Error occurred during update.' });
     }
 });
+
+
 
 
 
