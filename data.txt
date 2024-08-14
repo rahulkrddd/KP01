@@ -612,7 +612,7 @@
     "date": "2024-08-14",
     "fee": "1002",
     "month": "July",
-    "payment": "No",
+    "payment": "Yes",
     "archiveInd": "No"
   },
   {
