@@ -599,7 +599,7 @@
     "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
-    "fee": "1001",
+    "fee": "1002",
     "month": "June",
     "payment": "Yes",
     "archiveInd": "No"
@@ -610,9 +610,9 @@
     "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
-    "fee": "1001",
+    "fee": "1002",
     "month": "July",
-    "payment": "No",
+    "payment": "Yes",
     "archiveInd": "Yes"
   },
   {
@@ -621,7 +621,7 @@
     "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
-    "fee": "1001",
+    "fee": "1002",
     "month": "August",
     "payment": "No",
     "archiveInd": "Yes"
@@ -632,7 +632,7 @@
     "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
-    "fee": "1001",
+    "fee": "1002",
     "month": "September",
     "payment": "No",
     "archiveInd": "Yes"
@@ -643,7 +643,7 @@
     "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
-    "fee": "1001",
+    "fee": "1002",
     "month": "October",
     "payment": "No",
     "archiveInd": "Yes"
@@ -654,7 +654,7 @@
     "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
-    "fee": "1001",
+    "fee": "1002",
     "month": "November",
     "payment": "No",
     "archiveInd": "Yes"
@@ -665,7 +665,7 @@
     "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
-    "fee": "1001",
+    "fee": "1002",
     "month": "December",
     "payment": "No",
     "archiveInd": "Yes"
@@ -676,7 +676,7 @@
     "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
-    "fee": "1001",
+    "fee": "1002",
     "month": "January",
     "payment": "No",
     "archiveInd": "Yes"
@@ -687,7 +687,7 @@
     "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
-    "fee": "1001",
+    "fee": "1002",
     "month": "February",
     "payment": "No",
     "archiveInd": "Yes"
@@ -698,7 +698,7 @@
     "studentClass": "6",
     "school": "DPS",
     "date": "2024-06-01",
-    "fee": "1001",
+    "fee": "1002",
     "month": "March",
     "payment": "No",
     "archiveInd": "Yes"
