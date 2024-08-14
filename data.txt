@@ -594,113 +594,113 @@
     "archiveInd": "No"
   },
   {
-    "id": "09KC1726",
+    "id": "10KV1726",
     "name": "Rahul",
-    "studentClass": "9",
-    "school": "KCPS",
+    "studentClass": "10",
+    "school": "KV",
     "date": "2024-08-14",
-    "fee": "1000",
+    "fee": "1002",
     "month": "June",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
-    "id": "09KC1726",
+    "id": "10KV1726",
     "name": "Rahul",
-    "studentClass": "9",
-    "school": "KCPS",
+    "studentClass": "10",
+    "school": "KV",
     "date": "2024-08-14",
-    "fee": "1000",
+    "fee": "1002",
     "month": "July",
-    "payment": "No",
-    "archiveInd": "Yes"
+    "payment": "Yes",
+    "archiveInd": "No"
   },
   {
-    "id": "09KC1726",
+    "id": "10KV1726",
     "name": "Rahul",
-    "studentClass": "9",
-    "school": "KCPS",
+    "studentClass": "10",
+    "school": "KV",
     "date": "2024-08-14",
-    "fee": "1000",
+    "fee": "1002",
     "month": "August",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
-    "id": "09KC1726",
+    "id": "10KV1726",
     "name": "Rahul",
-    "studentClass": "9",
-    "school": "KCPS",
+    "studentClass": "10",
+    "school": "KV",
     "date": "2024-08-14",
-    "fee": "1000",
+    "fee": "1002",
     "month": "September",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
-    "id": "09KC1726",
+    "id": "10KV1726",
     "name": "Rahul",
-    "studentClass": "9",
-    "school": "KCPS",
+    "studentClass": "10",
+    "school": "KV",
     "date": "2024-08-14",
-    "fee": "1000",
+    "fee": "1002",
     "month": "October",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
-    "id": "09KC1726",
+    "id": "10KV1726",
     "name": "Rahul",
-    "studentClass": "9",
-    "school": "KCPS",
+    "studentClass": "10",
+    "school": "KV",
     "date": "2024-08-14",
-    "fee": "1000",
+    "fee": "1002",
     "month": "November",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
-    "id": "09KC1726",
+    "id": "10KV1726",
     "name": "Rahul",
-    "studentClass": "9",
-    "school": "KCPS",
+    "studentClass": "10",
+    "school": "KV",
     "date": "2024-08-14",
-    "fee": "1000",
+    "fee": "1002",
     "month": "December",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
-    "id": "09KC1726",
+    "id": "10KV1726",
     "name": "Rahul",
-    "studentClass": "9",
-    "school": "KCPS",
+    "studentClass": "10",
+    "school": "KV",
     "date": "2024-08-14",
-    "fee": "1000",
+    "fee": "1002",
     "month": "January",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
-    "id": "09KC1726",
+    "id": "10KV1726",
     "name": "Rahul",
-    "studentClass": "9",
-    "school": "KCPS",
+    "studentClass": "10",
+    "school": "KV",
     "date": "2024-08-14",
-    "fee": "1000",
+    "fee": "1002",
     "month": "February",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
-    "id": "09KC1726",
+    "id": "10KV1726",
     "name": "Rahul",
-    "studentClass": "9",
-    "school": "KCPS",
+    "studentClass": "10",
+    "school": "KV",
     "date": "2024-08-14",
-    "fee": "1000",
+    "fee": "1002",
     "month": "March",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   }
 ]
