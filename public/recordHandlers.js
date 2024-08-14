@@ -459,22 +459,47 @@ function editRecord(containerId, record) {
                     <option value="Yes" ${record.payment === 'Yes' ? 'selected' : ''}>Yes</option>
                 </select>
             </div>
+			
+			
+			
+			
+			
+<div class="form-group" id="${containerId}ArchiveGroup" style="${containerId === 'updateResult' ? 'display: none;' : ''}">
+    <label for="${containerId}Archive">Student Status</label>
+    <input type="text" class="form-control" id="${containerId}Archive" 
+        value="${record.archiveInd === 'Yes' ? 'Inactive' : 'Active'}" 
+        readonly 
+        style="background-color: ${record.archiveInd === 'Yes' ? 'darkred' : record.archiveInd === 'No' ? 'lightgreen' : 'transparent'}; 
+               color: ${record.archiveInd === 'Yes' ? 'white' : 'black'};">
+</div>
+
+
+
+			
+            ${containerId === 'updateResult' && record.archiveInd === 'Yes' ? `		
             <div class="form-group">
-                <label for="${containerId}Archive">Student Status</label>
-                <input type="text" class="form-control" id="${containerId}Archive" 
-                    value="${record.archiveInd === 'Yes' ? 'Inactive' : 'Active'}" 
-                    readonly 
-                    style="background-color: ${record.archiveInd === 'Yes' ? 'darkred' : record.archiveInd === 'No' ? 'lightgreen' : 'transparent'}; 
-                           color: ${record.archiveInd === 'Yes' ? 'white' : 'black'};">
-            </div>
-            ${containerId === 'exitResult' ? `
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="${containerId}reactivatestudent" ${record.reactivatestudent ? 'checked' : ''}>
+                    <label class="form-check-label" for="${containerId}reactivatestudent">Reactivave Student</label>
+                </div>
+            </div>		
+            ` : ''}
+
+
+			
+			
+			
+            ${containerId === 'exitResult' ? `	
             <div class="form-group">
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="${containerId}deletepermanently" ${record.deletepermanently ? 'checked' : ''}>
                     <label class="form-check-label" for="${containerId}deletepermanently">Delete Permanently</label>
                 </div>
-            </div>
+            </div>			
             ` : ''}
+			
+			
+			
             <button type="submit" class="${buttonClass}">${buttonLabel}</button>
         </form>
     `;
@@ -497,6 +522,9 @@ document.getElementById(`${containerId}Form`).addEventListener('submit', async f
     const paymentValue = paymentField.value;
     const deletePermanentlyCheckbox = document.getElementById(`${containerId}deletepermanently`);
     const deletepermanently = deletePermanentlyCheckbox ? deletePermanentlyCheckbox.checked : false;
+	
+	const reactivatestudentCheckbox = document.getElementById(`${containerId}reactivatestudent`);
+    const reactivatestudent = reactivatestudentCheckbox ? reactivatestudentCheckbox.checked : false;
 
     // Show confirmation popup for irreversible action
     if (deletepermanently && !window.confirm("Irreversible Action: Are you sure you want to delete this record permanently?")) {
@@ -517,6 +545,7 @@ document.getElementById(`${containerId}Form`).addEventListener('submit', async f
         fee: document.getElementById(`${containerId}Fee`).value,
         month: document.getElementById(`${containerId}Month`).value,
         payment: containerId === 'paymentResult' && paymentValue === 'No' ? 'Yes' : paymentValue,
+        reactivatestudent: reactivatestudent, // Correctly include checkbox value
         deletepermanently: deletepermanently // Correctly include checkbox value
     };
 
