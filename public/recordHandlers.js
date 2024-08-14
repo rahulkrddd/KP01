@@ -65,11 +65,20 @@ function displaySearchResults(containerId, results) {
                 td.style.padding = '8px'; // Add some padding
                 td.style.textAlign = 'center'; // Center justify text
 
-                if (key === 'payment') {
-                    td.textContent = value; // Default content for desktop
-                    td.style.backgroundColor = value === 'Yes' ? 'lightgreen' : 'lightcoral';
-                    td.classList.add('mobile-payment');
-                    td.dataset.paymentValue = value; // Add a custom data attribute
+				if (key === 'payment') {
+				    td.textContent = value; // Default content for desktop
+				    
+				    // Set background color based on payment value
+				    if (value === 'Yes') {
+				        td.style.backgroundColor = 'lightgreen';
+				    } else if (value === 'No') {
+				        td.style.backgroundColor = 'lightcoral';
+				    } else {
+				        td.style.backgroundColor = '#EBEBE4';
+				    }
+				
+				    td.classList.add('mobile-payment');
+				    td.dataset.paymentValue = value; // Add a custom data attribute
                 } else if (key === 'archiveInd') {
                     td.textContent = value === 'Yes' ? 'Inactive' : 'Active';
                     td.style.backgroundColor = value === 'Yes' ? 'lightcoral' : 'lightgreen';
@@ -457,6 +466,7 @@ function editRecord(containerId, record) {
                     ${containerId !== 'exitResult' && containerId !== 'paymentResult' ? 'required' : ''}>
                     <option value="No" ${record.payment === 'No' ? 'selected' : ''}>No</option>
                     <option value="Yes" ${record.payment === 'Yes' ? 'selected' : ''}>Yes</option>
+					<option value="NA" ${record.payment === 'NA' ? 'selected' : ''}>Fee not Required</option>
                 </select>
             </div>
 			
@@ -498,6 +508,16 @@ function editRecord(containerId, record) {
             </div>			
             ` : ''}
 			
+
+            ${containerId === 'paymentResult' && record.payment === 'No' ? `	
+            <div class="form-group">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="${containerId}feenotrequired" ${record.feenotrequired ? 'checked' : ''}>
+                    <label class="form-check-label" for="${containerId}feenotrequired">Fee Not Required</label>
+                </div>
+            </div>			
+            ` : ''}
+			
 			
 			
             <button type="submit" class="${buttonClass}">${buttonLabel}</button>
@@ -521,7 +541,9 @@ document.getElementById(`${containerId}Form`).addEventListener('submit', async f
     const paymentField = document.getElementById(`${containerId}Payment`);
     const paymentValue = paymentField.value;
     const deletePermanentlyCheckbox = document.getElementById(`${containerId}deletepermanently`);
+    const feenotrequiredCheckbox = document.getElementById(`${containerId}feenotrequired`);
     const deletepermanently = deletePermanentlyCheckbox ? deletePermanentlyCheckbox.checked : false;
+    const feenotrequired = feenotrequiredCheckbox ? feenotrequiredCheckbox.checked : false;
 	
 	const reactivatestudentCheckbox = document.getElementById(`${containerId}reactivatestudent`);
     const reactivatestudent = reactivatestudentCheckbox ? reactivatestudentCheckbox.checked : false;
@@ -530,9 +552,19 @@ document.getElementById(`${containerId}Form`).addEventListener('submit', async f
     if (deletepermanently && !window.confirm("Irreversible Action: Are you sure you want to delete this record permanently?")) {
         return; // Exit the function if the user cancels the action
     }
+	
+    // Show confirmation popup for irreversible action
+    if (feenotrequired && !window.confirm("Are you sure fee not needed for this month?")) {
+        return; // Exit the function if the user cancels the action
+    }
 
     if (containerId === 'paymentResult' && record.payment === 'Yes') {
         showAlert('Payment already received', 'error'); // Changed 'warning' to 'error'
+        return; // Exit the function to avoid making unnecessary API calls
+    }
+
+    if (containerId === 'paymentResult' && record.payment === 'NA') {
+        showAlert('Fee not required for this month, to change go to update page', 'error'); // Changed 'warning' to 'error'
         return; // Exit the function to avoid making unnecessary API calls
     }
 
@@ -546,7 +578,8 @@ document.getElementById(`${containerId}Form`).addEventListener('submit', async f
         month: document.getElementById(`${containerId}Month`).value,
         payment: containerId === 'paymentResult' && paymentValue === 'No' ? 'Yes' : paymentValue,
         reactivatestudent: reactivatestudent, // Correctly include checkbox value
-        deletepermanently: deletepermanently // Correctly include checkbox value
+        deletepermanently: deletepermanently, // Correctly include checkbox value
+        feenotrequired: feenotrequired 		  // Correctly include checkbox value
     };
 
     let endpoint = '';
