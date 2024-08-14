@@ -698,10 +698,10 @@
     "studentClass": "5",
     "school": "KCPS",
     "date": "2024-05-24",
-    "fee": "1000",
+    "fee": "1200",
     "month": "July",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
     "id": "05KC6320",
@@ -709,10 +709,10 @@
     "studentClass": "5",
     "school": "KCPS",
     "date": "2024-05-24",
-    "fee": "1000",
+    "fee": "1200",
     "month": "August",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
     "id": "05KC6320",
@@ -720,10 +720,10 @@
     "studentClass": "5",
     "school": "KCPS",
     "date": "2024-05-24",
-    "fee": "1000",
+    "fee": "1200",
     "month": "September",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
     "id": "05KC6320",
@@ -731,10 +731,10 @@
     "studentClass": "5",
     "school": "KCPS",
     "date": "2024-05-24",
-    "fee": "1000",
+    "fee": "1200",
     "month": "October",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
     "id": "05KC6320",
@@ -742,10 +742,10 @@
     "studentClass": "5",
     "school": "KCPS",
     "date": "2024-05-24",
-    "fee": "1000",
+    "fee": "1200",
     "month": "November",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
     "id": "05KC6320",
@@ -753,10 +753,10 @@
     "studentClass": "5",
     "school": "KCPS",
     "date": "2024-05-24",
-    "fee": "1000",
+    "fee": "1200",
     "month": "December",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
     "id": "05KC6320",
@@ -764,10 +764,10 @@
     "studentClass": "5",
     "school": "KCPS",
     "date": "2024-05-24",
-    "fee": "1000",
+    "fee": "1200",
     "month": "January",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
     "id": "05KC6320",
@@ -775,10 +775,10 @@
     "studentClass": "5",
     "school": "KCPS",
     "date": "2024-05-24",
-    "fee": "1000",
+    "fee": "1200",
     "month": "February",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
     "id": "05KC6320",
@@ -786,9 +786,9 @@
     "studentClass": "5",
     "school": "KCPS",
     "date": "2024-05-24",
-    "fee": "1000",
+    "fee": "1200",
     "month": "March",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   }
 ]
