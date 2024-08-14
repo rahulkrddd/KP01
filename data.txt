@@ -786,7 +786,7 @@
     "studentClass": "12",
     "school": "KCPS",
     "date": "2024-07-31",
-    "fee": "1000",
+    "fee": "1001",
     "month": "July",
     "payment": "Yes",
     "archiveInd": "No"
@@ -797,10 +797,10 @@
     "studentClass": "12",
     "school": "KCPS",
     "date": "2024-07-31",
-    "fee": "1000",
+    "fee": "1001",
     "month": "August",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
     "id": "12KC4779",
@@ -808,10 +808,10 @@
     "studentClass": "12",
     "school": "KCPS",
     "date": "2024-07-31",
-    "fee": "1000",
+    "fee": "1001",
     "month": "September",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
     "id": "12KC4779",
@@ -819,10 +819,10 @@
     "studentClass": "12",
     "school": "KCPS",
     "date": "2024-07-31",
-    "fee": "1000",
+    "fee": "1001",
     "month": "October",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
     "id": "12KC4779",
@@ -830,10 +830,10 @@
     "studentClass": "12",
     "school": "KCPS",
     "date": "2024-07-31",
-    "fee": "1000",
+    "fee": "1001",
     "month": "November",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
     "id": "12KC4779",
@@ -841,10 +841,10 @@
     "studentClass": "12",
     "school": "KCPS",
     "date": "2024-07-31",
-    "fee": "1000",
+    "fee": "1001",
     "month": "December",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
     "id": "12KC4779",
@@ -852,10 +852,10 @@
     "studentClass": "12",
     "school": "KCPS",
     "date": "2024-07-31",
-    "fee": "1000",
+    "fee": "1001",
     "month": "January",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
     "id": "12KC4779",
@@ -863,10 +863,10 @@
     "studentClass": "12",
     "school": "KCPS",
     "date": "2024-07-31",
-    "fee": "1000",
+    "fee": "1001",
     "month": "February",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
     "id": "12KC4779",
@@ -874,10 +874,10 @@
     "studentClass": "12",
     "school": "KCPS",
     "date": "2024-07-31",
-    "fee": "1000",
+    "fee": "1001",
     "month": "March",
     "payment": "No",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
     "id": "11KC4658",
