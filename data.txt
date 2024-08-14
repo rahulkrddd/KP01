@@ -601,7 +601,7 @@
     "date": "2024-06-30",
     "fee": "1000",
     "month": "July",
-    "payment": "Yes",
+    "payment": "No",
     "archiveInd": "No"
   },
   {
