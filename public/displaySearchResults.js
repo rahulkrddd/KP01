@@ -383,10 +383,34 @@ function downloadSummaryAsCSV(results) {
     const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
     link.setAttribute('download', 'summary.csv');
-    document.body.appendChild(link);
+
+    // Optional: Display the link so users can copy it
+    const linkContainer = document.createElement('div');
+    const copyLinkText = document.createElement('input');
+    copyLinkText.setAttribute('type', 'text');
+    copyLinkText.setAttribute('value', encodedUri);
+    copyLinkText.setAttribute('readonly', true);
+    linkContainer.appendChild(copyLinkText);
+
+    const copyButton = document.createElement('button');
+    copyButton.textContent = 'Copy Link';
+    copyButton.addEventListener('click', () => {
+        copyLinkText.select();
+        document.execCommand('copy');
+        alert('Link copied to clipboard!');
+    });
+    linkContainer.appendChild(copyButton);
+
+    document.body.appendChild(linkContainer);
+
+    // Automatically download the file
     link.click();
     document.body.removeChild(link);
 }
+
+
+downloadSummaryAsCSV(results);
+
 
 function printSummaryTable(containerId) {
     const container = document.getElementById(containerId);
