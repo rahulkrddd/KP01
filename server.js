@@ -152,7 +152,7 @@ app.post('/send-email', upload.single('file'), async (req, res) => {
 
             const mailOptions = {
                 from: process.env.EMAIL_USER,
-                to: 'rahul.gupta.730@gmail.com',
+                to: process.env.EMAIL_RECIPIENT, 
                 subject: 'Report',
                 text: 'Please find the attached report.',
                 attachments: [{
