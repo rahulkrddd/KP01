@@ -70,14 +70,14 @@
                 <input type="text" class="form-control" id="enrollName" placeholder="Enter the name of Student" required>
                 <div id="nameValidation" class="input-group-append"></div>
             </div>
-            <small id="nameError" class="form-text text-danger" style="display:none;">Name should not exceed 12 characters and should not contain numbers.</small>
+            <small id="nameError" class="form-text text-danger" style="display:none;">Name should not exceed 18 characters and should not contain numbers.</small>
         </div>
         <div class="form-group">
             <label for="enrollClass">Class</label>
             <select class="form-control" id="enrollClass" required>
                 <option value="">Select Class</option>
                 <script>
-                    for (let i = 1; i <= 12; i++) {
+                    for (let i = 1; i <= 18; i++) {
                         document.write('<option value="' + i + '">' + i + '</option>');
                     }
                 </script>
