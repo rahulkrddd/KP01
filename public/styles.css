@@ -275,7 +275,11 @@ body {
         border-color: #0056b3;
     }
 	
-	
+#passwordInput {
+    -webkit-text-security: disc; /* For webkit browsers */
+    text-security: disc; /* For other browsers supporting this property */
+}
+
 	
 
 
