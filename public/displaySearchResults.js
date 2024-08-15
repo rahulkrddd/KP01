@@ -441,33 +441,34 @@ function showPopup(encodedUri) {
     messageElement.style.lineHeight = '1.5';
     popup.appendChild(messageElement);
 
-    // Create the open File button
-    const openLinkButton = document.createElement('button');
-    openLinkButton.innerText = 'Open File';
-    openLinkButton.style.padding = '12px 24px';
-    openLinkButton.style.border = 'none';
-    openLinkButton.style.borderRadius = '8px';
-    openLinkButton.style.backgroundColor = '#28a745'; // Green color for the button
-    openLinkButton.style.color = '#fff';
-    openLinkButton.style.cursor = 'pointer';
-    openLinkButton.style.fontSize = '16px';
-    openLinkButton.style.fontWeight = 'bold';
-    openLinkButton.style.transition = 'background-color 0.3s';
-    openLinkButton.style.marginBottom = '10px'; // Add space between buttons
-    openLinkButton.addEventListener('click', () => {
-        window.open(encodedUri, '_blank'); // Open the copied link in a new tab
-    });
-    openLinkButton.addEventListener('mouseover', () => {
-        openLinkButton.style.backgroundColor = '#218838'; // Darker green shade on hover
-    });
-    openLinkButton.addEventListener('mouseout', () => {
-        openLinkButton.style.backgroundColor = '#28a745'; // Original color
-    });
-	openLinkButton.style.marginRight = '20px'; // Add margin to the right of the openLinkButton
-    popup.appendChild(openLinkButton);
+//commenting below as this button is not working in android app. //
+//    // Create the open File button
+//    const openLinkButton = document.createElement('button');
+//    openLinkButton.innerText = 'Open File';
+//    openLinkButton.style.padding = '12px 24px';
+//    openLinkButton.style.border = 'none';
+//    openLinkButton.style.borderRadius = '8px';
+//    openLinkButton.style.backgroundColor = '#28a745'; // Green color for the button
+//    openLinkButton.style.color = '#fff';
+//    openLinkButton.style.cursor = 'pointer';
+//    openLinkButton.style.fontSize = '16px';
+//    openLinkButton.style.fontWeight = 'bold';
+//    openLinkButton.style.transition = 'background-color 0.3s';
+//    openLinkButton.style.marginBottom = '10px'; // Add space between buttons
+//    openLinkButton.addEventListener('click', () => {
+//        window.open(encodedUri, '_blank'); // Open the copied link in a new tab
+//    });
+//    openLinkButton.addEventListener('mouseover', () => {
+//        openLinkButton.style.backgroundColor = '#218838'; // Darker green shade on hover
+//    });
+//    openLinkButton.addEventListener('mouseout', () => {
+//        openLinkButton.style.backgroundColor = '#28a745'; // Original color
+//    });
+//	openLinkButton.style.marginRight = '20px'; // Add margin to the right of the openLinkButton
+//    popup.appendChild(openLinkButton);
+//commenting above as this button is not working in android app. //
 	
-
-    // Create the close button
+// Create the close button
     const closeButton = document.createElement('button');
     closeButton.innerText = 'Close';
     closeButton.style.padding = '12px 24px';
@@ -490,6 +491,9 @@ function showPopup(encodedUri) {
         closeButton.style.backgroundColor = '#007bff'; // Original color
     });
     popup.appendChild(closeButton);
+
+
+
 
     // Append the overlay and popup to the body
     document.body.appendChild(overlay);
