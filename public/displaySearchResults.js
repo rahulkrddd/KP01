@@ -1,3 +1,4 @@
+
 function displaySearchResults(containerId, results) {
     const container = document.getElementById(containerId);
     container.innerHTML = '';
@@ -76,7 +77,6 @@ function displaySearchResults(containerId, results) {
 				    } else {
 				        td.style.backgroundColor = '#EBEBE4';
 				    }
-				
 				    td.classList.add('mobile-payment');
 				    td.dataset.paymentValue = value; // Add a custom data attribute
                 } else if (key === 'archiveInd') {
@@ -433,44 +433,41 @@ function showPopup(encodedUri) {
     popup.style.fontFamily = 'Arial, sans-serif';
     popup.style.fontSize = '16px';
 
-    // Create the success message element
-    const messageElement = document.createElement('div');
+    // Create the message element
+    const messageElement = document.createElement('p');
     messageElement.innerHTML = `If the automatic download did not work, the download link has been copied to your clipboard.<br>Open any browser and paste the link into the address bar to download the file.`;
     messageElement.style.marginBottom = '20px';
     messageElement.style.wordBreak = 'break-word'; // Ensure long URLs break properly
     messageElement.style.lineHeight = '1.5';
-    messageElement.style.backgroundColor = '#d4edda';
-    messageElement.style.color = '#155724';
-    messageElement.style.padding = '10px';
-    messageElement.style.border = '1px solid #c3e6cb';
-    messageElement.style.borderRadius = '8px';
     popup.appendChild(messageElement);
 
-    // Create the Email button
-    const emailButton = document.createElement('button');
-    emailButton.innerText = 'Email';
-    emailButton.style.padding = '12px 24px';
-    emailButton.style.border = 'none';
-    emailButton.style.borderRadius = '8px';
-    emailButton.style.backgroundColor = '#28a745'; // Green color for the button
-    emailButton.style.color = '#fff';
-    emailButton.style.cursor = 'pointer';
-    emailButton.style.fontSize = '16px';
-    emailButton.style.fontWeight = 'bold';
-    emailButton.style.transition = 'background-color 0.3s';
-    emailButton.style.marginRight = '10px'; // Add space between buttons
-    emailButton.addEventListener('click', () => {
-        sendReportViaEmail(encodedUri); // Call the function with the appropriate parameter
-    });
-    emailButton.addEventListener('mouseover', () => {
-        emailButton.style.backgroundColor = '#218838'; // Darker green shade on hover
-    });
-    emailButton.addEventListener('mouseout', () => {
-        emailButton.style.backgroundColor = '#28a745'; // Original color
-    });
-    popup.appendChild(emailButton);
-
-    // Create the close button
+//commenting below as this button is not working in android app. //
+//    // Create the open File button
+//    const openLinkButton = document.createElement('button');
+//    openLinkButton.innerText = 'Open File';
+//    openLinkButton.style.padding = '12px 24px';
+//    openLinkButton.style.border = 'none';
+//    openLinkButton.style.borderRadius = '8px';
+//    openLinkButton.style.backgroundColor = '#28a745'; // Green color for the button
+//    openLinkButton.style.color = '#fff';
+//    openLinkButton.style.cursor = 'pointer';
+//    openLinkButton.style.fontSize = '16px';
+//    openLinkButton.style.fontWeight = 'bold';
+//    openLinkButton.style.transition = 'background-color 0.3s';
+//    openLinkButton.style.marginBottom = '10px'; // Add space between buttons
+//    openLinkButton.addEventListener('click', () => {
+//        window.open(encodedUri, '_blank'); // Open the copied link in a new tab
+//    });
+//    openLinkButton.addEventListener('mouseover', () => {
+//        openLinkButton.style.backgroundColor = '#218838'; // Darker green shade on hover
+//    });
+//    openLinkButton.addEventListener('mouseout', () => {
+//        openLinkButton.style.backgroundColor = '#28a745'; // Original color
+//    });
+//	openLinkButton.style.marginRight = '20px'; // Add margin to the right of the openLinkButton
+//    popup.appendChild(openLinkButton);
+//commenting above as this button is not working in android app. //
+// Create the close button
     const closeButton = document.createElement('button');
     closeButton.innerText = 'Close';
     closeButton.style.padding = '12px 24px';
@@ -494,11 +491,12 @@ function showPopup(encodedUri) {
     });
     popup.appendChild(closeButton);
 
+
+
+
     // Append the overlay and popup to the body
     document.body.appendChild(overlay);
     document.body.appendChild(popup);
-}
-
 
     // Copy the link to clipboard
     navigator.clipboard.writeText(encodedUri).then(() => {
@@ -548,3 +546,4 @@ function resetFilters() {
     // Logic to reset filters goes here
     console.log('Filters reset');
 }
+
