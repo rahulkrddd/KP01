@@ -395,16 +395,88 @@ function downloadSummaryAsCSV(results) {
         // Check if the link is still in the DOM
         if (document.body.contains(link)) {
             // If the link is still present, it might indicate that the download failed
-            navigator.clipboard.writeText(encodedUri).then(() => {
-                alert('If automatic download did not work, the link has been copied to your clipboard. Open any browser and paste the link.');
-            }).catch(err => {
-                console.error('Could not copy text: ', err);
-            });
+            showPopup(encodedUri);
         }
         // Remove the link from the DOM
         document.body.removeChild(link);
     }, 1000); // Adjust the timeout as needed
 }
+
+function showPopup(encodedUri) {
+    // Create the overlay
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.left = '0';
+    overlay.style.top = '0';
+    overlay.style.width = '100vw';
+    overlay.style.height = '100vh';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    overlay.style.backdropFilter = 'blur(5px)';
+    overlay.style.zIndex = '999'; // Position it below the popup
+
+    // Create the popup container
+    const popup = document.createElement('div');
+    popup.style.position = 'fixed';
+    popup.style.left = '50%';
+    popup.style.top = '50%';
+    popup.style.transform = 'translate(-50%, -50%)';
+    popup.style.padding = '20px';
+    popup.style.backgroundColor = '#fff';
+    popup.style.border = '1px solid #ddd';
+    popup.style.borderRadius = '12px';
+    popup.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)';
+    popup.style.zIndex = '1000';
+    popup.style.textAlign = 'center';
+    popup.style.maxWidth = '90vw'; // Adjust width for mobile
+    popup.style.width = '400px';   // Set a max width for larger screens
+    popup.style.boxSizing = 'border-box';
+    popup.style.fontFamily = 'Arial, sans-serif';
+    popup.style.fontSize = '16px';
+
+    // Create the message element
+    const messageElement = document.createElement('p');
+    messageElement.innerHTML = `If the automatic download did not work, the download link has been copied to your clipboard.<br>Open any browser and paste the link into the address bar to download the file.`;
+    messageElement.style.marginBottom = '20px';
+    messageElement.style.wordBreak = 'break-word'; // Ensure long URLs break properly
+    messageElement.style.lineHeight = '1.5';
+    popup.appendChild(messageElement);
+
+    // Create the close button
+    const closeButton = document.createElement('button');
+    closeButton.innerText = 'Close';
+    closeButton.style.padding = '12px 24px';
+    closeButton.style.border = 'none';
+    closeButton.style.borderRadius = '8px';
+    closeButton.style.backgroundColor = '#007bff';
+    closeButton.style.color = '#fff';
+    closeButton.style.cursor = 'pointer';
+    closeButton.style.fontSize = '16px';
+    closeButton.style.fontWeight = 'bold';
+    closeButton.style.transition = 'background-color 0.3s';
+    closeButton.addEventListener('click', () => {
+        document.body.removeChild(overlay);
+        document.body.removeChild(popup);
+    });
+    closeButton.addEventListener('mouseover', () => {
+        closeButton.style.backgroundColor = '#0056b3'; // Darker shade on hover
+    });
+    closeButton.addEventListener('mouseout', () => {
+        closeButton.style.backgroundColor = '#007bff'; // Original color
+    });
+    popup.appendChild(closeButton);
+
+    // Append the overlay and popup to the body
+    document.body.appendChild(overlay);
+    document.body.appendChild(popup);
+
+    // Copy the link to clipboard
+    navigator.clipboard.writeText(encodedUri).then(() => {
+        console.log('Link copied to clipboard');
+    }).catch(err => {
+        console.error('Could not copy text: ', err);
+    });
+}
+
 
 
 
