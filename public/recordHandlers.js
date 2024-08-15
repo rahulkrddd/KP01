@@ -41,7 +41,8 @@ function editRecord(containerId, record) {
                     <option value="Inventure" ${record.school === 'Inventure' ? 'selected' : ''}>Inventure</option>
                     <option value="Others" ${record.school === 'Others' ? 'selected' : ''}>Others</option>
                 </select>
-		
+            </div>
+			
 			<div class="form-group">
 			    <label for="${containerId}Date">Enroll Date</label>
 			    <input type="date" class="form-control" id="${containerId}Date" value="${record.date}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'} ${containerId === 'updateResult' ? 'title="For other than available dates, Delete the student and Enroll again"' : ''}>
