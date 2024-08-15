@@ -505,20 +505,39 @@ function showPopup(encodedUri) {
 
 
 
-
-
 function printSummaryTable(containerId) {
     const container = document.getElementById(containerId);
     const printWindow = window.open('', '', 'height=600,width=800');
     printWindow.document.write('<html><head><title>Print Summary</title>');
-    printWindow.document.write('<style>table { width: 100%; border-collapse: collapse; } th, td { padding: 8px; border: 1px solid black; text-align: left; } th { background-color: #f2f2f2; }</style>');
-    printWindow.document.write('</head><body >');
+    printWindow.document.write('<style>');
+    printWindow.document.write('table { width: 100%; border-collapse: collapse; }');
+    printWindow.document.write('th, td { padding: 8px; border: 1px solid black; text-align: left; }');
+    printWindow.document.write('th { background-color: #f2f2f2; }');
+    printWindow.document.write('button {');
+    printWindow.document.write('  background-color: #EBEBE4;'); // Default button color
+    printWindow.document.write('  color: black;');
+    printWindow.document.write('  border: none;');
+    printWindow.document.write('  padding: 10px 20px;');
+    printWindow.document.write('  margin: 5px;');
+    printWindow.document.write('  cursor: pointer;');
+    printWindow.document.write('  font-size: 16px;');
+    printWindow.document.write('}');
+    printWindow.document.write('button.close-btn { background-color: red; color: white; }'); // Close button
+    printWindow.document.write('button.print-btn { background-color: green; color: white; }'); // Print button
+    printWindow.document.write('button:hover { opacity: 0.8; }');
+    printWindow.document.write('</style>');
+    printWindow.document.write('</head><body>');
+    printWindow.document.write('<div>');
+    printWindow.document.write('<button class="print-btn" onclick="window.print();">Print</button>');
+    printWindow.document.write('<button class="close-btn" onclick="window.close();">Close</button>');
+    printWindow.document.write('</div>');
     printWindow.document.write(container.innerHTML);
     printWindow.document.write('</body></html>');
     printWindow.document.close();
     printWindow.focus();
-    printWindow.print();
 }
+
+
 
 function resetFilters() {
     // Logic to reset filters goes here
