@@ -242,75 +242,100 @@ app.get('/search', async (req, res) => {
         const students = await readDataFile();
         let results = [];
 
-        if (query === '@all') {
-            const uniqueStudents = [];
-            const uniqueIds = new Set();
-            
-            students.forEach(student => {
-                if (!uniqueIds.has(student.id) && student.month.toLowerCase() === currentMonth) {
-                    uniqueIds.add(student.id);
-                    uniqueStudents.push(student);
-                }
-            });
-
-            results = uniqueStudents;
-
-            if (email) {
-                const emailBody = results.map(student => `ID: ${student.id}, Name: ${student.name}, Class: ${student.studentClass}, School: ${student.school}, Month: ${student.month}`).join('\n');
-                await sendEmail(email, 'All Students for the Current Month', emailBody);
+        // Helper function to validate and extract pattern
+        function validatePattern(q) {
+            const isValid = /^(\d{2}[a-zA-Z]{3}|\w{3}\d{2})$/.test(q);
+            if (isValid) {
+                const isAlphaFirst = /^\d{2}[a-zA-Z]{3}/.test(q);
+                const isNumFirst = /^[a-zA-Z]{3}\d{2}/.test(q);
+                return { isAlphaFirst, isNumFirst };
             }
-        } else if (query === 'all') {
-            results = students;
+            return { isAlphaFirst: false, isNumFirst: false };
+        }
+
+        // Pattern matching and processing
+        const pattern = validatePattern(query);
+        if (pattern.isAlphaFirst || pattern.isNumFirst) {
+            const idPart = pattern.isAlphaFirst ? query.slice(0, 2) : query.slice(3, 5);
+            const monthPart = pattern.isAlphaFirst ? query.slice(2, 5) : query.slice(0, 3);
+
+            results = students.filter(student => {
+                const idMatch = student.id && student.id.toLowerCase().startsWith(idPart);
+                const monthMatch = student.month && student.month.toLowerCase().includes(monthPart);
+                return idMatch && monthMatch;
+            });
         } else {
-            const queryLength = query.length;
-
-            if (query.startsWith('@')) {
-                const actualQuery = query.slice(1);
-                const filteredStudents = students.filter(student => {
-                    const idMatch = student.id && (
-                        (queryLength === 8 && student.id.toLowerCase() === actualQuery) || 
-                        (queryLength < 8 && student.id.toLowerCase().startsWith(actualQuery))
-                    );
-                    const nameMatch = student.name && student.name.toLowerCase().includes(actualQuery);
-                    const classMatch = student.studentClass && student.studentClass.toString().toLowerCase().includes(actualQuery);
-                    const schoolMatch = student.school && student.school.toLowerCase().includes(actualQuery);
-                    const monthMatch = student.month && student.month.toLowerCase().includes(actualQuery);
-
-                    return idMatch || nameMatch || classMatch || schoolMatch || monthMatch;
-                });
-
-                // Separate current month results from other results
-                const currentMonthResults = filteredStudents.filter(student => student.month.toLowerCase() === currentMonth);
-                const otherMonthResults = filteredStudents.filter(student => student.month.toLowerCase() !== currentMonth);
-
-                // Combine current month results with other month results
-                results = [...currentMonthResults, ...otherMonthResults];
-
-                // Remove duplicate entries based on ID
+            // Existing query handling logic
+            if (query === '@all') {
                 const uniqueStudents = [];
                 const uniqueIds = new Set();
-                
-                results.forEach(student => {
-                    if (!uniqueIds.has(student.id)) {
+
+                students.forEach(student => {
+                    if (!uniqueIds.has(student.id) && student.month.toLowerCase() === currentMonth) {
                         uniqueIds.add(student.id);
                         uniqueStudents.push(student);
                     }
                 });
 
                 results = uniqueStudents;
-            } else {
-                results = students.filter(student => {
-                    const idMatch = student.id && (
-                        (queryLength === 8 && student.id.toLowerCase() === query) || 
-                        (queryLength < 8 && student.id.toLowerCase().startsWith(query))
-                    );
-                    const nameMatch = student.name && student.name.toLowerCase().includes(query);
-                    const classMatch = student.studentClass && student.studentClass.toString().toLowerCase().includes(query);
-                    const schoolMatch = student.school && student.school.toLowerCase().includes(query);
-                    const monthMatch = student.month && student.month.toLowerCase().includes(query);
 
-                    return idMatch || nameMatch || classMatch || schoolMatch || monthMatch;
-                });
+                if (email) {
+                    const emailBody = results.map(student => `ID: ${student.id}, Name: ${student.name}, Class: ${student.studentClass}, School: ${student.school}, Month: ${student.month}`).join('\n');
+                    await sendEmail(email, 'All Students for the Current Month', emailBody);
+                }
+            } else if (query === 'all') {
+                results = students;
+            } else {
+                const queryLength = query.length;
+
+                if (query.startsWith('@')) {
+                    const actualQuery = query.slice(1);
+                    const filteredStudents = students.filter(student => {
+                        const idMatch = student.id && (
+                            (queryLength === 8 && student.id.toLowerCase() === actualQuery) ||
+                            (queryLength < 8 && student.id.toLowerCase().startsWith(actualQuery))
+                        );
+                        const nameMatch = student.name && student.name.toLowerCase().includes(actualQuery);
+                        const classMatch = student.studentClass && student.studentClass.toString().toLowerCase().includes(actualQuery);
+                        const schoolMatch = student.school && student.school.toLowerCase().includes(actualQuery);
+                        const monthMatch = student.month && student.month.toLowerCase().includes(actualQuery);
+
+                        return idMatch || nameMatch || classMatch || schoolMatch || monthMatch;
+                    });
+
+                    // Separate current month results from other results
+                    const currentMonthResults = filteredStudents.filter(student => student.month.toLowerCase() === currentMonth);
+                    const otherMonthResults = filteredStudents.filter(student => student.month.toLowerCase() !== currentMonth);
+
+                    // Combine current month results with other month results
+                    results = [...currentMonthResults, ...otherMonthResults];
+
+                    // Remove duplicate entries based on ID
+                    const uniqueStudents = [];
+                    const uniqueIds = new Set();
+
+                    results.forEach(student => {
+                        if (!uniqueIds.has(student.id)) {
+                            uniqueIds.add(student.id);
+                            uniqueStudents.push(student);
+                        }
+                    });
+
+                    results = uniqueStudents;
+                } else {
+                    results = students.filter(student => {
+                        const idMatch = student.id && (
+                            (queryLength === 8 && student.id.toLowerCase() === query) ||
+                            (queryLength < 8 && student.id.toLowerCase().startsWith(query))
+                        );
+                        const nameMatch = student.name && student.name.toLowerCase().includes(query);
+                        const classMatch = student.studentClass && student.studentClass.toString().toLowerCase().includes(query);
+                        const schoolMatch = student.school && student.school.toLowerCase().includes(query);
+                        const monthMatch = student.month && student.month.toLowerCase().includes(query);
+
+                        return idMatch || nameMatch || classMatch || schoolMatch || monthMatch;
+                    });
+                }
             }
         }
 
@@ -319,6 +344,7 @@ app.get('/search', async (req, res) => {
         res.status(500).json({ message: 'Error occurred during search.' });
     }
 });
+
 
 
 		
