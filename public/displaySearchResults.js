@@ -384,32 +384,28 @@ function downloadSummaryAsCSV(results) {
     link.setAttribute('href', encodedUri);
     link.setAttribute('download', 'summary.csv');
 
-    // Optional: Display the link so users can copy it
-    const linkContainer = document.createElement('div');
-    const copyLinkText = document.createElement('input');
-    copyLinkText.setAttribute('type', 'text');
-    copyLinkText.setAttribute('value', encodedUri);
-    copyLinkText.setAttribute('readonly', true);
-    linkContainer.appendChild(copyLinkText);
+    // Append the link to the body to make it clickable
+    document.body.appendChild(link);
 
-    const copyButton = document.createElement('button');
-    copyButton.textContent = 'Copy Link';
-    copyButton.addEventListener('click', () => {
-        copyLinkText.select();
-        document.execCommand('copy');
-        alert('Link copied to clipboard!');
-    });
-    linkContainer.appendChild(copyButton);
-
-    document.body.appendChild(linkContainer);
-
-    // Automatically download the file
+    // Trigger the download
     link.click();
-    document.body.removeChild(link);
+
+    // Use a timeout to check if the download was likely successful
+    setTimeout(() => {
+        // Check if the link is still in the DOM
+        if (document.body.contains(link)) {
+            // If the link is still present, it might indicate that the download failed
+            navigator.clipboard.writeText(encodedUri).then(() => {
+                alert('If automatic download did not work, the link has been copied to your clipboard. Open any browser and paste the link.');
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+            });
+        }
+        // Remove the link from the DOM
+        document.body.removeChild(link);
+    }, 1000); // Adjust the timeout as needed
 }
 
-
-downloadSummaryAsCSV(results);
 
 
 function printSummaryTable(containerId) {
