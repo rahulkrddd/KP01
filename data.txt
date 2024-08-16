@@ -953,7 +953,7 @@
     "date": "2024-08-16",
     "fee": "1000",
     "month": "August",
-    "payment": "No",
+    "payment": "Yes",
     "archiveInd": "No"
   },
   {
