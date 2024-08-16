@@ -21,3 +21,4 @@
 06KC9375 PASS ARCHIVE Rahulw             06 KCPS       2024-04-11  1000 March      N Y N 2024-08-16 22:14:30
 06KC9375 FAIL ARCHIVE Rahulw             06 KCPS       2024-04-11  1000 April      Y N N 2024-08-16 22:14:44
 06KC9375 PASS DELETE  Rahulw             06 KCPS       2024-04-11  1000 May        Y N Y 2024-08-16 22:15:03
+08KC5254 PASS ARCHIVE Rahul              08 KCPS       2024-08-16  1000 March      N Y N 2024-08-17 03:49:15
