@@ -465,7 +465,8 @@ successButton.addEventListener('click', () => {
         document.body.removeChild(overlay); // Remove the overlay
         document.body.removeChild(popup); // Remove the popup
     } else {
-        alert('This functionality is designed for Android devices. Please open the link in Chrome.');
+        // Do nothing if not an Android device
+        console.log('This functionality is designed for Android devices.');
     }
 });
 
@@ -478,7 +479,6 @@ successButton.addEventListener('mouseout', () => {
 });
 
 popup.appendChild(successButton);
-
 
     // Create the close button
     const closeButton = document.createElement('button');
