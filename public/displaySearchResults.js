@@ -456,33 +456,17 @@ successButton.style.fontSize = '16px';
 successButton.style.fontWeight = 'bold';
 successButton.style.marginRight = '10px';
 successButton.style.transition = 'background-color 0.3s';
-
-// Event listener for the button click
-successButton.addEventListener('click', async () => {
-    try {
-        // Access the clipboard and read the text
-        const clipboardText = await navigator.clipboard.readText();
-
-        // Navigate to the URL in the clipboard (even if it's not valid)
-        window.location.href = clipboardText;
-
-        // Remove the overlay and popup
-        document.body.removeChild(overlay);
-        document.body.removeChild(popup);
-    } catch (err) {
-        console.error('Failed to read clipboard contents: ', err);
-    }
+successButton.addEventListener('click', () => {
+    window.open('https://kp01a.onrender.com', '_blank'); // Open Google in a new tab
+    document.body.removeChild(overlay); // Remove the overlay
+    document.body.removeChild(popup); // Remove the popup
 });
-
-// Change background color on hover
 successButton.addEventListener('mouseover', () => {
     successButton.style.backgroundColor = '#218838'; // Darker shade on hover
 });
 successButton.addEventListener('mouseout', () => {
     successButton.style.backgroundColor = '#28a745'; // Original color
 });
-
-// Append the button to the popup
 popup.appendChild(successButton);
 
 
