@@ -457,7 +457,8 @@ successButton.style.fontWeight = 'bold';
 successButton.style.marginRight = '10px';
 successButton.style.transition = 'background-color 0.3s';
 successButton.addEventListener('click', () => {
-    window.open('https://kp02a.onrender.com', '_blank'); // Open Google in a new tab
+//    window.open('https://kp02a.onrender.com', '_blank'); // Open Google in a new tab
+      window.open('https://google.com', '_blank'); // Open Google in a new tab
     document.body.removeChild(overlay); // Remove the overlay
     document.body.removeChild(popup); // Remove the popup
 });
