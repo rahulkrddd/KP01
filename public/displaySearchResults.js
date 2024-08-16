@@ -1,4 +1,3 @@
-
 function displaySearchResults(containerId, results) {
     const container = document.getElementById(containerId);
     container.innerHTML = '';
@@ -77,6 +76,7 @@ function displaySearchResults(containerId, results) {
 				    } else {
 				        td.style.backgroundColor = '#EBEBE4';
 				    }
+				
 				    td.classList.add('mobile-payment');
 				    td.dataset.paymentValue = value; // Add a custom data attribute
                 } else if (key === 'archiveInd') {
@@ -433,41 +433,44 @@ function showPopup(encodedUri) {
     popup.style.fontFamily = 'Arial, sans-serif';
     popup.style.fontSize = '16px';
 
+
+
     // Create the message element
     const messageElement = document.createElement('p');
-    messageElement.innerHTML = `If the automatic download did not work, the download link has been copied to your clipboard.<br>Open any browser and paste the link into the address bar to download the file.`;
+    messageElement.innerHTML = `Link copied.<br>Paste in browser.`;
     messageElement.style.marginBottom = '20px';
     messageElement.style.wordBreak = 'break-word'; // Ensure long URLs break properly
     messageElement.style.lineHeight = '1.5';
     popup.appendChild(messageElement);
 
-//commenting below as this button is not working in android app. //
-//    // Create the open File button
-//    const openLinkButton = document.createElement('button');
-//    openLinkButton.innerText = 'Open File';
-//    openLinkButton.style.padding = '12px 24px';
-//    openLinkButton.style.border = 'none';
-//    openLinkButton.style.borderRadius = '8px';
-//    openLinkButton.style.backgroundColor = '#28a745'; // Green color for the button
-//    openLinkButton.style.color = '#fff';
-//    openLinkButton.style.cursor = 'pointer';
-//    openLinkButton.style.fontSize = '16px';
-//    openLinkButton.style.fontWeight = 'bold';
-//    openLinkButton.style.transition = 'background-color 0.3s';
-//    openLinkButton.style.marginBottom = '10px'; // Add space between buttons
-//    openLinkButton.addEventListener('click', () => {
-//        window.open(encodedUri, '_blank'); // Open the copied link in a new tab
-//    });
-//    openLinkButton.addEventListener('mouseover', () => {
-//        openLinkButton.style.backgroundColor = '#218838'; // Darker green shade on hover
-//    });
-//    openLinkButton.addEventListener('mouseout', () => {
-//        openLinkButton.style.backgroundColor = '#28a745'; // Original color
-//    });
-//	openLinkButton.style.marginRight = '20px'; // Add margin to the right of the openLinkButton
-//    popup.appendChild(openLinkButton);
-//commenting above as this button is not working in android app. //
-// Create the close button
+// Create the success button
+const successButton = document.createElement('button');
+successButton.innerText = 'Success';
+successButton.style.padding = '12px 24px';
+successButton.style.border = 'none';
+successButton.style.borderRadius = '8px';
+successButton.style.backgroundColor = '#28a745'; // Green color
+successButton.style.color = '#fff';
+successButton.style.cursor = 'pointer';
+successButton.style.fontSize = '16px';
+successButton.style.fontWeight = 'bold';
+successButton.style.marginRight = '10px';
+successButton.style.transition = 'background-color 0.3s';
+successButton.addEventListener('click', () => {
+    window.open('https://www.google.com', '_blank'); // Open Google in a new tab
+    document.body.removeChild(overlay); // Remove the overlay
+    document.body.removeChild(popup); // Remove the popup
+});
+successButton.addEventListener('mouseover', () => {
+    successButton.style.backgroundColor = '#218838'; // Darker shade on hover
+});
+successButton.addEventListener('mouseout', () => {
+    successButton.style.backgroundColor = '#28a745'; // Original color
+});
+popup.appendChild(successButton);
+
+
+    // Create the close button
     const closeButton = document.createElement('button');
     closeButton.innerText = 'Close';
     closeButton.style.padding = '12px 24px';
@@ -491,9 +494,6 @@ function showPopup(encodedUri) {
     });
     popup.appendChild(closeButton);
 
-
-
-
     // Append the overlay and popup to the body
     document.body.appendChild(overlay);
     document.body.appendChild(popup);
@@ -505,6 +505,8 @@ function showPopup(encodedUri) {
         console.error('Could not copy text: ', err);
     });
 }
+
+
 
 
 
@@ -546,4 +548,3 @@ function resetFilters() {
     // Logic to reset filters goes here
     console.log('Filters reset');
 }
-
