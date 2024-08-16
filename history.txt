@@ -7,3 +7,4 @@
 03DP0824 DELETE DELETE Rahul Gupta        03 DPS        2024-08-16  1000 August     N Y Yes
 12KC4677 PASS ENROLL  Rahul              12 KCPS       2024-08-16   100 August     N N
 12DP9025 PASS ENROLL  Priyanka           12 DPS        2024-08-16   100 August     N N
+12OT3934 PASS ENROLL  Priyanka           12 Others     2024-08-16   100 August     N N
