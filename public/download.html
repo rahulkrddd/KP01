@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f0f0f0;
+        }
+        .button {
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <button class="button" id="downloadBtn">Download</button>
+    <button class="button" id="homeBtn">Home Page</button>
+
+    <script>
+        document.getElementById('downloadBtn').addEventListener('click', async () => {
+            try {
+                // Get the URL from clipboard
+                const text = await navigator.clipboard.readText();
+                if (text) {
+                    // Create a temporary link element
+                    const link = document.createElement('a');
+                    link.href = text;
+                    link.download = '';
+                    link.click();
+                } else {
+                    alert('Clipboard is empty or does not contain a valid URL.');
+                }
+            } catch (err) {
+                console.error('Failed to read clipboard contents: ', err);
+            }
+        });
+
+        document.getElementById('homeBtn').addEventListener('click', () => {
+            window.location.href = 'https://kp01a.onrender.com/';
+        });
+    </script>
+</body>
+</html>
