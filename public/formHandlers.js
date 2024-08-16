@@ -11,8 +11,8 @@ document.getElementById('enrollName').addEventListener('input', function() {
         nameError.textContent = 'Name should be at least 3 characters long.';
         nameError.style.display = 'block';
         nameValidation.innerHTML = '<span style="color: red;">&#10060;</span>'; // Red cross for invalid
-    } else if (name.length > 12 || hasNumbers) {
-        nameError.textContent = 'Name should not exceed 12 characters and should not contain numbers.';
+    } else if (name.length > 18 || hasNumbers) {
+        nameError.textContent = 'Name should not exceed 18 characters and should not contain numbers.';
         nameError.style.display = 'block';
         nameValidation.innerHTML = '<span style="color: red;">&#10060;</span>'; // Red cross for invalid
     } else {
@@ -40,8 +40,8 @@ document.getElementById('enrollForm').addEventListener('submit', async function(
     if (name.length < 3) {
         showMessage('Name should be at least 3 characters long.', 'error');
         return;
-    } else if (name.length > 12 || hasNumbers) {
-        showMessage('Name should not exceed 12 characters and should not contain numbers.', 'error');
+    } else if (name.length > 18 || hasNumbers) {
+        showMessage('Name should not exceed 18 characters and should not contain numbers.', 'error');
         return;
     }
 
