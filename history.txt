@@ -16,3 +16,4 @@
 04KC7679 FAIL ARCHIVE Rahul Ji           04 KCPS       2024-04-19  1000 April      Y Y N 2024-08-17 03:04:10
 04KC7679 PASS DELETE  Rahul Ji           04 KCPS       2024-04-19  1000 June       Y Y Y 2024-08-17 03:24:08
 06KC9375 PASS ENROLL  Rahulw             06 KCPS       2024-04-11   100 April      N N   2024-08-17 03:24:30
+08KC5254 PASS ENROLL  Rahul              08 KCPS       2024-08-16   100 August     N N   2024-08-17 03:42:46
