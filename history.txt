@@ -5,3 +5,4 @@
 03DP0824 ARCHIVE ARCHIVE Rahul Gupta        03 DPS        2024-08-16  1000 August     N Y No
 03DP0824 ARCHIVE ARCHIVE Rahul Gupta        03 DPS        2024-08-16  1000 August     N Y No
 03DP0824 DELETE DELETE Rahul Gupta        03 DPS        2024-08-16  1000 August     N Y Yes
+12KC4677 PASS ENROLL  Rahul              12 KCPS       2024-08-16   100 August     N N
