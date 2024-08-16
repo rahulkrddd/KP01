@@ -1,3 +1,4 @@
 
 Student Registered Successfully: 04KC0375
 09KC3897 PASS ENROLL Rahul 9 KCPS 2024-08-16 1000 August No No
+09BJ5195 PASS ENROLL Rahul              09 Banjari    2024-08-16   1000 August       N N
