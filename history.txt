@@ -6,3 +6,4 @@
 07KV6270 FAIL ARCHIVE Rahul Gupta        07 KV         2024-07-11  1000 July       N Y N 2024-08-16 19:57:39
 07KV6270 PASS DELETE  Rahul Gupta        07 KV         2024-07-11  1000 July       N Y Y 2024-08-16 19:58:04
 09IV7943 PASS ENROLL  Rahulx             09 Inventure  2024-08-16   100 August     N N 2024-08-16T19:59:59.003Z
+09IV9351 PASS ENROLL  Rahula             09 Inventure  2024-08-16   100 August     N N   2024-08-16 20:02:50
