@@ -12,3 +12,4 @@
 12DP9025 PASS ARCHIVE Priyanka           12 DPS        2024-08-16  1000 August     N Y No
 12DP9025 PASS ARCHIVE Priyanka           12 DPS        2024-08-16  1000 August     N Y No
 12OT3934 PASS DELETE Priyanka           12 Others     2024-08-16  1000 August     N N Yes
+12DP9025 ARCHIVE PASS Priyanka           12 DPS        2024-08-16  1000 August     N Y No
