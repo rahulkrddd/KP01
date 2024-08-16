@@ -1162,7 +1162,7 @@
     "date": "2024-05-31",
     "fee": "1005",
     "month": "August",
-    "payment": "No",
+    "payment": "Yes",
     "archiveInd": "No"
   },
   {
