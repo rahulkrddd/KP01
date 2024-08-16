@@ -866,7 +866,7 @@
     "fee": "1000",
     "month": "July",
     "payment": "No",
-    "archiveInd": "No"
+    "archiveInd": "Yes"
   },
   {
     "id": "07KV6270",
@@ -877,7 +877,7 @@
     "fee": "1000",
     "month": "August",
     "payment": "No",
-    "archiveInd": "No"
+    "archiveInd": "Yes"
   },
   {
     "id": "07KV6270",
@@ -888,7 +888,7 @@
     "fee": "1000",
     "month": "September",
     "payment": "No",
-    "archiveInd": "No"
+    "archiveInd": "Yes"
   },
   {
     "id": "07KV6270",
@@ -899,7 +899,7 @@
     "fee": "1000",
     "month": "October",
     "payment": "No",
-    "archiveInd": "No"
+    "archiveInd": "Yes"
   },
   {
     "id": "07KV6270",
@@ -910,7 +910,7 @@
     "fee": "1000",
     "month": "November",
     "payment": "No",
-    "archiveInd": "No"
+    "archiveInd": "Yes"
   },
   {
     "id": "07KV6270",
@@ -921,7 +921,7 @@
     "fee": "1000",
     "month": "December",
     "payment": "No",
-    "archiveInd": "No"
+    "archiveInd": "Yes"
   },
   {
     "id": "07KV6270",
@@ -932,7 +932,7 @@
     "fee": "1000",
     "month": "January",
     "payment": "No",
-    "archiveInd": "No"
+    "archiveInd": "Yes"
   },
   {
     "id": "07KV6270",
@@ -943,7 +943,7 @@
     "fee": "1000",
     "month": "February",
     "payment": "No",
-    "archiveInd": "No"
+    "archiveInd": "Yes"
   },
   {
     "id": "07KV6270",
@@ -954,7 +954,7 @@
     "fee": "1000",
     "month": "March",
     "payment": "No",
-    "archiveInd": "No"
+    "archiveInd": "Yes"
   },
   {
     "id": "02KV5189",
