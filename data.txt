@@ -1151,7 +1151,7 @@
     "date": "2024-05-31",
     "fee": "1005",
     "month": "July",
-    "payment": "No",
+    "payment": "Yes",
     "archiveInd": "No"
   },
   {
