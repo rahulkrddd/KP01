@@ -457,28 +457,22 @@ successButton.style.fontWeight = 'bold';
 successButton.style.marginRight = '10px';
 successButton.style.transition = 'background-color 0.3s';
 
-// Function to check if the browser is Google Chrome
-function isChrome() {
-    return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-}
-
 // Event listener for button click
 successButton.addEventListener('click', () => {
-    if (isChrome()) {
-        window.open('https://kp02a.onrender.com', '_blank'); // Open URL in a new tab
+    if (navigator.userAgent.match(/Android/i)) {
+        // Force open in Chrome using intent URL scheme
+        window.location.href = 'intent://kp02a.onrender.com#Intent;scheme=https;package=com.android.chrome;end';
         document.body.removeChild(overlay); // Remove the overlay
         document.body.removeChild(popup); // Remove the popup
     } else {
-        alert('This feature is only available in Google Chrome.'); // Optional: Alert for non-Chrome browsers
+        alert('This functionality is designed for Android devices. Please open the link in Chrome.');
     }
 });
 
-// Event listener for mouseover
 successButton.addEventListener('mouseover', () => {
     successButton.style.backgroundColor = '#218838'; // Darker shade on hover
 });
 
-// Event listener for mouseout
 successButton.addEventListener('mouseout', () => {
     successButton.style.backgroundColor = '#28a745'; // Original color
 });
