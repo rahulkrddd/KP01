@@ -811,7 +811,7 @@
     "date": "2024-04-19",
     "fee": "1000",
     "month": "July",
-    "payment": "No",
+    "payment": "Yes",
     "archiveInd": "Yes"
   },
   {
