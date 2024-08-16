@@ -3,3 +3,4 @@
 05IV4209 PASS ENROLL  Rahul Gupta Ji     05 Inventure  2024-05-31   100 May        N N   2024-08-17 02:29:45
 09KC1440 FAIL ARCHIVE Rahul              09 KCPS       2024-08-16  1000 August     Y Y N 2024-08-16 21:00:07
 09IV7943 PASS ARCHIVE Rahulx             09 Inventure  2024-08-16  1000 March      N Y N 2024-08-16 21:00:23
+08KC0066 PASS DELETE  Rahulw             08 KCPS       2024-08-16  1000 August     Y N Y 2024-08-16 21:00:44
