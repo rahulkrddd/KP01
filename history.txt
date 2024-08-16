@@ -2,3 +2,4 @@
 10KC5637 PASS ENROLL  Rahul              10 KCPS       2024-08-16   100 August     N N
 10KV7032 PASS ENROLL  Rahul Gupta        10 KV         2024-08-16   100 August     N N
 10KC5637 PASS ARCHIVE Rahul              10 KCPS       2024-08-16  1000 March      N Y No
+10KC5637 FAIL ARCHIVE Rahul              10 KCPS       2024-08-16  1000 August     N Y No
