@@ -45,3 +45,4 @@
 09KC4197 PASS ARCHIVE Rahul              09 KCPS       2024-05-08  1000 July       N Y N 2024-08-18 03:11:46
 09KC4197 FAIL ARCHIVE Rahul              09 KCPS       2024-05-08  1000 July       N N N 2024-08-18 03:20:00
 09KC4197 FAIL ARCHIVE Rahul              09 KCPS       2024-05-08  1000 August     N N N 2024-08-18 03:23:06
+09KC4197 PASS DELETE  Rahul              09 KCPS       2024-05-08  1000 July       N N Y 2024-08-18 03:23:16
