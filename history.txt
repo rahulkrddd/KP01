@@ -14,3 +14,4 @@
 09KV8360 PASS ENROLL  Rahul              09 KV         2024-04-29  1000 April      N N   2024-08-18 01:26:48
 09KV8360 PASS ARCHIVE Rahul              09 KV         2024-04-29  1000 March      N Y N 2024-08-18 01:27:16
 09KV8360 FAIL ARCHIVE Rahul              09 KV         2024-04-29  1000 April      N N N 2024-08-18 01:30:38
+09KV8360 FAIL ARCHIVE Rahul              09 KV         2024-04-29  1000 April      N N N 2024-08-18 01:31:15
