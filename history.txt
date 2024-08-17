@@ -55,3 +55,4 @@
 09KC2719 FAIL ARCHIVE Rahul              09 KCPS       2024-05-17  1000 July       N Y N 2024-08-18 03:42:40
 09KC2719 FAIL ARCHIVE Rahul              09 KCPS       2024-05-17  1000 July       N Y N 2024-08-18 03:43:30
 09KC2719 FAIL ARCHIVE Rahul              09 KCPS       2024-05-17  1000 July       N Y N 2024-08-18 03:44:29
+09KC2719 PASS DELETE  Rahul              09 KCPS       2024-05-17  1000 July       N - Y 2024-08-18 03:44:47
