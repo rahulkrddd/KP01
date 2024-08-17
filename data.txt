@@ -777,7 +777,7 @@
     "date": "2024-08-17",
     "fee": "2022",
     "month": "August",
-    "payment": "Yes",
+    "payment": "No",
     "archiveInd": "No"
   },
   {
