@@ -5,3 +5,4 @@
 10KC7576 PASS PAYMENT Rahul              10 KCPS       2024-04-17 1000  July       Y N   N   2024-08-18 04:19:00
 10KC7576 PASS ARCHIVE Rahul              10 KCPS       2024-04-17  1000 April      N Y N   2024-08-18 04:19:20
 10KC7576 FAIL ARCHIVE Rahul              10 KCPS       2024-04-17  1000 August     N Y N   2024-08-18 04:19:26
+08KV8868 PASS DELETE  Rahulw             08 KV         2024-04-17  1000 April      N - Y   2024-08-18 04:19:40
