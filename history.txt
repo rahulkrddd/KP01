@@ -59,3 +59,4 @@
 11KC3043 PASS ENROLL  Rahul              11 KCPS       2024-04-17  1000 April      N N   2024-08-18 03:45:13
 11KC3043 PASS ARCHIVE Rahul              11 KCPS       2024-04-17  1000 July       N Y N 2024-08-18 03:45:30
 11KC3043 FAIL ARCHIVE Rahul              11 KCPS       2024-04-17  1000 June       N Y N 2024-08-18 03:45:48
+11KC3043 FAIL ARCHIVE Rahul              11 KCPS       2024-04-17  1000 May        N Y N 2024-08-18 03:46:04
