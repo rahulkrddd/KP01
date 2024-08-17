@@ -18,3 +18,4 @@
 09KV8360 FAIL ARCHIVE Rahul              09 KV         2024-04-29  1000 April      N N N 2024-08-18 01:32:14
 09KV8360 FAIL ARCHIVE Rahul              09 KV         2024-04-29  1000 April      N N N 2024-08-18 01:32:29
 09KV8360 PASS DELETE  Rahul              09 KV         2024-04-29  1000 July       N N Y 2024-08-18 01:34:08
+08KC5207 PASS ENROLL  Rahul              08 KCPS       2024-05-02  1000 May        N N   2024-08-18 01:36:45
