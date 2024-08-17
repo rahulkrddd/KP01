@@ -49,3 +49,4 @@
 09KC6513 PASS ENROLL  Rahul              09 KCPS       2024-04-10  1000 April      N N   2024-08-18 03:23:36
 09KC6513 PASS ARCHIVE Rahul              09 KCPS       2024-04-10  1000 May        N Y N 2024-08-18 03:23:56
 09KC6513 FAIL ARCHIVE Rahul              09 KCPS       2024-04-10  1000 July       N N N 2024-08-18 03:28:27
+09KC6513 FAIL ARCHIVE Rahul              09 KCPS       2024-04-10  1000 June       N Y N 2024-08-18 03:32:08
