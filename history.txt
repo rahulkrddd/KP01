@@ -29,3 +29,4 @@
 12KC5463 FAIL ARCHIVE Rahul              12 KCPS       2024-05-10  1000 July       N N N 2024-08-18 02:26:47
 12KC5463 FAIL ARCHIVE Rahul              12 KCPS       2024-05-10  1000 July       N N N 2024-08-18 02:28:58
 12KC5463 PASS DELETE  Rahul              12 KCPS       2024-05-10  1000 August     N N Y 2024-08-18 02:32:36
+08KC1244 PASS ENROLL  Rahul              08 KCPS       2024-04-25  1000 April      N N   2024-08-18 02:40:51
