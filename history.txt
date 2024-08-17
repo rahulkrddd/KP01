@@ -4,3 +4,4 @@
 08KC9544 PASS PAYMENT Rahul              08 KCPS       2024-04-17 1000  August     Y N   Y   2024-08-18 04:21:19
 10KC7576 FAIL ARCHIVE Rahul              10 KCPS       2024-04-17  1000 July       Y Y N     2024-08-18 04:21:36
 10KC7576 PASS DELETE  Rahul              10 KCPS       2024-04-17  1000 August     N - Y     2024-08-18 04:21:59
+08KC9544 PASS DELETE  Rahul              08 KCPS       2024-04-17  1000 May        N - Y     2024-08-18 04:22:26
