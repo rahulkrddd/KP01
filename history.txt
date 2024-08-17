@@ -2,3 +2,4 @@
 09DP1683 PASS ENROLL  Rahul              09 DPS        2024-05-17  1000 May        N N       2024-08-18 04:20:51
 09DP1683 PASS PAYMENT Rahul              09 DPS        2024-05-17 1000  June       Y N   N   2024-08-18 04:21:09
 08KC9544 PASS PAYMENT Rahul              08 KCPS       2024-04-17 1000  August     Y N   Y   2024-08-18 04:21:19
+10KC7576 FAIL ARCHIVE Rahul              10 KCPS       2024-04-17  1000 July       Y Y N     2024-08-18 04:21:36
