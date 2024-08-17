@@ -7,3 +7,4 @@
 12KC5367 FAIL ARCHIVE Rahulq             12 KCPS       2024-04-03  1000 April      Y N N 2024-08-18 01:12:05
 12KC5367 PASS DELETE  Rahulq             12 KCPS       2024-04-03  1000 August     Y N Y 2024-08-18 01:12:34
 08KC3002 PASS ARCHIVE Rahul              08 KCPS       2024-04-11  1000 March      N Y N 2024-08-18 01:13:13
+08KC3002 FAIL ARCHIVE Rahul              08 KCPS       2024-04-11  1000 April      Y N N 2024-08-18 01:23:08
