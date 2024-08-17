@@ -24,3 +24,4 @@
 08KC5254 PASS ARCHIVE Rahul              08 KCPS       2024-08-16  1000 March      N Y N 2024-08-17 03:49:15
 08KC5254 PASS DELETE  Rahul              08 KCPS       2024-08-16  1000 August     N Y Y 2024-08-17 03:49:34
 09KC6780 PASS DELETE  Rahulq             09 KCPS       2024-08-16  1000 August     N N Y 2024-08-17 03:50:02
+08KC7264 PASS ENROLL  Rahulee            08 KCPS       2024-08-17   100 August     N N   2024-08-17 19:12:18
