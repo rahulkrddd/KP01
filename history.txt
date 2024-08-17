@@ -53,3 +53,4 @@
 09KC6513 PASS DELETE  Rahul              09 KCPS       2024-04-10  1000 July       N N Y 2024-08-18 03:32:44
 09KC2719 PASS ENROLL  Rahul              09 KCPS       2024-05-17  1000 May        N N   2024-08-18 03:38:42
 09KC2719 FAIL ARCHIVE Rahul              09 KCPS       2024-05-17  1000 July       N Y N 2024-08-18 03:42:40
+09KC2719 FAIL ARCHIVE Rahul              09 KCPS       2024-05-17  1000 July       N Y N 2024-08-18 03:43:30
