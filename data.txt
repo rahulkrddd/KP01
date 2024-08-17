@@ -1063,7 +1063,7 @@
     "date": "2024-05-08",
     "fee": "2000",
     "month": "July",
-    "payment": "No",
+    "payment": "NA",
     "archiveInd": "No"
   },
   {
