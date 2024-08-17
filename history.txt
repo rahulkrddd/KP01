@@ -32,3 +32,4 @@
 08KC1244 PASS ENROLL  Rahul              08 KCPS       2024-04-25  1000 April      N N   2024-08-18 02:40:51
 08KC1244 PASS ARCHIVE Rahul              08 KCPS       2024-04-25  1000 June       N Y N 2024-08-18 02:41:05
 08KC1244 FAIL ARCHIVE Rahul              08 KCPS       2024-04-25  1000 June       N N N 2024-08-18 02:41:26
+08KC1244 FAIL ARCHIVE Rahul              08 KCPS       2024-04-25  1000 July       N N N 2024-08-18 02:49:55
