@@ -1052,7 +1052,7 @@
     "date": "2024-05-08",
     "fee": "2000",
     "month": "June",
-    "payment": "No",
+    "payment": "Yes",
     "archiveInd": "No"
   },
   {
