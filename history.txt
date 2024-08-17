@@ -4,3 +4,4 @@
 07KC8860 PASS PAYMENT Rahul              07 KCPS       2024-04-17  1000 August     Y N   Y   2024-08-18 04:38:43
 07KC8860 PASS ARCHIVE Rahul              07 KCPS       2024-04-17  1000 June       Y Y N     2024-08-18 04:38:50
 07KC8860 PASS DELETE  Rahul              07 KCPS       2024-04-17  1000 July       Y - Y     2024-08-18 04:39:04
+09KC0357 PASS ARCHIVE Rahulww            09 KCPS       2024-04-17  1000 June       N Y N     2024-08-18 04:39:18
