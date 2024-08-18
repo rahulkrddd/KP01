@@ -687,7 +687,7 @@
     "studentClass": "7",
     "school": "KCPS",
     "date": "2024-04-30",
-    "fee": "1003",
+    "fee": "1004",
     "month": "April",
     "payment": "Yes",
     "archiveInd": "No"
@@ -698,7 +698,7 @@
     "studentClass": "7",
     "school": "KCPS",
     "date": "2024-04-30",
-    "fee": "1003",
+    "fee": "1004",
     "month": "May",
     "payment": "Yes",
     "archiveInd": "Yes"
@@ -709,7 +709,7 @@
     "studentClass": "7",
     "school": "KCPS",
     "date": "2024-04-30",
-    "fee": "1003",
+    "fee": "1004",
     "month": "June",
     "payment": "NA",
     "archiveInd": "No"
@@ -720,7 +720,7 @@
     "studentClass": "7",
     "school": "KCPS",
     "date": "2024-04-30",
-    "fee": "1003",
+    "fee": "1004",
     "month": "July",
     "payment": "No",
     "archiveInd": "No"
@@ -731,9 +731,9 @@
     "studentClass": "7",
     "school": "KCPS",
     "date": "2024-04-30",
-    "fee": "1003",
+    "fee": "1004",
     "month": "August",
-    "payment": "No",
+    "payment": "NA",
     "archiveInd": "No"
   },
   {
@@ -742,7 +742,7 @@
     "studentClass": "7",
     "school": "KCPS",
     "date": "2024-04-30",
-    "fee": "1003",
+    "fee": "1004",
     "month": "September",
     "payment": "No",
     "archiveInd": "No"
@@ -753,7 +753,7 @@
     "studentClass": "7",
     "school": "KCPS",
     "date": "2024-04-30",
-    "fee": "1003",
+    "fee": "1004",
     "month": "October",
     "payment": "No",
     "archiveInd": "No"
@@ -764,7 +764,7 @@
     "studentClass": "7",
     "school": "KCPS",
     "date": "2024-04-30",
-    "fee": "1003",
+    "fee": "1004",
     "month": "November",
     "payment": "No",
     "archiveInd": "No"
@@ -775,7 +775,7 @@
     "studentClass": "7",
     "school": "KCPS",
     "date": "2024-04-30",
-    "fee": "1003",
+    "fee": "1004",
     "month": "December",
     "payment": "No",
     "archiveInd": "No"
@@ -786,7 +786,7 @@
     "studentClass": "7",
     "school": "KCPS",
     "date": "2024-04-30",
-    "fee": "1003",
+    "fee": "1004",
     "month": "January",
     "payment": "No",
     "archiveInd": "No"
@@ -797,7 +797,7 @@
     "studentClass": "7",
     "school": "KCPS",
     "date": "2024-04-30",
-    "fee": "1003",
+    "fee": "1004",
     "month": "February",
     "payment": "No",
     "archiveInd": "No"
@@ -808,7 +808,7 @@
     "studentClass": "7",
     "school": "KCPS",
     "date": "2024-04-30",
-    "fee": "1003",
+    "fee": "1004",
     "month": "March",
     "payment": "No",
     "archiveInd": "No"
