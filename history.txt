@@ -9,3 +9,5 @@
 07KC9853 FAIL ARCHIVE Rahul Gupta        07 KCPS       2024-04-30  1003 June       N Y N X X 2024-08-18 19:22:58
 07KC9853 PASS UPDATE  Rahul Gupta        07 KCPS       2024-04-30  1003 April      N - X N N 2024-08-18 13:53:16
 07KC9853 PASS PAYMENT Rahul Gupta        07 KCPS       2024-04-30  1003 April      Y N X N X 2024-08-18 13:53:33
+07KC9853 PASS UPDATE  Rahul Gupta        07 KCPS       2024-04-30  1003 June       N - X N N 2024-08-18 19:33:54
+;
