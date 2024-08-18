@@ -4,3 +4,4 @@
 11KC4412 FAIL ARCHIVE Rahul Gupta        11 KCPS       2024-05-18  1000 July       N Y N X X 2024-08-18 15:41:16
 11KC4412 PASS UPDATE  Rahul Gupta        11 KCPS       2024-05-18  1000 July       N - X N Y 2024-08-18 15:42:01
 11KC4412 PASS ARCHIVE Rahul Gupta        11 KCPS       2024-05-18  1000 June       N Y N X X 2024-08-18 15:42:24
+11KC4412 PASS DELETE  Rahul Gupta        11 KCPS       2024-05-18  1000 July       N - Y X X 2024-08-18 15:42:47
