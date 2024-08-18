@@ -722,7 +722,7 @@
     "date": "2024-04-30",
     "fee": "1003",
     "month": "July",
-    "payment": "No",
+    "payment": "Yes",
     "archiveInd": "No"
   },
   {
