@@ -1,19 +1,1 @@
 
-09KC0357 PASS ENROLL  Rahulww            09 KCPS       2024-04-17  1000 April      N N       2024-08-18 04:37:50
-07KC8860 PASS PAYMENT Rahul              07 KCPS       2024-04-17  1000 July       Y N   N   2024-08-18 04:38:28
-07KC8860 PASS PAYMENT Rahul              07 KCPS       2024-04-17  1000 August     Y N   Y   2024-08-18 04:38:43
-07KC8860 PASS ARCHIVE Rahul              07 KCPS       2024-04-17  1000 June       Y Y N     2024-08-18 04:38:50
-07KC8860 PASS DELETE  Rahul              07 KCPS       2024-04-17  1000 July       Y - Y     2024-08-18 04:39:04
-09KC0357 PASS ARCHIVE Rahulww            09 KCPS       2024-04-17  1000 June       N Y N     2024-08-18 04:39:18
-09KC0357 FAIL ARCHIVE Rahulww            09 KCPS       2024-04-17  1000 June       N Y N     2024-08-18 04:39:24
-09KC0357 PASS DELETE  Rahulww            09 KCPS       2024-04-17  1000 July       N - Y     2024-08-18 04:39:30
-11KC4030 PASS ENROLL  Rahul              11 KCPS       2024-04-18  1000 April      N N       2024-08-18 12:04:04
-
-11KC4030 PASS UPDATE  Rahul              11 KCPS       2024-04-18 1002  June       N -     N 2024-08-18 14:15:09
-11KC4030 PASS UPDATE  Rahul              11 KCPS       2024-04-18 1002  July       N - X X N 2024-08-18 14:21:45
-
-11KC4030 FAIL ARCHIVE Rahul              11 KCPS       2024-04-18  1002 June       N Y N X X 2024-08-18 14:48:32
-11KC4030 PASS PAYMENT Rahul              11 KCPS       2024-04-18  1002 April      Y N X N X 2024-08-18 14:50:59
-11KC4030 PASS PAYMENT Rahul              11 KCPS       2024-04-18  1002 May        Y N X Y X 2024-08-18 14:51:52
-11KC4030 PASS UPDATE  Rahul              11 KCPS       2024-04-18 1002  May        N - X Y N 2024-08-18 14:59:32
-11KC4030 PASS UPDATE  Rahul              11 KCPS       2024-04-18  1002 May        N - X Y N 2024-08-18 15:07:07
