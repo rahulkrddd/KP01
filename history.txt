@@ -13,3 +13,4 @@
 11KC4030 PASS UPDATE  Rahul              11 KCPS       2024-04-18 1002  July       N - X X N 2024-08-18 14:21:45
 
 11KC4030 FAIL ARCHIVE Rahul              11 KCPS       2024-04-18  1002 June       N Y N X X 2024-08-18 14:48:32
+11KC4030 PASS PAYMENT Rahul              11 KCPS       2024-04-18  1002 April      Y N X N X 2024-08-18 14:50:59
