@@ -8,6 +8,7 @@ const multer = require('multer');
 const fs = require('fs');
 const upload = multer({ dest: 'uploads/' });
 const { google } = require('googleapis');
+const moment = require('moment');  // for handling timestamps
 
 
 app.use(bodyParser.json());
@@ -15,8 +16,10 @@ app.use(express.static('public'));
 
 const GITHUB_REPO = 'rahulkrddd/KP01';
 const FILE_PATH = 'data.txt';
+const historyFilePath = 'history.txt';
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_API_BASE = 'https://api.github.com';
+
 
 
 
@@ -185,7 +188,62 @@ app.post('/send-email', upload.single('file'), async (req, res) => {
 //Setup email transport V0.2
 
 
-// Enroll a new student
+//**********************************************ENROLL START *****************************************************//
+//history file write
+const writeHistoryFile2 = async (studentData) => {
+    const historyFilePath = 'history.txt';
+    const commitMessage = 'Update history file';
+
+    // Extract and format data fields
+    const {
+        id,
+        name,
+        studentClass,
+        school,
+        date,
+        fee,
+        month,
+        payment,
+        archiveInd
+    } = studentData;
+
+    const formattedName = name.padEnd(18, ' ').substring(0, 18);
+    const formattedClass = studentClass.toString().padStart(2, '0').substring(0, 2);
+    const formattedSchool = school.padEnd(10, ' ').substring(0, 10);
+    const formattedFee = fee.toString().padStart(5, ' ').substring(0, 5);
+    const formattedMonth = month.padEnd(10, ' ').substring(0, 10);
+    const formattedPayment = payment.substring(0, 1);
+    const formattedArchiveInd = archiveInd.substring(0, 1);
+
+    // Generate and format the timestamp in IST
+    const nowUTC = new Date();
+    const nowIST = new Date(nowUTC.getTime() + 5.5 * 60 * 60 * 1000); // Add 5 hours 30 minutes
+    const timestamp = nowIST.toISOString().replace('T', ' ').substring(0, 19); // Format to YYYY-MM-DD HH:MM:SS
+
+    // Prepare the content with timestamp
+    const content = `${id} PASS ENROLL  ${formattedName} ${formattedClass} ${formattedSchool} ${date} ${formattedFee} ${formattedMonth} ${formattedPayment} ${formattedArchiveInd} X X X ${timestamp}\n`;
+
+    // Get the current content of history.txt
+    const { data: { content: currentContent, sha } } = await axios.get(`${GITHUB_API_BASE}/repos/${GITHUB_REPO}/contents/${historyFilePath}`, {
+        headers: { Authorization: `token ${GITHUB_TOKEN}` }
+    });
+
+    // Decode the base64 content and append the new data
+    const updatedContent = Buffer.from(currentContent, 'base64').toString('utf-8') + content;
+    const encodedContent = Buffer.from(updatedContent).toString('base64');
+
+    // Update the file on GitHub
+    await axios.put(`${GITHUB_API_BASE}/repos/${GITHUB_REPO}/contents/${historyFilePath}`, {
+        message: commitMessage,
+        content: encodedContent,
+        sha
+    }, {
+        headers: { Authorization: `token ${GITHUB_TOKEN}` }
+    });
+};
+	
+
+
 app.post('/enroll', async (req, res) => {
     try {
         const students = await readDataFile();
@@ -225,13 +283,18 @@ app.post('/enroll', async (req, res) => {
         });
 
         await writeDataFile(students);
+        
+        // Write to history.txt
+        await writeHistoryFile2(newStudent);
+
         res.json({ message: 'Success : Student Registered Successfully.' });
     } catch (error) {
         res.status(500).json({ message: 'Oops.. Error occurred during enrollment.' });
     }
 });
+//**********************************************ENROLL END   *****************************************************//
 
-// Search for students
+//**********************************************SEARCH START *****************************************************//
 // Search for students
 app.get('/search', async (req, res) => {
     try {
@@ -344,17 +407,49 @@ app.get('/search', async (req, res) => {
         res.status(500).json({ message: 'Error occurred during search.' });
     }
 });
+//**********************************************   SEARCH END   *****************************************************//
 
 
 
-		
+
+//**********************************************  UPDATE START   *****************************************************//
+// Add payment option
+
 app.post('/update', async (req, res) => {
     try {
         const { id, name, studentClass, school, date, month, fee, payment, reactivatestudent } = req.body;
 
-        // Log the received reactivatestudent value for debugging
-        console.log('Received reactivatestudent:', reactivatestudent);
+		let updnewvarResult = '----'
+		let updnewvarArchiveInd = '-'
+		const updnewvarDeletepermanentlyInd = 'X'
+		let updnewvarfeenotrequiredInd = 'X'
+		const updnewvarFunction = 'UPDATE'
+		const updnewvarReactivateIND = reactivatestudent ? 'Y' : 'N';
+		const studentInfo = {
+		    id: req.body.id,
+			updnewvarResult: updnewvarResult,
+			updnewvarFunction: updnewvarFunction,
+		    name: req.body.name,
+		    studentClass: req.body.studentClass,
+		    school: req.body.school,
+		    date: req.body.date,
+		    fee: req.body.fee,
+		    month: req.body.month,
+		    payment: req.body.payment,
+			updnewvarArchiveInd: updnewvarArchiveInd,
+			updnewvarDeletepermanentlyInd: updnewvarDeletepermanentlyInd,
+			updnewvarfeenotrequiredInd: updnewvarfeenotrequiredInd,
+		    updnewvarReactivateIND: updnewvarReactivateIND
+		};		
+		
+		if (studentInfo.payment === 'NA') {
+		    studentInfo.updnewvarfeenotrequiredInd = 'Y';
+		} else {
+		    studentInfo.updnewvarfeenotrequiredInd = 'N';
+		}		
 
+        // Log the received reactivatestudent value for debugging
+        console.log('studentInfo:', studentInfo);	
         const students = await readDataFile();
 
         // Convert month names to numeric values for comparison
@@ -402,7 +497,8 @@ app.post('/update', async (req, res) => {
                     // Update the student's archiveInd and fee/date if reactivatestudent is true
                     if (reactivatestudent) {
                         if (monthToNumber(student.month) >= selectedMonthNumber) {
-                            student.archiveInd = "No";
+                            student.archiveInd = "No"; 
+							updnewvarArchiveInd = 'N' 	//FOR HISTORY RECORD
                         }
                         // Update fee and date for current and future months
                         if (monthToNumber(student.month) >= selectedMonthNumber) {
@@ -428,6 +524,7 @@ app.post('/update', async (req, res) => {
             } else if (reactivatestudent && student.id === id) {
                 // If reactivatestudent is true and student ID matches, set archiveInd to "No"
                 student.archiveInd = "No";
+				updnewvarArchiveInd = 'N' 	//FOR HISTORY RECORD
             }
         });
 
@@ -439,21 +536,74 @@ app.post('/update', async (req, res) => {
             const formattedName = nameParts.map((part, index) => 
                 index === nameParts.length - 1 ? part.charAt(0).toUpperCase() + part.slice(1).toLowerCase() : part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
             ).join(' ');
-
+			updnewvarResult = 'PASS';
+			await writeToGitHubHistoryFile(studentInfo, updnewvarResult, updnewvarFunction);
             res.json({ message: `Student details updated successfully for - ${formattedName}.` });
         } else {
+			updnewvarResult = 'FAIL';
+			await writeToGitHubHistoryFile(studentInfo, updnewvarResult, updnewvarFunction);
             res.status(404).json({ message: 'Student record not found or no changes made.' });
         }
     } catch (error) {
+		updnewvarResult = 'FAIL';
+		await writeToGitHubHistoryFile(studentInfo, updnewvarResult, updnewvarFunction);
         res.status(500).json({ message: 'Error occurred during update.' });
     }
 });
 
+async function writeToGitHubHistoryFile(studentInfo, updnewvarResult, updnewvarFunction) {
+    const filePath = 'history.txt';
+    const commitMessage = 'Update student information'; // Define a commit message
+
+    const timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
+    // Convert data to the required formats and padding
+    const id = studentInfo.id.padEnd(8, ' ');
+    const result = updnewvarResult.padEnd(4, ' ');
+    const resultAction = updnewvarFunction.padEnd(7, ' ');
+    const formattedName = studentInfo.name.padEnd(18, ' ').substring(0, 18);
+    const formattedClass = studentInfo.studentClass.padStart(2, '0').substring(0, 2); // Ensure class is 2 chars long with leading zero if needed
+    const formattedSchool = studentInfo.school.padEnd(10, ' ').substring(0, 10);
+    const date = studentInfo.date.padEnd(10, ' ').substring(0, 10);
+    const formattedFee = studentInfo.fee.toString().padStart(5, ' ').substring(0, 5); // Right-justify formattedFee
+    const formattedMonth = studentInfo.month.padEnd(10, ' ').substring(0, 10);
+    const formattedPayment = studentInfo.payment.toString().padEnd(1, ' ').substring(0, 1);
+    const formattedArchiveInd = studentInfo.updnewvarArchiveInd.padEnd(1, ' ').substring(0, 1);
+    const formattedDeletepermanentlyInd = studentInfo.updnewvarDeletepermanentlyInd.padEnd(1, ' ').substring(0, 1);
+    const formattedfeenotrequiredInd = studentInfo.updnewvarfeenotrequiredInd.padEnd(1, ' ').substring(0, 1);
+    const formattedReactivateIND = studentInfo.updnewvarReactivateIND.padEnd(1, ' ').substring(0, 1);
+
+    // Prepare log entry content
+    const content = `${id} ${result} ${resultAction} ${formattedName} ${formattedClass} ${formattedSchool} ${date} ${formattedFee} ${formattedMonth} ${formattedPayment} ${formattedArchiveInd} ${formattedDeletepermanentlyInd} ${formattedfeenotrequiredInd} ${formattedReactivateIND} ${timestamp}\n`;
+
+    try {
+        // Get the current content of history.txt
+        const { data: { content: currentContent, sha } } = await axios.get(`${GITHUB_API_BASE}/repos/${GITHUB_REPO}/contents/${filePath}`, {
+            headers: { Authorization: `token ${GITHUB_TOKEN}` }
+        });
+
+        // Decode the base64 content and append the new data
+        const updatedContent = Buffer.from(currentContent, 'base64').toString('utf-8') + content;
+        const encodedContent = Buffer.from(updatedContent).toString('base64');
+
+        // Update the file on GitHub
+        await axios.put(`${GITHUB_API_BASE}/repos/${GITHUB_REPO}/contents/${filePath}`, {
+            message: commitMessage,
+            content: encodedContent,
+            sha
+        }, {
+            headers: { Authorization: `token ${GITHUB_TOKEN}` }
+        });
+    } catch (error) {
+        console.error('Error writing to history file:', error);
+    }
+}
 
 
+//**********************************************  UPDATE END     *****************************************************//
+
+//**********************************************  PAYMENT START  *****************************************************//
 
 
-// Add payment option
 // Add payment option
 app.post('/payment', async (req, res) => {
     try {
@@ -466,8 +616,23 @@ app.post('/payment', async (req, res) => {
         const index = students.findIndex(student => student.id === id && student.month === month);
         
         if (index !== -1) {
+            // Determine PASS/FAIL based on paymentalreadyreceived flag
+            const paymenthisvarPaymentStatus = students[index].paymentalreadyreceived ? 'FAIL' : 'PASS';
             // Update the payment status based on feenotrequired
             students[index].payment = feenotrequired ? 'NA' : payment;
+            const paymenthisvarFeeNotRequired = feenotrequired ? 'Y' : 'N';
+
+// Prepare log data
+const paymenthisvarPayment = payment === 'Yes' ? 'Y' : 'N';
+const paymenthisvarArchiveInd = students[index].archiveInd === 'Yes' ? 'Y' : 'N';
+const studentClassFormatted = students[index].studentClass.toString().padStart(2, '0');
+
+// Add an extra space before the fee field to push it one place towards the right
+const logEntry = `${id} ${paymenthisvarPaymentStatus} PAYMENT ${students[index].name.padEnd(18)} ${studentClassFormatted.padEnd(2)} ${students[index].school.padEnd(10)} ${students[index].date.padEnd(10)} ${' '}${students[index].fee.toString().padEnd(5)}${month.padEnd(10)} ${paymenthisvarPayment.padEnd(1)} ${paymenthisvarArchiveInd.padEnd(1)} X ${paymenthisvarFeeNotRequired} X ${moment().format('YYYY-MM-DD HH:mm:ss')}\n`;
+
+
+            // Write log data to GitHub history file
+            await writeHistoryFileToGitHub(logEntry);
 
             // Write updated data back to the file asynchronously
             await writeDataFile(students);
@@ -480,38 +645,131 @@ app.post('/payment', async (req, res) => {
     }
 });
 
+async function readDataFile() {
+    return new Promise((resolve, reject) => {
+        fs.readFile(FILE_PATH, 'utf8', (err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(JSON.parse(data));
+            }
+        });
+    });
+}
+
+async function writeDataFile(students) {
+    return new Promise((resolve, reject) => {
+        fs.writeFile(FILE_PATH, JSON.stringify(students, null, 2), 'utf8', (err) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve();
+            }
+        });
+    });
+}
+
+async function writeHistoryFileToGitHub(logEntry) {
+    try {
+        // Get the current contents of the history file
+        const { data: currentData } = await axios.get(`${GITHUB_API_BASE}/repos/${GITHUB_REPO}/contents/${historyFilePath}`, {
+            headers: {
+                Authorization: `token ${GITHUB_TOKEN}`,
+                Accept: 'application/vnd.github.v3.raw'
+            }
+        });
+
+        // Append the new log entry to the current content
+        const updatedContent = currentData + logEntry;
+
+        // Get the current SHA of the file
+        const { data: fileData } = await axios.get(`${GITHUB_API_BASE}/repos/${GITHUB_REPO}/contents/${historyFilePath}`, {
+            headers: {
+                Authorization: `token ${GITHUB_TOKEN}`
+            }
+        });
+
+        const sha = fileData.sha;
+
+        // Prepare the commit data
+        const commitData = {
+            message: 'Update history file',
+            content: Buffer.from(updatedContent).toString('base64'),
+            sha
+        };
+
+        // Commit the updated content to the GitHub repository
+        await axios.put(`${GITHUB_API_BASE}/repos/${GITHUB_REPO}/contents/${historyFilePath}`, commitData, {
+            headers: {
+                Authorization: `token ${GITHUB_TOKEN}`,
+                Accept: 'application/vnd.github.v3+json'
+            }
+        });
+    } catch (error) {
+        console.error('Error writing to GitHub:', error);
+        throw error;
+    }
+}
 
 
-// Exit (archive) a student
-// Exit (archive) a student
+
+//**********************************************  PAYMENT ENDS   *****************************************************//
+
+
+
+
+
+//**********************************************  EXIT  START    *****************************************************//
 app.post('/exit', async (req, res) => {
     const { id, month, deletepermanently } = req.body;
+	const studentInfo = {
+	    id: req.body.id,
+	    name: req.body.name,
+	    studentClass: req.body.studentClass,
+	    school: req.body.school,
+	    date: req.body.date,
+	    fee: req.body.fee,
+	    month: req.body.month,
+	    payment: req.body.payment,
+	    archiveInd: req.body.archiveInd
+	};
+
 
     try {
         // Read data file asynchronously
         const students = await readDataFile();
 
+        let studentData = students.find(student => student.id === id);
 
         if (deletepermanently === true) {
             // Delete records with the given ID
             const remainingStudents = students.filter(student => student.id !== id);
 
-            if (students.length === remainingStudents.length) {
-                // No student with the given ID was found
-                return res.status(404).json({ message: 'Student record not found.' });
-            }
-
             // Write the updated data back to the file
             await writeDataFile(remainingStudents);
+
+            // Log the deletion
+
+            await writeExitLog(studentInfo,{
+                id,
+                name: studentData?.name || 'N/A',
+                studentClass: studentData?.studentClass || 'N/A',
+                school: studentData?.school || 'N/A',
+                date: studentData?.date || 'N/A',
+                fee: studentData?.fee || 'N/A',
+                month: month || 'N/A',
+                payment: studentData?.payment || 'N/A',
+                archiveInd: studentData?.archiveInd || 'N/A'
+            }, 'delete', deletepermanently, false);
+
 
             return res.json({ message: 'Student record(s) deleted permanently.' });
         }
 
-        // If deletepermanently is not 'on', perform existing logic to archive
+        // If deletepermanently is not true, perform existing logic to archive
         const months = getMonthsUntilMarch(month);
 
         let updated = false;
-        let studentName = '';
         let studentAlreadyInactive = false;
 
         students.forEach(student => {
@@ -521,12 +779,24 @@ app.post('/exit', async (req, res) => {
                 } else {
                     student.archiveInd = 'Yes';
                     updated = true;
-                    studentName = student.name; // Save the student's name for the message
+                    studentData = student; // Get student data for logging
                 }
             }
         });
 
         if (studentAlreadyInactive) {
+            await writeExitLog(studentInfo, studentData || {
+                id,
+                name: 'N/A',
+                studentClass: 'N/A',
+                school: 'N/A',
+                date: 'N/A',
+                fee: 'N/A',
+                month: month || 'N/A',
+                payment: 'N/A',
+                archiveInd: 'Yes'
+            }, 'archive', deletepermanently, studentAlreadyInactive);
+
             res.status(400).json({ message: 'This student is already inactive.' });
         } else if (updated) {
             // Write updated data back to the file
@@ -539,16 +809,117 @@ app.post('/exit', async (req, res) => {
                 return parts.map(part => capitalize(part)).join(' ');
             };
 
-            const formattedName = formatName(studentName);
+            const formattedName = formatName(studentData.name);
+
+            // Write to history.txt log
+            await writeExitLog(studentInfo, studentData, 'archive', deletepermanently, studentAlreadyInactive);
 
             res.json({ message: `Student ${formattedName} has been marked as inactive.` });
         } else {
+            await writeExitLog(studentInfo, studentData || {
+                id,
+                name: 'N/A',
+                studentClass: 'N/A',
+                school: 'N/A',
+                date: 'N/A',
+                fee: 'N/A',
+                month: month || 'N/A',
+                payment: 'N/A',
+                archiveInd: 'No'
+            }, 'archive', deletepermanently, studentAlreadyInactive);
+
             res.status(404).json({ message: 'Oops, student record not found or no records to update.' });
         }
     } catch (error) {
         res.status(500).json({ message: 'Error occurred while processing the request.' });
     }
 });
+
+
+
+// Function to write logs to history.txt
+const writeExitLog = async (studentInfo, studentData, action, deletePermanently, studentAlreadyInactive) => {
+    const historyFilePath = 'history.txt';
+    const commitMessage = 'Update history file';
+
+    // Extract and format data fields
+    const {
+        id1,
+        name1,
+        studentClass1,
+        school1,
+        date1,
+        fee1,
+        month1,
+        payment1,
+        archiveInd
+    } = studentData;
+
+    const {
+        id,
+        name,
+        studentClass,
+        school,
+        date,
+        fee,
+        month,
+        payment
+    } = studentInfo;
+	
+
+
+    const formattedName = name.padEnd(18, ' ').substring(0, 18);
+    const formattedClass = studentClass.toString().padStart(2, '0').substring(0, 2);
+    const formattedSchool = school.padEnd(10, ' ').substring(0, 10);
+    const formattedFee = fee.toString().padStart(5, ' ').substring(0, 5);
+    const formattedMonth = month.padEnd(10, ' ').substring(0, 10);
+    const formattedPayment = payment.substring(0, 1);
+    let  formattedArchiveInd = archiveInd.substring(0, 1);
+    const deleteFlag = deletePermanently ? 'Y' : 'N';
+    const resultAction = action === 'delete' ? 'DELETE ' : 'ARCHIVE';
+
+
+
+    // Determine result based on studentAlreadyInactive and file modification
+    const result = studentAlreadyInactive ? 'FAIL' : 'PASS';
+	if (result === 'FAIL' && resultAction === 'ARCHIVE') {
+    formattedArchiveInd = 'Y';}
+     
+	if (deleteFlag === 'Y') {
+    formattedArchiveInd = '-';};
+
+    // Get current timestamp in IST (+05:30) format
+    const now = new Date();
+    const utcOffset = 330; // IST is UTC+05:30 which is 330 minutes
+    const istDate = new Date(now.getTime() + utcOffset * 60 * 1000);
+    const timestamp = istDate.toISOString().replace('T', ' ').substring(0, 19); // Example format: 2024-08-17 20:00:00
+
+    // Prepare log entry content with timestamp
+    const content = `${id} ${result} ${resultAction} ${formattedName} ${formattedClass} ${formattedSchool} ${date} ${formattedFee} ${formattedMonth} ${formattedPayment} ${formattedArchiveInd} ${deleteFlag} X X ${timestamp}\n`;
+
+    try {
+        // Get the current content of history.txt
+        const { data: { content: currentContent, sha } } = await axios.get(`${GITHUB_API_BASE}/repos/${GITHUB_REPO}/contents/${historyFilePath}`, {
+            headers: { Authorization: `token ${GITHUB_TOKEN}` }
+        });
+
+        // Decode the base64 content and append the new data
+        const updatedContent = Buffer.from(currentContent, 'base64').toString('utf-8') + content;
+        const encodedContent = Buffer.from(updatedContent).toString('base64');
+
+        // Update the file on GitHub
+        await axios.put(`${GITHUB_API_BASE}/repos/${GITHUB_REPO}/contents/${historyFilePath}`, {
+            message: commitMessage,
+            content: encodedContent,
+            sha
+        }, {
+            headers: { Authorization: `token ${GITHUB_TOKEN}` }
+        });
+    } catch (error) {
+        console.error('Error writing to history file:', error);
+    }
+};
+//**********************************************  EXIT   END   *****************************************************//
 
 
 
