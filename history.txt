@@ -7,3 +7,4 @@
 10AT0604 PASS PAYMENT Rahul Gupta        10 Atmanand   2024-05-18  1000 July       Y N X Y X 2024-08-18 15:17:02
 02BJ5617 PASS DELETE  Rahulee            02 Banjari    2024-04-18  1000 August     N - Y X X 2024-08-18 15:17:29
 10AT0604 PASS DELETE  Rahul Gupta        10 Atmanand   2024-05-18  1000 June       N - Y X X 2024-08-18 15:17:58
+02KC4030 FAIL ARCHIVE Rahul              02 KCPS       2024-04-18  1005 June       Y Y N X X 2024-08-18 15:18:13
