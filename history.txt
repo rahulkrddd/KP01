@@ -9,3 +9,4 @@
 10AT0604 PASS DELETE  Rahul Gupta        10 Atmanand   2024-05-18  1000 June       N - Y X X 2024-08-18 15:17:58
 02KC4030 FAIL ARCHIVE Rahul              02 KCPS       2024-04-18  1005 June       Y Y N X X 2024-08-18 15:18:13
 02KC4030 PASS ARCHIVE Rahul              02 KCPS       2024-04-18  2005 July       N Y N X X 2024-08-18 15:18:19
+02KC4030 PASS DELETE  Rahul              02 KCPS       2024-04-18  1005 May        N - Y X X 2024-08-18 15:18:34
