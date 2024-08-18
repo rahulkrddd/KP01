@@ -1,5 +1,1 @@
 
-09KC4488 PASS ARCHIVE Rahul              09 KCPS       2024-04-18  1000 April      Y Y N X X 2024-08-18 15:47:12
-09KC4488 FAIL ARCHIVE Rahul              09 KCPS       2024-04-18  1000 June       N Y N X X 2024-08-18 15:47:30
-09KC4488 PASS DELETE  Rahul              09 KCPS       2024-04-18  1000 July       N - Y X X 2024-08-18 15:47:41
-09KC4257 PASS ENROLL  Rahul              09 KCPS       2024-04-18  1000 April      N N X X X 2024-08-18 15:47:54
