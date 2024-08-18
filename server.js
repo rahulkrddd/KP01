@@ -9,6 +9,7 @@ const fs = require('fs');
 const upload = multer({ dest: 'uploads/' });
 const { google } = require('googleapis');
 const moment = require('moment');  // for handling timestamps
+const momentTz = require('moment-timezone');  // for handling timezones
 
 
 app.use(bodyParser.json());
@@ -573,7 +574,7 @@ async function writeToGitHubHistoryFile(studentInfo, updnewvarResult, updnewvarF
     const formattedReactivateIND = studentInfo.updnewvarReactivateIND.padEnd(1, ' ').substring(0, 1);
 
     // Prepare log entry content
-    const content = `${id} ${result} ${resultAction} ${formattedName} ${formattedClass} ${formattedSchool} ${date} ${formattedFee} ${formattedMonth} ${formattedPayment} ${formattedArchiveInd} ${formattedDeletepermanentlyInd} ${formattedfeenotrequiredInd} ${formattedReactivateIND} ${timestamp}\n`;
+    const content = `${id} ${result} ${resultAction} ${formattedName} ${formattedClass} ${formattedSchool} ${date} ${formattedFee} ${formattedMonth} ${formattedPayment} ${formattedArchiveInd} ${formattedDeletepermanentlyInd} ${formattedfeenotrequiredInd} ${formattedReactivateIND} ${momentTz().tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss')}\n;`
 
     try {
         // Get the current content of history.txt
@@ -622,14 +623,13 @@ app.post('/payment', async (req, res) => {
             students[index].payment = feenotrequired ? 'NA' : payment;
             const paymenthisvarFeeNotRequired = feenotrequired ? 'Y' : 'N';
 
-// Prepare log data
-const paymenthisvarPayment = payment === 'Yes' ? 'Y' : 'N';
-const paymenthisvarArchiveInd = students[index].archiveInd === 'Yes' ? 'Y' : 'N';
-const studentClassFormatted = students[index].studentClass.toString().padStart(2, '0');
+			// Prepare log data
+			const paymenthisvarPayment = payment === 'Yes' ? 'Y' : 'N';
+			const paymenthisvarArchiveInd = students[index].archiveInd === 'Yes' ? 'Y' : 'N';
+			const studentClassFormatted = students[index].studentClass.toString().padStart(2, '0');
 
-// Add an extra space before the fee field to push it one place towards the right
-const logEntry = `${id} ${paymenthisvarPaymentStatus} PAYMENT ${students[index].name.padEnd(18)} ${studentClassFormatted.padEnd(2)} ${students[index].school.padEnd(10)} ${students[index].date.padEnd(10)} ${' '}${students[index].fee.toString().padEnd(5)}${month.padEnd(10)} ${paymenthisvarPayment.padEnd(1)} ${paymenthisvarArchiveInd.padEnd(1)} X ${paymenthisvarFeeNotRequired} X ${moment().format('YYYY-MM-DD HH:mm:ss')}\n`;
-
+			// Add an extra space before the fee field to push it one place towards the right
+			const logEntry = `${id} ${paymenthisvarPaymentStatus} PAYMENT ${students[index].name.padEnd(18)} ${studentClassFormatted.padEnd(2)} ${students[index].school.padEnd(10)} ${students[index].date.padEnd(10)} ${' '}${students[index].fee.toString().padEnd(5)}${month.padEnd(10)} ${paymenthisvarPayment.padEnd(1)} ${paymenthisvarArchiveInd.padEnd(1)} X ${paymenthisvarFeeNotRequired} X ${momentTz().tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss')}\n`;
 
             // Write log data to GitHub history file
             await writeHistoryFileToGitHub(logEntry);
@@ -645,29 +645,6 @@ const logEntry = `${id} ${paymenthisvarPaymentStatus} PAYMENT ${students[index].
     }
 });
 
-async function readDataFilex() {
-    return new Promise((resolve, reject) => {
-        fs.readFile(FILE_PATH, 'utf8', (err, data) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(JSON.parse(data));
-            }
-        });
-    });
-}
-
-async function writeDataFilex(students) {
-    return new Promise((resolve, reject) => {
-        fs.writeFile(FILE_PATH, JSON.stringify(students, null, 2), 'utf8', (err) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve();
-            }
-        });
-    });
-}
 
 async function writeHistoryFileToGitHub(logEntry) {
     try {
