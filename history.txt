@@ -5,3 +5,4 @@
 09KV7490 PASS ARCHIVE Priyanka Gupta     09 KV         2024-04-18  2000 June       N Y N X X 2024-08-18 15:58:19
 09KV7490 FAIL ARCHIVE Priyanka Gupta     09 KV         2024-04-18  2000 June       N Y N X X 2024-08-18 15:58:48
 09KV7490 PASS UPDATE  Priyanka Gupta     09 KV         2024-04-18  1000 July       N - X N Y 2024-08-18 16:00:06
+09KV7490 PASS PAYMENT Priyanka Gupta     09 KV         2024-04-18  1000 July       Y N X N X 2024-08-18 16:01:27
