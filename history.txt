@@ -5,3 +5,4 @@
 02KC4030 PASS UPDATE  Rahul              02 KCPS       2024-04-18  2005 July       N - X Y Y 2024-08-18 15:15:40
 10AT0604 PASS PAYMENT Rahul Gupta        10 Atmanand   2024-05-18  1000 May        Y N X N X 2024-08-18 15:16:37
 10AT0604 PASS PAYMENT Rahul Gupta        10 Atmanand   2024-05-18  1000 July       Y N X Y X 2024-08-18 15:17:02
+02BJ5617 PASS DELETE  Rahulee            02 Banjari    2024-04-18  1000 August     N - Y X X 2024-08-18 15:17:29
