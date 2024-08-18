@@ -1,3 +1,4 @@
 
 02BJ5617 PASS ENROLL  Rahulee            02 Banjari    2024-04-18  1000 April      N N X X X 2024-08-18 15:10:35
 11KC4030 PASS UPDATE  Rahul              1  KCPS       2024-04-18  1005 April      N - X Y N 2024-08-18 15:11:12
+01KC4030 PASS UPDATE  Rahul              02 KCPS       2024-04-18  1005 June       Y - X N N 2024-08-18 15:14:22
