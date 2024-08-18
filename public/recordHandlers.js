@@ -88,7 +88,7 @@ function editRecord(containerId, record) {
             <div class="form-group">
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="${containerId}reactivatestudent" ${record.reactivatestudent ? 'checked' : ''}>
-                    <label class="form-check-label" for="${containerId}reactivatestudent">Reactivave Student</label>
+                    <label class="form-check-label" for="${containerId}reactivatestudent">Reactivate Student</label>
                 </div>
             </div>		
             ` : ''}
