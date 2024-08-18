@@ -574,7 +574,7 @@ async function writeToGitHubHistoryFile(studentInfo, updnewvarResult, updnewvarF
     const formattedReactivateIND = studentInfo.updnewvarReactivateIND.padEnd(1, ' ').substring(0, 1);
 
     // Prepare log entry content
-    const content = `${id} ${result} ${resultAction} ${formattedName} ${formattedClass} ${formattedSchool} ${date} ${formattedFee} ${formattedMonth} ${formattedPayment} ${formattedArchiveInd} ${formattedDeletepermanentlyInd} ${formattedfeenotrequiredInd} ${formattedReactivateIND} ${momentTz().tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss')}\n;`
+    const content = `${id} ${result} ${resultAction} ${formattedName} ${formattedClass} ${formattedSchool} ${date} ${formattedFee} ${formattedMonth} ${formattedPayment} ${formattedArchiveInd} ${formattedDeletepermanentlyInd} ${formattedfeenotrequiredInd} ${formattedReactivateIND} ${momentTz().tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss')}\n`
 
     try {
         // Get the current content of history.txt
