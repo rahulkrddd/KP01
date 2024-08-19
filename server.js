@@ -443,14 +443,24 @@ app.post('/update', async (req, res) => {
 		    updnewvarReactivateIND: updnewvarReactivateIND
 		};		
 		
+		console.log('studentInfo.payment:', studentInfo.payment);
 		if (studentInfo.payment === 'NA') {
 		    studentInfo.updnewvarfeenotrequiredInd = 'Y';
 		} else {
 		    studentInfo.updnewvarfeenotrequiredInd = 'N';
-		}		
+		}
+
+	//** This is toi get archieve IND value start*		
+		const updnewvarArchiveIndstudents = await readDataFile();  
+	// Find the index of the student record that matches both id and month
+		const index = updnewvarArchiveIndstudents.findIndex(student => student.id === id && student.month === month);
+		if (index !== -1) {
+		    // If a matching record is found, set the archive indicator
+		    updnewvarArchiveInd = updnewvarArchiveIndstudents[index].archiveInd === 'Yes' ? 'Y' : 'N';}
+	//** This is toi get archieve IND value end*		
 
         // Log the received reactivatestudent value for debugging
-        console.log('studentInfo:', studentInfo);	
+        //console.log('studentInfo:', studentInfo);	
         const students = await readDataFile();
 
         // Convert month names to numeric values for comparison
@@ -486,7 +496,7 @@ app.post('/update', async (req, res) => {
                     const schoolAbbr = getSchoolAbbreviation(school);
                     student.id = `${student.id.slice(0, 2)}${schoolAbbr}${student.id.slice(4)}`;
                 }
-
+				
                 if (month !== undefined) {
                     // Update payment if the month matches
                     if (student.month === month) {
@@ -494,6 +504,7 @@ app.post('/update', async (req, res) => {
                             student.payment = payment;
                         }
                     }
+					
 
                     // Update the student's archiveInd and fee/date if reactivatestudent is true
                     if (reactivatestudent) {
@@ -538,11 +549,11 @@ app.post('/update', async (req, res) => {
                 index === nameParts.length - 1 ? part.charAt(0).toUpperCase() + part.slice(1).toLowerCase() : part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
             ).join(' ');
 			updnewvarResult = 'PASS';
-			await writeToGitHubHistoryFile(studentInfo, updnewvarResult, updnewvarFunction);
+			await writeToGitHubHistoryFile(studentInfo, updnewvarResult, updnewvarFunction, updnewvarArchiveInd);
             res.json({ message: `Student details updated successfully for - ${formattedName}.` });
         } else {
 			updnewvarResult = 'FAIL';
-			await writeToGitHubHistoryFile(studentInfo, updnewvarResult, updnewvarFunction);
+			await writeToGitHubHistoryFile(studentInfo, updnewvarResult, updnewvarFunction,updnewvarArchiveInd);
             res.status(404).json({ message: 'Student record not found or no changes made.' });
         }
     } catch (error) {
@@ -552,7 +563,7 @@ app.post('/update', async (req, res) => {
     }
 });
 
-async function writeToGitHubHistoryFile(studentInfo, updnewvarResult, updnewvarFunction) {
+async function writeToGitHubHistoryFile(studentInfo, updnewvarResult, updnewvarFunction, updnewvarArchiveInd) {
     const filePath = 'history.txt';
     const commitMessage = 'Update student information'; // Define a commit message
 
@@ -567,13 +578,27 @@ async function writeToGitHubHistoryFile(studentInfo, updnewvarResult, updnewvarF
     const date = studentInfo.date.padEnd(10, ' ').substring(0, 10);
     const formattedFee = studentInfo.fee.toString().padStart(5, ' ').substring(0, 5); // Right-justify formattedFee
     const formattedMonth = studentInfo.month.padEnd(10, ' ').substring(0, 10);
-    const formattedPayment = studentInfo.payment.toString().padEnd(1, ' ').substring(0, 1);
-    const formattedArchiveInd = studentInfo.updnewvarArchiveInd.padEnd(1, ' ').substring(0, 1);
+    //const formattedPayment = studentInfo.payment.toString().padEnd(1, ' ').substring(0, 1);
+    const formattedArchiveInd = updnewvarArchiveInd.padEnd(1, ' ').substring(0, 1);
     const formattedDeletepermanentlyInd = studentInfo.updnewvarDeletepermanentlyInd.padEnd(1, ' ').substring(0, 1);
     const formattedfeenotrequiredInd = studentInfo.updnewvarfeenotrequiredInd.padEnd(1, ' ').substring(0, 1);
     const formattedReactivateIND = studentInfo.updnewvarReactivateIND.padEnd(1, ' ').substring(0, 1);
+console.log('studentInfo.payment3:', studentInfo.payment);
+let formattedPayment;
 
-    // Prepare log entry content
+if (studentInfo.payment === "Yes") {
+    formattedPayment = 'Y';
+} else if (studentInfo.payment === "No") {
+    formattedPayment = 'N';
+} else if (studentInfo.payment === "NA") {
+    formattedPayment = 'Y';
+} else {
+    // Handle unexpected values or provide a default value if needed
+    formattedPayment = 'N'; // or any other default value
+}
+
+
+	// Prepare log entry content
     const content = `${id} ${result} ${resultAction} ${formattedName} ${formattedClass} ${formattedSchool} ${date} ${formattedFee} ${formattedMonth} ${formattedPayment} ${formattedArchiveInd} ${formattedDeletepermanentlyInd} ${formattedfeenotrequiredInd} ${formattedReactivateIND} ${momentTz().tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss')}\n`
 
     try {
@@ -643,6 +668,61 @@ app.post('/payment', async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Error occurred while updating payment status.' });
     }
+});
+
+
+// Add payment option
+app.post('/paymentfail', async (req, res) => {
+	try {
+
+		const { id, name, studentClass, school, date, fee, month, payment, archiveInd, feenotrequired, oldpaymentvalue } = req.body;
+
+		const studentInfo = {
+			id: req.body.id,
+			name: req.body.name,
+			studentClass: req.body.studentClass,
+			school: req.body.school,
+			date: req.body.date,
+			fee: req.body.fee,
+			month: req.body.month,
+			payment: req.body.payment,
+			feenotrequired: req.body.feenotrequired,
+			oldpaymentvalue: req.body.oldpaymentvalue
+		};
+
+		// Define the required constants
+		const paymenthisvarPayment = 'Y';
+		const studentClassFormatted = studentInfo.studentClass.toString().padStart(2, '0'); // Assuming studentClass is correct here
+		const paymenthisvarPaymentStatus = 'FAIL';
+		
+	//** This is toi get archieve IND value start*		
+		const students = await readDataFile();        
+	// Find the index of the student record that matches both id and month
+		const index = students.findIndex(student => student.id === id && student.month === month);
+		let paymenthisvarArchiveInd = 'N'; // Default value
+		if (index !== -1) {
+		    // If a matching record is found, set the archive indicator
+					paymenthisvarArchiveInd = students[index].archiveInd === 'Yes' ? 'Y' : 'N';}
+			const 	paymenthisvarFeeNotRequired = students[index].payment === 'NA' ? 'Y' : 'N';
+	//** This is toi get archieve IND value end*
+
+
+		// Add an extra space before the fee field to push it one place towards the right
+		const logEntry = `${id} ${paymenthisvarPaymentStatus} PAYMENT ${studentInfo.name.padEnd(18)} ${studentClassFormatted.padEnd(2)} ${studentInfo.school.padEnd(10)} ${studentInfo.date.padEnd(10)} ${' '}${studentInfo.fee.toString().padEnd(5)}${month.padEnd(10)} ${paymenthisvarPayment.padEnd(1)} ${paymenthisvarArchiveInd.padEnd(1)} X ${paymenthisvarFeeNotRequired} X ${momentTz().tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss')}\n`;
+
+		// Write log data to GitHub history file
+		await writeHistoryFileToGitHub(logEntry);
+
+		// Return appropriate response based on payment status
+		if (oldpaymentvalue === 'NA') {
+			res.json({ message: 'Oop.. Fee not required for this month, to change go to update page.' });
+		} else {
+			res.json({ message: 'Oops: Payment already received.' });
+		}
+	} catch (error) {
+		// Log the error for debugging purposes
+		res.status(500).json({ message: 'Error occurred while updating payment status.' });
+	}
 });
 
 
@@ -740,7 +820,7 @@ app.post('/exit', async (req, res) => {
             }, 'delete', deletepermanently, false);
 
 
-            return res.json({ message: 'Student record(s) deleted permanently.' });
+            return res.json({ message: 'Student record(s) have been successfully deleted permanently.' });
         }
 
         // If deletepermanently is not true, perform existing logic to archive
@@ -791,7 +871,7 @@ app.post('/exit', async (req, res) => {
             // Write to history.txt log
             await writeExitLog(studentInfo, studentData, 'archive', deletepermanently, studentAlreadyInactive);
 
-            res.json({ message: `Student ${formattedName} has been marked as inactive.` });
+            res.json({ message: `Student ${formattedName} has been successfully marked as inactive.` });
         } else {
             await writeExitLog(studentInfo, studentData || {
                 id,
@@ -897,6 +977,12 @@ const writeExitLog = async (studentInfo, studentData, action, deletePermanently,
     }
 };
 //**********************************************  EXIT   END   *****************************************************//
+//****************************************  TEST HISRY REPORT START ************************************************//
+// Serve the HTML file  //historyFilePath
+
+
+
+//****************************************   TEST HISRY REPORT END  ************************************************//
 
 
 
