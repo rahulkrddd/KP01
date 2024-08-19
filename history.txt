@@ -41,3 +41,4 @@
 07KC9853 PASS UPDATE  Rahul Gupta        07 KCPS       2024-04-30  1004 April      N - X N N 2024-08-19 14:15:48
 07KC9853 PASS UPDATE  Rahul Gupta        07 KCPS       2024-04-30  1004 May        N - X Y Y 2024-08-19 14:15:59
 07KC9853 PASS ARCHIVE Rahul Gupta        07 KCPS       2024-04-30  1004 June       Y Y N X X 2024-08-19 14:16:29
+07KC9853 PASS DELETE  Rahul Gupta        07 KCPS       2024-04-30  1004 June       Y - Y X X 2024-08-19 14:17:12
