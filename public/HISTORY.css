@@ -3,11 +3,79 @@ body {
     font-size: 10px; /* Smaller font size */
     margin: 20px;
 }
-
+/************************************   HEADING STARTS  ***********************************/
+/* Base styles for the heading */
 h1 {
-    font-size: 20px; /* Header font size */
+    font-size: 40px; /* Header font size */
     margin-bottom: 20px;
+    font-family: 'Arial', sans-serif; /* Consistent professional font */
+    font-weight: 700; /* Bold font weight for emphasis */
+    color: #333; /* Dark gray color for a professional look */
+    text-align: center; /* Center align the heading */
+    text-transform: uppercase; /* Uppercase text for a strong presence */
+    letter-spacing: 2px; /* Spacing between letters for clarity */
+    position: relative; /* For positioning the animation */
+    background: linear-gradient(90deg, #007bff, #00c6ff); /* Gradient background */
+    -webkit-background-clip: text; /* Clipping gradient to text */
+    -webkit-text-fill-color: transparent; /* Make text color transparent for gradient */
+    display: inline-block; /* Inline block for animation effect */
+    padding: 5px 0; /* Padding to give space for the animation effect */
+    transition: background 0.5s ease; /* Smooth transition for hover effect */
 }
+
+/* Animation effect for the heading */
+h1::before {
+    content: ''; /* Empty content for animation */
+    position: absolute; /* Absolute positioning */
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px; /* Thickness of the underline */
+    background: #007bff; /* Color of the underline */
+    transform: scaleX(0); /* Initial scale for animation */
+    transform-origin: bottom right; /* Origin of the scaling effect */
+    transition: transform 0.5s ease; /* Smooth transition for scaling effect */
+}
+
+/* Hover effect for the heading */
+h1:hover::before {
+    transform: scaleX(1); /* Scale the underline to full width on hover */
+    transform-origin: bottom left; /* Change origin to left for hover effect */
+}
+
+/* Optional glow effect */
+h1::after {
+    content: ''; /* Empty content for glow effect */
+    position: absolute; /* Absolute positioning */
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 123, 255, 0.2); /* Soft glow color */
+    filter: blur(10px); /* Blur effect for glow */
+    z-index: -1; /* Place behind the text */
+    transition: opacity 0.5s ease; /* Smooth transition for glow effect */
+    opacity: 0; /* Start with hidden glow */
+}
+
+h1:hover::after {
+    opacity: 1; /* Show the glow on hover */
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 32px; /* Adjust font size for tablets and larger phones */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 24px; /* Adjust font size for smaller phones */
+        letter-spacing: 1px; /* Reduce letter spacing for smaller screens */
+    }
+}
+/************************************   HEADING ENDS    ***********************************/
 
 input[type="file"], input[type="text"] {
     font-size: 10px; /* Smaller font size */
@@ -38,33 +106,7 @@ th input {
     font-size: 10px; /* Smaller font size */
 }
 
-th#col-id, th#col-result, th#col-action {
-    width: 80px; /* Fixed width for shorter fields */
-}
 
-th#col-name {
-    width: 640px; /* Double the previous width for longer fields */
-}
-
-th#col-date {
-    width: 480px; /* Double the previous width for date field */
-}
-
-th#col-school {
-    width: 160px; /* Default width for school field */
-}
-
-th#col-month {
-    width: 120px; /* Default width for month field */
-}
-
-th#col-fee, th#col-fee-paid {
-    width: 200px; /* Default width for fee-related fields */
-}
-
-th#col-timestamp {
-    width: 450px; /* Double the previous width for timestamp */
-}
 
 th .form-control-sm {
     font-size: 10px; /* Smaller font size for input fields */
@@ -123,24 +165,78 @@ table tbody tr:hover {
 .col-month {
     /* Additional styles for Month column */
 }
+th#col-id, th#col-result, th#col-action {
+    width: 70px; /* Fixed width for shorter fields */
+}
 
-.col-fee-paid {
+th#col-name {
+    width: 640px; /* Double the previous width for longer fields */
+}
+
+th#col-date {
+    width: 300px; /* Double the previous width for date field */
+}
+
+th#col-school {
+    width: 160px; /* Default width for school field */
+}
+
+th#col-month {
+    width: 140px; /* Default width for month field */
+}
+
+th#col-timestamp {
+    width: 500px; /* Double the previous width for timestamp */
+}
+
+th#col-date  {
+    width: 310px; /* Default width for fee-related fields */
+}
+
+
+
+th#col-fee  {
+    width: 120px; /* Default width for fee-related fields */
+}
+
+th#col-fee-paid  {
+    width: 260px; /* Default width for fee-related fields */
+}
+
+th#col-achieved  {
+    width: 100px; /* Default width for fee-related fields */
+}
+
+th#col-deleted  {
+    width: 150px; /* Default width for fee-related fields */
+}
+
+th#col-reactivated  {
+    width: 80px; /* Default width for fee-related fields */
+}
+
+th#col-no-fee  {
+    width: 250px; /* Default width for fee-related fields */
+}
+
+
+/*.col-fee-paid {
     /* Additional styles for Fee Paid column */
 }
 
-.col-achieved {
+/*.col-achieved {
     /* Additional styles for Achieved column */
 }
 
-.col-deleted {
+/*.col-deleted {
     /* Additional styles for Deleted column */
 }
 
-.col-no-fee {
+/*.col-no-fee {
     /* Additional styles for No Fee column */
 }
 
-.col-reactivated {
+/*.col-reactivated {
     /* Additional styles for Reactivated column */
 }
 
