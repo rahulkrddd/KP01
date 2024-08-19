@@ -1,0 +1,149 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 10px; /* Smaller font size */
+    margin: 20px;
+}
+
+h1 {
+    font-size: 20px; /* Header font size */
+    margin-bottom: 20px;
+}
+
+input[type="file"], input[type="text"] {
+    font-size: 10px; /* Smaller font size */
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 0; /* Removed padding */
+    margin: 0; /* Removed margin */
+    border: 1px solid #ddd;
+    text-align: center; /* Center text */
+}
+
+th {
+    background-color: #007bff; /* Light gray background */
+    font-size: 10px; /* Smaller font size */
+    position: relative;
+    font-weight: bold;
+}
+
+th input {
+    width: 100%;
+    font-size: 10px; /* Smaller font size */
+}
+
+th#col-id, th#col-result, th#col-action {
+    width: 80px; /* Fixed width for shorter fields */
+}
+
+th#col-name {
+    width: 640px; /* Double the previous width for longer fields */
+}
+
+th#col-date {
+    width: 480px; /* Double the previous width for date field */
+}
+
+th#col-school {
+    width: 160px; /* Default width for school field */
+}
+
+th#col-month {
+    width: 120px; /* Default width for month field */
+}
+
+th#col-fee, th#col-fee-paid {
+    width: 200px; /* Default width for fee-related fields */
+}
+
+th#col-timestamp {
+    width: 450px; /* Double the previous width for timestamp */
+}
+
+th .form-control-sm {
+    font-size: 10px; /* Smaller font size for input fields */
+}
+
+input[type="text"]::placeholder {
+    font-size: 10px; /* Smaller font size for placeholders */
+}
+
+table tbody tr {
+    background-color: #ffffff; /* White background for rows */
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Light gray background for even rows */
+}
+
+table tbody tr:hover {
+    background-color: #e9ecef; /* Slightly darker background on hover */
+}
+
+
+/* Specific styles for columns */
+.col-id {
+    /* Additional styles for ID column */
+}
+
+.col-result {
+    /* Additional styles for Result column */
+}
+
+.col-action {
+    /* Additional styles for Action column */
+}
+
+.col-name {
+    /* Additional styles for Name column */
+}
+
+.col-class {
+    /* Additional styles for Class column */
+}
+
+.col-school {
+    /* Additional styles for School column */
+}
+
+.col-date {
+    /* Additional styles for Date column */
+}
+
+.col-fee {
+    /* Additional styles for Fee column */
+}
+
+.col-month {
+    /* Additional styles for Month column */
+}
+
+.col-fee-paid {
+    /* Additional styles for Fee Paid column */
+}
+
+.col-achieved {
+    /* Additional styles for Achieved column */
+}
+
+.col-deleted {
+    /* Additional styles for Deleted column */
+}
+
+.col-no-fee {
+    /* Additional styles for No Fee column */
+}
+
+.col-reactivated {
+    /* Additional styles for Reactivated column */
+}
+
+.col-timestamp {
+    /* Additional styles for Timestamp column */
+}
