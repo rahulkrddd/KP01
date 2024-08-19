@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History Data</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="HISTORY.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">History Data</h1>
+        <div class="text-right mb-3">
+            <button id="reset-filters" class="btn btn-secondary btn-sm">Reset Filters</button>
+            <button id="export-csv" class="btn btn-primary btn-sm">Export CSV</button>
+        </div>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th id="col-id">Student ID<input type="text" id="search-id" class="form-control form-control-sm" placeholder="Search Student ID" title="Search by Student ID"></th>
+                    <th id="col-result">Result<input type="text" id="search-result" class="form-control form-control-sm" placeholder="Search Result" title="Search by Result"></th>
+                    <th id="col-action">Action<input type="text" id="search-action" class="form-control form-control-sm" placeholder="Search Action" title="Search by Action"></th>
+                    <th id="col-name">Student Name<input type="text" id="search-name" class="form-control form-control-sm" placeholder="Search Name" title="Search by Name"></th>
+                    <th id="col-class">Class<input type="text" id="search-class" class="form-control form-control-sm" placeholder="Search Class" title="Search by Class"></th>
+                    <th id="col-school">School<input type="text" id="search-school" class="form-control form-control-sm" placeholder="Search School" title="Search by School"></th>
+                    <th id="col-date">Enroll Date<input type="text" id="search-date" class="form-control form-control-sm" placeholder="Search Enroll Date" title="Search by Enroll Date"></th>
+                    <th id="col-fee">Fee<input type="text" id="search-fee" class="form-control form-control-sm" placeholder="Search Fee" title="Search by Fee"></th>
+                    <th id="col-month">Month<input type="text" id="search-month" class="form-control form-control-sm" placeholder="Search Month" title="Search by Month"></th>
+                    <th id="col-fee-paid">Fee Paid<input type="text" id="search-fee-paid" class="form-control form-control-sm" placeholder="Search Fee Paid" title="Search by Fee Paid"></th>
+                    <th id="col-achieved">Achieved<input type="text" id="search-achieved" class="form-control form-control-sm" placeholder="Search Achieved" title="Search by Achieved"></th>
+                    <th id="col-deleted">Deleted<input type="text" id="search-deleted" class="form-control form-control-sm" placeholder="Search Deleted" title="Search by Deleted"></th>
+                    <th id="col-no-fee">No Fee<input type="text" id="search-no-fee" class="form-control form-control-sm" placeholder="Search No Fee" title="Search by No Fee"></th>
+                    <th id="col-reactivated">Reactivated<input type="text" id="search-reactivated" class="form-control form-control-sm" placeholder="Search Reactivated" title="Search by Reactivated"></th>
+                    <th id="col-timestamp">Timestamp<input type="text" id="search-timestamp" class="form-control form-control-sm" placeholder="Search Timestamp" title="Search by Timestamp"></th>
+                </tr>
+            </thead>
+            <tbody id="data-body">
+                <!-- Data rows will be populated here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="HISTORY.js"></script>
+</body>
+</html>
