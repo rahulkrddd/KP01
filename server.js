@@ -980,7 +980,42 @@ const writeExitLog = async (studentInfo, studentData, action, deletePermanently,
 //****************************************  TEST HISRY REPORT START ************************************************//
 // Serve the HTML file  //historyFilePath
 
+// Endpoint to fetch the history.txt file from GitHub
+// Endpoint to fetch the history.txt file from GitHub
+app.get('/data', async (req, res) => {
+    try {
+        const response = await axios.get(`${GITHUB_API_BASE}/repos/${GITHUB_REPO}/contents/${historyFilePath}`, {
+            headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
+        });
 
+        // Decode base64 content
+        const fileContent = Buffer.from(response.data.content, 'base64').toString('utf8');
+
+        // Process the text data
+        const lines = fileContent.split('\n').map(line => [
+            line.slice(0, 8).trim(),
+            line.slice(9, 13).trim(),
+            line.slice(14, 21).trim(),
+            line.slice(22, 40).trim(),
+            line.slice(41, 43).trim(),
+            line.slice(44, 54).trim(),
+            line.slice(55, 65).trim(),
+            line.slice(66, 71).trim(),
+            line.slice(72, 82).trim(),
+            line.slice(83, 84).trim(),
+            line.slice(85, 86).trim(),
+            line.slice(87, 88).trim(),
+            line.slice(89, 90).trim(),
+            line.slice(91, 92).trim(),
+            line.slice(93, 113).trim()
+        ]);
+
+        res.json(lines);
+    } catch (error) {
+        console.error('Error fetching data:', error.message);
+        res.status(500).send('Error fetching data');
+    }
+});
 
 //****************************************   TEST HISRY REPORT END  ************************************************//
 
