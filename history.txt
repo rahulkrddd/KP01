@@ -5,3 +5,4 @@
 07KC4931 FAIL PAYMENT Rahul              07 KCPS       2024-04-19  1000 April      Y N X Y X 2024-08-19 17:41:19
 03KC4418 PASS PAYMENT Priyanka           03 KCPS       2024-04-19  1000 April      Y N X Y X 2024-08-19 17:41:32
 03KC4418 PASS PAYMENT Priyanka           03 KCPS       2024-04-19  1000 May        Y N X N X 2024-08-19 17:41:39
+03KC4418 PASS ARCHIVE Priyanka           03 KCPS       2024-04-19  1000 June       N Y N X X 2024-08-19 17:41:49
