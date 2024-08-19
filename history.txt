@@ -11,3 +11,4 @@
 03KC4418 PASS DELETE  Priyanka           03 KCPS       2024-04-19  1000 May        Y - Y X X 2024-08-19 21:13:47
 01OT9240 PASS ENROLL  Ram Bahadur        01 Others     2024-04-02  1000 April      Y N X X X 2024-08-19 22:08:09
 01OT9240 FAIL PAYMENT Ram Bahadur        01 Others     2024-05-02  1000 April      Y N X N X 2024-08-19 22:10:16
+01OT9240 PASS PAYMENT Ram Bahadur        01 Others     2024-04-02  1000 May        Y N X N X 2024-08-19 22:11:42
