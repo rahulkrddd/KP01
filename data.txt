@@ -690,7 +690,7 @@
     "fee": "1002",
     "month": "April",
     "payment": "NA",
-    "archiveInd": "Yes"
+    "archiveInd": "No"
   },
   {
     "id": "07KC4931",
