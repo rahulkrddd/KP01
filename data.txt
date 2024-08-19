@@ -700,7 +700,7 @@
     "date": "2024-04-19",
     "fee": "1002",
     "month": "May",
-    "payment": "Yes",
+    "payment": "NA",
     "archiveInd": "No"
   },
   {
