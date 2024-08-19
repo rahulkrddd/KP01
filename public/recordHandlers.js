@@ -209,15 +209,20 @@ document.getElementById(`${containerId}Form`).addEventListener('submit', async f
         return; // Exit the function if the user cancels the action
     }
 
-    if (containerId === 'paymentResult' && record.payment === 'Yes') {
-        showAlert('Payment already received', 'error'); // Changed 'warning' to 'error'
-        return; // Exit the function to avoid making unnecessary API calls
-    }
+//    if (containerId === 'paymentResult' && record.payment === 'Yes') {
+//        showAlert('Payment already received', 'error'); // Changed 'warning' to 'error'
+//        return; // Exit the function to avoid making unnecessary API calls
+//    }
 
-    if (containerId === 'paymentResult' && record.payment === 'NA') {
-        showAlert('Fee not required for this month, to change go to update page', 'error'); // Changed 'warning' to 'error'
-        return; // Exit the function to avoid making unnecessary API calls
-    }
+//    if (containerId === 'paymentResult' && record.payment === 'NA') {
+//        showAlert('Fee not required for this month, to change go to update page', 'error'); // Changed 'warning' to 'error'
+//        return; // Exit the function to avoid making unnecessary API calls
+//    }
+
+// Assuming record is your object
+		const oldpaymentvalue = record.payment === 'Yes' ? 'Yes' : 'NA';   // Move payment value to oldpaymentvalue
+
+
 
     const updatedRecord = {
         id: document.getElementById(`${containerId}Id`).value,
@@ -230,14 +235,19 @@ document.getElementById(`${containerId}Form`).addEventListener('submit', async f
         payment: containerId === 'paymentResult' && paymentValue === 'No' ? 'Yes' : paymentValue,
         reactivatestudent: reactivatestudent, // Correctly include checkbox value
         deletepermanently: deletepermanently, // Correctly include checkbox value
-        feenotrequired: feenotrequired 		  // Correctly include checkbox value
+        feenotrequired: feenotrequired, 		  // Correctly include checkbox value
+        oldpaymentvalue: oldpaymentvalue 	  // This will help to determine the existing payment values in failed condition
     };
 
     let endpoint = '';
     if (containerId === 'updateResult') {
         endpoint = '/update';
-    } else if (containerId === 'paymentResult') {
+    } else if (containerId === 'paymentResult' && record.payment === 'No') {
         endpoint = '/payment';
+    } else if (containerId === 'paymentResult' && record.payment === 'Yes') {
+        endpoint = '/paymentfail';
+    } else if (containerId === 'paymentResult' && record.payment === 'NA') {
+        endpoint = '/paymentfail';
     } else if (containerId === 'exitResult') {
         endpoint = '/exit';
     }
@@ -256,12 +266,16 @@ document.getElementById(`${containerId}Form`).addEventListener('submit', async f
         // Close the form
         container.innerHTML = ''; // Close the form
 
-        // Display success or error message
-        if (result.message === 'This student is already inactive.') {
-            showAlert(result.message, 'error'); // Show the message
-        } else {
-            showAlert(result.message, 'success'); // Display success message for other cases
-        }
+		// Display success or error message
+		const successKeywords = ['success', 'successful', 'successfully'];
+		const isSuccess = successKeywords.some(keyword => result.message.toLowerCase().includes(keyword.toLowerCase()));
+		
+		if (isSuccess) {
+		    showAlert(result.message, 'success'); // Display success message
+		} else {
+		    showAlert(result.message, 'error'); // Show error message
+		}
+		
 
     } catch (error) {
         console.error('Error:', error);
