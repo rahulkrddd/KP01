@@ -249,14 +249,22 @@ app.post('/enroll', async (req, res) => {
     try {
         const students = await readDataFile();
         const enrollmentData = req.body;
+
+        // Add mobile, emailid and address processing
         enrollmentData.name = formatName(enrollmentData.name);
+        enrollmentData.mobile = enrollmentData.mobile;  // Assuming validation is done on client-side
+        enrollmentData.emailid = enrollmentData.emailid;  // Assuming validation is done on client-side
+        enrollmentData.address = enrollmentData.address;  // Assuming validation is done on client-side
 
         const startMonth = enrollmentData.month;
 
         const existingStudent = students.find(student =>
             student.name === enrollmentData.name &&
             student.studentClass === enrollmentData.studentClass &&
-            student.school === enrollmentData.school
+            student.school === enrollmentData.school &&
+            student.mobile === enrollmentData.mobile &&  // Add mobile for existing student check
+            student.emailid === enrollmentData.emailid&&   // Add emailid for existing student check
+            student.address === enrollmentData.address   // Add address for existing student check
         );
 
         if (existingStudent) {
@@ -271,7 +279,12 @@ app.post('/enroll', async (req, res) => {
 
         const uniqueId = `${classCode}${schoolCode}${timestampCode}`;
 
-        const newStudent = { id: uniqueId, ...enrollmentData, archiveInd: 'No' };
+        // Include mobile, emailid & address in the new student object
+        const newStudent = {
+            id: uniqueId,
+            ...enrollmentData,
+            archiveInd: 'No'
+        };
         students.push(newStudent);
 
         const months = getMonthsUntilMarch(startMonth);
@@ -293,6 +306,7 @@ app.post('/enroll', async (req, res) => {
         res.status(500).json({ message: 'Oops.. Error occurred during enrollment.' });
     }
 });
+
 //**********************************************ENROLL END   *****************************************************//
 
 //**********************************************SEARCH START *****************************************************//
