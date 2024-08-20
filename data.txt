@@ -690,7 +690,7 @@
     "date": "2024-07-09",
     "fee": "1000",
     "month": "July",
-    "payment": "No",
+    "payment": "NA",
     "archiveInd": "No",
     "mobile": "8899007788",
     "emailid": "Rahul.gupta.700@gmail.com",
