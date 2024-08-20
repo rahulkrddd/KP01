@@ -50,3 +50,4 @@
 12KC4242 PASS UPDATE  Priyanka Guptaaab  12 KCPS       2024-08-20  1000 August     N N X N N 2024-08-20 15:17:56
 12KC4242 PASS UPDATE  Priyanka Guptaaa   12 KCPS       2024-08-20  1000 August     N N X N N 2024-08-20 15:18:25
 12KC4242 PASS DELETE  Priyanka Guptaaa   12 KCPS       2024-08-20  1000 August     N - Y X X 2024-08-20 19:16:46
+10KC4319 PASS DELETE  Raju Kela          10 KCPS       2024-04-01  1000 April      N - Y X X 2024-08-20 19:16:59
