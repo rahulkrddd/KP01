@@ -704,7 +704,7 @@
     "date": "2024-07-09",
     "fee": "1000",
     "month": "August",
-    "payment": "No",
+    "payment": "Yes",
     "archiveInd": "No",
     "mobile": "8899007788",
     "emailid": "Rahul.gupta.700@gmail.com",
