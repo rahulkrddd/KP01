@@ -15,3 +15,4 @@
 01OT9240 PASS PAYMENT Ram Bahadur        01 Others     2024-04-02  1000 June       Y N X N X 2024-08-19 22:11:55
 01OT9240 PASS DELETE  Ram Bahadur        01 Others     2024-04-02  1000 August     N - Y X X 2024-08-20 10:05:31
 10KC4319 PASS ENROLL  Raju Kela          10 KCPS       2024-04-01  1000 April      N N X X X 2024-08-20 11:34:55
+08KC1422 PASS ENROLL  Rahul Mahavar      08 KCPS       2024-08-20  1000 August     N N X X X 2024-08-20 12:09:02
