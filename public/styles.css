@@ -799,3 +799,28 @@ body {
         font-size: 0.8em;
     }
 }
+
+
+.btnSelect {
+    background-color: #007bff; /* Button color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 8px 16px; /* Padding inside the button */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Change cursor on hover */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.btnSelect:hover {
+    background-color: #0056b3; /* Darker color on hover */
+}
+
+.btnSelect:active {
+    background-color: #004085; /* Even darker color when button is clicked */
+}
+
+.btnSelect:focus {
+    outline: none; /* Remove default outline on focus */
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Add custom focus outline */
+}
