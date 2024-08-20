@@ -690,7 +690,7 @@
     "date": "2024-08-20",
     "fee": "1000",
     "month": "August",
-    "payment": "No",
+    "payment": "NA",
     "mobile": "8888888888",
     "emailid": "test2@gmail.com",
     "address": "KURUD chhattisgarh",
