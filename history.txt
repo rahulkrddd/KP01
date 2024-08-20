@@ -26,3 +26,4 @@
 10KC1092 PASS DELETE  Rahul Guptah       10 KCPS       2024-08-20  1000 August     N - Y X X 2024-08-20 12:28:22
 08KC1422 PASS DELETE  Rahul Mahavar      08 KCPS       2024-08-20  1000 August     N - Y X X 2024-08-20 12:28:34
 10KC0312 PASS ENROLL  Rahul Guptah       10 KCPS       2024-08-20  1000 August     N N X X X 2024-08-20 13:12:21
+10KC0312 PASS DELETE  Rahul Guptah       10 KCPS       2024-08-20  1000 August     N - Y X X 2024-08-20 14:50:33
