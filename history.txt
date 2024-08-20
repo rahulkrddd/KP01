@@ -79,3 +79,4 @@
 05KC3816 PASS UPDATE  Rahul Gupta        05 KCPS       2024-06-11  1000 June       Y N X N N 2024-08-20 22:12:27
 01KC2172 PASS ENROLL  Rahul              01 KCPS       2024-08-20  1000 August     N N X X X 2024-08-20 22:29:03
 10KC1505 PASS ENROLL  Rahulx             10 KCPS       2024-08-20  1000 August     N N X X X 2024-08-20 22:29:22
+05KC3816 PASS DELETE  Rahul Gupta        05 KCPS       2024-06-11  1000 August     N - Y X X 2024-08-20 22:36:22
