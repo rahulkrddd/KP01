@@ -121,8 +121,7 @@ function editRecord(containerId, record) {
     <input type="number" class="form-control" id="${containerId}Mobile" value="${record.mobile || ''}" 
         ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : ''} 
         min="6000000000" max="9999999999" 
-        title="Please validate the entered mobile number." 
-        required>
+        title="Please validate the entered mobile number.">
 </div>
 
 <div class="form-group" id="${containerId}AdditionalFields" style="display: none;">
@@ -130,17 +129,17 @@ function editRecord(containerId, record) {
     <input type="email" class="form-control" id="${containerId}Email" value="${record.emailid || ''}" 
         ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : ''}
         pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|org|net|edu|info)" 
-        title="Email must be a valid format (e.g., user@example.com)" 
-        required>
+        title="Email must be a valid format (e.g., user@example.com)">
 </div>
+
 <div class="form-group" id="${containerId}AdditionalFields" style="display: none;">
     <label for="${containerId}Address">Address</label>
     <input type="text" class="form-control" id="${containerId}Address" value="${record.address || ''}" 
         ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : ''} 
         maxlength="100" 
-        title="Maximum 100 characters allowed." 
-        required>
+        title="Maximum 100 characters allowed.">
 </div>
+
 
 
 <button type="button" class="btn btn-secondary" id="${containerId}ToggleFields">Additional Fields</button>
@@ -172,34 +171,38 @@ document.addEventListener('DOMContentLoaded', function() {
     const addressInput = document.getElementById('${containerId}Address');
 
     function validateMobile(mobile) {
-        // Convert to a string and check the length and starting digit
+        if (mobile.trim() === '') return true; // Skip validation if mobile is empty
         const mobileStr = mobile.toString();
         const regex = /^[6789][0-9]{9}$/;
         return regex.test(mobileStr);
     }
 
     function validateEmail(email) {
+        if (email.trim() === '') return true; // Skip validation if email is empty
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|org|net|edu|info)$/;
         return regex.test(email);
     }
 
     function validateAddress(address) {
+        if (address.trim() === '') return true; // Skip validation if address is empty
         return address.length <= 100;
     }
 
     // Example validation check on form submission or field change
     document.getElementById('yourFormId').addEventListener('submit', function(event) {
         const mobile = mobileInput.value;
+        const email = emailInput.value;
+        const address = addressInput.value;
 
         if (!validateMobile(mobile)) {
             alert('Invalid mobile number. Must be 10 digits starting with 6, 7, 8, or 9.');
             event.preventDefault();
         }
-        if (!validateEmail(emailInput.value)) {
+        if (!validateEmail(email)) {
             alert('Invalid email address. Must be in the format user@example.com.');
             event.preventDefault();
         }
-        if (!validateAddress(addressInput.value)) {
+        if (!validateAddress(address)) {
             alert('Address must be no longer than 100 characters.');
             event.preventDefault();
         }
