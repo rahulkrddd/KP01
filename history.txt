@@ -56,3 +56,4 @@
 12KC0959 PASS UPDATE  Rahul              12 Atmanand   2024-08-20  1000 August     N N X N N 2024-08-20 20:27:34
 12AT0959 PASS UPDATE  Rahul              12 Atmanand   2024-08-20  1000 August     Y N X N N 2024-08-20 20:28:02
 12AT0959 FAIL PAYMENT Rahul              12 Atmanand   2024-08-20  1000 August     Y N X N X 2024-08-20 20:43:14
+12AT0959 PASS UPDATE  Rahul              12 Atmanand   2024-08-20  1000 August     Y N X N N 2024-08-20 20:43:30
