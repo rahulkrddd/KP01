@@ -42,53 +42,105 @@ function displaySearchResults(containerId, results) {
         table.classList.add('table', 'table-striped');
         table.style.width = '100%'; // Ensure the table takes full width
 
+        // Define the desired columns
+        const desiredColumns = [
+            'id',
+            'name',
+            'studentClass',
+            'school',
+            'date',
+            'fee',
+            'month',
+            'payment',
+            'archiveInd'
+        ];
+//table header decoration  - starts 
         // Create the table header
         const thead = document.createElement('thead');
         const headerRow = document.createElement('tr');
-        ['Student ID', 'Name', 'Class', 'School', 'Enroll Date', 'Fee', 'Month', 'Payment', 'Status', 'Action'].forEach(text => {
+        desiredColumns.forEach(column => {
             const th = document.createElement('th');
-            th.textContent = text;
+            switch (column) {
+                case 'id':
+                    th.textContent = 'Student ID';
+                    break;
+                case 'name':
+                    th.textContent = 'Name';
+                    break;
+                case 'studentClass':
+                    th.textContent = 'Class';
+                    break;
+                case 'school':
+                    th.textContent = 'School';
+                    break;
+                case 'date':
+                    th.textContent = 'Enroll Date';
+                    break;
+                case 'fee':
+                    th.textContent = 'Fee';
+                    break;
+                case 'month':
+                    th.textContent = 'Month';
+                    break;
+                case 'payment':
+                    th.textContent = 'Payment';
+                    break;
+                case 'archiveInd':
+                    th.textContent = 'Status';
+                    break;
+            }
             th.style.textAlign = 'center'; // Center justify header text
-            th.style.padding = '8px'; // Add some padding
+            th.style.padding = '0px'; // Add some padding
             headerRow.appendChild(th);
         });
         thead.appendChild(headerRow);
         table.appendChild(thead);
-
+//table header decoration  - ends 
         // Create the table body
         const tbody = document.createElement('tbody');
         filteredResults.forEach(result => {
             const row = document.createElement('tr');
 
-            Object.entries(result).forEach(([key, value]) => {
+            desiredColumns.forEach(column => {
                 const td = document.createElement('td');
                 td.style.padding = '8px'; // Add some padding
                 td.style.textAlign = 'center'; // Center justify text
 
-				if (key === 'payment') {
-				    td.textContent = value; // Default content for desktop
-				    
-				    // Set background color based on payment value
-				    if (value === 'Yes') {
-				        td.style.backgroundColor = 'lightgreen';
-				    } else if (value === 'No') {
-				        td.style.backgroundColor = 'lightcoral';
-				    } else {
-				        td.style.backgroundColor = '#EBEBE4';
-				    }
-				
-				    td.classList.add('mobile-payment');
-				    td.dataset.paymentValue = value; // Add a custom data attribute
-                } else if (key === 'archiveInd') {
-                    td.textContent = value === 'Yes' ? 'Inactive' : 'Active';
-                    td.style.backgroundColor = value === 'Yes' ? 'lightcoral' : 'lightgreen';
-                } else {
-                    td.textContent = value;
-                }
+                if (result.hasOwnProperty(column)) {
+                    const value = result[column];
+					if (column === 'id') {
+					    // Set the button text to the actual Student ID
+					    const button = document.createElement('button');
+					    button.textContent = result.id;  // Set the button text to the student ID
+					    button.classList.add('btn', 'btn-info');
+						button.style.transform = 'scale(1.0)';  // Scale the button by 90%
+					    button.addEventListener('click', () => showAdditionalDetails(result));
+					    td.appendChild(button);
+					    td.style.cursor = 'pointer'; // Change cursor to pointer for button
 
-                // Add a class to the "month" and "payment" fields for mobile-specific styling
-                if (key === 'month') {
-                    td.classList.add('mobile-month');
+                    } else if (column === 'payment') {
+                        td.textContent = value; // Default content for desktop
+                        // Set background color based on payment value
+                        if (value === 'Yes') {
+                            td.style.backgroundColor = 'lightgreen';
+                        } else if (value === 'No') {
+                            td.style.backgroundColor = 'lightcoral';
+                        } else {
+                            td.style.backgroundColor = '#EBEBE4';
+                        }
+                        td.classList.add('mobile-payment');
+                        td.dataset.paymentValue = value; // Add a custom data attribute
+                    } else if (column === 'archiveInd') {
+                        td.textContent = value === 'Yes' ? 'Inactive' : 'Active';
+                        td.style.backgroundColor = value === 'Yes' ? 'lightcoral' : 'lightgreen';
+                    } else {
+                        td.textContent = value;
+                    }
+
+                    // Add a class to the "month" and "payment" fields for mobile-specific styling
+                    if (column === 'month') {
+                        td.classList.add('mobile-month');
+                    }
                 }
 
                 row.appendChild(td);
@@ -185,12 +237,95 @@ function displaySearchResults(containerId, results) {
         .summary-table {
             border: 2px solid black; // Add dark border to the table
         }
+        .popup-additional {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        .popup-additional.show {
+            display: block; /* Show when the class is added */
+        }
+        .popup-additional .popup-header {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .popup-additional .popup-content {
+            margin-bottom: 10px;
+        }
+        .popup-additional .popup-footer {
+            text-align: right;
+        }
+        .popup-additional .popup-close {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
     `;
     document.head.appendChild(style);
 }
 
+// Function to show additional details in a popup
+// Function to show additional details in a popup
+function showAdditionalDetails(student) {
+    const popup = document.createElement('div');
+    popup.id = 'popup-additional-' + student.id;
+    popup.classList.add('popup-additional');
+
+    const header = document.createElement('div');
+    header.classList.add('popup-header');
+    header.innerHTML = `
+        <h2>Additional Details for Student ID: ${student.id}</h2>
+    `;
+    popup.appendChild(header);
+
+    const content = document.createElement('div');
+    content.classList.add('popup-content');
+    content.innerHTML = `
+        <p><strong>Mobile:</strong> ${student.mobile}</p>
+        <p><strong>Email ID:</strong> ${student.emailid}</p>
+        <p><strong>Address:</strong> ${student.address}</p>
+    `;
+    popup.appendChild(content);
+
+    const footer = document.createElement('div');
+    footer.classList.add('popup-footer');
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'Close';
+    closeButton.classList.add('popup-close');
+    closeButton.addEventListener('click', () => {
+        popup.classList.remove('show');
+        overlay.classList.remove('show');
+        setTimeout(() => {
+            popup.remove();
+            overlay.remove();
+        }, 300); // Remove after animation
+    });
+    footer.appendChild(closeButton);
+    popup.appendChild(footer);
+
+    // Create a blur background
+    const overlay = document.createElement('div');
+    overlay.classList.add('popup-overlay');
+    document.body.appendChild(overlay);
+
+    document.body.appendChild(popup);
+    setTimeout(() => {
+        popup.classList.add('show');
+        overlay.classList.add('show');
+    }, 10); // Allow time for overlay to be added before showing
+}
 
 
+/*********************************************************************************************************************************************************/
 function createButtonContainer(results, containerId) {
     // Create a container for buttons
     const buttonContainer = document.createElement('div');
