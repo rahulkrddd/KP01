@@ -432,7 +432,11 @@ app.get('/search', async (req, res) => {
 
 app.post('/update', async (req, res) => {
     try {
-        const { id, name, studentClass, school, date, month, fee, payment, reactivatestudent } = req.body;
+        const { id, name, studentClass, school, date, month, fee, payment, reactivatestudent, mobile, emailid, address } = req.body;
+console.log('Mobile:', mobile);
+console.log('Email ID:', emailid);
+console.log('Address:', address);
+
 
 		let updnewvarResult = '----'
 		let updnewvarArchiveInd = '-'
@@ -457,7 +461,7 @@ app.post('/update', async (req, res) => {
 		    updnewvarReactivateIND: updnewvarReactivateIND
 		};		
 		
-		console.log('studentInfo.payment:', studentInfo.payment);
+
 		if (studentInfo.payment === 'NA') {
 		    studentInfo.updnewvarfeenotrequiredInd = 'Y';
 		} else {
@@ -509,6 +513,15 @@ app.post('/update', async (req, res) => {
                     // Update the student ID's 3rd and 4th characters with the school abbreviation
                     const schoolAbbr = getSchoolAbbreviation(school);
                     student.id = `${student.id.slice(0, 2)}${schoolAbbr}${student.id.slice(4)}`;
+                }
+                if (mobile !== undefined) {
+                    student.mobile = mobile;
+                }
+                if (emailid !== undefined) {
+                    student.emailid = emailid;
+                }
+                if (address !== undefined) {
+                    student.address = address;
                 }
 				
                 if (month !== undefined) {
@@ -597,7 +610,7 @@ async function writeToGitHubHistoryFile(studentInfo, updnewvarResult, updnewvarF
     const formattedDeletepermanentlyInd = studentInfo.updnewvarDeletepermanentlyInd.padEnd(1, ' ').substring(0, 1);
     const formattedfeenotrequiredInd = studentInfo.updnewvarfeenotrequiredInd.padEnd(1, ' ').substring(0, 1);
     const formattedReactivateIND = studentInfo.updnewvarReactivateIND.padEnd(1, ' ').substring(0, 1);
-console.log('studentInfo.payment3:', studentInfo.payment);
+
 let formattedPayment;
 
 if (studentInfo.payment === "Yes") {
