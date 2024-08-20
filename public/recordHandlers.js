@@ -116,6 +116,21 @@ function editRecord(containerId, record) {
             </div>			
             ` : ''}
 			
+<div class="form-group" id="${containerId}AdditionalFields" style="display: none;">
+    <label for="${containerId}Mobile">Mobile</label>
+    <input type="text" class="form-control" id="${containerId}Mobile" value="${record.mobile || ''}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
+</div>
+<div class="form-group" id="${containerId}AdditionalFields" style="display: none;">
+    <label for="${containerId}Email">Email ID</label>
+    <input type="email" class="form-control" id="${containerId}Email" value="${record.emailid || ''}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
+</div>
+<div class="form-group" id="${containerId}AdditionalFields" style="display: none;">
+    <label for="${containerId}Address">Address</label>
+    <input type="text" class="form-control" id="${containerId}Address" value="${record.address || ''}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
+</div>
+<button type="button" class="btn btn-secondary" id="${containerId}ToggleFields">Additional Fields</button>
+
+			
 			
 			
             <button type="submit" class="${buttonClass}">${buttonLabel}</button>
@@ -123,12 +138,19 @@ function editRecord(containerId, record) {
     `;
 
     container.innerHTML = fields;
-
+//*************************************************************************************************************************//
 // STYLE ON ENROLL DATE FIELD PART-01/02, START //
 // Initialize tooltips	
 $(document).ready(function(){
     $('[title]').tooltip();
 });
+document.getElementById(`${containerId}ToggleFields`).addEventListener('click', function() {
+    const additionalFields = document.querySelectorAll(`#${containerId}AdditionalFields`);
+    additionalFields.forEach(field => {
+        field.style.display = field.style.display === 'none' ? 'block' : 'none';
+    });
+});
+
 // STYLE ON ENROLL DATE FIELD PART-01/02, END   //
 
 	
@@ -235,8 +257,11 @@ document.getElementById(`${containerId}Form`).addEventListener('submit', async f
         payment: containerId === 'paymentResult' && paymentValue === 'No' ? 'Yes' : paymentValue,
         reactivatestudent: reactivatestudent, // Correctly include checkbox value
         deletepermanently: deletepermanently, // Correctly include checkbox value
-        feenotrequired: feenotrequired, 		  // Correctly include checkbox value
-        oldpaymentvalue: oldpaymentvalue 	  // This will help to determine the existing payment values in failed condition
+        feenotrequired: feenotrequired,       // Correctly include checkbox value
+        oldpaymentvalue: oldpaymentvalue,	  // This will help to determine the existing payment values in failed condition
+		mobile: document.getElementById(`${containerId}Mobile`).value,
+		emailid: document.getElementById(`${containerId}Email`).value,
+		address: document.getElementById(`${containerId}Address`).value
     };
 
     let endpoint = '';
@@ -287,7 +312,7 @@ document.getElementById(`${containerId}Form`).addEventListener('submit', async f
 
 
 
-
+/***************************************************************************************************************************************/
 // STYLE ON ENROLL DATE FIELD PART-02/02, STARTS  //
     // Add CSS styles dynamically
     const style = document.createElement('style');
