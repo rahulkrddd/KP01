@@ -54,3 +54,4 @@
 12KC5797 PASS DELETE  Priyanka Guptaaa   12 KCPS       2024-08-20  1000 August     N - Y X X 2024-08-20 19:17:14
 12KC0959 PASS UPDATE  Rahul              12 KCPS       2024-08-20  1000 August     N N X N N 2024-08-20 20:26:58
 12KC0959 PASS UPDATE  Rahul              12 Atmanand   2024-08-20  1000 August     N N X N N 2024-08-20 20:27:34
+12AT0959 PASS UPDATE  Rahul              12 Atmanand   2024-08-20  1000 August     Y N X N N 2024-08-20 20:28:02
