@@ -118,10 +118,14 @@
         </div>
 
         <!-- Additional Details Button and Enroll Button -->
-        <div class="d-flex justify-content-between">
-			<button type="button" class="btn btn-secondary" id="toggleAdditionalDetails" style="width: 30%;">Additional Details</button>
-			<button type="submit" class="btn btn-primary" id="enrollButton" style="width: 30%;">Enroll</button>
-        </div>
+        <!-- Additional Details Button and Enroll Button -->
+<!-- Additional Details Button and Enroll Button -->
+<div class="d-flex flex-column flex-md-row justify-content-between">
+    <button type="button" class="btn btn-secondary w-100 mb-2 mb-md-0" id="toggleAdditionalDetails">Additional Details</button>
+    <button type="submit" class="btn btn-primary w-100" id="enrollButton">Enroll</button>
+</div>
+
+
 
         <!-- Hidden Fields -->
         <div id="additionalDetails" style="display: none; margin-top: 15px;">
@@ -164,9 +168,19 @@
     });
 </script>
 <style>
-.w-30 {
+/* Default styles for larger screens */
+.button-container button {
     width: 30%;
 }
+
+/* Styles for mobile devices */
+@media (max-width: 767.98px) {
+    .button-container button {
+        width: 100%;
+        margin-bottom: 10px; /* Optional: Adds space between buttons */
+    }
+}
+
 </style>
 <!---------------------------------------------------enroll end ---------------------------------------------->
 
