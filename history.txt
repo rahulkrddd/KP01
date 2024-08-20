@@ -61,3 +61,4 @@
 12AT0959 PASS UPDATE  Rahul              12 Atmanand   2024-08-20  1000 August     Y N X N N 2024-08-20 21:04:56
 12AT0959 PASS UPDATE  Rahul              12 Atmanand   2024-08-20  1000 August     Y N X N N 2024-08-20 21:14:07
 12AT0959 PASS UPDATE  Rahul              12 Atmanand   2024-08-20  1000 August     N N X N N 2024-08-20 21:14:47
+12AT0959 PASS UPDATE  Rahul              12 Atmanand   2024-08-20  1000 August     N N X N N 2024-08-20 21:23:30
