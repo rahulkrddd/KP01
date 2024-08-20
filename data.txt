@@ -683,10 +683,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "12KC0959",
+    "id": "12AT0959",
     "name": "Rahul",
     "studentClass": "12",
-    "school": "KCPS",
+    "school": "Atmanand",
     "date": "2024-08-20",
     "fee": "1000",
     "month": "August",
@@ -697,10 +697,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "12KC0959",
+    "id": "12AT0959",
     "name": "Rahul",
     "studentClass": "12",
-    "school": "KCPS",
+    "school": "Atmanand",
     "date": "2024-08-20",
     "fee": "1000",
     "month": "September",
@@ -711,10 +711,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "12KC0959",
+    "id": "12AT0959",
     "name": "Rahul",
     "studentClass": "12",
-    "school": "KCPS",
+    "school": "Atmanand",
     "date": "2024-08-20",
     "fee": "1000",
     "month": "October",
@@ -725,10 +725,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "12KC0959",
+    "id": "12AT0959",
     "name": "Rahul",
     "studentClass": "12",
-    "school": "KCPS",
+    "school": "Atmanand",
     "date": "2024-08-20",
     "fee": "1000",
     "month": "November",
@@ -739,10 +739,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "12KC0959",
+    "id": "12AT0959",
     "name": "Rahul",
     "studentClass": "12",
-    "school": "KCPS",
+    "school": "Atmanand",
     "date": "2024-08-20",
     "fee": "1000",
     "month": "December",
@@ -753,10 +753,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "12KC0959",
+    "id": "12AT0959",
     "name": "Rahul",
     "studentClass": "12",
-    "school": "KCPS",
+    "school": "Atmanand",
     "date": "2024-08-20",
     "fee": "1000",
     "month": "January",
@@ -767,10 +767,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "12KC0959",
+    "id": "12AT0959",
     "name": "Rahul",
     "studentClass": "12",
-    "school": "KCPS",
+    "school": "Atmanand",
     "date": "2024-08-20",
     "fee": "1000",
     "month": "February",
@@ -781,10 +781,10 @@
     "archiveInd": "No"
   },
   {
-    "id": "12KC0959",
+    "id": "12AT0959",
     "name": "Rahul",
     "studentClass": "12",
-    "school": "KCPS",
+    "school": "Atmanand",
     "date": "2024-08-20",
     "fee": "1000",
     "month": "March",
