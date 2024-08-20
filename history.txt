@@ -39,3 +39,4 @@
 12IV0711 PASS ENROLL  Ddddddddddddd      12 Inventure  2024-08-20  1000 August     N N X X X 2024-08-20 15:06:11
 12IV3560 PASS ENROLL  Priyanka Gupta     12 Inventure  2024-08-20  1000 August     N N X X X 2024-08-20 15:07:24
 12IV8646 PASS DELETE  Ddddddddd          12 Inventure  2024-08-20  1000 August     N - Y X X 2024-08-20 15:07:44
+12IV4135 PASS DELETE  Dddddddddd         12 Inventure  2024-08-20  1000 August     N - Y X X 2024-08-20 15:07:52
