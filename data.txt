@@ -802,7 +802,7 @@
     "date": "2024-06-09",
     "fee": "1000",
     "month": "June",
-    "payment": "No",
+    "payment": "Yes",
     "archiveInd": "No"
   },
   {
