@@ -167,6 +167,12 @@ function displaySearchResults(containerId, results) {
     // Add CSS styles for responsive table and hidden class
     const style = document.createElement('style');
     style.textContent = `
+@media (max-width: 767.98px) {
+    .btn {
+        width: 100%;
+    }
+}
+
         @media (max-width: 768px) {
             table {
                 display: block;
