@@ -813,7 +813,7 @@
     "date": "2024-06-11",
     "fee": "1000",
     "month": "July",
-    "payment": "No",
+    "payment": "NA",
     "archiveInd": "No"
   },
   {
