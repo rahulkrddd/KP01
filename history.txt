@@ -64,3 +64,4 @@
 12AT0959 PASS UPDATE  Rahul              12 Atmanand   2024-08-20  1000 August     N N X N N 2024-08-20 21:23:30
 12AT0959 PASS UPDATE  Rahul              04 Atmanand   2024-08-20  1000 August     N N X N N 2024-08-20 21:29:28
 04AT0959 PASS PAYMENT Rahul              04 Atmanand   2024-08-20  1000 August     Y N X Y X 2024-08-20 21:30:49
+04AT0959 PASS DELETE  Rahul              04 Atmanand   2024-08-20  1000 August     N - Y X X 2024-08-20 21:33:26
