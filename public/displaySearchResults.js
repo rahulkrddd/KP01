@@ -148,11 +148,12 @@ function displaySearchResults(containerId, results) {
 
             // Add action button
             const actionTd = document.createElement('td');
-            const selectButton = document.createElement('button');
-            selectButton.textContent = 'Select';
-            selectButton.classList.add('btn', 'btn-primary');
-            selectButton.addEventListener('click', () => editRecord(containerId, result));
-            actionTd.appendChild(selectButton);
+const selectButton = document.createElement('button');
+selectButton.textContent = 'Select';
+selectButton.classList.add('btnSelect');  // Changed from 'btn'
+selectButton.addEventListener('click', () => editRecord(containerId, result));
+actionTd.appendChild(selectButton);
+
             row.appendChild(actionTd);
             tbody.appendChild(row);
         });
@@ -163,12 +164,12 @@ function displaySearchResults(containerId, results) {
     } else {
         container.textContent = 'No records found.';
     }
-
+	
     // Add CSS styles for responsive table and hidden class
     const style = document.createElement('style');
     style.textContent = `
 @media (max-width: 767.98px) {
-    .btn {
+    .btnSelect {
         width: 100%;
     }
 }
