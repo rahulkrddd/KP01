@@ -28,3 +28,4 @@
 10KC0312 PASS ENROLL  Rahul Guptah       10 KCPS       2024-08-20  1000 August     N N X X X 2024-08-20 13:12:21
 10KC0312 PASS DELETE  Rahul Guptah       10 KCPS       2024-08-20  1000 August     N - Y X X 2024-08-20 14:50:33
 09KC8404 PASS ENROLL  Rahul Guptaq       09 KCPS       2024-06-20  1000 June       N N X X X 2024-08-20 14:51:09
+09KC8404 PASS DELETE  Rahul Guptaq       09 KCPS       2024-06-20  1000 July       N - Y X X 2024-08-20 14:54:58
