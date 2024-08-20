@@ -824,3 +824,26 @@ body {
     outline: none; /* Remove default outline on focus */
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Add custom focus outline */
 }
+
+
+/***************************************************************************************/
+/******* mobile, emailid and address css- 
+/* Basic styling for form validation errors */
+input:invalid, textarea:invalid {
+    border-color: red;
+}
+
+input:valid, textarea:valid {
+    border-color: green;
+}
+
+input:focus:invalid, textarea:focus:invalid {
+    outline: none;
+    border-color: red;
+}
+
+input:focus:valid, textarea:focus:valid {
+    outline: none;
+    border-color: green;
+}
+/***************************************************************************************/
