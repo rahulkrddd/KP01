@@ -690,7 +690,7 @@
     "date": "2024-08-20",
     "fee": "1000",
     "month": "August",
-    "payment": "Yes",
+    "payment": "No",
     "mobile": "7232831232",
     "emailid": "test@gmail.com",
     "address": "KURUD",
