@@ -83,3 +83,4 @@
 01KC2172 PASS DELETE  Rahul              01 KCPS       2024-08-20  1000 August     N - Y X X 2024-08-20 22:36:34
 10KC1505 PASS DELETE  Rahulx             10 KCPS       2024-08-20  1000 August     N - Y X X 2024-08-20 22:36:53
 04KC6586 PASS ENROLL  Rahul Gupta        04 KCPS       2024-06-09  1000 June       N N X X X 2024-08-20 22:39:37
+04KC6586 PASS PAYMENT Rahul Gupta        04 KCPS       2024-06-09  1000 June       Y N X N X 2024-08-20 22:43:44
