@@ -118,15 +118,15 @@ function editRecord(containerId, record) {
 			
 <div class="form-group" id="${containerId}AdditionalFields" style="display: none;">
     <label for="${containerId}Mobile">Mobile</label>
-    <input type="text" class="form-control" id="${containerId}Mobile" value="${record.mobile || ''}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
+    <input type="text" class="form-control" id="${containerId}Mobile" value="${record.mobile || ''}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : ''}>
 </div>
 <div class="form-group" id="${containerId}AdditionalFields" style="display: none;">
     <label for="${containerId}Email">Email ID</label>
-    <input type="email" class="form-control" id="${containerId}Email" value="${record.emailid || ''}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
+    <input type="email" class="form-control" id="${containerId}Email" value="${record.emailid || ''}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : ''}>
 </div>
 <div class="form-group" id="${containerId}AdditionalFields" style="display: none;">
     <label for="${containerId}Address">Address</label>
-    <input type="text" class="form-control" id="${containerId}Address" value="${record.address || ''}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : 'required'}>
+    <input type="text" class="form-control" id="${containerId}Address" value="${record.address || ''}" ${containerId === 'paymentResult' || containerId === 'exitResult' ? 'readonly' : ''}>
 </div>
 <button type="button" class="btn btn-secondary" id="${containerId}ToggleFields">Additional Fields</button>
 
