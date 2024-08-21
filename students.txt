@@ -1,14 +1,14 @@
 [
   {
     "name": "priyanka",
-    "class": "12",
+    "class": "14",
     "school": "1",
     "dob": "2024-08-10",
     "mobile": "1111111111",
     "email": "ww@gmail.com",
     "subject": "maths",
     "status": "Approved",
-    "timestamp": "2024-08-21T13:46:27.257Z"
+    "timestamp": "2024-08-21T13:50:26.041Z"
   },
   {
     "name": "Rahul",
