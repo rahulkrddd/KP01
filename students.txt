@@ -1,7 +1,7 @@
 [
   {
     "name": "priyanka",
-    "class": "14",
+    "class": "15",
     "school": "1",
     "dob": "2024-08-10",
     "mobile": "1111111111",
