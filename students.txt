@@ -28,7 +28,7 @@
     "dob": "2024-08-16",
     "mobile": "1111111111",
     "email": "ww@gmail.com",
-    "subject": "maths",
+    "subject": "mathw",
     "status": "pending",
     "timestamp": "2024-08-21 17:47:29"
   }
