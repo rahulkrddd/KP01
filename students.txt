@@ -7,7 +7,7 @@
     "mobile": "1111111111",
     "email": "ww@gmail.com",
     "subject": "maths",
-    "status": "pending",
+    "status": "Approved",
     "timestamp": "2024-08-21 16:16:20"
   }
 ]
