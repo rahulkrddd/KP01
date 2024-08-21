@@ -42,5 +42,16 @@
     "subject": "Science",
     "status": "pending",
     "timestamp": "2024-08-21 21:14:11"
+  },
+  {
+    "name": "Priyanka",
+    "class": "7",
+    "school": "Atmanand",
+    "dob": "2024-08-15",
+    "mobile": "9999999999",
+    "email": "ww@gmail.com",
+    "subject": "Maths + Science + English",
+    "status": "pending",
+    "timestamp": "2024-08-21 21:17:44"
   }
 ]
