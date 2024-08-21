@@ -25,5 +25,15 @@
     "mobile": "1111111111",
     "email": "test@gmail.com",
     "subject": "maths"
+  },
+  {
+    "name": "rahul",
+    "class": "2",
+    "school": "Others",
+    "dob": "2024-08-21",
+    "mobile": "1111111111",
+    "email": "test@gmail.com",
+    "subject": "mathsaa",
+    "status": "pending"
   }
 ]
