@@ -16,5 +16,14 @@
     "mobile": "1111111111",
     "email": "test@gmail.com",
     "subject": "maths"
+  },
+  {
+    "name": "priyanka",
+    "class": "1",
+    "school": "Others",
+    "dob": "2024-08-14",
+    "mobile": "1111111111",
+    "email": "test@gmail.com",
+    "subject": "maths"
   }
 ]
