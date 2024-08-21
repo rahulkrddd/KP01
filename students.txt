@@ -1,0 +1,11 @@
+[
+  {
+    "name": "rahul",
+    "class": "1",
+    "school": "KCPS",
+    "dob": "2024-08-08",
+    "mobile": "1111111111",
+    "email": "test@gmail.com",
+    "subject": "maths"
+  }
+]
