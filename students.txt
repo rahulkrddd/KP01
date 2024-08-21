@@ -2,7 +2,7 @@
   {
     "name": "Priyanka Gupta",
     "class": "10",
-    "school": "Atmanand",
+    "school": "KCPS",
     "dob": "2015-08-06",
     "mobile": "8989898989",
     "email": "rahul.gupta.730@gmail.com",
