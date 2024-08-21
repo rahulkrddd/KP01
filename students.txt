@@ -9,5 +9,16 @@
     "subject": "maths+chemistary",
     "status": "pending",
     "timestamp": "2024-08-21 22:08:04"
+  },
+  {
+    "name": "Rahul",
+    "class": "7",
+    "school": "DPS",
+    "dob": "2015-08-07",
+    "mobile": "9999999999",
+    "email": "rahul.gupta.73@gmail.com",
+    "subject": "maths+science",
+    "status": "pending",
+    "timestamp": "2024-08-21 22:30:47"
   }
 ]
