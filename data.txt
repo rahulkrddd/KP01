@@ -690,7 +690,7 @@
     "date": "2024-08-21",
     "fee": "1000",
     "month": "August",
-    "payment": "Yes",
+    "payment": "No",
     "mobile": "8871283714",
     "emailid": "Rahul.gupta.726@gmail.com",
     "address": "Kurud sjjsjsbdjksmsns isndnmdksm dbjs sjsns  usnsjsnsns shsksjsbs dhsbbs s shsnsnsmkssjks",
