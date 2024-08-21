@@ -20,5 +20,16 @@
     "subject": "maths",
     "status": "pending",
     "timestamp": "2024-08-21 17:46:34"
+  },
+  {
+    "name": "Rahul Gupta",
+    "class": "2",
+    "school": "DPS",
+    "dob": "2024-08-16",
+    "mobile": "1111111111",
+    "email": "ww@gmail.com",
+    "subject": "maths",
+    "status": "pending",
+    "timestamp": "2024-08-21 17:47:29"
   }
 ]
