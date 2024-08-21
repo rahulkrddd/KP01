@@ -106,3 +106,4 @@
 09KC8989 PASS DELETE  Rahul Guptav       09 KCPS       2024-08-21  1000 August     N - Y X X 2024-08-21 10:43:24
 11KC1061 PASS DELETE  Rahul Guptaw       11 KCPS       2024-08-21  1000 August     N - Y X X 2024-08-21 10:43:31
 10KC1167 PASS ENROLL  Rahul Guptaz       10 KCPS       2024-08-21  1000 August     N N X X X 2024-08-21 10:54:51
+10KC1167 PASS DELETE  Rahul Guptaz       10 KCPS       2024-08-21  1000 August     N - Y X X 2024-08-21 10:55:18
