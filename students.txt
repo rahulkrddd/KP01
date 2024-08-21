@@ -73,5 +73,15 @@
     "email": "test@gmail.com",
     "subject": "maths",
     "status": "pending"
+  },
+  {
+    "name": "RAHUL",
+    "class": "1",
+    "school": "Givt",
+    "dob": "2024-08-08",
+    "mobile": "1111111111",
+    "email": "test@gmail.com",
+    "subject": "maths",
+    "status": "pending"
   }
 ]
