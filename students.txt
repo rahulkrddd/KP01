@@ -9,5 +9,16 @@
     "subject": "maths",
     "status": "Approved",
     "timestamp": "2024-08-21 16:16:20"
+  },
+  {
+    "name": "Rahul",
+    "class": "3",
+    "school": "KCPS",
+    "dob": "2024-08-22",
+    "mobile": "22222222",
+    "email": "test@gmail.com",
+    "subject": "maths",
+    "status": "pending",
+    "timestamp": "2024-08-21 17:46:34"
   }
 ]
