@@ -3,7 +3,7 @@
     "name": "priyanka",
     "class": "19",
     "school": "KCPS",
-    "dob": "2024-08-10",
+    "dob": "2024-08-11",
     "mobile": "1111111111",
     "email": "ww@gmail.com",
     "subject": "maths",
