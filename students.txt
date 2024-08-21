@@ -31,5 +31,16 @@
     "subject": "mathw",
     "status": "pending",
     "timestamp": "2024-08-21 17:47:29"
+  },
+  {
+    "name": "Ankit ",
+    "class": "8",
+    "school": "KV",
+    "dob": "2024-08-08",
+    "mobile": "8126721121",
+    "email": "test@gmail.com",
+    "subject": "Science",
+    "status": "pending",
+    "timestamp": "2024-08-21 21:14:11"
   }
 ]
