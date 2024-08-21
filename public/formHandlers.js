@@ -32,6 +32,9 @@ document.getElementById('enrollForm').addEventListener('submit', async function(
     const fee = document.getElementById('enrollFee').value;
     const month = document.getElementById('enrollMonth').value;
     const payment = document.getElementById('enrollPayment').value;
+    const mobile = document.getElementById('enrollMobile').value;
+    const emailid = document.getElementById('enrollEmail').value;
+    const address = document.getElementById('enrollAddress').value;
 
     // Validate name one more time before sending
     const nameError = document.getElementById('nameError');
@@ -51,7 +54,7 @@ document.getElementById('enrollForm').addEventListener('submit', async function(
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, studentClass, school, date, fee, month, payment }),
+        body: JSON.stringify({ name, studentClass, school, date, fee, month, payment, mobile, emailid, address}),
     });
 
     // Parse the response
