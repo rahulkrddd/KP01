@@ -7,7 +7,7 @@
     "mobile": "8989898989",
     "email": "rahul.gupta.730@gmail.com",
     "subject": "maths+chemistary",
-    "status": "pending",
+    "status": "Appoved",
     "timestamp": "2024-08-21 22:08:04"
   },
   {
