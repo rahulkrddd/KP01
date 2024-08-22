@@ -56,7 +56,7 @@
     "email": "rahul.gupta.726@gmail.com",
     "subject": "maths+physics",
     "Address": "sdauhiunn absuas",
-    "status": "Pending",
+    "status": "Approved",
     "timestamp": "2024-08-22 16:42:58"
   }
 ]
