@@ -22,5 +22,17 @@
     "Address": "test",
     "status": "approved",
     "timestamp": "2024-08-22 13:34:46"
+  },
+  {
+    "name": "Vinod",
+    "class": "3",
+    "school": "Banjari",
+    "dob": "2015-08-07",
+    "mobile": "9999999999",
+    "email": "rahul.gupta.726@gmail.com",
+    "subject": "maths+physics",
+    "Address": "hi",
+    "status": "pending",
+    "timestamp": "2024-08-22 13:36:45"
   }
 ]
