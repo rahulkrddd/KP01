@@ -56,7 +56,7 @@
     "email": "test1@gmail.com",
     "subject": "discuss-later",
     "Address": "dufeuhfdueuudjefuejfnuef",
-    "status": "Pending",
+    "status": "Approved",
     "timestamp": "2024-08-22 18:36:01"
   }
 ]
