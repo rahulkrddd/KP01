@@ -20,7 +20,7 @@
     "email": "test@gmail.com",
     "subject": "discuss-later",
     "Address": "test",
-    "status": "pending",
+    "status": "approved",
     "timestamp": "2024-08-22 13:34:46"
   }
 ]
