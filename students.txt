@@ -10,5 +10,17 @@
     "Address": "a sajhsiq",
     "status": "Pending",
     "timestamp": "2024-08-22 15:29:16"
+  },
+  {
+    "name": "Priyanka",
+    "class": "9",
+    "school": "KV",
+    "dob": "2015-08-15",
+    "mobile": "8888888888",
+    "email": "rahul.gupta.730@gmail.com",
+    "subject": "maths",
+    "Address": "wuwhwuhuws",
+    "status": "Pending",
+    "timestamp": "2024-08-22 15:29:46"
   }
 ]
