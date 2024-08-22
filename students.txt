@@ -20,7 +20,7 @@
     "email": "test2@gmail.com",
     "subject": "maths",
     "Address": "sdsd",
-    "status": "Pending",
+    "status": "Declined",
     "timestamp": "2024-08-22 15:23:41"
   },
   {
@@ -32,7 +32,7 @@
     "email": "test44@gmail.com",
     "subject": "maths",
     "Address": "dsdsdsd",
-    "status": "Pending",
+    "status": "Declined",
     "timestamp": "2024-08-22 15:24:09"
   }
 ]
