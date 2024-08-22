@@ -32,5 +32,17 @@
     "address": null,
     "status": "pending",
     "timestamp": "2024-08-22 10:41:26"
+  },
+  {
+    "name": "Test",
+    "class": "11",
+    "school": "DPS",
+    "dob": "2015-08-08",
+    "mobile": "6666666666",
+    "email": "test2@gmail.com",
+    "subject": "maths+chemistary",
+    "Address": "kurud dhamtari",
+    "status": "pending",
+    "timestamp": "2024-08-22 10:47:48"
   }
 ]
