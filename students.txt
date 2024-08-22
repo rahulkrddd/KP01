@@ -1,2 +1,14 @@
 [
+  {
+    "name": "Rahul Gupta",
+    "class": "11",
+    "school": "KV",
+    "dob": "2015-08-14",
+    "mobile": "7777777777",
+    "email": "test2@gmail.com",
+    "subject": "maths",
+    "Address": "test",
+    "status": "pending",
+    "timestamp": "2024-08-22 13:34:17"
+  }
 ]
