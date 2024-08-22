@@ -25,7 +25,7 @@
   },
   {
     "name": "Vinod",
-    "class": "3",
+    "class": "11",
     "school": "Banjari",
     "dob": "2015-08-07",
     "mobile": "9999999999",
