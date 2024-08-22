@@ -46,5 +46,17 @@
     "Address": "wuwhwuwewhuws",
     "status": "Pending",
     "timestamp": "2024-07-24 15:29:46"
+  },
+  {
+    "name": "Manan",
+    "class": "4",
+    "school": "Atmanand",
+    "dob": "2015-08-21",
+    "mobile": "8989898989",
+    "email": "rahul.gupta.726@gmail.com",
+    "subject": "maths+physics",
+    "Address": "sdauhiunn absuas",
+    "status": "Pending",
+    "timestamp": "2024-08-22 16:42:58"
   }
 ]
