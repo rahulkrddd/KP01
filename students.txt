@@ -1,27 +1,5 @@
 [
   {
-    "name": "Priyanka Gupta",
-    "class": "10",
-    "school": "KCPS",
-    "dob": "2015-08-06",
-    "mobile": "8989898989",
-    "email": "rahul.gupta.730@gmail.com",
-    "subject": "maths+chemistary",
-    "status": "Appoved",
-    "timestamp": "2024-08-21 22:08:04"
-  },
-  {
-    "name": "Rahul",
-    "class": "7",
-    "school": "DPS",
-    "dob": "2015-08-07",
-    "mobile": "9999999999",
-    "email": "rahul.gupta.73@gmail.com",
-    "subject": "maths+science",
-    "status": "pending",
-    "timestamp": "2024-08-21 22:30:47"
-  },
-  {
     "name": "Anita Gupta",
     "class": "11",
     "school": "Banjari",
