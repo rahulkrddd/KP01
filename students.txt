@@ -22,5 +22,17 @@
     "Address": "tewst",
     "status": "Approved",
     "timestamp": "2024-08-22 14:25:39"
+  },
+  {
+    "name": "Anita",
+    "class": "9",
+    "school": "Banjari",
+    "dob": "2015-08-21",
+    "mobile": "8888888888",
+    "email": "rahul.gupta.730@gmail.com",
+    "subject": "english",
+    "Address": "test",
+    "status": "Pending",
+    "timestamp": "2024-08-22 14:36:57"
   }
 ]
