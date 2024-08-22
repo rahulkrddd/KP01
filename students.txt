@@ -22,7 +22,7 @@
     "Address": "wuwhwuhuws",
     "status": "Pending",
     "timestamp": "2024-08-22 15:29:46"
-  }
+  },
   {
     "name": "Priyanka Gupta B",
     "class": "9",
@@ -34,7 +34,7 @@
     "Address": "wu asds sdwhwuhuws",
     "status": "Pending",
     "timestamp": "2024-07-24 15:29:46"
-  }
+  },
   {
     "name": "Priyanka Gupta C",
     "class": "9",
