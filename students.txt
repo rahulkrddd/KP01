@@ -32,7 +32,7 @@
     "email": "rahul.gupta.730@gmail.com",
     "subject": "english",
     "Address": "test",
-    "status": "Pending",
+    "status": "Declined",
     "timestamp": "2024-08-22 14:36:57"
   }
 ]
