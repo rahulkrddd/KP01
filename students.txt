@@ -44,7 +44,7 @@
     "email": "wwx@gmail.com",
     "subject": "maths",
     "Address": "ss",
-    "status": "Pending",
+    "status": "Approved",
     "timestamp": "2024-08-22 15:19:13"
   }
 ]
