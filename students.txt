@@ -32,7 +32,7 @@
     "email": "rahul.gupta.726@gmail.com",
     "subject": "maths+physics",
     "Address": "hi",
-    "status": "pending",
+    "status": "approved",
     "timestamp": "2024-08-22 13:36:45"
   }
 ]
