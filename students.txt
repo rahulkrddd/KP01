@@ -8,7 +8,7 @@
     "email": "rahul.gupta.726@gmail.com",
     "subject": "hindi",
     "address": null,
-    "status": "pending",
+    "status": "approved",
     "timestamp": "2024-08-22 10:41:26"
   },
   {
