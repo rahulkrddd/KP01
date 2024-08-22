@@ -115,3 +115,4 @@
 05KC7339 PASS DELETE  Rahul              05 KCPS       2024-06-13  1000 June       N - Y X X 2024-08-22 12:07:37
 11KC6493 PASS ENROLL  Rahul              11 KCPS       2024-08-22  1000 August     N N X X X 2024-08-22 17:29:27
 11KC6493 PASS DELETE  Rahul              11 KCPS       2024-08-22  1000 August     N - Y X X 2024-08-22 18:10:33
+04KCa4d9 PASS DELETE  Rahul              01 KCPS       2024-08-22  1000 August     N - Y X X 2024-08-22 18:10:49
