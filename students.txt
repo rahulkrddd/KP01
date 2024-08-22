@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "name": "Rahul",
+    "class": "12",
+    "school": "Others",
+    "dob": "2015-08-08",
+    "mobile": "7777777777",
+    "email": "test@gmail.com",
+    "subject": "maths",
+    "Address": "sdsd",
+    "status": "Pending",
+    "timestamp": "2024-08-22 15:23:06"
+  }
+]
