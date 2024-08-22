@@ -20,5 +20,17 @@
     "subject": "maths+science",
     "status": "pending",
     "timestamp": "2024-08-21 22:30:47"
+  },
+  {
+    "name": "Anita Gupta",
+    "class": "11",
+    "school": "Banjari",
+    "dob": "2015-08-05",
+    "mobile": "7777777777",
+    "email": "rahul.gupta.726@gmail.com",
+    "subject": "hindi",
+    "address": null,
+    "status": "pending",
+    "timestamp": "2024-08-22 10:41:26"
   }
 ]
