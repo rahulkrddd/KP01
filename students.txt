@@ -8,7 +8,7 @@
     "email": "test2@gmail.com",
     "subject": "maths",
     "Address": "test",
-    "status": "pending",
+    "status": "approved",
     "timestamp": "2024-08-22 13:34:17"
   },
   {
