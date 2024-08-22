@@ -20,7 +20,7 @@
     "email": "rahul.gupta.730@gmail.com",
     "subject": "maths",
     "Address": "wuwhwuhuws",
-    "status": "Approved",
+    "status": "Pending",
     "timestamp": "2024-08-22 15:29:46"
   },
   {
@@ -28,11 +28,11 @@
     "class": "9",
     "school": "KV",
     "dob": "2015-08-15",
-    "mobile": "8888888888",
+    "mobile": "8888888889",
     "email": "rahul.gupta.731@gmail.com",
     "subject": "maths",
     "Address": "wu asds sdwhwuhuws",
-    "status": "Approved",
+    "status": "Pending",
     "timestamp": "2024-07-24 15:29:46"
   },
   {
@@ -40,11 +40,11 @@
     "class": "9",
     "school": "KV",
     "dob": "2015-08-15",
-    "mobile": "8888888888",
+    "mobile": "8888888886",
     "email": "rahul.gupta.732@gmail.com",
     "subject": "maths",
     "Address": "wuwhwuwewhuws",
-    "status": "Approved",
+    "status": "Pending",
     "timestamp": "2024-07-24 15:29:46"
   }
 ]
