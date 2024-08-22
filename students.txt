@@ -20,7 +20,7 @@
     "email": "test2@gmail.com",
     "subject": "maths+chemistary",
     "Address": "kurud dhamtari, chhattisgarh",
-    "status": "pending",
+    "status": "approved",
     "timestamp": "2024-08-22 10:47:48"
   }
 ]
