@@ -793,5 +793,19 @@
     "emailid": "test@gmail.com",
     "address": "test",
     "archiveInd": "No"
+  },
+  {
+    "id": "04KCa4d9",
+    "name": "Rahul",
+    "studentClass": "04",
+    "school": "KCPS",
+    "date": "2024-08-22",
+    "fee": "1000",
+    "month": "August",
+    "payment": "No",
+    "mobile": "7777777777",
+    "emailid": "test@gmail.com",
+    "address": "a sajhsiq",
+    "archiveInd": "No"
   }
 ]
