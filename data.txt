@@ -690,7 +690,7 @@
     "date": "2024-08-22",
     "fee": "1000",
     "month": "August",
-    "payment": "No",
+    "payment": "Yes",
     "mobile": "8888888886",
     "emailid": "rahul.gupta.732@gmail.com",
     "address": "wuwhwuwewhuws",
