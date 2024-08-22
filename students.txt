@@ -34,17 +34,5 @@
     "Address": "test",
     "status": "Declined",
     "timestamp": "2024-08-22 14:36:57"
-  },
-  {
-    "name": "Manan",
-    "class": "8",
-    "school": "Banjari",
-    "dob": "2015-08-08",
-    "mobile": "9999999999",
-    "email": "rahul.gupta.726@gmail.com",
-    "subject": "maths+physics",
-    "Address": "test",
-    "status": "Pending",
-    "timestamp": "2024-08-22 14:49:58"
   }
 ]
