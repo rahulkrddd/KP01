@@ -1,0 +1,159 @@
+document.addEventListener('DOMContentLoaded', async () => {
+    const loadRecordsButton = document.getElementById('loadRecords');
+    const approveForm = document.getElementById('approveForm');
+    const declineButton = document.getElementById('declineSelected');
+    const deleteButton = document.getElementById('deleteSelected');
+    const clearFileButton = document.getElementById('clearFile');
+    const classFilter = document.getElementById('classFilter');
+    const schoolFilter = document.getElementById('schoolFilter');
+    const statusFilter = document.getElementById('statusFilter');
+    const searchInput = document.getElementById('searchInput');
+    const selectAllCheckbox = document.getElementById('selectAll');
+
+    // Automatically load records when the page loads
+    await loadRecords();
+
+    async function loadRecords() {
+        try {
+            const response = await fetch('/admin/records');
+            const records = await response.json();
+            displayRecords(records);
+        } catch (error) {
+            console.error('Error fetching records:', error);
+        }
+    }
+
+    function displayRecords(records) {
+        const tableBody = document.querySelector('#recordsTable tbody');
+        tableBody.innerHTML = ''; // Clear existing records
+
+        records.forEach(record => {
+            const row = document.createElement('tr');
+            const checkboxDisabled = record.status !== 'Pending' ? 'disabled' : '';
+
+            row.innerHTML = `
+                <td><input type="checkbox" value="${record.timestamp}" ${checkboxDisabled} /></td>
+                <td>${record.name}</td>
+                <td>${record.class}</td>
+                <td>${record.school}</td>
+                <td>${record.dob}</td>
+                <td>${record.mobile}</td>
+                <td>${record.email}</td>
+                <td>${record.subject}</td>
+                <td>${record.timestamp}</td>
+                <td class="status">${record.status}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        // Add event listener for Select All checkbox
+        selectAllCheckbox.addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('#recordsTable tbody input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                if (!checkbox.disabled) {
+                    checkbox.checked = selectAllCheckbox.checked;
+                }
+            });
+        });
+    }
+
+    function filterRecords() {
+        const classValue = classFilter.value.toLowerCase();
+        const schoolValue = schoolFilter.value.toLowerCase();
+        const statusValue = statusFilter.value.toLowerCase();
+        const searchValue = searchInput.value.toLowerCase();
+
+        const rows = document.querySelectorAll('#recordsTable tbody tr');
+        rows.forEach(row => {
+            const classText = row.cells[2].textContent.toLowerCase();
+            const schoolText = row.cells[3].textContent.toLowerCase();
+            const statusText = row.cells[9].textContent.toLowerCase();
+            const rowText = row.textContent.toLowerCase();
+
+            const matchesFilter = (classValue === '' || classText.includes(classValue)) &&
+                                  (schoolValue === '' || schoolText.includes(schoolValue)) &&
+                                  (statusValue === '' || statusText.includes(statusValue));
+
+            const matchesSearch = rowText.includes(searchValue);
+
+            if (matchesFilter && matchesSearch) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+
+        // Update Select All checkbox state
+        const checkboxes = document.querySelectorAll('#recordsTable tbody input[type="checkbox"]');
+        const checkedCheckboxes = document.querySelectorAll('#recordsTable tbody input[type="checkbox"]:checked');
+        selectAllCheckbox.checked = checkboxes.length > 0 && checkboxes.length === checkedCheckboxes.length;
+    }
+
+    classFilter.addEventListener('change', filterRecords);
+    schoolFilter.addEventListener('change', filterRecords);
+    statusFilter.addEventListener('change', filterRecords);
+    searchInput.addEventListener('input', filterRecords);
+
+    approveForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await handleAction('approve');
+    });
+
+    declineButton.addEventListener('click', async () => {
+        await handleAction('decline');
+    });
+
+    deleteButton.addEventListener('click', async () => {
+        await handleAction('delete');
+    });
+
+    clearFileButton.addEventListener('click', async () => {
+        if (confirm('Are you sure you want to clear all records? This action cannot be undone.')) {
+            try {
+                const response = await fetch('/admin/clear', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const result = await response.json();
+                console.log('Clear result:', result);
+
+                if (response.ok) {
+                    document.querySelector('#recordsTable tbody').innerHTML = '';
+                } else {
+                    console.error('Failed to clear the records:', result);
+                }
+
+                loadRecords();
+            } catch (error) {
+                console.error('Error clearing file:', error);
+            }
+        }
+    });
+
+    async function handleAction(action) {
+        const checkboxes = document.querySelectorAll('#recordsTable tbody input[type="checkbox"]:checked');
+        const timestamps = Array.from(checkboxes).map(checkbox => checkbox.value);
+
+        try {
+            const response = await fetch(`/admin/${action}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ timestamps })
+            });
+            const result = await response.json();
+            console.log(`${action.charAt(0).toUpperCase() + action.slice(1)} result:`, result);
+
+            // Update the records immediately
+            if (response.ok) {
+                const updatedRecords = await fetch('/admin/records').then(res => res.json());
+                displayRecords(updatedRecords);
+            }
+        } catch (error) {
+            console.error(`Error during ${action}:`, error);
+        }
+    }
+});
