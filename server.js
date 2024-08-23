@@ -21,6 +21,17 @@ const historyFilePath = 'history.txt';
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_API_BASE = 'https://api.github.com';
 
+// Import routes
+const registrationRoutes = require('./routes/registration');
+const statusRoutes = require('./routes/status');
+const adminRoutes = require('./routes/admin');
+const HISTORYRoutes = require('./routes/HISTORY');
+
+// Use routes
+app.use('/register', registrationRoutes);
+app.use('/status', statusRoutes);
+app.use('/admin', adminRoutes);
+app.use('/HISTORY', HISTORYRoutes);
 
 
 
@@ -253,8 +264,6 @@ app.post('/enroll', async (req, res) => {
         enrollmentData.mobile = enrollmentData.mobile;  // Assuming validation is done on client-side
         enrollmentData.emailid = enrollmentData.emailid;  // Assuming validation is done on client-side
         enrollmentData.address = enrollmentData.address;  // Assuming validation is done on client-side
-		
-
 
         const startMonth = enrollmentData.month;
 
