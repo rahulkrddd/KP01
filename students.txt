@@ -94,5 +94,17 @@
     "Address": "Hello",
     "status": "Pending",
     "timestamp": "2024-08-24 00:02:33"
+  },
+  {
+    "name": "Rudra",
+    "class": "1",
+    "school": "Atmanand",
+    "dob": "2015-08-18",
+    "mobile": "9876543211",
+    "email": "test@msn.com",
+    "subject": "maths",
+    "Address": "Gigjj ",
+    "status": "Pending",
+    "timestamp": "2024-08-24 00:03:06"
   }
 ]
