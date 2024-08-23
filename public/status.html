@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration - Knowledge Point</title>
+    <link rel="stylesheet" href="styles/status.css">
+</head>
+<body>
+    <header>
+        <img src="kp_logo.jpg" alt="Knowledge Point Logo" id="logo">
+        <h1>Knowledge Point</h1>
+    </header>
+    <div class="header-buttons">
+	    <a href="index.html" class="header-button">Home</a>
+        <a href="registration.html" class="header-button">Registration</a>
+        <a href="status.html" class="header-button">Check Your Status</a>
+    </div>
+    <main>
+        <h2>Check Your Status</h2>
+        <form id="statusForm">
+            <label for="mobile">Mobile Number:</label>
+            <input type="text" id="mobile" name="mobile" required><br>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <button type="submit">Check Status</button>
+        </form>
+        <!-- New Details Form -->
+        <div id="detailsForm" style="display: none;">
+            <form id="studentDetailsForm">
+                <label for="detailsName">Name:</label>
+					<input type="text" id="detailsName" name="name" placeholder="Enter the name of Student" disabled><br>
+					<span id="nameError" style="color: red; display: none;">Name must be between 3 and 16 characters long and contain only letters and spaces.</span>
+                
+				<label for="detailsMobile">Mobile Number:</label>
+					<input 
+					type="text" 
+					id="detailsMobile" 
+					name="mobile" 
+					placeholder="Enter your mobile number" 
+					oninput="validateMobileNumber()" 
+					maxlength="10" 
+					pattern="[6-9][0-9]{9}" 
+					title="Mobile number must be correct 10 digits valid number." 
+					disabled /><br>
+					<span id="mobileError" style="color: red; display: none;">Invalid mobile number</span>
+				
+				<label for="detailsClass">Class:</label>
+				<select id="detailsClass" name="class" disabled>
+				    <option value="" disabled selected>Select a class</option>
+				    <option value="1">1</option>
+				    <option value="2">2</option>
+				    <option value="3">3</option>
+				    <option value="4">4</option>
+				    <option value="5">5</option>
+				    <option value="6">6</option>
+				    <option value="7">7</option>
+				    <option value="8">8</option>
+				    <option value="9">9</option>
+				    <option value="10">10</option>
+				    <option value="11">11</option>
+				    <option value="12">12</option>
+				</select>
+
+				
+				<label for="detailsSchool">School:</label>
+				<select id="detailsSchool" name="school" disabled>
+				    <option value="" disabled selected>Select a school</option>
+				    <option value="KCPS">KCPS</option>
+				    <option value="Banjari">Banjari</option>
+				    <option value="Atmanand">Atmanand</option>
+				    <option value="KV">KV</option>
+				    <option value="DPS">DPS</option>
+				    <option value="Inventure">Inventure</option>
+				    <option value="Others">Others</option>
+				</select>
+
+				
+                <label for="detailsDob">Date of Birth:</label>
+				<input type="date" id="detailsDob" name="dob" disabled><br>
+				
+                <label for="detailsEmail">Email:</label>
+                <input type="text" id="detailsEmail" name="email" disabled><br>
+				
+
+				
+				<label for="subject">Subject:</label>
+				<select id="detailsSubject" name="subject" disabled>
+				    <option value="maths">Maths</option>
+				    <option value="physics">Physics</option>
+				    <option value="chemistary">Chemistary</option>
+				    <option value="science">Science</option>
+				    <option value="maths+physics">Maths + Physics</option>
+				    <option value="maths+chemistary">Maths + Chemistary</option>
+				    <option value="maths+science">Maths + Science</option>
+				    <option value="english">English</option>
+				    <option value="hindi">Hindi</option>
+				    <option value="other">Other</option>
+				    <option value="discuss-later">I'll discuss later</option>
+				</select>
+				
+			
+
+
+			<div class="form-group">
+			    <label for="detailsAddress">Address:</label>
+			    <br>
+			    <textarea class="form-control" id="detailsAddress" name="Address" placeholder="Enter Address" style="width: 100%; border-color: #c7c6c5; border-radius: 3px;" disabled></textarea>
+			</div>
+				
+				
+                <label for="detailsStatus">Status:</label>
+                <input type="text" id="detailsStatus" name="status" disabled><br>
+        <!-- Buttons Container -->
+        <div class="button-container">
+            <button type="button" id="updateDetails">Update</button>
+            <button type="button" id="backToStatusForm">Back</button>
+        </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Popup Structure -->
+    <div id="statusPopup" class="status-popup">
+        <div class="status-popup-content">
+            <span id="statusPopupClose" class="status-popup-close">&times;</span>
+            <p id="statusPopupMessage" class="status-popup-message"></p>
+            <div id="statusPopupButtons" class="status-popup-buttons">
+                <button id="statusViewDetails" class="status-popup-button">View Details</button>
+                <button id="statusEditDetails" class="status-popup-button">Edit Details</button>
+            </div>
+            <div id="statusRetryButtons" class="status-popup-buttons" style="display: none;">
+                <button id="statusRegistration" class="status-popup-button">Registration</button>
+                <button id="statusRetry" class="status-popup-button">Retry</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/status.js"></script>
+<footer style="text-align: center; padding: 15px; background-color: #f1f1f1; font-size: 14px; color: #333;">
+    <p style="margin: 0;">© 2024 Knowledge Point. All rights reserved.</p>
+</footer>
+</body>
+</html>
