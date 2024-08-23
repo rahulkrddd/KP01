@@ -130,3 +130,4 @@
 09KV6053 PASS DELETE  Priyanka           01 KV         2024-08-22  1000 August     N - Y X X 2024-08-22 20:49:21
 09KVb74b PASS DELETE  Priyanka Gupta B   01 KV         2024-08-22  1000 August     N - Y X X 2024-08-22 20:49:28
 09KV3c80 PASS DELETE  Priyanka Gupta C   01 KV         2024-08-22  1000 August     N - Y X X 2024-08-22 20:49:37
+05KVa9c5 PASS DELETE  Rahul Gupta A      01 KV         2024-08-23  1000 August     N - Y X X 2024-08-23 15:49:21
