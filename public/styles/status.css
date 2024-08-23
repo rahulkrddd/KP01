@@ -1,1 +1,464 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+nav button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 0 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+nav button:hover {
+    background-color: #45a049;
+}
+
+main {
+    margin: 20px auto;
+    max-width: 900px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Adds consistent spacing between form elements */
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%; /* Ensures that form fields take full width of the container */
+    padding: 10px; /* Adds padding inside the form fields */
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding and border are included in element's total width and height */
+}
+
+textarea {
+    resize: vertical; /* Allows resizing only vertically */
+    min-height: 100px; /* Sets a minimum height for the textarea */
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.gallery img {
+    margin: 10px;
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/***********************  HEADER BUTTON POPUP STARTS ***********************************/
+/* Styles for header buttons container */
+.header-buttons {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 15px; /* Spacing between buttons */
+    margin-top: 20px; /* Space from the top, adjust as needed */
+}
+
+/* Styles for individual header buttons */
+.header-button {
+    background: #3498db; /* New button background color */
+    color: white;
+    padding: 12px 20px; /* Consistent padding */
+    text-decoration: none;
+    border-radius: 8px; /* Rounded corners */
+    font-weight: bold;
+    font-size: 16px; /* Consistent font size */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: background 0.3s, box-shadow 0.3s, transform 0.3s; /* Smooth transitions */
+    display: inline-block; /* Ensure buttons are inline with consistent width */
+    text-align: center; /* Center text inside the button */
+    width: 150px; /* Fixed width for equal size buttons */
+}
+
+.header-button:hover {
+    background: #2980b9; /* Darker blue on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+    transform: translateY(-4px); /* Lift effect on hover */
+}
+
+.header-button:active {
+    background: #1f639a; /* Even darker blue for active state */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Reset shadow on click */
+    transform: translateY(0); /* Button returns to original position */
+}
+
+.header-button:focus {
+    outline: none; /* Remove default focus outline */
+    border: 2px solid #1f639a; /* Add a border to indicate focus */
+}
+
+/*******************************   LOGO START   ****************************************/
+/* styles.css */
+
+/* Basic setup with reduced size */
+#logo {
+  width: 5%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: all 0.5s ease;
+}
+
+/* Hover effects */
+#logo:hover {
+  transform: scale(1.1) rotate(360deg);
+  box-shadow: 0 0 30px rgba(255, 105, 180, 0.8);
+  filter: brightness(1.2) contrast(1.2) saturate(1.5);
+}
+
+/* Animation */
+#logo {
+  animation: pulse 2s infinite alternate;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.8);
+  }
+}
+
+/* Border color transition */
+#logo {
+  border: 1px solid transparent;
+  animation: borderGlow 3s infinite;
+}
+
+@keyframes borderGlow {
+  0% {
+    border-color: rgba(255, 105, 180, 0.5);
+  }
+  50% {
+    border-color: rgba(0, 191, 255, 0.5);
+  }
+  100% {
+    border-color: rgba(255, 105, 180, 0.5);
+  }
+}
+
+/*******************************   LOGO END     ****************************************/
+
+/***********************    STATUS POPUP STARTS     ************************************/
+/* Status Popup Styles */
+.status-popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+    backdrop-filter: blur(5px); /* Apply blur effect */
+}
+
+.status-popup-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px; /* Rounded corners */
+    position: relative;
+    text-align: center; /* Center text inside the popup */
+    z-index: 2; /* Ensure the content is above the blur effect */
+}
+
+.status-popup-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.status-popup-close:hover,
+.status-popup-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.status-popup-message {
+    margin-bottom: 20px;
+}
+
+.status-popup-message .status-error {
+    color: red;
+    font-weight: bold;
+}
+
+.status-popup-buttons,
+.status-retry-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.status-popup-button {
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1; /* Make buttons equal in size */
+    max-width: 150px; /* Optional: limit the maximum width */
+}
+
+.status-popup-button:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+.status-pending {
+    color: #f1c40f; /* Yellow */
+}
+
+.status-approved {
+    color: green; /* or any other shade of green you prefer */
+}
+
+.status-declined {
+    color: red; /* or any other shade of red you prefer */
+}
+
+/* Hide retry buttons if not needed */
+.status-retry-buttons {
+    display: none; /* Hidden by default */
+}
+
+/*******************  UPDATE AND VIEW BUTTON STARTS  ***********************************/
+
+/* Ensure the button container is displayed as flex for better alignment */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px; /* Adjust the gap as needed */
+}
+
+.button-container button {
+    flex: 1; /* Allows buttons to grow and fill available space equally */
+    padding: 12px 20px; /* Add padding for button size */
+    border: none;
+    border-radius: 8px;
+	max-width: 20%; /* Set the maximum width of each button to 30% of the container's width */
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    background-color: #3498db; /* Blue background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button-container button:hover {
+    background-color: #2980b9;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-4px);
+}
+
+.button-container button:active {
+    background-color: #1f639a;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
+}
+
+.button-container button:focus {
+    outline: none;
+    border: 2px solid #1f639a;
+}
+
+
+/* Styles for individual buttons */
+.update-view-button {
+    background-color: #3498db; /* Blue background */
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+    display: inline-block;
+    text-align: center;
+    margin: 0 10px; /* Space between buttons */
+    width: 150px; /* Fixed width for consistent button size */
+}
+
+.update-view-button:hover {
+    background-color: #2980b9;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-4px);
+}
+
+.update-view-button:active {
+    background-color: #1f639a;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
+}
+
+.update-view-button:focus {
+    outline: none;
+    border: 2px solid #1f639a;
+}
+/*******************  UPDATE AND VIEW BUTTON ENDS  ***********************************/
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column; /* Stack buttons vertically on small screens */
+    }
+
+    nav button {
+        width: 100%; /* Buttons take full width on small screens */
+        margin: 5px 0; /* Adjust margin to fit the vertical layout */
+    }
+
+    main {
+        margin: 10px; /* Reduce margin on small screens */
+        padding: 15px; /* Reduce padding on small screens */
+    }
+
+    .gallery img {
+        width: 100%; /* Images take full width of the container on small screens */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .status-popup-content {
+        width: 90%; /* Increase width to fit small screens */
+        margin: 10% auto; /* Adjust top margin */
+    }
+
+    .header-buttons {
+        flex-direction: column; /* Stack buttons vertically on small screens */
+    }
+
+    .header-button {
+        width: 100%; /* Make header buttons full width */
+        margin-bottom: 10px; /* Space between buttons */
+        box-sizing: border-box; /* Ensure padding and border are included in the width */
+    }
+
+    .update-view-button {
+        font-size: 14px; /* Smaller font size for mobile */
+        width: auto; /* Allow width to adjust based on content */
+    }
+
+    /* Responsive logo */
+    #logo {
+        width: 15%; /* Adjust logo size for mobile */
+    }
+}
+
+
+/* Define styles for the button class */
+.button {
+    background-color: #4CAF50; /* Default background color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button-enabled-new {
+    background-color: #green; /* Gray color */
+    color: #fff; /* Black text color */
+}
+
+.button-disabled-new {
+    background-color: #f0f0f0; /* Light gray or default disabled color */
+    color: #a0a0a0; /* Light gray text color */
+    pointer-events: none; /* Disable click events */
+    cursor: not-allowed; /* Change cursor to indicate disabled state */
+}
+
+/**********************************************************************************************//
+/***************************BACK AND UPDATE STARTS
+
+/***************************BACK AND UPDATE ENDS 
+
 
