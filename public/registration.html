@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration - Knowledge Point</title>
+    <link rel="stylesheet" href="styles/registration.css">
+</head>
+<body>
+    <header>
+        <img src="kp_logo.jpg" alt="Knowledge Point Logo" id="logo">
+        <h1>Knowledge Point</h1>
+
+    </header>
+	<div class="header-buttons">
+	        <a href="index.html" class="header-button">Home</a>
+            <a href="registration.html" class="header-button">Registration</a>
+            <a href="status.html" class="header-button">Check Your Status</a>
+    </div>
+    <main>
+        <h2>Student Registration</h2>
+        <form id="registrationForm">
+            <label for="name">Name:</label>
+			<input type="text" id="name" name="name" placeholder="Enter the name of Student" required
+			minlength="3" maxlength="16" pattern="[A-Za-z\s]+"
+			title="Name must be between 3 and 16 characters long and contain only letters and spaces.">
+			<span id="nameError" style="color: red; display: none;">Invalid name. Must be between 3 and 16 characters long and contain only letters and spaces.</span>
+
+            <label for="class">Class:</label>
+            <select id="class" name="class" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <!-- Add more classes as needed -->
+            </select>
+
+			<label for="school">School:</label>
+			<select id="school" name="school" required>
+			    <option value="">Select a school</option>
+			    <option value="KCPS">KCPS</option>
+			    <option value="Banjari">Banjari</option>
+			    <option value="Atmanand">Atmanand</option>
+			    <option value="KV">KV</option>
+			    <option value="DPS">DPS</option>
+			    <option value="Inventure">Inventure</option>
+			    <option value="Others">Others</option>
+			</select>
+
+
+            <label for="dob">Date of Birth:</label>
+			<input type="date" id="dob" name="dob" required>
+
+            <label for="mobile">Mobile Number:</label>
+			<input type="text" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+			<span id="mobileError" class="error-message"></span>
+
+
+			<label for="email">Email ID:</label>
+			<input type="email" id="email" name="email" placeholder="Enter your email ID" required>
+			<span id="emailError" class="error-message"></span>
+
+
+			<label for="subject">Subject:</label>
+			<select id="subject" name="subject" required>
+			    <option value="maths">Maths</option>
+			    <option value="physics">Physics</option>
+			    <option value="chemistary">Chemistary</option>
+			    <option value="science">Science</option>
+			    <option value="maths+physics">Maths + Physics</option>
+			    <option value="maths+chemistary">Maths + Chemistary</option>
+			    <option value="maths+science">Maths + Science</option>
+			    <option value="english">English</option>
+			    <option value="hindi">Hindi</option>
+			    <option value="other">Other</option>
+			    <option value="discuss-later">I'll discuss later</option>
+			</select>
+			
+			<div class="form-group">
+			    <label for="Address">Address:</label>
+			    <br>
+			    <textarea class="form-control" id="Address" name="Address" placeholder="Enter Address" style="width: 100%; border-color: #c7c6c5; border-radius: 3px;" required></textarea>
+			</div>
+
+
+
+
+
+            <button type="submit">Register</button>
+        </form>
+    </main>
+
+    <!-- Registration Popup -->
+    <div id="registrationPopup" class="registration-popup">
+        <div class="registration-popup-content">
+            <span class="registration-popup-close">&times;</span>
+            <div class="registration-popup-header"></div>
+            <div class="registration-popup-body">
+                <p class="registration-popup-success">Your registration was successful!</p>
+                <p>Name: <span id="popupName" class="registration-popup-highlight"></span></p>
+                <p>Mobile Number: <span id="popupMobile" class="registration-popup-highlight"></span></p>
+                <p class="registration-popup-note">Please remember these details and check your status later.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/registration.js"></script>
+<footer style="text-align: center; padding: 15px; background-color: #f1f1f1; font-size: 14px; color: #333;">
+    <p style="margin: 0;">© 2024 Knowledge Point. All rights reserved.</p>
+</footer>
+</body>
+</html>
