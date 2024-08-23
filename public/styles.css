@@ -847,3 +847,93 @@ input:focus:valid, textarea:focus:valid {
     border-color: green;
 }
 /***************************************************************************************/
+/*************************** KNOWLEDGE POINT 4 BUTTONS  ********************************/
+/* Popup container */
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px; /* Ensure padding for smaller screens */
+    box-sizing: border-box;
+}
+
+/* Popup content */
+.popup-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%; /* Adjust width for mobile screens */
+    max-width: 500px;
+    border-radius: 8px;
+    box-sizing: border-box;
+
+    /* Flexbox settings */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Close button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Close button hover */
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Popup message */
+.popup-message {
+    margin-bottom: 15px;
+    font-size: 18px;
+    text-align: center;
+}
+
+
+/* Buttons */
+.KP-Main-Button {
+    color: white;
+    border: none;
+    padding: 10px 0; /* Adjust padding for button height */
+    margin: 5px 0; /* Margin between buttons */
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    flex: 1; /* Make buttons grow to fill the container */
+}
+
+/* Button hover effects */
+.KP-Main-Button:hover {
+    opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .popup-content {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .KP-Main-Button {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+}
+
+
+/*************************** KNOWLEDGE POINT 4 BUTTONS  ********************************/
