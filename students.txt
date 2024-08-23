@@ -56,7 +56,7 @@
     "email": "rahul.gupta.710@gmail.com",
     "subject": "hindi",
     "Address": "ahu",
-    "status": "Pending",
+    "status": "Approved",
     "timestamp": "2024-08-23 21:25:06"
   }
 ]
