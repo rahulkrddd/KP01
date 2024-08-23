@@ -32,7 +32,7 @@
     "email": "test1@gmail.com",
     "subject": "hindi",
     "Address": "test",
-    "status": "Pending",
+    "status": "Declined",
     "timestamp": "2024-08-23 21:12:09"
   }
 ]
