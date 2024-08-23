@@ -331,19 +331,28 @@ h1:hover {
     }
 }
 /* Ensure the modal dialog is centered vertically on mobile screens */
+/* General styling for the modal dialog */
 .modal-dialog {
     display: flex;
     align-items: center;
     justify-content: center;
-    /*min-height: 100vh; /* Full viewport height */
-	backdrop-filter: blur(3px); /* Adjust the blur radius as needed */}
+    min-height: 100vh; /* Full viewport height */
+    backdrop-filter: blur(3px); /* Adjust the blur radius as needed */
+    width: 90%; /* Default width for the modal */
+    max-width: 600px; /* Maximum width of the modal */
+    margin: 0 auto; /* Center the modal horizontally */
+    box-sizing: border-box; /* Include padding and border in width */
+}
 
 /* Additional adjustment for mobile screens */
 @media (max-width: 768px) {
     .modal-dialog {
-        margin: 0; /* Remove default margins */
+        width: 95%; /* Adjust width for smaller screens */
+        max-width: none; /* Remove maximum width constraint */
+        padding: 10px; /* Optional: add some padding for smaller screens */
     }
 }
+
 
 
 /* Overlay to create a blur effect behind the modal */
