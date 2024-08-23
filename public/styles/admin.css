@@ -482,10 +482,11 @@ h1:hover {
     margin-top: 10px;
 }
 
+
 /* Mobile-specific styles */
 @media (max-width: 768px) {
     .popup-content {
-        position: sticky; /* Position relative to the parent .popup-overlay */
+        position: absolute; /* Position relative to the parent .popup-overlay */
         top: 300px;
         left: 10px;
         width: 41%; /* Set width to 40% */
@@ -493,5 +494,8 @@ h1:hover {
         border-radius: 0; /* Optional: Remove border-radius for a more square look */
         box-shadow: none; /* Optional: Remove box-shadow for a cleaner look */
         padding: 10px; /* Optional: Adjust padding for smaller screens */
+        opacity: 0; /* Start with invisible content */
+        animation: fadeIn 1.5s ease-in forwards; /* Apply fade-in animation */
     }
 }
+
