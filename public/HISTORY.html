@@ -5,19 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>History Data</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="HISTORY.css">
+    <link rel="stylesheet" href="styles/HISTORY.css">
+    <style>
+        /* Styles for the footer */
+        footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: #333;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
+    <!-- Password Modal -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="passwordModalLabel">Password Required</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="passwordForm">
+                        <div class="form-group">
+                            <label for="passwordInput">Enter Password</label>
+                            <input type="number" class="form-control" id="passwordInput" placeholder="Password" required>
+                        </div>
+                        <div id="errorMessage" class="text-danger"></div>
+                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">History Data</h1>
+        <h1 class="text-center mb-4">History Logs</h1>
         <div class="text-right mb-3">
+
+			<!-- New Buttons -->
+			<a href="" id="history-home-page" class="btn btn-info btn-sm history-button">Home Page</a>
+			<a href="payment.html" id="history-payment-page" class="btn btn-warning btn-sm history-button">Payment Page</a>
+			<a href="index.html" id="history-student-page" class="btn btn-success btn-sm history-button">Student Page</a>
+			<!-- New Buttons -->
             <button id="reset-filters" class="btn btn-secondary btn-sm">Reset Filters</button>
             <button id="export-csv" class="btn btn-primary btn-sm">Export CSV</button>
         </div>
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th id="col-id">Student ID<input type="text" id="search-id" class="form-control form-control-sm" placeholder="Search Student ID" title="Search by Student ID"></th>
+                    <th id="col-id">S-ID<input type="text" id="search-id" class="form-control form-control-sm" placeholder="Search Student ID" title="Search by Student ID"></th>
                     <th id="col-result">Result<input type="text" id="search-result" class="form-control form-control-sm" placeholder="Search Result" title="Search by Result"></th>
                     <th id="col-action">Action<input type="text" id="search-action" class="form-control form-control-sm" placeholder="Search Action" title="Search by Action"></th>
                     <th id="col-name">Student Name<input type="text" id="search-name" class="form-control form-control-sm" placeholder="Search Name" title="Search by Name"></th>
@@ -40,9 +83,50 @@
         </table>
     </div>
 
+<<footer style="text-align: center; padding: 15px; background-color: #f1f1f1; font-size: 14px; color: #333;">
+    <p style="margin: 0;">© 2024 Knowledge Point. All rights reserved.</p>
+</footer>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="HISTORY.js"></script>
+    <script src="scripts/HISTORY.js"></script>
+
+    <script>
+        // JavaScript to dynamically set the current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#passwordModal').modal('show');
+
+            $('#passwordInput').on('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        });
+
+        $('#passwordForm').submit(function(event) {
+            event.preventDefault();
+            const password = $('#passwordInput').val();
+            $.ajax({
+                url: '/validate-password',
+                method: 'POST',
+                data: { password },
+                success: function(response) {
+                    if (response.valid) {
+                        $('#passwordModal').modal('hide');
+                    } else {
+                        $('#errorMessage').text('Invalid password. Please try again.');
+                    }
+                },
+                error: function() {
+                    $('#errorMessage').text('An error occurred. Please try again.');
+                }
+            });
+        });
+
+    </script>
 </body>
 </html>
