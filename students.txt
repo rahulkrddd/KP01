@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "name": "Rahul Gupta",
+    "class": "4",
+    "school": "Atmanand",
+    "dob": "2015-08-15",
+    "mobile": "8989898989",
+    "email": "rahul.gupta.730@gmail.com",
+    "subject": "maths+physics",
+    "Address": "HI",
+    "status": "Pending",
+    "timestamp": "2024-08-23 11:48:32"
+  }
+]
