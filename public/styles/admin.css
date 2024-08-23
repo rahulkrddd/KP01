@@ -1,159 +1,384 @@
-document.addEventListener('DOMContentLoaded', async () => {
-    const loadRecordsButton = document.getElementById('loadRecords');
-    const approveForm = document.getElementById('approveForm');
-    const declineButton = document.getElementById('declineSelected');
-    const deleteButton = document.getElementById('deleteSelected');
-    const clearFileButton = document.getElementById('clearFile');
-    const classFilter = document.getElementById('classFilter');
-    const schoolFilter = document.getElementById('schoolFilter');
-    const statusFilter = document.getElementById('statusFilter');
-    const searchInput = document.getElementById('searchInput');
-    const selectAllCheckbox = document.getElementById('selectAll');
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
 
-    // Automatically load records when the page loads
-    await loadRecords();
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
 
-    async function loadRecords() {
-        try {
-            const response = await fetch('/admin/records');
-            const records = await response.json();
-            displayRecords(records);
-        } catch (error) {
-            console.error('Error fetching records:', error);
-        }
+/* Button Styles */
+button {
+    font-size: 1rem;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    flex: 1;
+    max-width: calc(25% - 20px); /* Adjust for 4 buttons in a row */
+    box-sizing: border-box;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+button:active {
+    background-color: #004494;
+    transform: scale(0.95);
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Filters Section */
+div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+select, input[type="text"] {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.875rem;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Form Actions */
+button#approveSelected {
+    background-color: #28a745;
+}
+
+button#declineSelected {
+    background-color: #dc3545;
+}
+
+button#deleteSelected {
+    background-color: #ff6347;
+}
+
+button#clearFile {
+    background-color: #ffc107;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    div {
+        flex-direction: column;
     }
 
-    function displayRecords(records) {
-        const tableBody = document.querySelector('#recordsTable tbody');
-        tableBody.innerHTML = ''; // Clear existing records
-
-        records.forEach(record => {
-            const row = document.createElement('tr');
-            const checkboxDisabled = record.status !== 'Pending' ? 'disabled' : '';
-
-            row.innerHTML = `
-                <td><input type="checkbox" value="${record.timestamp}" ${checkboxDisabled} /></td>
-                <td>${record.name}</td>
-                <td>${record.class}</td>
-                <td>${record.school}</td>
-                <td>${record.dob}</td>
-                <td>${record.mobile}</td>
-                <td>${record.email}</td>
-                <td>${record.subject}</td>
-                <td>${record.timestamp}</td>
-                <td class="status">${record.status}</td>
-            `;
-            tableBody.appendChild(row);
-        });
-
-        // Add event listener for Select All checkbox
-        selectAllCheckbox.addEventListener('change', function() {
-            const checkboxes = document.querySelectorAll('#recordsTable tbody input[type="checkbox"]');
-            checkboxes.forEach(checkbox => {
-                if (!checkbox.disabled) {
-                    checkbox.checked = selectAllCheckbox.checked;
-                }
-            });
-        });
+    label {
+        margin-bottom: 5px;
     }
 
-    function filterRecords() {
-        const classValue = classFilter.value.toLowerCase();
-        const schoolValue = schoolFilter.value.toLowerCase();
-        const statusValue = statusFilter.value.toLowerCase();
-        const searchValue = searchInput.value.toLowerCase();
-
-        const rows = document.querySelectorAll('#recordsTable tbody tr');
-        rows.forEach(row => {
-            const classText = row.cells[2].textContent.toLowerCase();
-            const schoolText = row.cells[3].textContent.toLowerCase();
-            const statusText = row.cells[9].textContent.toLowerCase();
-            const rowText = row.textContent.toLowerCase();
-
-            const matchesFilter = (classValue === '' || classText.includes(classValue)) &&
-                                  (schoolValue === '' || schoolText.includes(schoolValue)) &&
-                                  (statusValue === '' || statusText.includes(statusValue));
-
-            const matchesSearch = rowText.includes(searchValue);
-
-            if (matchesFilter && matchesSearch) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
-        });
-
-        // Update Select All checkbox state
-        const checkboxes = document.querySelectorAll('#recordsTable tbody input[type="checkbox"]');
-        const checkedCheckboxes = document.querySelectorAll('#recordsTable tbody input[type="checkbox"]:checked');
-        selectAllCheckbox.checked = checkboxes.length > 0 && checkboxes.length === checkedCheckboxes.length;
+    select, input[type="text"] {
+        margin-bottom: 20px;
     }
 
-    classFilter.addEventListener('change', filterRecords);
-    schoolFilter.addEventListener('change', filterRecords);
-    statusFilter.addEventListener('change', filterRecords);
-    searchInput.addEventListener('input', filterRecords);
-
-    approveForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        await handleAction('approve');
-    });
-
-    declineButton.addEventListener('click', async () => {
-        await handleAction('decline');
-    });
-
-    deleteButton.addEventListener('click', async () => {
-        await handleAction('delete');
-    });
-
-    clearFileButton.addEventListener('click', async () => {
-        if (confirm('Are you sure you want to clear all records? This action cannot be undone.')) {
-            try {
-                const response = await fetch('/admin/clear', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                const result = await response.json();
-                console.log('Clear result:', result);
-
-                if (response.ok) {
-                    document.querySelector('#recordsTable tbody').innerHTML = '';
-                } else {
-                    console.error('Failed to clear the records:', result);
-                }
-
-                loadRecords();
-            } catch (error) {
-                console.error('Error clearing file:', error);
-            }
-        }
-    });
-
-    async function handleAction(action) {
-        const checkboxes = document.querySelectorAll('#recordsTable tbody input[type="checkbox"]:checked');
-        const timestamps = Array.from(checkboxes).map(checkbox => checkbox.value);
-
-        try {
-            const response = await fetch(`/admin/${action}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ timestamps })
-            });
-            const result = await response.json();
-            console.log(`${action.charAt(0).toUpperCase() + action.slice(1)} result:`, result);
-
-            // Update the records immediately
-            if (response.ok) {
-                const updatedRecords = await fetch('/admin/records').then(res => res.json());
-                displayRecords(updatedRecords);
-            }
-        } catch (error) {
-            console.error(`Error during ${action}:`, error);
-        }
+    table {
+        font-size: 0.75rem;
     }
-});
+
+    /* Buttons Layout for Mobile */
+    button {
+        max-width: calc(50% - 20px); /* Adjust for 2 buttons in a row */
+    }
+}
+
+@media (min-width: 769px) {
+    /* Ensure 4 buttons in a row on larger screens */
+    .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
+/***************************************************************************************************/
+/* General Button Styles */
+.admin-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    padding: 10px 20px; /* Adds padding inside the button */
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    text-decoration: none; /* Remove underline from links */
+    transition: background-color 0.3s, transform 0.3s;
+    /* Remove flex: 1 to prevent stretching */
+    box-sizing: border-box;
+    /* Ensure a consistent button width */
+    width: 120px; /* Fixed width for uniform size */
+}
+
+/* Centering Button Container */
+.button-container2 {
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    align-items: center;     /* Center buttons vertically */
+    gap: 10px;               /* Space between buttons */
+}
+
+/* Button States */
+.admin-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.admin-button:active {
+    background-color: #004494;
+    transform: scale(0.95);
+}
+
+.admin-button:focus {
+    outline: none;
+}
+/*************************************************************************************************************/
+/* Header Styles */
+h1 {
+    font-size: 2.5rem; /* Adjust the font size */
+    font-weight: bold; /* Make the text bold */
+    color: #333; /* Dark text color for better readability */
+    text-align: center; /* Center align the text */
+    margin-top: 0; /* Remove the top margin */
+    margin-bottom: 20px; /* Add spacing below the header */
+    padding: 10px; /* Add padding around the text */
+    border-bottom: 3px solid #007bff; /* Add a border below the header */
+    background-color: #f9f9f9; /* Light background color */
+    border-radius: 5px; /* Rounded corners for the background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+    transition: all 0.3s ease-in-out; /* Smooth transition for all properties */
+    animation: fadeIn 1s ease-out; /* Add fade-in animation on load */
+}
+
+/* Header Hover Styles */
+h1:hover {
+    color: #007bff; /* Change text color on hover */
+    background-color: #e9ecef; /* Slightly darker background on hover */
+    border-bottom: 3px solid #0056b3; /* Darker border on hover */
+    transform: scale(1.05); /* Slightly enlarge the header on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Increase shadow depth on hover */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* More pronounced text shadow on hover */
+}
+
+/* Keyframes for Fade-In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Header Style */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem; /* Smaller font size for tablets and smaller devices */
+        margin-bottom: 15px; /* Reduce spacing below the header */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1rem; /* Very small font size for mobile devices */
+        margin-bottom: 10px; /* Further reduce spacing below the header */
+        padding: 5px; /* Reduce padding around the text */
+    }
+}
+/*************************************************************************************************************/
+
+/*------------------------------------------------------------------------------/
+/* styles.css for password popup*/
+    .modal-header {
+        background-color: #007bff;
+        color: white;
+        border-bottom: none;
+		
+    }
+    .modal-header .close {
+        color: white;
+        opacity: 1;
+    }
+    .modal-header .close:hover {
+        color: #ff6f61;
+    }
+    .modal-content {
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .modal-body {
+        padding: 30px;
+    }
+    .form-control {
+        border-radius: 5px;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        border-radius: 5px;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+	
+#passwordInput {
+    -webkit-text-security: disc; /* For webkit browsers */
+    text-security: disc; /* For other browsers supporting this property */
+}
+
+/* General Button Styles */
+.submit-btn-class {
+    display: inline-flex; /* Ensures the button behaves as an inline element but still allows flex properties */
+    justify-content: center; /* Centers text inside the button */
+    align-items: center; /* Vertically centers text inside the button */
+    font-size: 1rem; /* Sets font size */
+    padding: 12px; /* Adds padding inside the button */
+    border: none; /* Removes the default border */
+    border-radius: 5px; /* Rounds the corners */
+    background-color: #007bff; /* Sets the background color */
+    color: white; /* Sets the text color */
+    cursor: pointer; /* Shows a pointer cursor on hover */
+    text-decoration: none; /* Removes underline for links */
+    width: 100%; /* Makes button width 100% */
+    box-sizing: border-box; /* Includes padding and border in the button's total width and height */
+    transition: background-color 0.3s, transform 0.3s; /* Adds transition effects */
+}
+
+/* Button Hover and Focus States */
+.submit-btn-class:hover {
+    background-color: #0056b3; /* Darker background on hover */
+    transform: scale(1.05); /* Slightly enlarges the button */
+}
+
+.submit-btn-class:active {
+    background-color: #004494; /* Even darker background on click */
+    transform: scale(0.95); /* Slightly shrinks the button on click */
+}
+
+.submit-btn-class:focus {
+    outline: none; /* Removes the default outline */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Adds a shadow to indicate focus */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .submit-btn-class {
+        font-size: 0.875rem; /* Slightly smaller font size for smaller screens */
+        padding: 10px; /* Reduces padding on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .submit-btn-class {
+        font-size: 0.75rem; /* Smaller font size for very small screens */
+        padding: 8px; /* Further reduces padding */
+    }
+}
+/* Ensure the modal dialog is centered vertically on mobile screens */
+/* General styling for the modal dialog */
+/* Ensure the modal dialog is centered vertically and horizontally on mobile screens */
+.modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Full viewport height */
+    margin: 0; /* Remove default margins */
+    padding: 0; /* Remove default padding */
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 500px; /* Set a maximum width for larger screens */
+    margin: 0 auto; /* Center the content */
+}
+
+/* Overlay/Backdrop to block interactions */
+.modal-backdrop.show {
+    backdrop-filter: blur(3px); /* Adjust the blur radius as needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+/* Additional adjustment for mobile screens */
+@media (max-width: 768px) {
+    .modal-dialog {
+        margin: 0; /* Ensure full height and no margin */
+    }
+}
+
+
+
+/* Overlay to create a blur effect behind the modal */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
+    backdrop-filter: blur(3px); /* Apply blur effect */
+    z-index: 1040; /* Place overlay behind the modal but above other content */
+    display: none; /* Hide overlay by default */
+}
+
+/* Show the overlay when the modal is active */
+.modal.show + .overlay {
+    display: block;
+}
+
+/*------------------------------------------------------------------------------/
