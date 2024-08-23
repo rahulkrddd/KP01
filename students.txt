@@ -10,5 +10,17 @@
     "Address": "HI",
     "status": "Pending",
     "timestamp": "2024-08-23 11:48:32"
+  },
+  {
+    "name": "Rahul Gupta A",
+    "class": "5",
+    "school": "KV",
+    "dob": "2015-06-16",
+    "mobile": "8888888888",
+    "email": "career.rahul@gmail.com",
+    "subject": "english",
+    "Address": "Hi",
+    "status": "Pending",
+    "timestamp": "2024-08-23 11:52:29"
   }
 ]
