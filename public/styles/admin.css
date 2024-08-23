@@ -421,19 +421,17 @@ h1:hover {
     width: 100%;
     background: #007bff; /* Background color of the header */
     border-radius: 10px; /* Curved edges for the header */
+    min-height: 70px; /* Minimum height for the header */
+	color: white;
 }
+
+
 
 .popup-header h5 {
     margin: 0;
 }
 
-.popup-close {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #007bff; /* Color of the close button */
-}
+
 
 /* Popup body styles */
 .popup-body {
@@ -488,7 +486,7 @@ h1:hover {
 @media (max-width: 768px) {
     .popup-content {
         position: absolute; /* Position relative to the parent .popup-overlay */
-        top: 500px;
+        top: 300px;
         left: 10px;
         width: 40%; /* Set width to 40% */
         max-width: none; /* Remove the max-width restriction */
