@@ -132,6 +132,18 @@
         $(document).ready(function() {
             $('#passwordModal').modal('show');
 
+    // Disable horizontal scrolling when the modal is shown
+    $('#passwordModal').on('shown.bs.modal', function () {
+        $('body').addClass('no-scroll');
+        $('.overlay').show();
+    });
+
+    // Enable scrolling and hide overlay when the modal is hidden
+    $('#passwordModal').on('hidden.bs.modal', function () {
+        $('body').removeClass('no-scroll');
+        $('.overlay').hide();
+    });
+
             $('#passwordInput').on('input', function() {
                 this.value = this.value.replace(/[^0-9]/g, '');
             });
