@@ -280,4 +280,70 @@ h1:hover {
     -webkit-text-security: disc; /* For webkit browsers */
     text-security: disc; /* For other browsers supporting this property */
 }
+
+/* General Button Styles */
+.submit-btn-class {
+    display: inline-flex; /* Ensures the button behaves as an inline element but still allows flex properties */
+    justify-content: center; /* Centers text inside the button */
+    align-items: center; /* Vertically centers text inside the button */
+    font-size: 1rem; /* Sets font size */
+    padding: 12px; /* Adds padding inside the button */
+    border: none; /* Removes the default border */
+    border-radius: 5px; /* Rounds the corners */
+    background-color: #007bff; /* Sets the background color */
+    color: white; /* Sets the text color */
+    cursor: pointer; /* Shows a pointer cursor on hover */
+    text-decoration: none; /* Removes underline for links */
+    width: 100%; /* Makes button width 100% */
+    box-sizing: border-box; /* Includes padding and border in the button's total width and height */
+    transition: background-color 0.3s, transform 0.3s; /* Adds transition effects */
+}
+
+/* Button Hover and Focus States */
+.submit-btn-class:hover {
+    background-color: #0056b3; /* Darker background on hover */
+    transform: scale(1.05); /* Slightly enlarges the button */
+}
+
+.submit-btn-class:active {
+    background-color: #004494; /* Even darker background on click */
+    transform: scale(0.95); /* Slightly shrinks the button on click */
+}
+
+.submit-btn-class:focus {
+    outline: none; /* Removes the default outline */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Adds a shadow to indicate focus */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .submit-btn-class {
+        font-size: 0.875rem; /* Slightly smaller font size for smaller screens */
+        padding: 10px; /* Reduces padding on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .submit-btn-class {
+        font-size: 0.75rem; /* Smaller font size for very small screens */
+        padding: 8px; /* Further reduces padding */
+    }
+}
+/* Ensure the modal dialog is centered vertically on mobile screens */
+.modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Full viewport height */
+	backdrop-filter: blur(3px); /* Adjust the blur radius as needed */}
+
+/* Additional adjustment for mobile screens */
+@media (max-width: 768px) {
+    .modal-dialog {
+        margin: 0; /* Remove default margins */
+    }
+}
+
+
+
 /*------------------------------------------------------------------------------/
