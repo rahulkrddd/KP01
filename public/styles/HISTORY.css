@@ -287,41 +287,132 @@ th#col-no-fee  {
     opacity: 0.6; /* Slight transparency on active */
 }
 /*------------------------------------------------------------------------------/
-/* styles.css for password popup*/
-    .modal-header {
-        background-color: #007bff;
-        color: white;
-        border-bottom: none;
+/* General popup styles */
+/* General popup styles */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
+    display: flex; /* Changed from 'none' to 'flex' */
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Ensure it's on top */
+    overflow: hidden; /* Hide scrollbars */
+    backdrop-filter: blur(10px); /* Apply blur effect to the background */
+}
+
+
+/* Popup content styles */
+.popup-content {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden; /* Hide scrollbars */
+	
+}
+
+/* Popup header styles */
+.popup-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    width: 100%;
+    background: #007bff; /* Background color of the header */
+    border-radius: 10px; /* Curved edges for the header */
+    min-height: 70px; /* Minimum height for the header */
+	color: white;
+}
+
+
+
+.popup-header h5 {
+    margin: 0;
+}
+
+
+
+/* Popup body styles */
+.popup-body {
+    margin-top: 10px;
+}
+
+/* Input field styling */
+.form-control {
+    border-radius: 5px;
+}
+
+/* Button styles */
+.submit-btn-class {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.submit-btn-class:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.submit-btn-class:active {
+    background-color: #004494;
+    transform: scale(0.95);
+}
+
+.submit-btn-class:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Error message styling */
+.text-danger {
+    color: #dc3545;
+    margin-top: 10px;
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
     }
-    .modal-header .close {
-        color: white;
+    to {
         opacity: 1;
     }
-    .modal-header .close:hover {
-        color: #ff6f61;
-    }
-    .modal-content {
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
-    .modal-body {
-        padding: 30px;
-    }
-    .form-control {
-        border-radius: 5px;
-    }
-    .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
-        border-radius: 5px;
-    }
-    .btn-primary:hover {
-        background-color: #0056b3;
-        border-color: #0056b3;
-    }
-	
-#passwordInput {
-    -webkit-text-security: disc; /* For webkit browsers */
-    text-security: disc; /* For other browsers supporting this property */
 }
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    .popup-content {
+        position: absolute; /* Position relative to the parent .popup-overlay */
+        top: 300px;
+        left: 10px;
+        width: 41%; /* Set width to 40% */
+        max-width: none; /* Remove the max-width restriction */
+        border-radius: 0; /* Optional: Remove border-radius for a more square look */
+        box-shadow: none; /* Optional: Remove box-shadow for a cleaner look */
+        padding: 10px; /* Optional: Adjust padding for smaller screens */
+        opacity: 0; /* Start with invisible content */
+        animation: fadeIn 1.5s ease-in forwards; /* Apply fade-in animation */
+    }
+}
+
 /*------------------------------------------------------------------------------/
