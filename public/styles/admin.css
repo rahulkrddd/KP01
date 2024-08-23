@@ -485,7 +485,7 @@ h1:hover {
 /* Mobile-specific styles */
 @media (max-width: 768px) {
     .popup-content {
-        position: static; /* Position relative to the parent .popup-overlay */
+        position: fixed; /* Position relative to the parent .popup-overlay */
         top: 300px;
         left: 10px;
         width: 41%; /* Set width to 40% */
