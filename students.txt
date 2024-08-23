@@ -70,5 +70,17 @@
     "Address": "Hi",
     "status": "Pending",
     "timestamp": "2024-08-23 23:46:27"
+  },
+  {
+    "name": "Sid",
+    "class": "5",
+    "school": "Atmanand",
+    "dob": "2015-08-18",
+    "mobile": "8839623800",
+    "email": "rahu@msn.com",
+    "subject": "maths",
+    "Address": "Hi",
+    "status": "Pending",
+    "timestamp": "2024-08-23 23:47:25"
   }
 ]
