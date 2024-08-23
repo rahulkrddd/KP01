@@ -7,11 +7,7 @@ body {
     color: #333;
 }
 
-h1 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
+
 
 /* Button Styles */
 button {
@@ -185,102 +181,88 @@ button#clearFile {
     outline: none;
 }
 /*************************************************************************************************************/
+
+
+
+/* Header Container Styles */
+.header-container {
+    display: flex;
+    justify-content: center; /* Center align the header container */
+    align-items: center; /* Vertically center the content */
+/*    min-height: 100vh; /* Full viewport height */
+    background: linear-gradient(135deg, #f5f5f5, #e0e0e0); /* Gradient background */
+    animation: backgroundShift 8s infinite alternate; /* Animate background gradient */
+}
+
 /* Header Styles */
-h1 {
+.header-container h1 {
     font-size: 2.5rem; /* Adjust the font size */
     font-weight: bold; /* Make the text bold */
     color: #333; /* Dark text color for better readability */
     text-align: center; /* Center align the text */
-    margin-top: 0; /* Remove the top margin */
-    margin-bottom: 20px; /* Add spacing below the header */
-    padding: 10px; /* Add padding around the text */
-    border-bottom: 3px solid #007bff; /* Add a border below the header */
+    margin: 0; /* Remove margins */
+    padding: 15px; /* Add padding around the text */
+    border-bottom: 4px solid #007bff; /* Thicker border below the header */
     background-color: #f9f9f9; /* Light background color */
-    border-radius: 5px; /* Rounded corners for the background */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+    border-radius: 10px; /* More rounded corners for the background */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2); /* Pronounced text shadow */
     transition: all 0.3s ease-in-out; /* Smooth transition for all properties */
-    animation: fadeIn 1s ease-out; /* Add fade-in animation on load */
+    animation: fadeIn 1s ease-out, zoomIn 2s ease-in-out infinite; /* Add fade-in and zoom-in animations */
 }
 
 /* Header Hover Styles */
-h1:hover {
+.header-container h1:hover {
     color: #007bff; /* Change text color on hover */
     background-color: #e9ecef; /* Slightly darker background on hover */
-    border-bottom: 3px solid #0056b3; /* Darker border on hover */
-    transform: scale(1.05); /* Slightly enlarge the header on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Increase shadow depth on hover */
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* More pronounced text shadow on hover */
+    border-bottom: 4px solid #0056b3; /* Darker border on hover */
+    transform: scale(1.1) rotate(-2deg); /* Enlarge and rotate the header on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* Increased shadow depth on hover */
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3); /* More pronounced text shadow on hover */
 }
 
-/* Keyframes for Fade-In Animation */
+/* Fade In Animation */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Zoom In Animation */
+@keyframes zoomIn {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Background Shift Animation */
+@keyframes backgroundShift {
+    0% { background: linear-gradient(135deg, #f5f5f5, #e0e0e0); }
+    100% { background: linear-gradient(135deg, #e0e0e0, #f5f5f5); }
+}
+
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Background Pulse Animation */
+@keyframes backgroundPulse {
+    0%, 100% { background: linear-gradient(135deg, #f5f5f5, #e0e0e0); }
+    50% { background: linear-gradient(135deg, #e0e0e0, #f5f5f5); }
+}
+
+/* Mobile Styles */
+@media (max-width: 600px) {
+    .header-container h1 {
+        font-size: 1.5rem; /* Smaller font size for mobile */
+        padding: 5px; /* Reduced padding for mobile */
     }
 }
 
-/* Responsive Header Style */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 1.5rem; /* Smaller font size for tablets and smaller devices */
-        margin-bottom: 15px; /* Reduce spacing below the header */
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1rem; /* Very small font size for mobile devices */
-        margin-bottom: 10px; /* Further reduce spacing below the header */
-        padding: 5px; /* Reduce padding around the text */
-    }
-}
 /*************************************************************************************************************/
 
-/*------------------------------------------------------------------------------/
-/* styles.css for password popup*/
-    .modal-header {
-        background-color: #007bff;
-        color: white;
-        border-bottom: none;
-		
-    }
-    .modal-header .close {
-        color: white;
-        opacity: 1;
-    }
-    .modal-header .close:hover {
-        color: #ff6f61;
-    }
-    .modal-content {
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
-    .modal-body {
-        padding: 30px;
-    }
-    .form-control {
-        border-radius: 5px;
-    }
-    .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
-        border-radius: 5px;
-    }
-    .btn-primary:hover {
-        background-color: #0056b3;
-        border-color: #0056b3;
-    }
-	
-#passwordInput {
-    -webkit-text-security: disc; /* For webkit browsers */
-    text-security: disc; /* For other browsers supporting this property */
-}
 
 /* General Button Styles */
 .submit-btn-class {
@@ -482,6 +464,15 @@ h1:hover {
     margin-top: 10px;
 }
 
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
 /* Mobile-specific styles */
 @media (max-width: 768px) {
@@ -498,4 +489,3 @@ h1:hover {
         animation: fadeIn 1.5s ease-in forwards; /* Apply fade-in animation */
     }
 }
-
