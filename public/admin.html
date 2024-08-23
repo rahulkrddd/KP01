@@ -1,109 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="styles/admin.css">
-    <!-- Include Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
-<body>
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Admin Dashboard</title>
+		<link rel="stylesheet" href="styles/admin.css">
+		<!-- Include Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	</head>
+	<body>
 
-    <h1>Admin Student Approval Dashboard</h1>
-    <div class="button-container2">
-        <a href="home.html" id="HOME" class="admin-button">Home</a>
-        <a href="payment.html" id="MAIN" class="admin-button">Payment</a>
-    </div>
+		<h1>Admin Student Approval Dashboard</h1>
+		<div class="button-container2">
+			<a href="home.html" id="HOME" class="admin-button">Home</a>
+			<a href="payment.html" id="MAIN" class="admin-button">Payment</a>
+		</div>
 
-    <!-- Filters -->
-    <div>
-        <label for="classFilter">Class:</label>
-        <select id="classFilter">
-            <option value="">All</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <!-- Continue adding options for all classes -->
-        </select>
-
-        <label for="schoolFilter">School:</label>
-        <select id="schoolFilter">
+		<!-- Filters -->
+		<div>
+			<label for="classFilter">Class:</label>
+			<select id="classFilter">
 				<option value="">All</option>
-			    <option value="KCPS">KCPS</option>
-			    <option value="Banjari">Banjari</option>
-			    <option value="Atmanand">Atmanand</option>
-			    <option value="KV">KV</option>
-			    <option value="DPS">DPS</option>
-			    <option value="Inventure">Inventure</option>
-			    <option value="Others">Others</option>
-        </select>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<!-- Continue adding options for all classes -->
+			</select>
 
-        <label for="statusFilter">Status:</label>
-        <select id="statusFilter">
-            <option value="">All</option>
-            <option value="Pending">Pending</option>
-            <option value="Approved">Approved</option>
-            <option value="Declined">Declined</option>
-            <!-- Add other statuses if needed -->
-        </select>
+			<label for="schoolFilter">School:</label>
+			<select id="schoolFilter">
+					<option value="">All</option>
+					<option value="KCPS">KCPS</option>
+					<option value="Banjari">Banjari</option>
+					<option value="Atmanand">Atmanand</option>
+					<option value="KV">KV</option>
+					<option value="DPS">DPS</option>
+					<option value="Inventure">Inventure</option>
+					<option value="Others">Others</option>
+			</select>
 
-        <label for="searchInput">Search:</label>
-        <input type="text" id="searchInput" placeholder="Type to search...">
-    </div>
+			<label for="statusFilter">Status:</label>
+			<select id="statusFilter">
+				<option value="">All</option>
+				<option value="Pending">Pending</option>
+				<option value="Approved">Approved</option>
+				<option value="Declined">Declined</option>
+				<!-- Add other statuses if needed -->
+			</select>
 
-    <form id="approveForm">
-        <table id="recordsTable">
-            <thead>
-                <tr>
-                    <th><input type="checkbox" id="selectAll" /></th>
-                    <th>Name</th>
-                    <th>Class</th>
-                    <th>School</th>
-                    <th>DOB</th>
-                    <th>Mobile</th>
-                    <th>Email</th>
-                    <th>Subject</th>
-                    <th>Timestamp</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Records will be dynamically inserted here -->
-            </tbody>
-        </table>
-        <div class="button-container">
-            <button id="approveSelected">Approve</button>
-            <button id="declineSelected">Decline</button>
-            <button id="deleteSelected">Delete</button>
-            <button id="clearFile">Clear</button>
-        </div>
-    </form>
+			<label for="searchInput">Search:</label>
+			<input type="text" id="searchInput" placeholder="Type to search...">
+		</div>
 
-<!-- Overlay for background blur -->
-<div class="overlay"></div>
+		<form id="approveForm">
+			<table id="recordsTable">
+				<thead>
+					<tr>
+						<th><input type="checkbox" id="selectAll" /></th>
+						<th>Name</th>
+						<th>Class</th>
+						<th>School</th>
+						<th>DOB</th>
+						<th>Mobile</th>
+						<th>Email</th>
+						<th>Subject</th>
+						<th>Timestamp</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Records will be dynamically inserted here -->
+				</tbody>
+			</table>
+			<div class="button-container">
+				<button id="approveSelected">Approve</button>
+				<button id="declineSelected">Decline</button>
+				<button id="deleteSelected">Delete</button>
+				<button id="clearFile">Clear</button>
+			</div>
+		</form>
 
-<!-- Password Modal -->
-<div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="passwordModalLabel">Password Required</h5>
+	<!-- Overlay for background blur -->
+	<div class="overlay"></div>
+
+    <!-- Custom Password Popup -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h5>Password Required</h5>
+                <button class="popup-close" id="popupClose">&times;</button>
             </div>
-            <div class="modal-body">
+            <div class="popup-body">
                 <form id="passwordForm">
                     <div class="form-group">
                         <label for="passwordInput">Enter Password</label>
-                        <input type="number" class="form-control" id="passwordInput" placeholder="Password" required>
+                        <input type="password" class="form-control" id="passwordInput" placeholder="Password" required>
                     </div>
                     <div id="errorMessage" class="text-danger"></div>
                     <button type="submit" class="submit-btn-class">Submit</button>
@@ -111,61 +111,53 @@
             </div>
         </div>
     </div>
-</div>
 
-<!-- Bootstrap CSS -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Bootstrap CSS -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 
-<!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
-    <!-- Include jQuery and Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<!-- Include jQuery and Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <script src="scripts/admin.js"></script>
+		<script src="scripts/admin.js"></script>
     <script>
         $(document).ready(function() {
-            $('#passwordModal').modal('show');
+            // Show the custom popup
+            $('#popupOverlay').show();
 
-            $('#passwordInput').on('input', function() {
-                this.value = this.value.replace(/[^0-9]/g, '');
-            });
-        });
-
-        $('#passwordForm').submit(function(event) {
-            event.preventDefault();
-            const password = $('#passwordInput').val();
-            $.ajax({
-                url: '/validate-password',
-                method: 'POST',
-                data: { password },
-                success: function(response) {
-                    if (response.valid) {
-                        $('#passwordModal').modal('hide');
-                    } else {
-                        $('#errorMessage').text('Invalid password. Please try again.');
+            // Handle password form submission
+            $('#passwordForm').submit(function(event) {
+                event.preventDefault();
+                const password = $('#passwordInput').val();
+                $.ajax({
+                    url: '/validate-password',
+                    method: 'POST',
+                    data: { password },
+                    success: function(response) {
+                        if (response.valid) {
+                            $('#popupOverlay').hide();
+                        } else {
+                            $('#errorMessage').text('Invalid password. Please try again.');
+                        }
+                    },
+                    error: function() {
+                        $('#errorMessage').text('An error occurred. Please try again.');
                     }
-                },
-                error: function() {
-                    $('#errorMessage').text('An error occurred. Please try again.');
-                }
+                });
+            });
+
+            // Close the popup
+            $('#popupClose').click(function() {
+                $('#popupOverlay').hide();
             });
         });
-		
-// Ensure overlay is shown when modal is shown and hidden when modal is hidden
-$('#passwordModal').on('show.bs.modal', function () {
-    $('.overlay').show();
-});
-
-$('#passwordModal').on('hide.bs.modal', function () {
-    $('.overlay').hide();
-});
-
     </script>
-</body>
-</html>
+	</body>
+	</html>
