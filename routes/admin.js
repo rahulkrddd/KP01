@@ -26,6 +26,25 @@ router.get('/records', async (req, res) => {
     }
 });
 
+// Define your routes here
+router.post('/validate-password', (req, res) => {
+    console.log('Endpoint /validate-password hit');
+    const { password } = req.body;
+    const validPassword = process.env.PASSWORD;
+
+    console.log('Received password:', password);
+    console.log('Valid password from environment:', validPassword);
+
+    if (password === validPassword) {
+        console.log('Password is valid');
+        res.json({ valid: true });
+    } else {
+        console.log('Password is invalid');
+        res.json({ valid: false });
+    }
+});
+
+
 // Decline selected records
 router.post('/decline', async (req, res) => {
     console.log('Received request to decline records:', req.body);
