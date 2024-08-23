@@ -106,5 +106,17 @@
     "Address": "Gigjj ",
     "status": "Pending",
     "timestamp": "2024-08-24 00:03:06"
+  },
+  {
+    "name": "Tannu",
+    "class": "2",
+    "school": "DPS",
+    "dob": "2015-08-12",
+    "mobile": "9876543212",
+    "email": "test@hotmail.com",
+    "subject": "maths",
+    "Address": "Hi",
+    "status": "Pending",
+    "timestamp": "2024-08-24 00:03:34"
   }
 ]
