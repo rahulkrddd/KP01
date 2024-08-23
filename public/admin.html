@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-<div id="mainContent" style="display: none;">
 
     <h1>Admin Student Approval Dashboard</h1>
     <div class="button-container2">
@@ -92,11 +91,6 @@
 
 <!-- Overlay for background blur -->
 <div class="overlay"></div>
-</div>
-
-
-
-
 
 <!-- Password Modal -->
 <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
@@ -135,43 +129,41 @@
 
     <script src="scripts/admin.js"></script>
     <script>
-$(document).ready(function() {
-    $('#passwordModal').modal('show');
+        $(document).ready(function() {
+            $('#passwordModal').modal('show');
 
-    $('#passwordInput').on('input', function() {
-        this.value = this.value.replace(/[^0-9]/g, '');
-    });
-
-    $('#passwordForm').submit(function(event) {
-        event.preventDefault();
-        const password = $('#passwordInput').val();
-        $.ajax({
-            url: '/validate-password',
-            method: 'POST',
-            data: { password },
-            success: function(response) {
-                if (response.valid) {
-                    $('#passwordModal').modal('hide');
-                    $('#mainContent').fadeIn(); // Show the main content
-                    $('.overlay').hide(); // Hide the overlay
-                } else {
-                    $('#errorMessage').text('Invalid password. Please try again.');
-                }
-            },
-            error: function() {
-                $('#errorMessage').text('An error occurred. Please try again.');
-            }
+            $('#passwordInput').on('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
         });
-    });
 
-    // Ensure overlay is shown when modal is shown and hidden when modal is hidden
-    $('#passwordModal').on('show.bs.modal', function () {
-        $('.overlay').show();
-    });
+        $('#passwordForm').submit(function(event) {
+            event.preventDefault();
+            const password = $('#passwordInput').val();
+            $.ajax({
+                url: '/validate-password',
+                method: 'POST',
+                data: { password },
+                success: function(response) {
+                    if (response.valid) {
+                        $('#passwordModal').modal('hide');
+                    } else {
+                        $('#errorMessage').text('Invalid password. Please try again.');
+                    }
+                },
+                error: function() {
+                    $('#errorMessage').text('An error occurred. Please try again.');
+                }
+            });
+        });
+		
+// Ensure overlay is shown when modal is shown and hidden when modal is hidden
+$('#passwordModal').on('show.bs.modal', function () {
+    $('.overlay').show();
+});
 
-    $('#passwordModal').on('hide.bs.modal', function () {
-        $('.overlay').hide();
-    });
+$('#passwordModal').on('hide.bs.modal', function () {
+    $('.overlay').hide();
 });
 
     </script>
