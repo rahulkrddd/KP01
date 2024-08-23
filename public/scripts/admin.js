@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const loadRecordsButton = document.getElementById('loadRecords');
-    const approveForm = document.getElementById('approveForm');
+    const approveButton = document.getElementById('approveSelected');
     const declineButton = document.getElementById('declineSelected');
     const deleteButton = document.getElementById('deleteSelected');
     const clearFileButton = document.getElementById('clearFile');
@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function loadRecords() {
         try {
             const response = await fetch('/admin/records');
+            if (!response.ok) throw new Error('Network response was not ok');
             const records = await response.json();
             displayRecords(records);
         } catch (error) {
@@ -94,8 +95,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     statusFilter.addEventListener('change', filterRecords);
     searchInput.addEventListener('input', filterRecords);
 
-    approveForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
+    approveButton.addEventListener('click', async () => {
         await handleAction('approve');
     });
 
@@ -117,43 +117,64 @@ document.addEventListener('DOMContentLoaded', async () => {
                     }
                 });
                 const result = await response.json();
-                console.log('Clear result:', result);
-
                 if (response.ok) {
                     document.querySelector('#recordsTable tbody').innerHTML = '';
                 } else {
                     console.error('Failed to clear the records:', result);
                 }
-
-                loadRecords();
             } catch (error) {
                 console.error('Error clearing file:', error);
             }
         }
     });
 
-    async function handleAction(action) {
-        const checkboxes = document.querySelectorAll('#recordsTable tbody input[type="checkbox"]:checked');
-        const timestamps = Array.from(checkboxes).map(checkbox => checkbox.value);
+async function handleAction(action) {
+    const checkboxes = document.querySelectorAll('#recordsTable tbody input[type="checkbox"]:checked');
+    const timestamps = Array.from(checkboxes).map(checkbox => checkbox.value);
 
-        try {
-            const response = await fetch(`/admin/${action}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ timestamps })
-            });
-            const result = await response.json();
-            console.log(`${action.charAt(0).toUpperCase() + action.slice(1)} result:`, result);
-
-            // Update the records immediately
-            if (response.ok) {
-                const updatedRecords = await fetch('/admin/records').then(res => res.json());
-                displayRecords(updatedRecords);
-            }
-        } catch (error) {
-            console.error(`Error during ${action}:`, error);
-        }
+    if (timestamps.length === 0) {
+        alert('Please select records to ' + action + '.');
+        return;
     }
+
+    try {
+        const response = await fetch(`/admin/${action}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ timestamps })
+        });
+
+        const result = await response.json(); // Read the JSON response
+
+        if (!response.ok) {
+            console.error(`Error during ${action}:`, result);
+            alert(`Failed to ${action} records. ${result.message || ''}`);
+            return;
+        }
+
+        // Update records immediately
+        updateRecordsDisplay(result.updatedRecords || []); // Use result.updatedRecords if available
+
+        // Show success message
+        alert(`Records successfully ${action}d.`);
+    } catch (error) {
+        alert(`Error occurred while ${action} records.`);
+    }
+}
+
+function updateRecordsDisplay(updatedRecords) {
+    const rows = document.querySelectorAll('#recordsTable tbody tr');
+    updatedRecords.forEach(record => {
+        const row = Array.from(rows).find(row => row.querySelector('input[type="checkbox"]').value === record.timestamp);
+
+        if (row) {
+            row.querySelector('.status').textContent = record.status;
+            row.querySelector('input[type="checkbox"]').disabled = record.status !== 'Pending';
+        }
+    });
+}
+
+
 });
