@@ -479,17 +479,19 @@ h1:hover {
     margin-top: 10px;
 }
 
+
 /* Mobile-specific styles */
 @media (max-width: 768px) {
     .popup-content {
         position: absolute; /* Position relative to the parent .popup-overlay */
-        top: 10px;
-        left: 2px;
-        width: 40%; /* Set width to 25% */
+        top: 250px;
+        left: 20px;
+        width: 42%; /* Set width to 25% */
         max-width: none; /* Remove the max-width restriction */
         border-radius: 0; /* Optional: Remove border-radius for a more square look */
         box-shadow: none; /* Optional: Remove box-shadow for a cleaner look */
         padding: 10px; /* Optional: Adjust padding for smaller screens */
     }
 }
+
 
