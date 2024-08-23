@@ -1,0 +1,242 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Button Styles */
+button {
+    font-size: 1rem;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    flex: 1;
+    max-width: calc(25% - 20px); /* Adjust for 4 buttons in a row */
+    box-sizing: border-box;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+button:active {
+    background-color: #004494;
+    transform: scale(0.95);
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Filters Section */
+div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+select, input[type="text"] {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.875rem;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Form Actions */
+button#approveSelected {
+    background-color: #28a745;
+}
+
+button#declineSelected {
+    background-color: #dc3545;
+}
+
+button#deleteSelected {
+    background-color: #ff6347;
+}
+
+button#clearFile {
+    background-color: #ffc107;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    div {
+        flex-direction: column;
+    }
+
+    label {
+        margin-bottom: 5px;
+    }
+
+    select, input[type="text"] {
+        margin-bottom: 20px;
+    }
+
+    table {
+        font-size: 0.75rem;
+    }
+
+    /* Buttons Layout for Mobile */
+    button {
+        max-width: calc(50% - 20px); /* Adjust for 2 buttons in a row */
+    }
+}
+
+@media (min-width: 769px) {
+    /* Ensure 4 buttons in a row on larger screens */
+    .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
+/***************************************************************************************************/
+/* General Button Styles */
+.admin-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    padding: 10px 20px; /* Adds padding inside the button */
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    text-decoration: none; /* Remove underline from links */
+    transition: background-color 0.3s, transform 0.3s;
+    /* Remove flex: 1 to prevent stretching */
+    box-sizing: border-box;
+    /* Ensure a consistent button width */
+    width: 120px; /* Fixed width for uniform size */
+}
+
+/* Centering Button Container */
+.button-container2 {
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    align-items: center;     /* Center buttons vertically */
+    gap: 10px;               /* Space between buttons */
+}
+
+/* Button States */
+.admin-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.admin-button:active {
+    background-color: #004494;
+    transform: scale(0.95);
+}
+
+.admin-button:focus {
+    outline: none;
+}
+/*************************************************************************************************************/
+/* Header Styles */
+h1 {
+    font-size: 2.5rem; /* Adjust the font size */
+    font-weight: bold; /* Make the text bold */
+    color: #333; /* Dark text color for better readability */
+    text-align: center; /* Center align the text */
+    margin-top: 0; /* Remove the top margin */
+    margin-bottom: 20px; /* Add spacing below the header */
+    padding: 10px; /* Add padding around the text */
+    border-bottom: 3px solid #007bff; /* Add a border below the header */
+    background-color: #f9f9f9; /* Light background color */
+    border-radius: 5px; /* Rounded corners for the background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+    transition: all 0.3s ease-in-out; /* Smooth transition for all properties */
+    animation: fadeIn 1s ease-out; /* Add fade-in animation on load */
+}
+
+/* Header Hover Styles */
+h1:hover {
+    color: #007bff; /* Change text color on hover */
+    background-color: #e9ecef; /* Slightly darker background on hover */
+    border-bottom: 3px solid #0056b3; /* Darker border on hover */
+    transform: scale(1.05); /* Slightly enlarge the header on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Increase shadow depth on hover */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* More pronounced text shadow on hover */
+}
+
+/* Keyframes for Fade-In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Header Style */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem; /* Smaller font size for tablets and smaller devices */
+        margin-bottom: 15px; /* Reduce spacing below the header */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1rem; /* Very small font size for mobile devices */
+        margin-bottom: 10px; /* Further reduce spacing below the header */
+        padding: 5px; /* Reduce padding around the text */
+    }
+}
