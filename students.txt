@@ -46,5 +46,17 @@
     "Address": "wew",
     "status": "Declined",
     "timestamp": "2024-08-23 21:16:29"
+  },
+  {
+    "name": "Priyanka C",
+    "class": "10",
+    "school": "KV",
+    "dob": "2015-08-06",
+    "mobile": "7777777778",
+    "email": "rahul.gupta.710@gmail.com",
+    "subject": "hindi",
+    "Address": "ahu",
+    "status": "Pending",
+    "timestamp": "2024-08-23 21:25:06"
   }
 ]
