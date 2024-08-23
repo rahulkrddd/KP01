@@ -7,6 +7,27 @@
     <link rel="stylesheet" href="styles/admin.css">
 </head>
 <body>
+    <!-- Password Modal -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="passwordModalLabel">Password Required</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="passwordForm">
+                        <div class="form-group">
+                            <label for="passwordInput">Enter Password</label>
+                            <input type="number" class="form-control" id="passwordInput" placeholder="Password" required>
+                        </div>
+                        <div id="errorMessage" class="text-danger"></div>
+                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+	
     <h1>Admin Student Approval Dashboard</h1>
 <div class="button-container2">
     <a href="home.html" id="HOME" class="admin-button">Home</a>
@@ -88,6 +109,36 @@
 		</div>
 
     </form>
+    <script>
+        $(document).ready(function() {
+            $('#passwordModal').modal('show');
+
+            $('#passwordInput').on('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        });
+
+        $('#passwordForm').submit(function(event) {
+            event.preventDefault();
+            const password = $('#passwordInput').val();
+            $.ajax({
+                url: '/validate-password',
+                method: 'POST',
+                data: { password },
+                success: function(response) {
+                    if (response.valid) {
+                        $('#passwordModal').modal('hide');
+                    } else {
+                        $('#errorMessage').text('Invalid password. Please try again.');
+                    }
+                },
+                error: function() {
+                    $('#errorMessage').text('An error occurred. Please try again.');
+                }
+            });
+        });
+
+    </script>
     <script src="scripts/admin.js"></script>
 </body>
 </html>
