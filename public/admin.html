@@ -89,26 +89,35 @@
         </div>
     </form>
 
-    <!-- Password Modal -->
-    <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="passwordModalLabel">Password Required</h5>
-                </div>
-                <div class="modal-body">
-                    <form id="passwordForm">
-                        <div class="form-group">
-                            <label for="passwordInput">Enter Password</label>
-                            <input type="number" class="form-control" id="passwordInput" placeholder="Password" required>
-                        </div>
-                        <div id="errorMessage" class="text-danger"></div>
-                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                    </form>
-                </div>
+<!-- Password Modal -->
+<div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="passwordModalLabel">Password Required</h5>
+            </div>
+            <div class="modal-body">
+                <form id="passwordForm">
+                    <div class="form-group">
+                        <label for="passwordInput">Enter Password</label>
+                        <input type="number" class="form-control" id="passwordInput" placeholder="Password" required>
+                    </div>
+                    <div id="errorMessage" class="text-danger"></div>
+                    <button type="submit" class="submit-btn-class">Submit</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
+<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
     <!-- Include jQuery and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
