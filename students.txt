@@ -1,7 +1,7 @@
 [
   {
     "name": "Rahul Gupta",
-    "class": "4",
+    "class": "10",
     "school": "Atmanand",
     "dob": "2015-08-15",
     "mobile": "8989898989",
