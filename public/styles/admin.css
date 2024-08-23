@@ -313,7 +313,7 @@ h1:hover {
 
 .submit-btn-class:focus {
     outline: none; /* Removes the default outline */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Adds a shadow to indicate focus */
+    box-shadow: 0 0 5px rgba(0, 123, 	5, 0.5); /* Adds a shadow to indicate focus */
 }
 
 /* Responsive Design */
@@ -396,6 +396,7 @@ h1:hover {
     justify-content: center;
     z-index: 9999; /* Ensure it's on top */
     overflow: hidden; /* Hide scrollbars */
+	
 }
 
 /* Popup content styles */
@@ -408,16 +409,21 @@ h1:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden; /* Hide scrollbars */
+	
 }
 
 /* Popup header styles */
 .popup-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
+    width: 100%;
+    background: #007bff; /* Background color of the header */
+    border-radius: 10px; /* Curved edges for the header */
 }
+
 
 .popup-header h5 {
     margin: 0;
@@ -428,6 +434,7 @@ h1:hover {
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
+	color: #007bff; /*  color of the close button */
 }
 
 /* Popup body styles */
@@ -479,19 +486,16 @@ h1:hover {
     margin-top: 10px;
 }
 
-
 /* Mobile-specific styles */
 @media (max-width: 768px) {
     .popup-content {
         position: absolute; /* Position relative to the parent .popup-overlay */
         top: 250px;
-        left: 20px;
-        width: 42%; /* Set width to 25% */
+        left: 10px;
+        width: 40%; /* Set width to 25% */
         max-width: none; /* Remove the max-width restriction */
         border-radius: 0; /* Optional: Remove border-radius for a more square look */
         box-shadow: none; /* Optional: Remove box-shadow for a cleaner look */
         padding: 10px; /* Optional: Adjust padding for smaller screens */
     }
 }
-
-
