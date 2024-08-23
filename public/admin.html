@@ -5,37 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="styles/admin.css">
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <!-- Password Modal -->
-    <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="passwordModalLabel">Password Required</h5>
-                </div>
-                <div class="modal-body">
-                    <form id="passwordForm">
-                        <div class="form-group">
-                            <label for="passwordInput">Enter Password</label>
-                            <input type="number" class="form-control" id="passwordInput" placeholder="Password" required>
-                        </div>
-                        <div id="errorMessage" class="text-danger"></div>
-                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-	
+
     <h1>Admin Student Approval Dashboard</h1>
-<div class="button-container2">
-    <a href="home.html" id="HOME" class="admin-button">Home</a>
-    <a href="payment.html" id="MAIN" class="admin-button">Payment</a>
-</div>
+    <div class="button-container2">
+        <a href="home.html" id="HOME" class="admin-button">Home</a>
+        <a href="payment.html" id="MAIN" class="admin-button">Payment</a>
+    </div>
 
-
-    
     <!-- Filters -->
     <div>
         <label for="classFilter">Class:</label>
@@ -80,7 +60,7 @@
         <label for="searchInput">Search:</label>
         <input type="text" id="searchInput" placeholder="Type to search...">
     </div>
-    
+
     <form id="approveForm">
         <table id="recordsTable">
             <thead>
@@ -101,14 +81,40 @@
                 <!-- Records will be dynamically inserted here -->
             </tbody>
         </table>
-		<div class="button-container">
-		    <button id="approveSelected">Approve</button>
-		    <button id="declineSelected">Decline</button>
-		    <button id="deleteSelected">Delete</button>
-		    <button id="clearFile">Clear</button>
-		</div>
-
+        <div class="button-container">
+            <button id="approveSelected">Approve</button>
+            <button id="declineSelected">Decline</button>
+            <button id="deleteSelected">Delete</button>
+            <button id="clearFile">Clear</button>
+        </div>
     </form>
+
+    <!-- Password Modal -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="passwordModalLabel">Password Required</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="passwordForm">
+                        <div class="form-group">
+                            <label for="passwordInput">Enter Password</label>
+                            <input type="number" class="form-control" id="passwordInput" placeholder="Password" required>
+                        </div>
+                        <div id="errorMessage" class="text-danger"></div>
+                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="scripts/admin.js"></script>
     <script>
         $(document).ready(function() {
             $('#passwordModal').modal('show');
@@ -137,8 +143,6 @@
                 }
             });
         });
-
     </script>
-    <script src="scripts/admin.js"></script>
 </body>
 </html>
