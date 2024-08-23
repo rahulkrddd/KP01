@@ -488,7 +488,7 @@ h1:hover {
         position: absolute; /* Position relative to the parent .popup-overlay */
         top: 300px;
         left: 10px;
-        width: 42%; /* Set width to 40% */
+        width: 41%; /* Set width to 40% */
         max-width: none; /* Remove the max-width restriction */
         border-radius: 0; /* Optional: Remove border-radius for a more square look */
         box-shadow: none; /* Optional: Remove box-shadow for a cleaner look */
