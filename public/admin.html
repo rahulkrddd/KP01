@@ -89,6 +89,9 @@
         </div>
     </form>
 
+<!-- Overlay for background blur -->
+<div class="overlay"></div>
+
 <!-- Password Modal -->
 <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -109,6 +112,7 @@
         </div>
     </div>
 </div>
+
 <!-- Bootstrap CSS -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
@@ -152,6 +156,16 @@
                 }
             });
         });
+		
+// Ensure overlay is shown when modal is shown and hidden when modal is hidden
+$('#passwordModal').on('show.bs.modal', function () {
+    $('.overlay').show();
+});
+
+$('#passwordModal').on('hide.bs.modal', function () {
+    $('.overlay').hide();
+});
+
     </script>
 </body>
 </html>
