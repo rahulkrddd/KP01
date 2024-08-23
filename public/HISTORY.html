@@ -25,26 +25,28 @@
     </style>
 </head>
 <body>
-    <!-- Password Modal -->
-    <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="passwordModalLabel">Password Required</h5>
-                </div>
-                <div class="modal-body">
-                    <form id="passwordForm">
-                        <div class="form-group">
-                            <label for="passwordInput">Enter Password</label>
-                            <input type="number" class="form-control" id="passwordInput" placeholder="Password" required>
-                        </div>
-                        <div id="errorMessage" class="text-danger"></div>
-                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                    </form>
-                </div>
+	<!-- Overlay for background blur -->
+	<div class="overlay"></div>
+
+    <!-- Custom Password Popup -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h5>Password Required</h5>
+            </div>
+            <div class="popup-body">
+                <form id="passwordForm">
+                    <div class="form-group">
+                        <label for="passwordInput">Enter Password</label>
+                        <input type="password" class="form-control" id="passwordInput" placeholder="Password" required>
+                    </div>
+                    <div id="errorMessage" class="text-danger"></div>
+                    <button type="submit" class="submit-btn-class">Submit</button>
+                </form>
             </div>
         </div>
     </div>
+
     <div class="container mt-5">
         <h1 class="text-center mb-4">History Logs</h1>
         <div class="text-right mb-3">
@@ -100,33 +102,31 @@
 
     <script>
         $(document).ready(function() {
-            $('#passwordModal').modal('show');
+            // Show the custom popup
+            $('#popupOverlay').show();
 
-            $('#passwordInput').on('input', function() {
-                this.value = this.value.replace(/[^0-9]/g, '');
-            });
-        });
-
-        $('#passwordForm').submit(function(event) {
-            event.preventDefault();
-            const password = $('#passwordInput').val();
-            $.ajax({
-                url: '/validate-password',
-                method: 'POST',
-                data: { password },
-                success: function(response) {
-                    if (response.valid) {
-                        $('#passwordModal').modal('hide');
-                    } else {
-                        $('#errorMessage').text('Invalid password. Please try again.');
+            // Handle password form submission
+            $('#passwordForm').submit(function(event) {
+                event.preventDefault();
+                const password = $('#passwordInput').val();
+                $.ajax({
+                    url: '/validate-password',
+                    method: 'POST',
+                    data: { password },
+                    success: function(response) {
+                        if (response.valid) {
+                            $('#popupOverlay').hide();
+                        } else {
+                            $('#errorMessage').text('Invalid password. Please try again.');
+                        }
+                    },
+                    error: function() {
+                        $('#errorMessage').text('An error occurred. Please try again.');
                     }
-                },
-                error: function() {
-                    $('#errorMessage').text('An error occurred. Please try again.');
-                }
+                });
             });
-        });
 
+        });
     </script>
 </body>
 </html>
