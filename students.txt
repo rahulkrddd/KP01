@@ -34,5 +34,17 @@
     "Address": "test",
     "status": "Declined",
     "timestamp": "2024-08-23 21:12:09"
+  },
+  {
+    "name": "Priyanka B",
+    "class": "2",
+    "school": "KCPS",
+    "dob": "2015-08-08",
+    "mobile": "7777777777",
+    "email": "ww@gmail.com",
+    "subject": "hindi",
+    "Address": "wew",
+    "status": "Pending",
+    "timestamp": "2024-08-23 21:16:29"
   }
 ]
