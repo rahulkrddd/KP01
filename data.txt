@@ -903,7 +903,7 @@
     "date": "2024-08-23",
     "fee": "1000",
     "month": "August",
-    "payment": "No",
+    "payment": "NA",
     "mobile": "9876543211",
     "emailid": "test@msn.com",
     "address": "Gigjj ",
