@@ -5,7 +5,7 @@
     "school": "KCPS",
     "dob": "2015-08-21",
     "mobile": "7777777777",
-    "email": "test@gmail.com",
+    "email": "career.rahul.123@gmail.com",
     "subject": "maths",
     "Address": "a sajhsiq",
     "status": "Pending",
