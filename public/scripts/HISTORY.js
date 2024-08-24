@@ -3,6 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('/data')
         .then(response => response.json())
         .then(data => {
+            // Sort data by timestamp in descending order starts
+            data.sort((a, b) => {
+                const timestampA = new Date(a[14]).getTime();
+                const timestampB = new Date(b[14]).getTime();
+                return timestampB - timestampA; // Descending order
+            });
+			 // Sort data by timestamp in descending order ends
             populateTable(data);
             setupSearchFilters(data);
         })
