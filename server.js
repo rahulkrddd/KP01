@@ -442,11 +442,6 @@ app.get('/search', async (req, res) => {
 app.post('/update', async (req, res) => {
     try {
         const { id, name, studentClass, school, date, month, fee, payment, reactivatestudent, mobile, emailid, address } = req.body;
-console.log('Mobile:', mobile);
-console.log('Email ID:', emailid);
-console.log('Address:', address);
-
-
 		let updnewvarResult = '----'
 		let updnewvarArchiveInd = '-'
 		const updnewvarDeletepermanentlyInd = 'X'
@@ -1050,6 +1045,42 @@ app.get('/data', async (req, res) => {
     } catch (error) {
         console.error('Error fetching data:', error.message);
         res.status(500).send('Error fetching data');
+    }
+});
+
+
+app.post('/deletelogs', async (req, res) => {
+    try {
+        // Fetch the file content and get the SHA
+        const fileResponse = await axios.get(`${GITHUB_API_BASE}/repos/${GITHUB_REPO}/contents/${historyFilePath}`, {
+            headers: {
+                'Authorization': `token ${GITHUB_TOKEN}`,
+                'Accept': 'application/vnd.github.v3+json'
+            }
+        });
+
+        const fileSHA = fileResponse.data.sha;
+
+        // Base64 encode the empty content
+        const emptyContentBase64 = Buffer.from('').toString('base64');
+
+        // Update the file to have empty content
+        const updateResponse = await axios.put(`${GITHUB_API_BASE}/repos/${GITHUB_REPO}/contents/${historyFilePath}`, {
+            message: 'Clear history.txt file content',
+            content: emptyContentBase64, // Base64-encoded empty content
+            sha: fileSHA
+        }, {
+            headers: {
+                'Authorization': `token ${GITHUB_TOKEN}`,
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json'
+            }
+        });
+
+        res.status(200).send('Logs deleted successfully');
+    } catch (error) {
+        console.error('Error deleting logs:', error.response ? error.response.data : error.message);
+        res.status(500).send('Failed to delete logs');
     }
 });
 
