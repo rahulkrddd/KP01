@@ -302,12 +302,13 @@ document.addEventListener('DOMContentLoaded', function () {
     <script src="recordHandlers.js"></script>
 
     <script>
-        $(document).ready(function() {
-            $('#passwordModal').modal('show');
+$(document).ready(function() {
+    // Check if the password has already been validated in this session
+    if (!sessionStorage.getItem('passwordValidated')) {
+        $('#passwordModal').modal('show');
 
-            $('#passwordInput').on('input', function() {
-                this.value = this.value.replace(/[^0-9]/g, '');
-            });
+        $('#passwordInput').on('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
         });
 
         $('#passwordForm').submit(function(event) {
@@ -320,6 +321,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 success: function(response) {
                     if (response.valid) {
                         $('#passwordModal').modal('hide');
+                        // Store the password validation status in session storage
+                        sessionStorage.setItem('passwordValidated', 'true');
                     } else {
                         $('#errorMessage').text('Invalid password. Please try again.');
                     }
@@ -329,6 +332,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         });
+    }
+});
+
 
         function showEnroll() {
             $('.table-container').hide();
