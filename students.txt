@@ -56,7 +56,7 @@
     "email": "career.rahul@gmail.com",
     "subject": "maths",
     "Address": "Hi",
-    "status": "Pending",
+    "status": "Declined",
     "timestamp": "2024-08-23 23:42:46"
   },
   {
