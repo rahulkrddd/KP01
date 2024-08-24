@@ -6,3 +6,4 @@
 09KV1112 PASS DELETE  Priyanka Gupta B   01 KV         2024-08-24  1000 August     N - Y X X 2024-08-25 02:55:06
 09KV437a PASS DELETE  Priyanka Gupta C   01 KV         2024-08-24  1000 August     N - Y X X 2024-08-25 02:55:15
 01OT593e PASS DELETE  Manan Gupta        01 Others     2024-08-24  1000 August     N - Y X X 2024-08-25 02:55:28
+01ATea16 PASS DELETE  Rudra              01 Atmanand   2024-08-24  1000 August     N - Y X X 2024-08-25 02:55:38
