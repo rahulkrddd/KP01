@@ -131,6 +131,15 @@
         }
     });
 </script>
+ <!-- Popup HTML Structure -->
+  <div id="history-high-alert-popup" class="history-high-alert-popup hidden">
+    <div class="history-high-alert-content">
+      <p class="alert-message">This is an irreversible action, all History logs will get deleted.</p>
+      <p class="high-alert">High Alert</p>
+      <button class="ok-button" onclick="handleResponse(true)">OK</button>
+      <button class="cancel-button" onclick="handleResponse(false)">Cancel</button>
+    </div>
+  </div>
 <footer style="text-align: center; padding: 15px; background-color: #f1f1f1; font-size: 14px; color: #333;">
     <p style="margin: 0;">© 2024 Knowledge Point. All rights reserved.</p>
 </footer>
