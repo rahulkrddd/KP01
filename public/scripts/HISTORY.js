@@ -1,3 +1,24 @@
+//DELETE DATA FROM HISTORY.js BY CALLING server.js STARTS .................................// 
+async function deletelogs() {
+  try {
+    const response = await fetch('/deletelogs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const result = await response.text();
+    alert(result);
+  } catch (error) {
+    alert(`Error: ${error.message}`);
+  }
+}
+
+document.getElementById('deletelogs').addEventListener('click', deletelogs);
+//DELETE DATA FROM HISTORY.js BY CALLING server.js END  .................................// 
+
+
 document.addEventListener('DOMContentLoaded', () => {
     // Fetch data from the server
     fetch('/data')
