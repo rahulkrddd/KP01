@@ -1,4 +1,18 @@
-//DELETE DATA FROM HISTORY.js BY CALLING server.js STARTS .................................// 
+function showPopup() {
+  document.getElementById('history-high-alert-popup').classList.remove('hidden');
+}
+
+function hidePopup() {
+  document.getElementById('history-high-alert-popup').classList.add('hidden');
+}
+
+function handleResponse(confirmed) {
+  hidePopup();
+  if (confirmed) {
+    deletelogs();
+  }
+}
+
 async function deletelogs() {
   try {
     const response = await fetch('/deletelogs', {
@@ -15,7 +29,8 @@ async function deletelogs() {
   }
 }
 
-document.getElementById('deletelogs').addEventListener('click', deletelogs);
+document.getElementById('deletelogs').addEventListener('click', showPopup);
+
 //DELETE DATA FROM HISTORY.js BY CALLING server.js END  .................................// 
 
 
