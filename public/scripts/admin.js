@@ -12,6 +12,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Automatically load records when the page loads
     await loadRecords();
+	
+	statusFilter.value = 'Pending';
+	filterRecords(); // Call filterRecords to apply the default filter
+
 
     async function loadRecords() {
         try {
