@@ -181,23 +181,24 @@ button#clearFile {
 
 /***************************************************************************************************/
 /* General Button Styles */
+/* General Button Styles */
+/* General Button Styles */
 .admin-button {
     display: inline-flex;
     justify-content: center;
     align-items: center;
     font-size: 1rem;
-    padding: 10px 20px; /* Adds padding inside the button */
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
-    color: white;
+    background-color: #007bff; /* Default background color */
+    color: white; /* Default text color */
     cursor: pointer;
-    text-decoration: none; /* Remove underline from links */
-    transition: background-color 0.3s, transform 0.3s;
-    /* Remove flex: 1 to prevent stretching */
+    text-decoration: none; /* Ensure no underline on links */
+    transition: background-color 0.3s, transform 0.3s, color 0.3s; /* Add transition for color */
     box-sizing: border-box;
-    /* Ensure a consistent button width */
     width: 120px; /* Fixed width for uniform size */
+    text-align: center; /* Center the text inside the button */
 }
 
 /* Centering Button Container */
@@ -210,18 +211,32 @@ button#clearFile {
 
 /* Button States */
 .admin-button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Darker background on hover */
+    color: white; /* Ensure text remains white on hover */
     transform: scale(1.05);
+    text-decoration: none; /* Ensure no underline on hover */
 }
 
 .admin-button:active {
-    background-color: #004494;
+    background-color: #004494; /* Even darker background on active */
+    color: white; /* Ensure text remains white on active */
     transform: scale(0.95);
+    text-decoration: none; /* Ensure no underline when active */
 }
 
 .admin-button:focus {
-    outline: none;
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Add custom focus ring */
+    color: white; /* Ensure text remains white on focus */
+    text-decoration: none; /* Ensure no underline on focus */
 }
+
+/* Remove hyperlink underline on visited links */
+.admin-button:visited {
+    text-decoration: none; /* No underline even after clicking */
+    color: white; /* Ensure text remains white when visited */
+}
+
 /*************************************************************************************************************/
 
 
