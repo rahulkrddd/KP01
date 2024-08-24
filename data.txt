@@ -7,7 +7,7 @@
     "date": "2024-08-24",
     "fee": "1000",
     "month": "August",
-    "payment": "No",
+    "payment": "Yes",
     "mobile": "8839623800",
     "emailid": "rahu@msn.com",
     "address": "Hi",
