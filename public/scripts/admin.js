@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Automatically load records when the page loads
     await loadRecords();
 	
-    statusFilter.value = 'Pending';
-    filterRecords(); // Call filterRecords to apply the default filter
+	statusFilter.value = 'Pending';
+	filterRecords(); // Call filterRecords to apply the default filter
 
 
     async function loadRecords() {
@@ -45,8 +45,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 	            <td>${record.class}</td>
 	            <td>${record.school}</td>
 	            <td>${record.dob}</td>
-	            <td>${record.mobile}</td>
-	            <td>${record.email}</td>
+	            <td><a href="tel=${record.mobile}">${record.mobile}</a></td>
+	            <td><a href="mailto:${record.email}">${record.email}</a></td>
 	            <td>${record.subject}</td>
 	            <td>${record.timestamp}</td>
 	            <td class="status">${record.status}</td>
