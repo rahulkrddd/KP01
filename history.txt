@@ -1,2 +1,0 @@
-01OT0b96 PASS PAYMENT Manan Gupta        01 Others     2024-08-24  1000 August     Y N X N X 2024-08-24 14:27:40
-05AT2708 PASS UPDATE  Sid                01 Atmanand   2024-08-24  1000 August     Y N X N N 2024-08-24 14:27:52
