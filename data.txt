@@ -343,7 +343,7 @@
     "date": "2024-08-24",
     "fee": "1000",
     "month": "August",
-    "payment": "No",
+    "payment": "Yes",
     "mobile": "8871283714",
     "emailid": "career.rahul@gmail.com",
     "address": "Hi",
