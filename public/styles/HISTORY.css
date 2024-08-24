@@ -261,6 +261,20 @@ th#col-no-fee  {
     box-sizing: border-box; /* Ensure padding and border are included in width */
 }
 
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    .button-container {
+        text-align: center; /* Center buttons for mobile */
+    }
+
+    .button-container button {
+        display: block;
+        width: 40%; /* Full width for mobile */
+        margin: 5px 0; /* Spacing between buttons */
+        font-size: 14px; /* Adjust font size for mobile */
+    }
+}
+
 /* Specific button colors */
 .btn-info {
     background-color: #17a2b8;
