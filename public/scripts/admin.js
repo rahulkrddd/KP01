@@ -138,45 +138,50 @@ document.addEventListener('DOMContentLoaded', async () => {
 	        }
 	    });
 	
-	async function handleAction(action) {
-	    const checkboxes = document.querySelectorAll('#recordsTable tbody input[type="checkbox"]:checked');
-	    const timestamps = Array.from(checkboxes).map(checkbox => checkbox.value);
-	
-	    if (timestamps.length === 0) {
-	        alert('Please select records to ' + action + '.');
-	        return;
-	    }
-	
-	    try {
-	        const response = await fetch(`/admin/${action}`, {
-	            method: 'POST',
-	            headers: {
-	                'Content-Type': 'application/json'
-	            },
-	            body: JSON.stringify({ timestamps })
-	        });
-	
-	        const result = await response.json(); // Read the JSON response
-	
-	        if (!response.ok) {
-	            console.error(`Error during ${action}:`, result);
-	            alert(`Failed to ${action} records. ${result.message || ''}`);
-	            return;
-	        }
-	
-	        // Update records display based on action
-	        if (action === 'delete') {
-	            removeDeletedRecords(timestamps);
-	        } else {
-	            updateRecordsDisplay(result.updatedRecords || []); // Use result.updatedRecords if available
-	        }
-	
-	        // Show success message
-	        alert(`Records successfully ${action}d.`);
-	    } catch (error) {
-	        alert(`Error occurred while ${action} records.`);
-	    }
-	}
+
+
+async function handleAction(action) {
+    const checkboxes = document.querySelectorAll('#recordsTable tbody input[type="checkbox"]:checked');
+    const timestamps = Array.from(checkboxes).map(checkbox => checkbox.value);
+
+    if (timestamps.length === 0) {
+        openPopup('Please select records to ' + action + '.');
+        return;
+    }
+
+    try {
+        const response = await fetch(`/admin/${action}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ timestamps })
+        });
+
+        const result = await response.json(); // Read the JSON response
+
+        if (!response.ok) {
+            console.error(`Error during ${action}:`, result);
+            openPopup(`Failed to ${action} records. ${result.message || ''}`);
+            return;
+        }
+
+        // Update records display based on action
+        if (action === 'delete') {
+            removeDeletedRecords(timestamps);
+        } else {
+            updateRecordsDisplay(result.updatedRecords || []); // Use result.updatedRecords if available
+        }
+
+        // Show success message
+        openPopup(`Records successfully ${action}d.`);
+    } catch (error) {
+        openPopup(`Error occurred while ${action} records.`);
+    }
+}
+
+
+
 	
 	function updateRecordsDisplay(updatedRecords) {
 	    const rows = document.querySelectorAll('#recordsTable tbody tr');
@@ -227,7 +232,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 	
 	    selectAllCheckbox.checked = totalCheckboxes > 0 && totalCheckboxes === checkedCheckboxes;
 	}
-	
+})
 
 
-});
+function openPopup(message) {
+    document.getElementById('popup-message').textContent = message;
+    document.getElementById('admin-approval-popup').style.display = 'flex';
+}
+
+function closePopup() {
+    document.getElementById('admin-approval-popup').style.display = 'none';
+}
+
+;
