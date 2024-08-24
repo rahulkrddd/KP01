@@ -82,17 +82,5 @@
     "Address": "Hi",
     "status": "Declined",
     "timestamp": "2024-08-23 23:47:25"
-  },
-  {
-    "name": "Tannu",
-    "class": "2",
-    "school": "DPS",
-    "dob": "2015-08-12",
-    "mobile": "9876543212",
-    "email": "test@hotmail.com",
-    "subject": "maths",
-    "Address": "Hi",
-    "status": "Pending",
-    "timestamp": "2024-08-24 00:03:34"
   }
 ]
