@@ -490,5 +490,17 @@ button#clearFile {
     }
 }
 /********************************** approval popup ******************************************************/
+.admin-approval-popup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure it appears above other content */
+}
 
 /********************************** approval popup ******************************************************/
