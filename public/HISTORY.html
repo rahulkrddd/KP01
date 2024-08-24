@@ -99,8 +99,10 @@
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
 
-    <script>
-        $(document).ready(function() {
+<script>
+    $(document).ready(function() {
+        // Check if the password has already been validated in this session
+        if (!sessionStorage.getItem('passwordValidated')) {
             // Show the custom popup
             $('#popupOverlay').show();
 
@@ -114,6 +116,8 @@
                     data: { password },
                     success: function(response) {
                         if (response.valid) {
+                            // Set sessionStorage to indicate password validation
+                            sessionStorage.setItem('passwordValidated', 'true');
                             $('#popupOverlay').hide();
                         } else {
                             $('#errorMessage').text('Invalid password. Please try again.');
@@ -124,8 +128,12 @@
                     }
                 });
             });
+        } else {
+            // Hide the popup if password is already validated
+            $('#popupOverlay').hide();
+        }
+    });
+</script>
 
-        });
-    </script>
 </body>
 </html>
