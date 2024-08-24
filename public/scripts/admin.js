@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Automatically load records when the page loads
     await loadRecords();
 	
-	statusFilter.value = 'Pending';
-	filterRecords(); // Call filterRecords to apply the default filter
+    statusFilter.value = 'Pending';
+    filterRecords(); // Call filterRecords to apply the default filter
 
 
     async function loadRecords() {
@@ -31,6 +31,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 	function displayRecords(records) {
 	    const tableBody = document.querySelector('#recordsTable tbody');
 	    tableBody.innerHTML = ''; // Clear existing records
+		
+	    // Sort records by timestamp in descending order
+		records.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 	
 	    records.forEach(record => {
 	        const row = document.createElement('tr');
