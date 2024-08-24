@@ -15,7 +15,7 @@
 </div>
 
 <div class="button-container2">
-    <a href="/admin.html" id="HOME" class="admin-button">Home</a>
+    <a href="/home.html" id="HOME" class="admin-button">Home</a>
     <a href="/payment.html" id="MAIN" class="admin-button">Payment</a>
     <a href="/" id="STUDENT" class="admin-button">STUDENT</a>
 </div>
@@ -132,8 +132,15 @@
 <script src="scripts/admin.js"></script>
 <script>
     $(document).ready(function() {
-        // Check if the password has already been validated
-        if (!sessionStorage.getItem('authenticated')) {
+        // Function to check if the referrer is one of the allowed pages
+        function isReferrerAllowed() {
+            const allowedReferrers = ['payment.html', 'HISTORY.html'];
+            const referrer = document.referrer.split('/').pop(); // Get the filename from the referrer URL
+            return allowedReferrers.includes(referrer);
+        }
+
+        // Check if the password has already been validated or if referrer is allowed
+        if (!sessionStorage.getItem('authenticated') && !isReferrerAllowed()) {
             $('#popupOverlay').show();
         }
 
@@ -158,9 +165,9 @@
                 }
             });
         });
-
     });
 </script>
+
     <!-- Popup container -->
     <div id="admin-approval-popup" class="admin-approval-popup" style="display: none;">
         <div class="popup-content">
