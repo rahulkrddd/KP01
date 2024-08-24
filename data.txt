@@ -119,7 +119,7 @@
     "date": "2024-08-24",
     "fee": "1000",
     "month": "August",
-    "payment": "No",
+    "payment": "Yes",
     "mobile": "9876543210",
     "emailid": "test2@gmail.com",
     "address": "Hello",
