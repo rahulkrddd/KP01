@@ -429,4 +429,72 @@ th#col-no-fee  {
     }
 }
 
-/*------------------------------------------------------------------------------/
+/*------------------------------------------------------------------------------*/
+/*-------------------------- HIGH ALEAR POPUP STARS ----------------------------*/
+/* Popup styling */
+.history-high-alert-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.history-high-alert-content {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+  max-width: 600px;
+  width: 90%;
+}
+
+.hidden {
+  display: none;
+}
+
+.high-alert {
+  color: red;
+  font-weight: bold;
+  font-size: 1.5em;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.alert-message {
+  font-size: 1.25em; /* Larger font size for the alert message */
+  margin-bottom: 20px; /* Space below the message */
+}
+
+button {
+  font-size: 16px;
+  padding: 15px 30px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+button.ok-button {
+  background-color: red;
+}
+
+button.cancel-button {
+  background-color: green;
+}
+
+
+/*-------------------------- HIGH ALEAR POPUP ENDS  ----------------------------*/
