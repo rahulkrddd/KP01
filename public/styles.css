@@ -852,55 +852,87 @@ input:focus:valid, textarea:focus:valid {
 .popup {
     display: none; /* Hidden by default */
     position: fixed;
-    z-index: 1;
+    z-index: 1000; /* Ensure the popup is above all other elements */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px; /* Ensure padding for smaller screens */
+    overflow: hidden; /* Prevent scrolling while the popup is active */
+    background-color: rgba(0, 0, 0, 0.6); /* Slightly darker background for better contrast */
+    padding: 20px;
     box-sizing: border-box;
+    opacity: 0; /* Start hidden */
+    animation: fadeIn 0.5s forwards ease-in-out; /* Fade-in animation */
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* Popup content */
 .popup-content {
-    background-color: #fefefe;
+    background-color: #fff;
     margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 90%; /* Adjust width for mobile screens */
-    max-width: 500px;
-    border-radius: 8px;
+    padding: 25px;
+    border: none;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
+    overflow: hidden;
+    transform: scale(0.9); /* Start smaller */
+    animation: popUp 0.4s forwards ease-in-out; /* Pop-up animation */
 
     /* Flexbox settings */
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+
+/* Pop-up animation */
+@keyframes popUp {
+    from {
+        transform: scale(0.9);
+    }
+    to {
+        transform: scale(1);
+    }
 }
 
 /* Close button */
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
+    color: #bbb;
+    align-self: flex-end;
+    font-size: 32px; /* Larger size */
     font-weight: bold;
+    margin: -10px -10px 10px 0;
+    transition: color 0.2s ease, transform 0.2s ease; /* Smooth transition for hover effect */
+    cursor: pointer;
 }
 
 /* Close button hover */
 .close:hover,
 .close:focus {
-    color: black;
+    color: #333;
+    transform: rotate(90deg); /* Rotate animation on hover */
     text-decoration: none;
-    cursor: pointer;
 }
 
 /* Popup message */
 .popup-message {
-    margin-bottom: 15px;
-    font-size: 18px;
+    margin-bottom: 20px;
+    font-size: 16px;
     text-align: center;
+    line-height: 1.5;
+    color: #444;
 }
 
 
@@ -908,30 +940,59 @@ input:focus:valid, textarea:focus:valid {
 .KP-Main-Button {
     color: white;
     border: none;
-    padding: 10px 0; /* Adjust padding for button height */
-    margin: 5px 0; /* Margin between buttons */
-    border-radius: 5px;
+    padding: 12px 0; /* Slightly increase padding for a more substantial feel */
+    margin: 8px 0; /* Increase margin for better spacing */
+    border-radius: 8px; /* Slightly larger border-radius for smoother corners */
     text-decoration: none;
     cursor: pointer;
     text-align: center;
     font-size: 16px;
     flex: 1; /* Make buttons grow to fill the container */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Add smooth transitions */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
 }
 
 /* Button hover effects */
 .KP-Main-Button:hover {
-    opacity: 0.8;
+    opacity: 0.9;
+    color: white; /* Keep the text color white on hover */
+    text-decoration: none; /* Ensure no underline on hover */
+    transform: translateY(-2px); /* Slightly lift the button on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover for a lifted effect */
+}
+
+/* Button active state */
+.KP-Main-Button:active {
+    transform: translateY(0); /* Reset position when button is pressed */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Reset shadow on press */
+    opacity: 0.85; /* Slightly reduce opacity when clicked */
 }
 
 /* Responsive adjustments */
 @media (max-width: 600px) {
     .popup-content {
-        width: 95%;
-        padding: 15px;
+        width: 100%; /* Utilize full width on smaller screens */
+        padding: 20px; /* Increase padding for better spacing on small screens */
     }
 
     .KP-Main-Button {
-        font-size: 14px; /* Adjust font size for smaller screens */
+        font-size: 15px; /* Slightly larger font for readability on small screens */
+        padding: 12px 0; /* Increase padding for better touch target */
+        margin: 10px 0; /* Add more space between buttons */
+        border-radius: 10px; /* Increase border-radius for a more modern look */
+        width: 100%; /* Ensure buttons take up the full width for easy access */
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Adjust shadow for better visibility on small screens */
+        transition: all 0.2s ease-in-out; /* Add smooth transition for better interaction feedback */
+    }
+
+    .KP-Main-Button:hover {
+        transform: translateY(-1px); /* Slightly lift buttons on hover */
+        box-shadow: 0 4px 7px rgba(0, 0, 0, 0.15); /* Enhance shadow effect on hover */
+    }
+
+    /* Ensure the popup-content remains centered on small screens */
+    .popup-content {
+        margin: 0 auto;
     }
 }
 
