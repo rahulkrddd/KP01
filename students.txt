@@ -1,4 +1,3 @@
-
 [
   {
     "name": "Rahul",
@@ -117,7 +116,7 @@
     "email": "test@hotmail.com",
     "subject": "maths",
     "Address": "Hi",
-    "status": "Pending",
+    "status": "Declined",
     "timestamp": "2024-08-24 00:03:34"
   }
 ]
