@@ -2,8 +2,8 @@
   {
     "name": "Rahul",
     "class": "8",
-    "school": "KCPS",
-    "dob": "2015-08-21",
+    "school": "DPS",
+    "dob": "2015-08-22",
     "mobile": "7777777777",
     "email": "test@gmail.com",
     "subject": "maths",
