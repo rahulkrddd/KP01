@@ -1,282 +1,145 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const statusForm = document.getElementById('statusForm');
-    const statusPopup = document.getElementById('statusPopup');
-    const statusPopupMessage = document.getElementById('statusPopupMessage');
-    const statusPopupClose = document.getElementById('statusPopupClose');
-    const statusViewDetails = document.getElementById('statusViewDetails');
-    const statusEditDetails = document.getElementById('statusEditDetails');
-    const statusRetryButtons = document.getElementById('statusRetryButtons');
-    const statusRegistration = document.getElementById('statusRegistration');
-    const statusRetry = document.getElementById('statusRetry');
-    const statusPopupButtons = document.getElementById('statusPopupButtons');
-    const detailsForm = document.getElementById('detailsForm');
-    const backToStatusForm = document.getElementById('backToStatusForm');
-    const updateButton = document.getElementById('updateDetails');
+const express = require('express');
+const router = express.Router();
+const axios = require('axios');
 
-    // Reference to the input fields in the details form
-    const detailsName = document.getElementById('detailsName');
-    const detailsMobile = document.getElementById('detailsMobile');
-    const detailsClass = document.getElementById('detailsClass');
-    const detailsSchool = document.getElementById('detailsSchool');
-    const detailsDob = document.getElementById('detailsDob');
-    const detailsEmail = document.getElementById('detailsEmail');
-    const detailsSubject = document.getElementById('detailsSubject');
-    const detailsStatus = document.getElementById('detailsStatus');
+const GITHUB_REPO = 'rahulkrddd/KP01';
+const FILE_PATH = 'students.txt';
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
-    // Calculate the date 9 years before today
-    const today = new Date();
-    const nineYearsAgo = new Date(today.setFullYear(today.getFullYear() - 9));
-    const formattedDate = nineYearsAgo.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+router.post('/', async (req, res) => {
+    const { mobile, name } = req.body; // Exclude timestamp from request
+    console.log('Received request:', { mobile, name }); // Debugging message
 
-    // Set the max attribute of the input
-    document.getElementById('detailsDob').setAttribute('max', formattedDate);
-
-    document.getElementById('detailsName').addEventListener('input', function() {
-        const nameField = this;
-        const errorSpan = document.getElementById('nameError');
-        const nameValue = nameField.value;
-        const regex = /^[A-Za-z\s]+$/; // Allows only letters and spaces
-        if (nameValue.length < 3 || nameValue.length > 16 || !regex.test(nameValue)) {
-            errorSpan.textContent = 'Name must be between 3 and 16 characters and contain only letters.';
-            errorSpan.style.display = 'inline';
-        } else {
-            errorSpan.style.display = 'none';
-        }
-    });
-
-    async function validateMobileNumber() {
-        const mobileInput = document.getElementById('detailsMobile');
-        const errorSpan = document.getElementById('mobileError');
-        const mobileNumber = mobileInput.value;
-
-        const regex = /^[6-9][0-9]{9}$/;
-
-        if (!regex.test(mobileNumber)) {
-            errorSpan.textContent = 'Invalid mobile number format.';
-            errorSpan.style.display = 'inline';
-            return;
-        }
-
+    try {
+        // Get the current content of the students.txt file
+        let response;
         try {
-            const response = await fetch(`/check-mobile?mobile=${mobileNumber}`);
-            const result = await response.json();
-
-            if (result.exists) {
-                errorSpan.textContent = 'This mobile number is already registered with other student.';
-                errorSpan.style.display = 'inline';
-            } else {
-                errorSpan.style.display = 'none';
-            }
-        } catch (error) {
-            console.error('Error checking mobile number:', error);
-        }
-    }
-
-    async function validateEmail() {
-        const emailInput = document.getElementById('detailsEmail');
-        const errorSpan = document.getElementById('emailError');
-        const email = emailInput.value;
-
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (!regex.test(email)) {
-            errorSpan.textContent = 'Invalid email format.';
-            errorSpan.style.display = 'inline';
-            return;
-        }
-
-        try {
-            const response = await fetch(`/check-email?email=${email}`);
-            const result = await response.json();
-
-            if (result.exists) {
-                errorSpan.textContent = 'This email ID is already registered with other student.';
-                errorSpan.style.display = 'inline';
-            } else {
-                errorSpan.style.display = 'none';
-            }
-        } catch (error) {
-            console.error('Error checking email:', error);
-        }
-    }
-
-    document.getElementById('detailsMobile').addEventListener('blur', validateMobileNumber);
-    document.getElementById('detailsEmail').addEventListener('blur', validateEmail);
-
-    statusForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const formData = new FormData(statusForm);
-        const data = {
-            mobile: formData.get('mobile'),
-            name: formData.get('name'),
-            timestamp: new Date().toISOString() // Include timestamp in the request
-        };
-
-        try {
-            const response = await fetch('/status', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
+            response = await axios.get(`https://api.github.com/repos/${GITHUB_REPO}/contents/${FILE_PATH}`, {
+                headers: {
+                    Authorization: `token ${GITHUB_TOKEN}`,
+                    Accept: 'application/vnd.github.v3+json'
+                }
             });
-
-            const result = await response.json();
-
-            if (response.ok) {
-                displayPopup(result);
-            } else {
-                console.error('Error fetching status:', result);
-                displayPopup({ error: result.error || 'Error fetching status. Please try again later.' });
-            }
         } catch (error) {
-            console.error('Error:', error);
-            displayPopup({ error: 'Error fetching status. Please try again later.' });
+            if (error.response && error.response.status === 404) {
+                // File not found, initialize an empty array
+                response = {
+                    data: {
+                        content: '',
+                        sha: null
+                    }
+                };
+            } else {
+                throw error;
+            }
         }
-    });
 
-function displayPopup(result) {
-    statusPopup.style.display = 'block';
-    if (result.error) {
-        statusPopupMessage.innerHTML = `<strong class="status-error">${result.error}</strong>`;
-        statusPopupButtons.style.display = 'none';
-        statusRetryButtons.style.display = 'flex'; // Show retry buttons
-    } else {
-        statusPopupMessage.innerHTML = `Status for ${result.name} (${result.mobile}): <strong class="${getStatusClass(result.status)}">${result.status}</strong>`;
-        statusRetryButtons.style.display = 'none'; // Hide retry buttons
-        statusPopupButtons.style.display = 'flex'; // Show status buttons
+        const fileContent = response.data.content ? Buffer.from(response.data.content, 'base64').toString('utf8') : '[]';
+        const students = JSON.parse(fileContent);
 
-        // Save result data for details view/edit
-        detailsName.value = result.name;
-        detailsMobile.value = result.mobile;
-        detailsClass.value = result.class;
-        detailsSchool.value = result.school;
-        detailsDob.value = result.dob;
-        detailsEmail.value = result.email;
-        detailsSubject.value = result.subject;
-        detailsAddress.value = result.Address;
-        detailsStatus.value = result.status;
+        // Find the student with the provided mobile number and name matching the first 3 characters (case-insensitive)
+        const searchName = name.toLowerCase().slice(0, 3); // Get the first 3 characters of the name in lowercase
+        const student = students.find(s => s.mobile === mobile && s.name.toLowerCase().startsWith(searchName));
 
-        // Store the timestamp for later use
-        detailsForm.dataset.timestamp = result.timestamp;
-
-        console.log("Status: ", result.status);
-
-        // Enable/Disable the "Edit Details" button based on status
-        if (result.status.toLowerCase() !== 'pending') {
-            statusEditDetails.classList.remove('button'); // Ensure the class is removed if status is Pending
-            statusEditDetails.disabled = true; // Disable the button	
-			statusEditDetails.classList.add('button-disabled-new');
-			statusEditDetails.classList.remove('button-enabled-new');
-
+        if (student) {
+            // Add the existing student's timestamp to the response
+            res.status(200).json({ ...student });
         } else {
-            statusEditDetails.classList.add('button');
-            statusEditDetails.disabled = false; // Enable the button
-			statusEditDetails.classList.add('button-enabled-new');
-			statusEditDetails.classList.remove('button-disabled-new');
-    // Toggle button color based on disabled state
-
+            res.status(404).json({ error: 'Student not found.' });
         }
+    } catch (error) {
+        console.error('Server error:', error); // Debugging message
+        res.status(500).json({ error: 'Failed to fetch student status.' });
     }
-}
-
-
-    function getStatusClass(status) {
-        switch(status.toLowerCase()) {
-            case 'pending':
-                return 'status-pending';
-            case 'approved':
-                return 'status-approved';
-            case 'declined':
-                return 'status-declined';
-            default:
-                return '';
-        }
-    }
-
-    function closePopup() {
-        statusPopup.style.display = 'none';
-    }
-
-    statusPopupClose.addEventListener('click', closePopup);
-
-    statusViewDetails.addEventListener('click', () => {
-        statusForm.style.display = 'none';
-        detailsForm.style.display = 'block';
-        closePopup(); // Close the popup
-
-        // Disable the Update button
-        updateButton.disabled = true;
-        updateButton.style.backgroundColor = '#d3d3d3'; // Gray out the button
-        updateButton.style.cursor = 'not-allowed'; // Change cursor to indicate disabled state
-    });
-
-    statusEditDetails.addEventListener('click', () => {
-        statusForm.style.display = 'none';
-        detailsForm.style.display = 'block';
-        closePopup(); // Close the popup
-
-        // Enable fields for editing
-        detailsName.disabled = false;
-        detailsMobile.disabled = false;
-        detailsClass.disabled = false;
-        detailsSchool.disabled = false;
-        detailsDob.disabled = false;
-        detailsEmail.disabled = false;
-        detailsSubject.disabled = false;
-        detailsAddress.disabled = false;
-        detailsStatus.disabled = true;
-
-    });
-
-    statusRetry.addEventListener('click', () => {
-        statusPopup.style.display = 'none';
-        statusForm.reset();
-    });
-
-    statusRegistration.addEventListener('click', () => {
-        window.location.href = 'registration.html';
-        closePopup(); // Close the popup
-    });
-
-    backToStatusForm.addEventListener('click', () => {
-        window.location.href = 'status.html'; // Navigate to status.html
-    });
-
-    // Add event listener for the Update button
-    updateButton.addEventListener('click', async () => {
-        const updatedData = {
-            name: detailsName.value,
-            mobile: detailsMobile.value,
-            class: detailsClass.value,
-            school: detailsSchool.value,
-            dob: detailsDob.value,
-            email: detailsEmail.value,
-            subject: detailsSubject.value,
-            Address: detailsAddress.value,
-            status: detailsStatus.value,
-            timestamp: detailsForm.dataset.timestamp // Include timestamp
-        };
-
-        try {
-            const response = await fetch('/status', {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(updatedData)
-            });
-
-            const result = await response.json();
-
-            if (response.ok) {
-                alert('Details updated successfully.');
-                window.location.href = 'status.html'; // Navigate to status.html
-            } else {
-                console.error('Update failed:', result);
-                alert('Failed to update details: ' + (result.error || 'Unknown error.'));
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('Error updating details. Please try again later.');
-        }
-    });
 });
 
+router.put('/', async (req, res) => {
+    const { mobile, name, timestamp, email, ...updates } = req.body;
+    console.log('Received update request:', { mobile, name, timestamp, email, updates });
+
+    try {
+        // Get the current content of the students.txt file
+        let response;
+        try {
+            response = await axios.get(`https://api.github.com/repos/${GITHUB_REPO}/contents/${FILE_PATH}`, {
+                headers: {
+                    Authorization: `token ${GITHUB_TOKEN}`,
+                    Accept: 'application/vnd.github.v3+json'
+                }
+            });
+        } catch (error) {
+            if (error.response && error.response.status === 404) {
+                response = { data: { content: '', sha: null } };
+            } else {
+                throw error;
+            }
+        }
+
+        const fileContent = response.data.content ? Buffer.from(response.data.content, 'base64').toString('utf8') : '[]';
+        const students = JSON.parse(fileContent);
+
+        // Check for duplicate mobile number and email
+        const duplicateMobile = students.find(s => s.mobile === mobile && s.timestamp !== timestamp);
+        const duplicateEmail = students.find(s => s.email === email && s.timestamp !== timestamp);
+
+        if (duplicateMobile) {
+            return res.status(400).json({ error: 'This mobile number is already registered.' });
+        }
+
+        if (duplicateEmail) {
+            return res.status(400).json({ error: 'This email ID is already registered.' });
+        }
+
+        // Find the student with the provided mobile number and name matching the first 3 characters (case-insensitive)
+        const searchName = name.toLowerCase().slice(0, 3);
+        const studentIndex = students.findIndex(s => s.mobile === mobile && s.name.toLowerCase().startsWith(searchName));
+
+        if (studentIndex !== -1) {
+            const existingStudent = students[studentIndex];
+
+            // Check if the timestamp matches
+            if (existingStudent.timestamp !== timestamp) {
+                return res.status(400).json({ error: 'Timestamp mismatch. Please refresh and try again.' });
+            }
+
+            // Update the student record with the new mobile, name, email, and other updates
+            const updatedStudent = {
+                ...existingStudent,
+                mobile: mobile || existingStudent.mobile,
+                name: name || existingStudent.name,
+                email: email || existingStudent.email,
+                ...updates
+            };
+
+            // Preserve the original timestamp if it should not be updated
+            students[studentIndex] = { ...updatedStudent, timestamp: existingStudent.timestamp };
+
+            // Save updated content to GitHub
+            const updatedContent = Buffer.from(JSON.stringify(students, null, 2)).toString('base64');
+            const updateResponse = await axios.put(`https://api.github.com/repos/${GITHUB_REPO}/contents/${FILE_PATH}`, {
+                message: 'Update student record',
+                content: updatedContent,
+                sha: response.data.sha
+            }, {
+                headers: {
+                    Authorization: `token ${GITHUB_TOKEN}`,
+                    Accept: 'application/vnd.github.v3+json'
+                }
+            });
+
+            if (updateResponse.status === 200) {
+                res.status(200).json({ message: 'Student record updated successfully.' });
+            } else {
+                console.error('GitHub API response:', updateResponse.data);
+                res.status(500).json({ error: 'Failed to update student record.' });
+            }
+        } else {
+            res.status(404).json({ error: 'Student not found.' });
+        }
+    } catch (error) {
+        console.error('Server error:', error);
+        res.status(500).json({ error: 'Failed to update student record.' });
+    }
+});
+
+module.exports = router;
