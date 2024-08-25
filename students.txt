@@ -1,8 +1,8 @@
 [
   {
     "name": "Rahul",
-    "class": "8",
-    "school": "Others",
+    "class": "12",
+    "school": "KCPS",
     "dob": "2015-08-22",
     "mobile": "7777777777",
     "email": "test@gmail.com",
