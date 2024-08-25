@@ -4,7 +4,7 @@
     "class": "12",
     "school": "KCPS",
     "dob": "2015-05-08",
-    "mobile": "7777777779",
+    "mobile": "7777777777",
     "email": "rahul@gmail.com",
     "subject": "other",
     "Address": "Kurud2xxxxxxxx bduiqhduihuiwd wd sbduiwbdu",
