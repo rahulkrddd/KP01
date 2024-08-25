@@ -241,7 +241,14 @@ button:hover {
     background-color: #f4f4f4;
 }
 
-
+/* Center the entire div [TABLE TITLE] */
+    #stpayResults {
+        text-align: center;
+    }
+/* Center the content within each table cell [TABLE ROW AND COLUMNS] */
+    #stpayStudentInfo th, #stpayStudentInfo td,
+    #stpayPaymentInfo th, #stpayPaymentInfo td {
+        text-align: center;
 
 /* Mobile-specific styles on tables*/
 @media (max-width: 600px) {
