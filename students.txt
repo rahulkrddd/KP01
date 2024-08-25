@@ -130,5 +130,17 @@
     "Address": "Kurud",
     "status": "Approved",
     "timestamp": "2024-08-25 20:48:10"
+  },
+  {
+    "name": "Rahul Gupta",
+    "class": "10",
+    "school": "KCPS",
+    "dob": "2015-08-25",
+    "mobile": "8871283716",
+    "email": "kurudpeople@gmail.com",
+    "subject": "maths",
+    "Address": "Hi",
+    "status": "Pending",
+    "timestamp": "2024-08-26 00:22:28"
   }
 ]
