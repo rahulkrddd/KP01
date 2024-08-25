@@ -20,7 +20,7 @@
     "email": "rahul.gupta.730@gmail.com",
     "subject": "maths",
     "Address": "wuwhwuhuws",
-    "status": "Approved",
+    "status": "Pending",
     "timestamp": "2024-08-22 15:29:46"
   },
   {
@@ -68,7 +68,7 @@
     "email": "career.rahul.123@gmail.com",
     "subject": "maths",
     "Address": "Hi",
-    "status": "Approved",
+    "status": "Pending",
     "timestamp": "2024-08-23 23:46:27"
   },
   {
