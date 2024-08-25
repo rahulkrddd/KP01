@@ -26,12 +26,14 @@ const registrationRoutes = require('./routes/registration');
 const statusRoutes = require('./routes/status');
 const adminRoutes = require('./routes/admin');
 const HISTORYRoutes = require('./routes/HISTORY');
+const studentpaymentRoutes = require('./routes/studentpayment');
 
 // Use routes
 app.use('/register', registrationRoutes);
 app.use('/status', statusRoutes);
 app.use('/admin', adminRoutes);
 app.use('/HISTORY', HISTORYRoutes);
+app.use('/studentpayment', studentpaymentRoutes);
 
 
 
