@@ -102,9 +102,14 @@ router.put('/', async (req, res) => {
                 return res.status(400).json({ error: 'Timestamp mismatch. Please refresh and try again.' });
             }
 
-            // Update the student record
-            // Merge updates without altering the existing timestamp
-            const updatedStudent = { ...existingStudent, ...updates };
+            // Update the student record with the new mobile, name, email, and other updates
+            const updatedStudent = {
+                ...existingStudent,
+                mobile: mobile || existingStudent.mobile,
+                name: name || existingStudent.name,
+                email: email || existingStudent.email,
+                ...updates
+            };
 
             // Preserve the original timestamp if it should not be updated
             students[studentIndex] = { ...updatedStudent, timestamp: existingStudent.timestamp };
