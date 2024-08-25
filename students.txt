@@ -2,12 +2,12 @@
   {
     "name": "Rahul",
     "class": "8",
-    "school": "DPS",
+    "school": "Others",
     "dob": "2015-08-22",
     "mobile": "7777777777",
     "email": "test@gmail.com",
     "subject": "maths",
-    "Address": "a sajhsiq",
+    "Address": "Kurud",
     "status": "Pending",
     "timestamp": "2024-08-22 15:29:16"
   },
