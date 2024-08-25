@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
@@ -206,9 +207,8 @@ async function writeToDataFile(approvedRecords) {
 
         // Get current date and determine the current financial year
         const currentDate = new Date();
-        const currentMonth = currentDate.getMonth(); // 0-based index
+        const currentMonth = currentDate.getMonth();
         const currentYear = currentDate.getFullYear();
-        const financialYearStartMonth = 2; // March
         const financialYearEndMonth = 2; // March
 
         // Calculate months range to include until March of next year
@@ -222,7 +222,6 @@ async function writeToDataFile(approvedRecords) {
 
         // Create new records for each month in the range
         const newRecords = approvedRecords.flatMap(record => {
-            // Check if necessary fields exist
             if (!record.class || !record.school || !record.name || !record.mobile || !record.email || !record.Address) {
                 console.warn('Skipping record due to missing data:', record);
                 return [];
@@ -230,11 +229,11 @@ async function writeToDataFile(approvedRecords) {
 
             const studentClass = record.class.padStart(2, '0');
             const schoolCode = getSchoolAbbreviation(record.school);
-            const randomKey = generateRandomKey(); // Ensure this generates a unique key for ID
+            const randomKey = generateRandomKey();
             const id = `${studentClass}${schoolCode}${randomKey}`;
 
-            return months.map(month => ({
-                id: id, // Keep the same ID for all months
+            const studentRecords = months.map(month => ({
+                id: id,
                 name: record.name,
                 studentClass: studentClass,
                 school: record.school,
@@ -244,18 +243,20 @@ async function writeToDataFile(approvedRecords) {
                 payment: 'No',
                 mobile: record.mobile,
                 emailid: record.email,
-                address: record.Address, // Use the correct field name
+                address: record.Address,
                 archiveInd: 'No'
             }));
-        }).filter(record => record !== null); // Filter out null values
 
-        // Append new records to existing records
+            // Send the registration email for the first record (only send once)
+            sendRegistrationEmail(studentRecords[0]);
+
+            return studentRecords;
+        }).filter(record => record !== null);
+
         const updatedDataRecords = [...existingRecords, ...newRecords];
 
-        // Convert updated records to JSON and encode to base64
         const updatedDataContent = Buffer.from(JSON.stringify(updatedDataRecords, null, 2)).toString('base64');
 
-        // Update the file on GitHub
         await axios.put(`${GITHUB_API_URL}/repos/${GITHUB_REPO}/contents/${DATA_FILE_PATH}`, {
             message: 'Add approved records to data.txt',
             content: updatedDataContent,
@@ -268,6 +269,56 @@ async function writeToDataFile(approvedRecords) {
         throw new Error('Error writing data records');
     }
 }
+
+
+
+
+const nodemailer = require('nodemailer');
+
+// Setup email transport using App Password
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD, // App Password
+    },
+    tls: {
+        rejectUnauthorized: false
+    }
+});
+
+
+
+// Function to send email after student registration
+async function sendRegistrationEmail(student) {
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: student.emailid, // Student's email
+        subject: 'Registration Successful - Knowledge Point',
+        html: `
+            <p>Dear ${student.name},</p>
+            <p>You have been successfully registered. Your student ID is <strong style="color: blue;">${student.id}</strong>.</p>
+            <p>Details:</p>
+            <ul>
+                <li>Class: ${student.studentClass}</li>
+                <li>School: ${student.school}</li>
+                <li>Date of Enrollment: ${student.date}</li>
+            </ul>
+            <p>Please remember this Student ID and do not share it with anyone!</p>
+            <p>Thank you for registering with us!</p>
+            <p>Best regards,<br>Knowledge Point</p>
+        `
+    };
+
+    try {
+        const info = await transporter.sendMail(mailOptions);
+        console.log('Email sent:', info.response);
+    } catch (error) {
+        console.error('Error sending email:', error.message);
+    }
+}
+
+
 
 
 // Approve selected records
