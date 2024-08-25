@@ -161,7 +161,7 @@
     "date": "2024-08-25",
     "fee": "1000",
     "month": "August",
-    "payment": "No",
+    "payment": "NA",
     "mobile": "9009717624",
     "emailid": "ankitgupta22196@gmail.com",
     "address": "Kurud",
