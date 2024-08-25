@@ -58,7 +58,7 @@ router.put('/', async (req, res) => {
     console.log('Received update request:', { mobile, name, timestamp, email, updates });
 
     try {
-        // Get the current content of the students.txt file
+        // Get the current content of the students.txt file from GitHub
         let response;
         try {
             response = await axios.get(`https://api.github.com/repos/${GITHUB_REPO}/contents/${FILE_PATH}`, {
@@ -90,17 +90,11 @@ router.put('/', async (req, res) => {
             return res.status(400).json({ error: 'This email ID is already registered.' });
         }
 
-        // Find the student with the provided mobile number and name matching the first 3 characters (case-insensitive)
-        const searchName = name.toLowerCase().slice(0, 3);
-        const studentIndex = students.findIndex(s => s.mobile === mobile && s.name.toLowerCase().startsWith(searchName));
+        // Find the student with the provided timestamp
+        const studentIndex = students.findIndex(s => s.timestamp === timestamp);
 
         if (studentIndex !== -1) {
             const existingStudent = students[studentIndex];
-
-            // Check if the timestamp matches
-            if (existingStudent.timestamp !== timestamp) {
-                return res.status(400).json({ error: 'Timestamp mismatch. Please refresh and try again.' });
-            }
 
             // Update the student record with the new mobile, name, email, and other updates
             const updatedStudent = {
@@ -111,7 +105,7 @@ router.put('/', async (req, res) => {
                 ...updates
             };
 
-            // Preserve the original timestamp if it should not be updated
+            // Preserve the original timestamp
             students[studentIndex] = { ...updatedStudent, timestamp: existingStudent.timestamp };
 
             // Save updated content to GitHub
@@ -122,8 +116,8 @@ router.put('/', async (req, res) => {
                 sha: response.data.sha
             }, {
                 headers: {
-                    Authorization: `token ${GITHUB_TOKEN}`,
-                    Accept: 'application/vnd.github.v3+json'
+                Authorization: `token ${GITHUB_TOKEN}`,
+                Accept: 'application/vnd.github.v3+json'
                 }
             });
 
