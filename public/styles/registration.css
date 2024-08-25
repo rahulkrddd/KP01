@@ -296,14 +296,19 @@ button:hover {
     margin-left: 10px;
 }
 /* Mobile Responsiveness */
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
     nav {
+        display: flex; /* Ensure nav uses flexbox */
         flex-direction: column; /* Stack buttons vertically on small screens */
+        align-items: center; /* Center buttons horizontally */
+        padding: 0; /* Remove padding if needed */
     }
 
     nav button {
-        width: 100%; /* Buttons take full width on small screens */
-        margin: 5px 0; /* Adjust margin to fit the vertical layout */
+        width: 80%; /* Set width to 80% on small screens */
+        margin: 5px 0; /* Center buttons and adjust margin */
+        display: block; /* Ensure buttons are block-level for margin auto to work */
     }
 
     main {
@@ -317,18 +322,22 @@ button:hover {
     }
 
     .registration-popup-content {
-        width: 90%; /* Increase width to fit small screens */
-        margin: 10% auto; /* Adjust top margin */
+        width: 80%; /* Set width to 80% to fit small screens */
+        margin: 10% auto; /* Center horizontally and adjust top margin */
     }
 
     .header-buttons {
+        display: flex; /* Ensure header-buttons uses flexbox */
         flex-direction: column; /* Stack buttons vertically on small screens */
+        align-items: center; /* Center buttons horizontally */
+        padding: 0; /* Remove padding if needed */
     }
 
     .header-button {
-        width: 100%; /* Make header buttons full width */
+        width: 80%; /* Set width to 80% for header buttons */
         margin-bottom: 10px; /* Space between buttons */
         box-sizing: border-box; /* Ensure padding and border are included in the width */
+        display: block; /* Ensure buttons are block-level for margin auto to work */
     }
 
     .update-view-button {
