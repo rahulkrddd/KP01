@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration - Knowledge Point</title>
+    <link rel="stylesheet" href="styles/studentpayment.css">
+</head>
+<body>
+    <header>
+        <img src="kp_logo.jpg" alt="Knowledge Point Logo" id="logo">
+        <h1>Knowledge Point</h1>
+    </header>
+    <div class="header-buttons">
+        <a href="index.html" class="header-button">Home</a>
+        <a href="registration.html" class="header-button">Registration</a>
+        <a href="status.html" class="header-button">Check Your Status</a>
+        <a href="studentpayment.html" class="header-button">My Payment</a>
+    </div>
+    <main>
+        <h2>Check My Payments</h2>
+        <form id="stpayForm">
+            <label for="stpayName">Name:</label>
+            <input type="text" id="stpayName" name="name" required><br>
+            <label for="stpayMobile">Mobile Number:</label>
+            <input type="text" id="stpayMobile" name="mobile" required><br>
+            <label for="stpayId">Student ID:</label>
+            <input type="text" id="stpayId" name="studentid" required><br>
+            <button type="submit">Check Payment Status</button>
+        </form>
+        <div id="stpayError" class="stpay-message"></div>
+        <div id="stpayResults" class="stpay-results" style="display:none;">
+            <h3>Student Details</h3>
+            <table id="stpayStudentInfo">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Student ID</th>
+                        <th>Class</th>
+                        <th>School</th>
+                        <th>E</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <h3>Payment Details</h3>
+            <table id="stpayPaymentInfo">
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Payment</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </main>
+    <script src="scripts/studentpayment.js"></script>
+    <footer style="text-align: center; padding: 15px; background-color: #f1f1f1; font-size: 14px; color: #333;">
+        <p style="margin: 0;">© 2024 Knowledge Point. All rights reserved.</p>
+    </footer>
+</body>
+</html>
