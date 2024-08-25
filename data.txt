@@ -7,7 +7,7 @@
     "date": "2024-08-25",
     "fee": "1000",
     "month": "August",
-    "payment": "NA",
+    "payment": "Yes",
     "mobile": "8871283715",
     "emailid": "career.rahul.123@gmail.com",
     "address": "Hi",
