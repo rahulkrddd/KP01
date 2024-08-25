@@ -1,13 +1,13 @@
 [
   {
-    "name": "Rahulxxxxyyyyyyy",
-    "class": "6",
-    "school": "Others",
-    "dob": "2015-07-18",
-    "mobile": "7777777778",
-    "email": "testxxxxxxxx@gmail.com",
-    "subject": "science",
-    "Address": "Kurud2xxxxxxxx",
+    "name": "Rahul iii",
+    "class": "12",
+    "school": "KCPS",
+    "dob": "2015-05-08",
+    "mobile": "7777777779",
+    "email": "rahul@gmail.com",
+    "subject": "other",
+    "Address": "Kurud2xxxxxxxx bduiqhduihuiwd wd sbduiwbdu",
     "status": "Pending",
     "timestamp": "2024-08-22 15:29:16"
   },
