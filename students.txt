@@ -128,7 +128,7 @@
     "email": "ankitgupta22196@gmail.com",
     "subject": "maths",
     "Address": "Kurud",
-    "status": "Pending",
+    "status": "Approved",
     "timestamp": "2024-08-25 20:48:10"
   }
 ]
