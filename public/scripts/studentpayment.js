@@ -37,26 +37,39 @@ document.getElementById('stpayForm').addEventListener('submit', async function(e
             // Insert student info
             const studentInfoBody = document.getElementById('stpayStudentInfo').getElementsByTagName('tbody')[0];
             const firstRecord = data[0];
-            studentInfoBody.innerHTML = `
-                <tr>
-                    <td>${firstRecord.name}</td>
-                    <td>${firstRecord.id}</td>
-                    <td>${firstRecord.studentClass}</td>
-                    <td>${firstRecord.school}</td>
-                    <td>${firstRecord.date}</td>
-                     <!-- Removed fee here "<td>${firstRecord.fee}</td>" -->
-                </tr>
-            `;
+            studentInfoBody.innerHTML = 
+			`<tr>
+				<td>${firstRecord.name}</td>
+				<td>${firstRecord.id}</td>
+				<td>${firstRecord.studentClass}</td>
+				<td>${firstRecord.school}</td>
+				<td>${firstRecord.date}</td>
+				<td style="background-color: ${firstRecord.archiveInd === 'Yes' ? 'Red' : 'lightgreen'};">
+											 ${firstRecord.archiveInd === 'No' ? 'Active' : 'Inactive'}
+				</td>
+				<!-- Removed fee here "<td>${firstRecord.fee}</td>" -->
+			</tr>`
+
+            ;
 
             // Insert payment info (all records)
             const paymentInfoBody = document.getElementById('stpayPaymentInfo').getElementsByTagName('tbody')[0];
             data.forEach(record => {
-                paymentInfoBody.innerHTML += `
-                    <tr>
-                        <td>${record.month}</td>
-                        <td>${record.payment}</td>
-                    </tr>
-                `;
+                paymentInfoBody.innerHTML += 
+			`<tr>
+			    <td>${record.month}</td>
+			    <td style="
+			        background-color: ${record.payment === 'No' ? 'lightcoral' : 
+			                            record.payment === 'Yes' ? 'lightgreen' : 
+			                            'lightgray'};
+			    ">
+			        ${record.payment === 'No' ? 'Fee Pending' : 
+			         record.payment === 'Yes' ? 'Fee Paid' : 
+			         'Fee not Required'}
+			    </td>
+			</tr>`;
+
+                
             });
         }
     } catch (error) {
