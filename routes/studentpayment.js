@@ -1,64 +1,61 @@
+// routes/studentpayment.js
 const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
-const PORT = process.env.PORT || 3000;
+const router = express.Router();
+const axios = require('axios');
 
-app.use(bodyParser.json());
-app.use(express.static('public'));
+const GITHUB_REPO = 'rahulkrddd/KP01';
+const FILE_PATH = 'data.txt';
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_API_URL = 'https://api.github.com';
 
-app.post('/update', async (req, res) => {
-    const { content } = req.body;
 
-    const GITHUB_REPO = 'rahulkrddd/KP01';
-    const FILE_PATH = 'data0.txt';
-    const GITHUB_TOKEN = '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';
 
+
+router.post('/check-payment', async (req, res) => {
     try {
-        // Dynamically import node-fetch
-        const fetch = await import('node-fetch').then(mod => mod.default);
+        // Extract data from request body
+        const { name, mobile, studentId } = req.body;
 
-        // Get the SHA of the existing file
-        const getFileResponse = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${FILE_PATH}`, {
+        // Fetch the JSON file from GitHub
+        const response = await axios.get(`${GITHUB_API_URL}/repos/${GITHUB_REPO}/contents/${FILE_PATH}`, {
             headers: {
-                'Authorization': `token ${GITHUB_TOKEN}`,
-                'Accept': 'application/vnd.github.v3+json'
+                'Authorization': `token ${GITHUB_TOKEN}`
             }
         });
 
-        if (!getFileResponse.ok) {
-            const errorData = await getFileResponse.json();
-            return res.status(getFileResponse.status).json({ message: 'Failed to get file', error: errorData });
-        }
+        // Decode the base64 content
+        const jsonContent = Buffer.from(response.data.content, 'base64').toString('utf8');
+        
+        // Parse the JSON content
+        const records = JSON.parse(jsonContent);
+        
+        // Convert search criteria to lowercase for case-insensitive comparison
+        const searchNameStart = name.slice(0, 3).toLowerCase();
+        const searchMobile = mobile;
+        const searchStudentId = studentId.toLowerCase();
 
-        const fileData = await getFileResponse.json();
-        const sha = fileData.sha;
+        // Filter for matching records
+        const matchingRecords = records.filter(record => 
+            record.mobile === searchMobile &&
+            record.id.toLowerCase() === searchStudentId &&
+            record.name.toLowerCase().startsWith(searchNameStart)
+        );
 
-        // Update the file content
-        const updateFileResponse = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${FILE_PATH}`, {
-            method: 'PUT',
-            headers: {
-                'Authorization': `token ${GITHUB_TOKEN}`,
-                'Accept': 'application/vnd.github.v3+json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                message: 'Update data0.txt',
-                content: Buffer.from(content).toString('base64'),
-                sha
-            })
-        });
-
-        if (updateFileResponse.ok) {
-            res.json({ message: 'File updated successfully' });
+        // Log the search criteria and the results
+        console.log('Searching for records with:', { name, mobile, studentId });
+        if (matchingRecords.length > 0) {
+            console.log('Matching records found:', matchingRecords);
+            res.json(matchingRecords);
         } else {
-            const errorData = await updateFileResponse.json();
-            res.status(500).json({ message: 'Failed to update file', error: errorData });
+            console.log('No records found for:', { name, mobile, studentId });
+            res.status(404).json({ message: 'You are not registered or incorrect details entered, Pls try again.' });
         }
     } catch (error) {
-        res.status(500).json({ message: 'An error occurred', error });
+        console.error('Error fetching or processing data:', error);
+        res.status(500).json({ message: 'Server error' });
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+
+
+module.exports = router;
