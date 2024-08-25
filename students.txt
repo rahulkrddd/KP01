@@ -1,11 +1,11 @@
 [
   {
-    "name": "Rahulxxxx",
-    "class": "12",
-    "school": "Banjari",
+    "name": "Rahulxxxxyyyyyyy",
+    "class": "6",
+    "school": "Others",
     "dob": "2015-07-18",
     "mobile": "7777777777",
-    "email": "test@gmail.com",
+    "email": "testxxxxxxxx@gmail.com",
     "subject": "science",
     "Address": "Kurud2xxxxxxxx",
     "status": "Pending",
