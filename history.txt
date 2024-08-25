@@ -9,3 +9,4 @@
 01ATea16 PASS DELETE  Rudra              01 Atmanand   2024-08-24  1000 August     N - Y X X 2024-08-25 02:55:38
 02DP523b PASS DELETE  Tannu              01 DPS        2024-08-24  1000 August     Y - Y X X 2024-08-25 02:55:51
 01AT5f3e PASS DELETE  Rudra              01 Atmanand   2024-08-25  1000 August     N - Y X X 2024-08-25 11:10:44
+01KC9f7f PASS PAYMENT Manan Gupta        01 KCPS       2024-08-25  1000 August     Y N X Y X 2024-08-25 20:53:03
