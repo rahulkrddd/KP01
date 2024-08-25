@@ -53,7 +53,7 @@
     "mobile": "8871283714",
     "emailid": "career.rahul@gmail.com",
     "address": "Kurud",
-    "archiveInd": "No"
+    "archiveInd": "Yes"
   },
   {
     "id": "08DP5938",
@@ -67,7 +67,7 @@
     "mobile": "8871283714",
     "emailid": "career.rahul@gmail.com",
     "address": "Kurud",
-    "archiveInd": "No"
+    "archiveInd": "Yes"
   },
   {
     "id": "08DP5938",
@@ -81,7 +81,7 @@
     "mobile": "8871283714",
     "emailid": "career.rahul@gmail.com",
     "address": "Kurud",
-    "archiveInd": "No"
+    "archiveInd": "Yes"
   },
   {
     "id": "08DP5938",
@@ -95,7 +95,7 @@
     "mobile": "8871283714",
     "emailid": "career.rahul@gmail.com",
     "address": "Kurud",
-    "archiveInd": "No"
+    "archiveInd": "Yes"
   },
   {
     "id": "08DP5938",
@@ -109,7 +109,7 @@
     "mobile": "8871283714",
     "emailid": "career.rahul@gmail.com",
     "address": "Kurud",
-    "archiveInd": "No"
+    "archiveInd": "Yes"
   },
   {
     "id": "08DP5938",
@@ -123,7 +123,7 @@
     "mobile": "8871283714",
     "emailid": "career.rahul@gmail.com",
     "address": "Kurud",
-    "archiveInd": "No"
+    "archiveInd": "Yes"
   },
   {
     "id": "08DP5938",
@@ -137,7 +137,7 @@
     "mobile": "8871283714",
     "emailid": "career.rahul@gmail.com",
     "address": "Kurud",
-    "archiveInd": "No"
+    "archiveInd": "Yes"
   },
   {
     "id": "08DP5938",
@@ -151,6 +151,6 @@
     "mobile": "8871283714",
     "emailid": "career.rahul@gmail.com",
     "address": "Kurud",
-    "archiveInd": "No"
+    "archiveInd": "Yes"
   }
 ]
