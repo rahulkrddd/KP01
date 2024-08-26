@@ -176,7 +176,7 @@
     "email": "tesrt@gmail.com",
     "subject": "hindi",
     "Address": "hii",
-    "status": "Pending",
+    "status": "Approved",
     "timestamp": "2024-08-26 18:55:32"
   },
   {
