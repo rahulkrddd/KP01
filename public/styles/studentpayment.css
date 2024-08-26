@@ -245,19 +245,23 @@ button:hover {
     #stpayResults {
         text-align: center;
     }
+	
+	
+	
+	
+	
+	
 /* Center the content within each table cell [TABLE ROW AND COLUMNS] */
     #stpayStudentInfo th, #stpayStudentInfo td,
     #stpayPaymentInfo th, #stpayPaymentInfo td {
-        text-align: center;
+	text-align: center; }
 
-/* Mobile-specific styles on tables*/
-@media (max-width: 600px) {
-    #stpayResults {
-        text-align: center; /* Centers text within the div */
-        overflow-x: hidden; /* Hides horizontal scrollbars */
-        padding: 0 10px; /* Adds some horizontal padding to ensure content fits */
 
-    }
+
+
+
+
+
 
     /* Ensures tables do not cause horizontal overflow */
     #stpayResults table {
@@ -294,9 +298,7 @@ button:hover {
         display: none; /* Hides scrollbar in WebKit browsers */
     }
     /* Responsive logo */
-    #logo {
-        width: 15%; /* Adjust logo size for mobile */
-    }
+
 }
 /* Mobile-specific styles on tables*/
 /**********************************************************************************************/
@@ -417,8 +419,64 @@ button:hover {
         font-size: 14px; /* Smaller font size for mobile */
         width: auto; /* Allow width to adjust based on content */
     }
-
+    #logo {
+        width: 15%; /* Adjust logo size for mobile */
+    }
 }
 /* Mobile-specific styles  nevigation buttons         */
 
 /**********************************************************************************************/
+
+
+/* Mobile-specific styles on tables */
+@media (max-width: 600px) {
+    /* Center the table */
+    #stpayPaymentInfo {
+        margin: 0 auto; /* Center the table */
+    }
+
+    th, td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    /* Stack the headers on top of the data for smaller screens */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    thead {
+        display: none;
+    }
+
+    tbody, tr {
+        display: block;
+        width: 100%;
+    }
+
+    tr {
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+    }
+
+    td {
+        display: block;
+        text-align: right;
+        position: relative;
+        padding-left: 50%;
+        box-sizing: border-box;
+    }
+
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 10px;
+        font-weight: bold;
+        white-space: nowrap;
+        text-align: left;
+    }
+}
