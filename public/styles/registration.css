@@ -373,4 +373,29 @@ button:hover {
     opacity: 1;
     transform: translateY(0);
 }
+/* Mobile Styles */
+@media (max-width: 600px) {
+    .success-message {
+        font-size: 12px;
+        padding: 8px;
+        margin: 0 5px;
+    }
+
+    .error-message {
+        font-size: 10px;
+        margin-left: 5px;
+    }
+}
+
+.success-message.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-left: 10px;
+}
 /*************************************email successfully entered**************************************************/
