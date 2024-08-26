@@ -154,5 +154,17 @@
     "Address": "hi",
     "status": "Pending",
     "timestamp": "2024-08-26 18:49:27"
+  },
+  {
+    "name": "Rahul",
+    "class": "11",
+    "school": "DPS",
+    "dob": "2015-08-15",
+    "mobile": "7777777778",
+    "email": "testxxxxxxx@gmail.com",
+    "subject": "maths+physics",
+    "Address": "hi",
+    "status": "Pending",
+    "timestamp": "2024-08-26 18:51:31"
   }
 ]
