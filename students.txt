@@ -142,5 +142,17 @@
     "Address": "Hi",
     "status": "Approved",
     "timestamp": "2024-08-26 00:22:28"
+  },
+  {
+    "name": "Rahul",
+    "class": "3",
+    "school": "Banjari",
+    "dob": "2015-08-21",
+    "mobile": "9999999999",
+    "email": "testxxxxxxxx@gmail.com",
+    "subject": "science",
+    "Address": "hi",
+    "status": "Pending",
+    "timestamp": "2024-08-26 18:49:27"
   }
 ]
