@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const title = document.getElementById('knowledgePointTitle');
+    const title = document.getElementById('logo');
     const popup = document.getElementById('KP-Main-popup');
     const close = document.querySelector('.popup .close');
 
