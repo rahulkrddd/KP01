@@ -5,7 +5,7 @@
     "school": "KCPS",
     "dob": "2015-05-08",
     "mobile": "7777777777",
-    "email": "rahul@gmail.com",
+    "email": "rahul@",
     "subject": "other",
     "Address": "Kurud2xxxxxxxx bduiqhduihuiwd wd sbduiwbdu",
     "status": "Pending",
