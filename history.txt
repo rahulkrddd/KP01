@@ -19,3 +19,4 @@
 01DP291e PASS UPDATE  Mona               07 DPS        2024-08-25  1000 August     Y N X N N 2024-08-25 22:16:08
 07DP291e PASS UPDATE  Mona               07 DPS        2024-08-25  1000 August     Y N X Y N 2024-08-25 22:16:17
 12KC2469 PASS ENROLL  Mona               12 KCPS       2024-04-01  1000 April      N N X X X 2024-08-25 22:27:33
+12KC2469 PASS ARCHIVE Mona               12 KCPS       2024-04-01  1000 May        N Y N X X 2024-08-26 12:31:26
