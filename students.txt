@@ -178,5 +178,17 @@
     "Address": "hii",
     "status": "Pending",
     "timestamp": "2024-08-26 18:55:32"
+  },
+  {
+    "name": "Mona",
+    "class": "10",
+    "school": "Inventure",
+    "dob": "2015-08-08",
+    "mobile": "8871283719",
+    "email": "www@gmail.com",
+    "subject": "maths+science",
+    "Address": "hi",
+    "status": "Pending",
+    "timestamp": "2024-08-26 18:58:20"
   }
 ]
