@@ -60,15 +60,13 @@ function displayStudentInfo(record) {
     const studentInfoBody = document.getElementById('stpayStudentInfo').getElementsByTagName('tbody')[0];
     studentInfoBody.innerHTML = 
     `<tr>
-        <td>${record.name}</td>
-        <td>${record.id}</td>
-        <td>${record.studentClass}</td>
-        <td>${record.school}</td>
-        <td>${record.date}</td>
-        <td style="background-color: ${record.archiveInd === 'Yes' ? 'Red' : 'lightgreen'};">
-            ${record.archiveInd === 'No' ? 'Active' : 'Inactive'}
-        </td>
-    </tr>`;
+        <td style="font-weight: 549; ${window.innerWidth <= 768 ? 'display: block;' : ''}"> ${window.innerWidth <= 768 ? 'Name           : ' : ''}${record.name} </td>
+        <td style="font-weight: 549; ${window.innerWidth <= 768 ? 'display: block;' : ''}"> ${window.innerWidth <= 768 ? 'Student ID     : ' : ''}${record.id} </td>
+        <td style="font-weight: 549; ${window.innerWidth <= 768 ? 'display: block;' : ''}"> ${window.innerWidth <= 768 ? 'Class          : ' : ''}${record.studentClass} </td>
+        <td style="font-weight: 549; ${window.innerWidth <= 768 ? 'display: block;' : ''}"> ${window.innerWidth <= 768 ? 'School         : ' : ''}${record.school} </td>
+        <td style="font-weight: 549; ${window.innerWidth <= 768 ? 'display: block;' : ''}"> ${window.innerWidth <= 768 ? 'Enroll Date    : ' : ''}${record.date} </td>
+		<td style="background-color: ${record.archiveInd === 'Yes' ? 'Red' : 'lightgreen'};    font-weight: 549;    ${window.innerWidth <= 768 ? 'display: block;' : ''} "> ${window.innerWidth <= 768 ? 'Status         : ' : ''}${record.archiveInd === 'No' ? 'Active' : 'Inactive'} </td>                                                                                                                                              
+	 </tr>`;
 }
 
 function getFinancialMonth(month) {
