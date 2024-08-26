@@ -23,12 +23,16 @@ document.getElementById('mobile').addEventListener('input', function() {
 document.getElementById('email').addEventListener('input', function() {
     const emailInput = this.value;
     const errorElement = document.getElementById('emailError');
+    const successElement = document.getElementById('emailSuccess');
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com)$/;
 
     if (!emailPattern.test(emailInput)) {
-        errorElement.textContent = 'Email must be a valid.';
+        errorElement.textContent = 'Email must be valid.';
+        successElement.classList.remove('show'); // Hide success message
     } else {
         errorElement.textContent = '';
+        successElement.textContent = "Once approved, you will get your 'Student ID' on this Email only.";
+        successElement.classList.add('show'); // Show success message with animation
     }
 });
 
