@@ -1,5 +1,5 @@
 // Get elements
-const logo = document.getElementById('logo');
+const kpvar = document.getElementById('knowledgePointTitle');
 const popup = document.getElementById('popup');
 const closeBtn = document.getElementById('close-btn');
 
@@ -15,8 +15,8 @@ function hidePopup() {
     document.body.style.overflow = 'auto'; // Allow scrolling when popup is closed
 }
 
-// Show the popup when the logo is clicked
-logo.addEventListener('click', showPopup);
+// Show the popup when the kpvar is clicked
+kpvar.addEventListener('click', showPopup);
 
 // Hide the popup when the close button is clicked
 closeBtn.addEventListener('click', hidePopup);
