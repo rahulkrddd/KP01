@@ -166,5 +166,17 @@
     "Address": "hi",
     "status": "Pending",
     "timestamp": "2024-08-26 18:51:31"
+  },
+  {
+    "name": "Mona",
+    "class": "3",
+    "school": "Atmanand",
+    "dob": "2015-08-26",
+    "mobile": "9111111111",
+    "email": "tesrt@gmail.com",
+    "subject": "hindi",
+    "Address": "hii",
+    "status": "Pending",
+    "timestamp": "2024-08-26 18:55:32"
   }
 ]
