@@ -33,3 +33,4 @@
 05AT2fc1 PASS  ENROLL Sid                05 Atmanand   2024-08-26 01000 August     N N X X X 2024-08-26 17:01:41
 02DP9c98 PASS  ENROLL Tannu              02 DPS        2024-08-26 01000 August     N N X X X 2024-08-26 17:01:41
 01AT1621 PASS  ENROLL Rudra              01 Atmanand   2024-08-26 01000 August     N N X X X 2024-08-26 17:01:43
+01OTb47b PASS  ENROLL Manan Gupta        01 Others     2024-08-26 01000 August     N N X X X 2024-08-26 17:01:43
