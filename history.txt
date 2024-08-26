@@ -47,3 +47,4 @@
 08DP988C PASS  ENROLL Harish             08 DPS        2024-08-26 01000 August     N N X X X 2024-08-26 18:30:36
 04KC6C69 PASS  ENROLL Rahul              04 KCPS       2024-08-26 01000 August     N N X X X 2024-08-26 18:37:37
 08DP66D6 PASS  ENROLL Harish             08 DPS        2024-08-26 01000 August     N N X X X 2024-08-26 18:37:38
+01OTB3A9 PASS  ENROLL Manan Gupta        01 Others     2024-08-26 01000 August     N N X X X 2024-08-26 18:37:39
