@@ -188,7 +188,7 @@
     "email": "www@gmail.com",
     "subject": "maths+science",
     "Address": "hi",
-    "status": "Pending",
+    "status": "Approved",
     "timestamp": "2024-08-26 18:58:20"
   },
   {
