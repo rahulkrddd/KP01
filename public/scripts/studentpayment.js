@@ -43,9 +43,16 @@ function handleResponse(data) {
     if (data.length === 0) {
         document.getElementById('stpayError').innerText = 'No records found';
     } else {
-        document.getElementById('stpayResults').style.display = 'block';
-        displayStudentInfo(data[0]);
-        displayPaymentInfo(data);
+        const currentMonth = new Date().toLocaleString('default', { month: 'long' });
+        const currentMonthRecord = data.find(record => record.month === currentMonth);
+
+        if (currentMonthRecord) {
+            document.getElementById('stpayResults').style.display = 'block';
+            displayStudentInfo(currentMonthRecord);
+            displayPaymentInfo(data);
+        } else {
+            document.getElementById('stpayError').innerText = `No records found for the current month (${currentMonth})`;
+        }
     }
 }
 
@@ -76,7 +83,10 @@ function displayPaymentInfo(data) {
 
     paymentInfoBody.innerHTML = ''; // Clear existing content
 
-    data.forEach(record => {
+    // Filter out records with archiveInd: 'Yes'
+    const validRecords = data.filter(record => record.archiveInd !== 'Yes');
+
+    validRecords.forEach(record => {
         const recordFinancialMonth = getFinancialMonth(record.month);
         // Check if the record month is <= current month, considering financial year crossover
         const isValidMonth = (recordFinancialMonth <= currentFinancialMonth) || (currentFinancialMonth === 1 && recordFinancialMonth === 12);
@@ -98,6 +108,7 @@ function displayPaymentInfo(data) {
         }
     });
 }
+
 
 
 function handleError(error) {
