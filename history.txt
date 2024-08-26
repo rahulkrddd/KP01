@@ -22,3 +22,4 @@
 12KC2469 PASS ARCHIVE Mona               12 KCPS       2024-04-01  1000 May        N Y N X X 2024-08-26 12:31:26
 12KC2469 PASS UPDATE  Mona               12 KCPS       2024-04-01  1000 July       N N X N Y 2024-08-26 13:08:33
 03AT7bf9 03
+03BJ6ec8 PASS Rahul              03 Banjari    2024-08-26 01000 August     N N X X X 2024-08-26 16:34:25
