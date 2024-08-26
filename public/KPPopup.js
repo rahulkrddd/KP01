@@ -1,22 +1,29 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const title = document.getElementById('logo');
-    const popup = document.getElementById('KP-Main-popup');
-    const close = document.querySelector('.popup .close');
+// Get elements
+const kpvar = document.getElementById('knowledgePointTitle');
+const popup = document.getElementById('popup');
+const closeBtn = document.getElementById('close-btn');
 
-    // Show the popup when the title is clicked
-    title.addEventListener('click', () => {
-        popup.style.display = 'block';
-    });
+// Function to show the popup
+function showPopup() {
+    popup.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Prevent scrolling when popup is open
+}
 
-    // Hide the popup when the close button is clicked
-    close.addEventListener('click', () => {
-        popup.style.display = 'none';
-    });
+// Function to hide the popup
+function hidePopup() {
+    popup.style.display = 'none';
+    document.body.style.overflow = 'auto'; // Allow scrolling when popup is closed
+}
 
-    // Hide the popup when clicking outside of the popup content
-    window.addEventListener('click', (event) => {
-        if (event.target === popup) {
-            popup.style.display = 'none';
-        }
-    });
+// Show the popup when the kpvar is clicked
+kpvar.addEventListener('click', showPopup);
+
+// Hide the popup when the close button is clicked
+closeBtn.addEventListener('click', hidePopup);
+
+// Hide the popup if the user clicks outside of the popup content
+window.addEventListener('click', (event) => {
+    if (event.target === popup) {
+        hidePopup();
+    }
 });
