@@ -21,6 +21,5 @@
 12KC2469 PASS ENROLL  Mona               12 KCPS       2024-04-01  1000 April      N N X X X 2024-08-25 22:27:33
 12KC2469 PASS ARCHIVE Mona               12 KCPS       2024-04-01  1000 May        N Y N X X 2024-08-26 12:31:26
 12KC2469 PASS UPDATE  Mona               12 KCPS       2024-04-01  1000 July       N N X N Y 2024-08-26 13:08:33
-02DP2dcf PASS ENROLL Tannu              02 DPS        2024-08-26 01000 August     N N X X X 2024-08-26 16:47:52
 09KV0818 PASS  ENROLL Priyanka           09 KV         2024-08-26 01000 August     N N X X X 2024-08-26 16:52:13
 02DP6933 PASS  ENROLL Tannu              02 DPS        2024-08-26 01000 August     N N X X X 2024-08-26 16:52:14
