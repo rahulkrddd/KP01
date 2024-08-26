@@ -48,7 +48,7 @@ router.post('/check-payment', async (req, res) => {
             res.json(matchingRecords);
         } else {
             console.log('No records found for:', { name, mobile, studentId });
-            res.status(404).json({ message: 'You are not registered or incorrect details entered, Pls try again.' });
+            res.status(404).json({ message: "You are not approved, Please contact 'Knowledge Point'." });
         }
     } catch (error) {
         console.error('Error fetching or processing data:', error);
