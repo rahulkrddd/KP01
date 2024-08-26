@@ -8,7 +8,7 @@
     "email": "rahul@",
     "subject": "other",
     "Address": "Kurud2xxxxxxxx bduiqhduihuiwd wd sbduiwbdu",
-    "status": "Pending",
+    "status": "Approved",
     "timestamp": "2024-08-22 15:29:16"
   },
   {
