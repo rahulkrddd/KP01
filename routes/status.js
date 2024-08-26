@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
             // Add the existing student's timestamp to the response
             res.status(200).json({ ...student });
         } else {
-            res.status(404).json({ error: 'Student not found.' });
+            res.status(404).json({ error: "Student not found, Retry or contact 'Knowledge Point'." });
         }
     } catch (error) {
         console.error('Server error:', error); // Debugging message
@@ -128,7 +128,7 @@ router.put('/', async (req, res) => {
                 res.status(500).json({ error: 'Failed to update student record.' });
             }
         } else {
-            res.status(404).json({ error: 'Student not found.' });
+            res.status(404).json({ error: 'Student not found, Retry or contact Knowledge Point.' });
         }
     } catch (error) {
         console.error('Server error:', error);
