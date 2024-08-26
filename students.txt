@@ -190,5 +190,17 @@
     "Address": "hi",
     "status": "Pending",
     "timestamp": "2024-08-26 18:58:20"
+  },
+  {
+    "name": "Hii",
+    "class": "3",
+    "school": "Atmanand",
+    "dob": "2015-08-12",
+    "mobile": "8871283718",
+    "email": "testa@gmail.com",
+    "subject": "maths+physics",
+    "Address": "hi",
+    "status": "Pending",
+    "timestamp": "2024-08-26 18:59:23"
   }
 ]
