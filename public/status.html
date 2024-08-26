@@ -81,10 +81,14 @@
                 <label for="detailsDob">Date of Birth:</label>
 				<input type="date" id="detailsDob" name="dob" disabled><br>
 				
-                <label for="detailsEmail">Email:</label>
-                <input type="text" id="detailsEmail" name="email" disabled><br>
-				
 
+				
+<div>
+    <label for="detailsEmail">Email:</label>
+    <input type="text" id="detailsEmail" name="email" disabled><br>
+    <span id="detailsEmailError" class="error-message"></span>
+    <div id="detailsEmailSuccess" class="success-message"></div>
+</div>
 				
 				<label for="subject">Subject:</label>
 				<select id="detailsSubject" name="subject" disabled>
@@ -139,6 +143,82 @@
     </div>
 
     <script src="scripts/status.js"></script>
+	
+<!-----Below script and style is for email in status edit page  -------------------------------------->
+	<script>
+		document.getElementById('detailsEmail').addEventListener('input', function() {
+			const emailInput = this.value;
+			const errorElement = document.getElementById('detailsEmailError');
+			const successElement = document.getElementById('detailsEmailSuccess');
+			const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com)$/;
+
+			if (!emailPattern.test(emailInput)) {		
+				errorElement.textContent = 'Email must be valid.';
+				successElement.classList.remove('show'); // Hide success message
+			} else {
+				errorElement.textContent = '';
+				successElement.textContent = "You will get your 'Student ID' on this email ID only.";
+				successElement.classList.add('show'); // Show success message with animation
+			}
+		});
+	</script>  
+	<style>
+        .success-message {
+            color: #155724;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 0px;
+            display: none; /* Hidden by default */
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+            transform: translateY(-20px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        .success-message.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+		/* Mobile Styles */
+		@media (max-width: 600px) {
+		    .success-message {
+		        font-size: 12px;
+		        padding: 8px;
+		        margin: 0 5px;
+		    }
+		
+		    .error-message {
+		        font-size: 10px;
+		        margin-left: 5px;
+		    }
+		}
+		
+		.success-message.show {
+		    display: block;
+		    opacity: 1;
+		    transform: translateY(0);
+		}
+		
+		.error-message {
+		    color: red;
+		    font-size: 12px;
+		    margin-left: 10px;
+		}
+    </style>
+<!-----Above script and style is for email in status edit page  -------------------------------------->
+
 <footer style="text-align: center; padding: 15px; background-color: #f1f1f1; font-size: 14px; color: #333;">
     <p style="margin: 0;">© 2024 Knowledge Point. All rights reserved.</p>
 </footer>
