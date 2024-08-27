@@ -32,7 +32,7 @@
     "email": "rahul.gupta.731@gmail.com",
     "subject": "maths",
     "Address": "wu asds sdwhwuhuws",
-    "status": "Pending",
+    "status": "Approved",
     "timestamp": "2024-07-24 15:29:45"
   },
   {
