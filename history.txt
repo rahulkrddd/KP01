@@ -1,11 +1,1 @@
-01AT6B81 PASS  ENROLL Rudra              01 Atmanand   2024-08-27 01000 August     N N X X X 2024-08-27 07:45:33
-02DPD61D PASS  ENROLL Tannu              02 DPS        2024-08-27 01000 August     N N X X X 2024-08-27 07:45:33
-05ATF3E4 PASS  ENROLL Sid                05 Atmanand   2024-08-27 01000 August     N N X X X 2024-08-27 07:46:01
-01OT4F10 PASS  ENROLL Manan Gupta        01 Others     2024-08-27 01000 August     N N X X X 2024-08-27 07:46:01
-08DP0270 PASS  ENROLL Harish             08 DPS        2024-08-27 01000 August     N N X X X 2024-08-27 07:46:54
-07DP2997 PASS  ENROLL Mona               07 DPS        2024-08-27 01000 August     N N X X X 2024-08-27 07:46:54
-08DP0270 PASS UPDATE  Harish             01 DPS        2024-08-27  1000 August     Y N X N N 2024-08-27 13:17:43
-04KC9C79 PASS  ENROLL Rahul              04 KCPS       2024-08-27 01000 August     N N X X X 2024-08-27 07:47:57
-09KV1BFB PASS  ENROLL Priyanka           09 KV         2024-08-27 01000 August     N N X X X 2024-08-27 07:47:57
-09KVA1CB PASS  ENROLL Priyanka Gupta C   09 KV         2024-08-27 01000 August     N N X X X 2024-08-27 07:48:20
-09KV0F50 PASS  ENROLL Priyanka Gupta B   09 KV         2024-08-27 01000 August     N N X X X 2024-08-27 07:49:07
+
