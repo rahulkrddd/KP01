@@ -5,3 +5,6 @@
 
 05ATCC58 PASS  ENROLL Sid                05 Atmanand   2024-08-27 01000 August     N N X X X 2024-08-27 07:29:46
 01OT60D6 PASS  ENROLL Manan Gupta        01 Others     2024-08-27 01000 August     N N X X X 2024-08-27 07:29:46
+
+08DP3AF4 PASS  ENROLL Harish             08 DPS        2024-08-27 01000 August     N N X X X 2024-08-27 07:34:25
+07DPB937 PASS  ENROLL Mona               07 DPS        2024-08-27 01000 August     N N X X X 2024-08-27 07:34:25
