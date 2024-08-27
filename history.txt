@@ -69,4 +69,4 @@
 01OT8AA9 PASS ENROLL  Manan Gupta        01 Others     2024-08-27  1000 August     N N X X X 2024-08-27 08:44:46
 01AT3553 PASS ENROLL  Rudra              01 Atmanand   2024-08-27  1000 August     N N X X X 2024-08-27 08:44:46
 01OTE7D3 PASS ENROLL  Manan Gupta        01 Others     2024-08-27  1000 August     N N X X X 2024-08-27 08:44:46
-01ATEF2F PASS ENROLL  Rudra              01 Atmanand   2024-08-27  1000 August     N N X X X 2024-08-27 08:44:46
+01ATEF2F PASS ENROLL  Rudraxxxxxxxxxxxxx 01 Atmanand   2024-08-27  1000 August     N N X X X 2024-08-27 08:44:46
