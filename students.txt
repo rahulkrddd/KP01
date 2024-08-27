@@ -92,7 +92,7 @@
     "email": "test2@gmail.com",
     "subject": "maths",
     "Address": "Hello",
-    "status": "Pending",
+    "status": "Approved",
     "timestamp": "2024-08-24 00:02:33"
   },
   {
