@@ -30,12 +30,9 @@ router.get('/records', async (req, res) => {
 
 // Define your routes here
 router.post('/validate-password', (req, res) => {
-    console.log('Endpoint /validate-password hit');
+    //console.log('Endpoint /validate-password hit');
     const { password } = req.body;
     const validPassword = process.env.PASSWORD;
-
-    console.log('Received password:', password);
-    console.log('Valid password from environment:', validPassword);
 
     if (password === validPassword) {
         console.log('Password is valid');
@@ -49,7 +46,7 @@ router.post('/validate-password', (req, res) => {
 
 // Decline selected records
 router.post('/decline', async (req, res) => {
-    console.log('Received request to decline records:', req.body);
+    //console.log('Received request to decline records:', req.body);
     const { timestamps } = req.body;
 
     try {
@@ -65,7 +62,7 @@ router.post('/decline', async (req, res) => {
         // Update the status of selected records
         const updatedRecords = records.map(record => {
             if (timestamps.includes(record.timestamp) && record.status === 'Pending') {
-                console.log(`Declining record: ${record.timestamp}`);
+                //console.log(`Declining record: ${record.timestamp}`);
                 record.status = 'Declined';
             }
             return record;
@@ -92,7 +89,7 @@ router.post('/decline', async (req, res) => {
 
 // Delete selected records
 router.post('/delete', async (req, res) => {
-    console.log('Received request to delete records:', req.body);
+    //console.log('Received request to delete records:', req.body);
     const { timestamps } = req.body;
 
     try {
@@ -251,18 +248,21 @@ async function writeToDataFile(approvedRecords) {
                 archiveInd: 'No'
             }));
 
-			// Get the current month as a string (e.g., 'August')
-			const currentMonth = new Date().toLocaleString('default', { month: 'long' });
-			
-			// Filter and collect records where the month matches the current month
-			studentRecords.forEach(record => {
-			  if (record.month === currentMonth) {
-			    historyRecords.push(record);
-			  }
-			});
-			
-			//console.log(historyRecords);
+            // Get the current month as a string (e.g., 'August')
+            const currentMonth = new Date().toLocaleString('default', { month: 'long' });
+            
+            // Filter and collect records where the month matches the current month
+            studentRecords.forEach(record => {
+                if (record.month === currentMonth) {
+                    historyRecords.push(record);
+                }
+            });
 
+            // Send the registration email for the first record (only send once)
+            if (studentRecords.length > 0 && !studentRecords[0].emailSent) {
+                sendRegistrationEmail(studentRecords[0]);
+                studentRecords[0].emailSent = true; // Ensure email is not sent again
+            }
 
             return studentRecords;
         }).filter(record => record !== null);
@@ -278,7 +278,7 @@ async function writeToDataFile(approvedRecords) {
         }, {
             headers: { Authorization: `token ${GITHUB_TOKEN}` }
         });
-
+        
         // Write to history file
         if (historyRecords.length > 0) {
             await writeToHistoryFile(historyRecords);
@@ -312,7 +312,7 @@ async function writeToHistoryFile(records, retryCount = 0) {
 		
 		// Append the new entries to the existing content
 		const updatedHistoryContent = historyFileContent + '\n' + formattedRecords + '\n';
-		console.log(updatedHistoryContent);
+		//console.log(updatedHistoryContent);
 
         // Encode the updated content back to base64
         const updatedHistoryContentEncoded = Buffer.from(updatedHistoryContent).toString('base64');
@@ -326,7 +326,7 @@ async function writeToHistoryFile(records, retryCount = 0) {
             headers: { Authorization: `token ${GITHUB_TOKEN}` }
         });
 
-        console.log('History file updated successfully.');
+        //console.log('History file updated successfully.');
     } catch (error) {
         if (error.response && error.response.status === 409 && retryCount < maxRetries) {
             const delay = retryDelay * Math.pow(2, retryCount); // Exponential backoff
@@ -412,9 +412,9 @@ async function sendRegistrationEmail(student) {
 
     try {
         const info = await transporter.sendMail(mailOptions);
-        console.log('Email sent:', info.response);
+        //console.log('Email sent:', info.response);
     } catch (error) {
-        console.error('Error sending email:', error.message);
+        //console.error('Error sending email:', error.message);
     }
 }
 
@@ -423,7 +423,7 @@ async function sendRegistrationEmail(student) {
 
 // Approve selected records
 router.post('/approve', async (req, res) => {
-    console.log('Received request to approve records:', req.body);
+    //console.log('Received request to approve records:', req.body);
     const { timestamps } = req.body;
 
     try {
