@@ -128,7 +128,7 @@
     "email": "hello@gmail.com",
     "subject": "maths+chemistary",
     "Address": "Kurud",
-    "status": "Pending",
+    "status": "Approved",
     "timestamp": "2024-08-27 15:16:59"
   }
 ]
