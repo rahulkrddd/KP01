@@ -1,3 +1,4 @@
 
 04KC20E9 FAIL UPDATE  Rahul              01 KCPS       2024-08-26  1000 August     N - X N N 2024-08-27 10:22:13
 02DP4186 PASS  ENROLL Tannu              02 DPS        2024-08-27 01000 August     N N X X X 2024-08-27 04:55:15
+05ATAA85 PASS  ENROLL Sid                05 Atmanand   2024-08-27 01000 August     N N X X X 2024-08-27 04:59:20
