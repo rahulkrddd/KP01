@@ -118,5 +118,17 @@
     "Address": "Hi",
     "status": "Approved",
     "timestamp": "2024-08-24 00:03:34"
+  },
+  {
+    "name": "Nishu Pandey",
+    "class": "3",
+    "school": "Banjari",
+    "dob": "2015-08-27",
+    "mobile": "9999999991",
+    "email": "hello@gmail.com",
+    "subject": "maths+chemistary",
+    "Address": "Kurud",
+    "status": "Pending",
+    "timestamp": "2024-08-27 15:16:59"
   }
 ]
