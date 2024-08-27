@@ -5,6 +5,7 @@ const axios = require('axios');
 
 const GITHUB_REPO = 'rahulkrddd/KP01';
 const FILE_PATH = 'students.txt';
+const historyFilePath = 'history.txt';
 const DATA_FILE_PATH = 'data.txt';
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_API_URL = 'https://api.github.com';
@@ -175,7 +176,7 @@ function generateRecordsForMonths(record, startMonth, endMonth) {
 
 // Helper function to generate a random alphanumeric key
 function generateRandomKey(length = 4) {
-    return crypto.randomBytes(length).toString('hex').slice(0, length);
+    return crypto.randomBytes(length).toString('hex').toUpperCase().slice(0, length);
 }
 
 // Helper function to get the school abbreviation
@@ -195,6 +196,8 @@ function getSchoolAbbreviation(school) {
 // Function to write records to data.txt
 // Function to write records to data.txt
 async function writeToDataFile(approvedRecords) {
+    const historyRecords = [];
+
     try {
         // Fetch the current data.txt file
         const dataFileResponse = await axios.get(`${GITHUB_API_URL}/repos/${GITHUB_REPO}/contents/${DATA_FILE_PATH}`, {
@@ -244,17 +247,28 @@ async function writeToDataFile(approvedRecords) {
                 mobile: record.mobile,
                 emailid: record.email,
                 address: record.Address,
+                dob: record.dob,
                 archiveInd: 'No'
             }));
 
-            // Send the registration email for the first record (only send once)
-            sendRegistrationEmail(studentRecords[0]);
+			// Get the current month as a string (e.g., 'August')
+			const currentMonth = new Date().toLocaleString('default', { month: 'long' });
+			
+			// Filter and collect records where the month matches the current month
+			studentRecords.forEach(record => {
+			  if (record.month === currentMonth) {
+			    historyRecords.push(record);
+			  }
+			});
+			
+			//console.log(historyRecords);
+
 
             return studentRecords;
         }).filter(record => record !== null);
 
+        // Update data.txt file
         const updatedDataRecords = [...existingRecords, ...newRecords];
-
         const updatedDataContent = Buffer.from(JSON.stringify(updatedDataRecords, null, 2)).toString('base64');
 
         await axios.put(`${GITHUB_API_URL}/repos/${GITHUB_REPO}/contents/${DATA_FILE_PATH}`, {
@@ -264,6 +278,12 @@ async function writeToDataFile(approvedRecords) {
         }, {
             headers: { Authorization: `token ${GITHUB_TOKEN}` }
         });
+
+        // Write to history file
+        if (historyRecords.length > 0) {
+            await writeToHistoryFile(historyRecords);
+        }
+
     } catch (error) {
         console.error('Error writing data records:', error);
         throw new Error('Error writing data records');
@@ -272,6 +292,86 @@ async function writeToDataFile(approvedRecords) {
 
 
 
+
+
+async function writeToHistoryFile(records, retryCount = 0) {
+    const maxRetries = 100;
+    const retryDelay = 1000;  // Initial retry delay in milliseconds
+
+    try {
+        // Fetch the current HISTORY.txt file content
+        const historyFileResponse = await axios.get(`${GITHUB_API_URL}/repos/${GITHUB_REPO}/contents/${historyFilePath}`, {
+            headers: { Authorization: `token ${GITHUB_TOKEN}` }
+        });
+
+		// Decode base64 content
+		const historyFileContent = Buffer.from(historyFileResponse.data.content, 'base64').toString('utf-8').trim();
+		
+		// Format each record into the required format
+		const formattedRecords = records.map(formatHistoryRecord).join('\n');
+		
+		// Append the new entries to the existing content
+		const updatedHistoryContent = historyFileContent + '\n' + formattedRecords + '\n';
+		console.log(updatedHistoryContent);
+
+        // Encode the updated content back to base64
+        const updatedHistoryContentEncoded = Buffer.from(updatedHistoryContent).toString('base64');
+
+        // Update the HISTORY.txt file on GitHub
+        await axios.put(`${GITHUB_API_URL}/repos/${GITHUB_REPO}/contents/${historyFilePath}`, {
+            message: 'Update HISTORY.txt with new student records',
+            content: updatedHistoryContentEncoded,
+            sha: historyFileResponse.data.sha
+        }, {
+            headers: { Authorization: `token ${GITHUB_TOKEN}` }
+        });
+
+        console.log('History file updated successfully.');
+    } catch (error) {
+        if (error.response && error.response.status === 409 && retryCount < maxRetries) {
+            const delay = retryDelay * Math.pow(2, retryCount); // Exponential backoff
+            console.warn(`Conflict error encountered. Retrying attempt ${retryCount + 1}/${maxRetries} in ${delay}ms...`);
+            await new Promise(resolve => setTimeout(resolve, delay));  // Wait before retrying
+            await writeToHistoryFile(records, retryCount + 1);  // Increment retryCount here
+        } else {
+            console.error('Error writing to history file:', error);
+            throw new Error('Error writing to history file');
+        }
+    }
+}
+
+
+// Mock function to format the record
+function formatHistoryRecord(record) {
+    // Implement your record formatting logic here
+    return JSON.stringify(record);
+}
+
+
+
+function formatHistoryRecord(record) {
+    // Extract and format each field
+    const studentId = record.id.substring(0, 8); // First 8 characters of Student ID
+    const passKeyword = "PASS";
+    const enrollKeyword = "ENROLL";
+    const name = record.name.substring(0, 18).padEnd(18, ' '); // Name (18 characters, padded if necessary)
+    const studentClass = record.studentClass.padStart(2, '0'); // Class (2 characters)
+    const school = record.school.substring(0, 10).padEnd(10, ' '); // School (10 characters, padded if necessary)
+    const enrollDate = record.date.substring(0, 10); // Enroll Date (10 characters)
+    const fee = record.fee.padStart(5, '0'); // Fee amount (5 characters)
+    const month = record.month.padEnd(10, ' '); // Month (10 characters, padded if necessary)
+    const NNXXXkeyword = "N N X X X"; // Fixed 9-character keyword
+    const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19); // Timestamp in the format (YYYY-MM-DD HH:MM:SS)
+	//const DOBKeyword = "DOB-";
+	//const dobDate = record.dob.substring(0, 10); // DOB Date (10 characters)
+	//const SubjectKeyword = "Subject-";
+	//const HSubject = record.Subject.substring(0, 10); // Address (10 characters)
+	//const AddressKeyword = "Address-";
+	//const HAddress = record.Address.substring(0, 30); // Address (30 characters)
+
+    // Construct the formatted record string
+    return `${studentId} ${passKeyword} ${enrollKeyword}  ${name} ${studentClass} ${school} ${enrollDate} ${fee} ${month} ${NNXXXkeyword} ${timestamp}`;
+}
 
 const nodemailer = require('nodemailer');
 
@@ -359,6 +459,7 @@ router.post('/approve', async (req, res) => {
         // Write the approved records to data.txt
         const approvedRecords = updatedRecords.filter(record => timestamps.includes(record.timestamp) && record.status === 'Approved');
         await writeToDataFile(approvedRecords);
+		
 
         res.json({ message: 'Records updated successfully', updatedRecords });
     } catch (error) {
