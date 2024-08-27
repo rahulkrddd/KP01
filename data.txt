@@ -1,8 +1,8 @@
 [
   {
-    "id": "02DP052A",
+    "id": "01DP052A",
     "name": "Tannu",
-    "studentClass": "02",
+    "studentClass": "1",
     "school": "DPS",
     "date": "2024-08-27",
     "fee": "1000",
@@ -15,9 +15,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "02DP052A",
+    "id": "01DP052A",
     "name": "Tannu",
-    "studentClass": "02",
+    "studentClass": "1",
     "school": "DPS",
     "date": "2024-08-27",
     "fee": "1000",
@@ -30,9 +30,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "02DP052A",
+    "id": "01DP052A",
     "name": "Tannu",
-    "studentClass": "02",
+    "studentClass": "1",
     "school": "DPS",
     "date": "2024-08-27",
     "fee": "1000",
@@ -45,9 +45,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "02DP052A",
+    "id": "01DP052A",
     "name": "Tannu",
-    "studentClass": "02",
+    "studentClass": "1",
     "school": "DPS",
     "date": "2024-08-27",
     "fee": "1000",
@@ -60,9 +60,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "02DP052A",
+    "id": "01DP052A",
     "name": "Tannu",
-    "studentClass": "02",
+    "studentClass": "1",
     "school": "DPS",
     "date": "2024-08-27",
     "fee": "1000",
@@ -75,9 +75,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "02DP052A",
+    "id": "01DP052A",
     "name": "Tannu",
-    "studentClass": "02",
+    "studentClass": "1",
     "school": "DPS",
     "date": "2024-08-27",
     "fee": "1000",
@@ -90,9 +90,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "02DP052A",
+    "id": "01DP052A",
     "name": "Tannu",
-    "studentClass": "02",
+    "studentClass": "1",
     "school": "DPS",
     "date": "2024-08-27",
     "fee": "1000",
@@ -105,9 +105,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "02DP052A",
+    "id": "01DP052A",
     "name": "Tannu",
-    "studentClass": "02",
+    "studentClass": "1",
     "school": "DPS",
     "date": "2024-08-27",
     "fee": "1000",
