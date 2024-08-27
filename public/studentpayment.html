@@ -57,6 +57,40 @@
         </div>
     </main>
     <script src="scripts/studentpayment.js"></script>
+
+<!----------------------- BELOW SCRIPT WILL AUTOMETIALLY LOAD name, mobile number and student ID using browser ----->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Load previously saved data
+    const savedName = localStorage.getItem('studentName');
+    const savedMobile = localStorage.getItem('studentMobile');
+    const savedId = localStorage.getItem('studentId');
+
+    if (savedName) document.getElementById('stpayName').value = savedName;
+    if (savedMobile) document.getElementById('stpayMobile').value = savedMobile;
+    if (savedId) document.getElementById('stpayId').value = savedId;
+
+    // Handle form submission
+    document.getElementById('stpayForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        // Get form values
+        const name = document.getElementById('stpayName').value;
+        const mobile = document.getElementById('stpayMobile').value;
+        const studentId = document.getElementById('stpayId').value;
+
+        // Save form values to local storage
+        localStorage.setItem('studentName', name);
+        localStorage.setItem('studentMobile', mobile);
+        localStorage.setItem('studentId', studentId);
+
+        // Here you can handle the form submission as needed
+        // For example, you might want to show some results or send the data to a server
+        console.log('Form submitted with:', { name, mobile, studentId });
+    });
+});
+</script>
+<!----------------------- ABOVE SCRIPT WILL AUTOMETIALLY LOAD name, mobile number and student ID using browser ----->
     <footer style="text-align: center; padding: 15px; background-color: #f1f1f1; font-size: 14px; color: #333;">
         <p style="margin: 0;">© 2024 Knowledge Point. All rights reserved.</p>
     </footer>
