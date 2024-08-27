@@ -218,6 +218,41 @@
 		}
     </style>
 <!-----Above script and style is for email in status edit page  -------------------------------------->
+<!------ Below Script will autometically load mobile and name from browser ----->
+<script>
+    // When the page loads, prefill the form fields with stored data
+    document.addEventListener('DOMContentLoaded', function() {
+        const nameInput = document.getElementById('name');
+        const mobileInput = document.getElementById('mobile');
+
+        // Retrieve stored data from local storage
+        const storedName = localStorage.getItem('storedName');
+        const storedMobile = localStorage.getItem('storedMobile');
+
+        // Prefill the form fields if data is available
+        if (storedName) {
+            nameInput.value = storedName;
+        }
+        if (storedMobile) {
+            mobileInput.value = storedMobile;
+        }
+    });
+
+    // When the form is submitted, store the data in local storage
+    document.getElementById('statusForm').addEventListener('submit', function(event) {
+        const nameInput = document.getElementById('name').value;
+        const mobileInput = document.getElementById('mobile').value;
+
+        // Store the data in local storage
+        localStorage.setItem('storedName', nameInput);
+        localStorage.setItem('storedMobile', mobileInput);
+        
+        // Optionally, you can prevent the form from submitting for testing
+        // event.preventDefault();
+    });
+</script>
+<!------ Above Script will autometically load mobile and name from browser ----->	
+
 
 <footer style="text-align: center; padding: 15px; background-color: #f1f1f1; font-size: 14px; color: #333;">
     <p style="margin: 0;">© 2024 Knowledge Point. All rights reserved.</p>
