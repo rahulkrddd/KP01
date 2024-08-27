@@ -1,2 +1,17 @@
 [
+  {
+    "id": "02DPC968",
+    "name": "Tannu",
+    "studentClass": "02",
+    "school": "DPS",
+    "date": "2024-08-27",
+    "fee": "1000",
+    "month": "August",
+    "payment": "No",
+    "mobile": "9876543212",
+    "emailid": "test@hotmail.com",
+    "address": "Hi",
+    "dob": "2015-08-12",
+    "archiveInd": "No"
+  }
 ]
