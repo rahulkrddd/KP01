@@ -78,6 +78,9 @@ input, select, textarea {
 textarea {
     resize: vertical; /* Allows vertical resizing only */
     min-height: 100px; /* Ensures a minimum height */
+	font-family: arial;
+	
+
 }
 
 button {
