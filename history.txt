@@ -5,3 +5,5 @@
 08DP0270 PASS  ENROLL Harish             08 DPS        2024-08-27 01000 August     N N X X X 2024-08-27 07:46:54
 07DP2997 PASS  ENROLL Mona               07 DPS        2024-08-27 01000 August     N N X X X 2024-08-27 07:46:54
 08DP0270 PASS UPDATE  Harish             01 DPS        2024-08-27  1000 August     Y N X N N 2024-08-27 13:17:43
+04KC9C79 PASS  ENROLL Rahul              04 KCPS       2024-08-27 01000 August     N N X X X 2024-08-27 07:47:57
+09KV1BFB PASS  ENROLL Priyanka           09 KV         2024-08-27 01000 August     N N X X X 2024-08-27 07:47:57
