@@ -361,17 +361,17 @@ function formatHistoryRecord(record) {
     const fee = record.fee.toString().padStart(5, ' ').substring(0, 5);
     const month = record.month.padEnd(10, ' '); // Month (10 characters, padded if necessary)
     const NNXXXkeyword = "N N X X X"; // Fixed 9-character keyword
-    const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19); // Timestamp in the format (YYYY-MM-DD HH:MM:SS)
-	//const DOBKeyword = "DOB-";
-	//const dobDate = record.dob.substring(0, 10); // DOB Date (10 characters)
-	//const SubjectKeyword = "Subject-";
-	//const HSubject = record.Subject.substring(0, 10); // Address (10 characters)
-	//const AddressKeyword = "Address-";
-	//const HAddress = record.Address.substring(0, 30); // Address (30 characters)
+
+    // Get the current date and time in IST
+    const now = new Date();
+    const offset = 5.5 * 60 * 60 * 1000; // IST is UTC+5:30
+    const istTime = new Date(now.getTime() + offset);
+    const timestamp = istTime.toISOString().replace('T', ' ').substring(0, 19); // Timestamp in the format (YYYY-MM-DD HH:MM:SS)
 
     // Construct the formatted record string
     return `${studentId} ${passKeyword} ${enrollKeyword}  ${name} ${studentClass} ${school} ${enrollDate} ${fee} ${month} ${NNXXXkeyword} ${timestamp}`;
 }
+
 
 const nodemailer = require('nodemailer');
 
