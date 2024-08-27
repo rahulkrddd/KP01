@@ -8,3 +8,5 @@
 01OT7C0E PASS  ENROLL Manan Gupta        01 Others     2024-08-27 01000 January    N N X X X 2024-08-27 07:09:12
 01OT7C0E PASS  ENROLL Manan Gupta        01 Others     2024-08-27 01000 February   N N X X X 2024-08-27 07:09:12
 01OT7C0E PASS  ENROLL Manan Gupta        01 Others     2024-08-27 01000 March      N N X X X 2024-08-27 07:09:12
+
+05AT3A1F PASS  ENROLL Sid                05 Atmanand   2024-08-27 01000 August     N N X X X 2024-08-27 07:15:06
