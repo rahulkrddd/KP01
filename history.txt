@@ -2,3 +2,4 @@
 04KCA299 PASS  ENROLL Rahul              04 KCPS       2024-08-27 01000 August     N N X X X 2024-08-27 05:37:34
 02DP10BF PASS  ENROLL Tannu              02 DPS        2024-08-27 01000 August     N N X X X 2024-08-27 05:37:35
 09KV0154 PASS  ENROLL Priyanka Gupta B   09 KV         2024-08-27 01000 August     N N X X X 2024-08-27 05:37:36
+01OTA7A4 PASS  ENROLL Manan Gupta        01 Others     2024-08-27 01000 August     N N X X X 2024-08-27 05:37:37
