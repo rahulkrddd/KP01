@@ -77,3 +77,5 @@
 09KV8D02 PASS ENROLL  Priyanka Gupta B   09 KV         2024-08-27  1000 August     N N X X X 2024-08-27 14:36:32
 01AT9434 PASS ENROLL  Rudra              01 Atmanand   2024-08-27  1000 August     N N X X X 2024-08-27 14:48:29
 01OT3B72 PASS ENROLL  Manan Gupta        01 Others     2024-08-27  1000 August     N N X X X 2024-08-27 14:49:59
+09KVECCA PASS ENROLL  Priyanka           09 KV         2024-08-27  1000 August     N N X X X 2024-08-27 14:51:11
+07DP3F73 PASS ENROLL  Mona               07 DPS        2024-08-27  1000 August     N N X X X 2024-08-27 14:51:11
