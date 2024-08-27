@@ -480,14 +480,14 @@
     "archiveInd": "No"
   },
   {
-    "id": "08DP0270",
+    "id": "01DP0270",
     "name": "Harish",
-    "studentClass": "08",
+    "studentClass": "1",
     "school": "DPS",
     "date": "2024-08-27",
     "fee": "1000",
     "month": "August",
-    "payment": "No",
+    "payment": "Yes",
     "mobile": "8871283714",
     "emailid": "career.rahul@gmail.com",
     "address": "Hi",
@@ -495,9 +495,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "08DP0270",
+    "id": "01DP0270",
     "name": "Harish",
-    "studentClass": "08",
+    "studentClass": "1",
     "school": "DPS",
     "date": "2024-08-27",
     "fee": "1000",
@@ -510,9 +510,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "08DP0270",
+    "id": "01DP0270",
     "name": "Harish",
-    "studentClass": "08",
+    "studentClass": "1",
     "school": "DPS",
     "date": "2024-08-27",
     "fee": "1000",
@@ -525,9 +525,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "08DP0270",
+    "id": "01DP0270",
     "name": "Harish",
-    "studentClass": "08",
+    "studentClass": "1",
     "school": "DPS",
     "date": "2024-08-27",
     "fee": "1000",
@@ -540,9 +540,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "08DP0270",
+    "id": "01DP0270",
     "name": "Harish",
-    "studentClass": "08",
+    "studentClass": "1",
     "school": "DPS",
     "date": "2024-08-27",
     "fee": "1000",
@@ -555,9 +555,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "08DP0270",
+    "id": "01DP0270",
     "name": "Harish",
-    "studentClass": "08",
+    "studentClass": "1",
     "school": "DPS",
     "date": "2024-08-27",
     "fee": "1000",
@@ -570,9 +570,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "08DP0270",
+    "id": "01DP0270",
     "name": "Harish",
-    "studentClass": "08",
+    "studentClass": "1",
     "school": "DPS",
     "date": "2024-08-27",
     "fee": "1000",
@@ -585,9 +585,9 @@
     "archiveInd": "No"
   },
   {
-    "id": "08DP0270",
+    "id": "01DP0270",
     "name": "Harish",
-    "studentClass": "08",
+    "studentClass": "1",
     "school": "DPS",
     "date": "2024-08-27",
     "fee": "1000",
