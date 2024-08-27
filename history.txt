@@ -19,3 +19,4 @@
 01OT4E5B PASS  ENROLL Manan Gupta        01 Others     2024-08-27 01000 August     N N X X X 2024-08-27 05:33:07
 08DP8B63 PASS  ENROLL Harish             08 DPS        2024-08-27 01000 August     N N X X X 2024-08-27 05:33:24
 04KCE9DE PASS  ENROLL Rahul              04 KCPS       2024-08-27 01000 August     N N X X X 2024-08-27 05:35:17
+02DP6C59 PASS  ENROLL Tannu              02 DPS        2024-08-27 01000 August     N N X X X 2024-08-27 05:35:18
