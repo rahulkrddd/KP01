@@ -358,7 +358,7 @@ function formatHistoryRecord(record) {
     const studentClass = record.studentClass.padStart(2, '0'); // Class (2 characters)
     const school = record.school.substring(0, 10).padEnd(10, ' '); // School (10 characters, padded if necessary)
     const enrollDate = record.date.substring(0, 10); // Enroll Date (10 characters)
-    const fee = record.fee.padStart(5, '0'); // Fee amount (5 characters)
+    const fee = record.fee.toString().padStart(5, ' ').substring(0, 5);
     const month = record.month.padEnd(10, ' '); // Month (10 characters, padded if necessary)
     const NNXXXkeyword = "N N X X X"; // Fixed 9-character keyword
     const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19); // Timestamp in the format (YYYY-MM-DD HH:MM:SS)
