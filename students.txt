@@ -8,7 +8,7 @@
     "email": "test@gmail.com",
     "subject": "maths",
     "Address": "a sajhsiq",
-    "status": "Pending",
+    "status": "Approved",
     "timestamp": "2024-08-22 15:29:16"
   },
   {
@@ -20,7 +20,7 @@
     "email": "rahul.gupta.730@gmail.com",
     "subject": "maths",
     "Address": "wuwhwuhuws",
-    "status": "Pending",
+    "status": "Approved",
     "timestamp": "2024-08-22 15:29:46"
   },
   {
